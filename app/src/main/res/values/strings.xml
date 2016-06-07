@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Garcon</string>
+    <string name="title_activity_omeactivity">omeactivity</string>
+    <string name="title_activity_homeactivity">homeactivity</string>
+    <string name="title_activity_sample">sample</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
+
         <activity
             android:name=".homeactivity"
             android:label="@string/title_activity_homeactivity"
@@ -22,10 +23,11 @@
             </intent-filter>
 
             <meta-data
-                android:name="android.app.searchable"
+                android:name="android.app.default_searchable"
                 android:value=".SearchActivity"
                 android:resource="@xml/searchable" />
         </activity>
+
         <activity android:name=".SearchActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -35,6 +37,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>
         </activity>
+
     </application>
 
 </manifest>

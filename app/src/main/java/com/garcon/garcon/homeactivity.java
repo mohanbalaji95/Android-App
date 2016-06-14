@@ -11,6 +11,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 public class homeactivity extends AppCompatActivity{
     DrawerLayout myDrawerLayout;
     NavigationView myNavigationView;
@@ -20,7 +25,20 @@ public class homeactivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_homeactivity);
+        Firebase rootRef = new Firebase("https://radiant-heat-8646.firebaseio.com/Akshay");
+
+        rootRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                System.out.println(snapshot.getValue());
+            }
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+        });
 
         /**
          *Setup the DrawerLayout and NavigationView

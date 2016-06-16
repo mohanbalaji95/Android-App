@@ -350,7 +350,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private final String mPassword;
 
         boolean authFlag = false;
-
+        boolean doneFlag = false;
+        int errorCode =0;
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
@@ -358,13 +359,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         void updateFlag(boolean newFlag){
             authFlag=newFlag;
         }
+        void updateDoneFlag(boolean dFlag){
+            doneFlag=dFlag;
+        }
+        void updateErrorCode(int eCode){
+            errorCode=eCode;
+        }
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
 
-
-            try {
                 // Simulate network access.
                 System.out.println("Attempting to authenticate");
                 Firebase ref = new Firebase(Constants.FIREBASE_URL);
@@ -373,26 +378,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     public void onAuthenticated(AuthData authData) {
                         System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
                         updateFlag(true);
+                        updateDoneFlag(true);
                     }
 
                     @Override
                     public void onAuthenticationError(FirebaseError firebaseError) {
                         // there was an error
+                        System.out.println("Error Code:"+firebaseError.getCode());
                         System.out.println("Error:"+ firebaseError.getMessage());
+                        updateErrorCode(firebaseError.getCode());
                         updateFlag(false);
+                        updateDoneFlag(true);
                     }
                 });
-                Thread.sleep(2000);
-
+                //Thread.sleep(2000);
+                while (!doneFlag){}
                 if(authFlag == true){
                     return true;
                 }
                 else{
                     return false;
                 }
-            } catch (InterruptedException e) {
-                return false;
-            }
+
 /*
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
@@ -417,8 +424,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 LoginActivity.this.startActivity(myIntent);
                 //finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+
+                if(errorCode == -16) {
+                    mPasswordView.setError(getString(R.string.error_incorrect_password));
+                    mPasswordView.requestFocus();
+                }
+                else if(errorCode == -17) {
+                    mEmailView.setError(getString(R.string.error_incorrect_email));
+                    mEmailView.requestFocus();
+                }
             }
         }
 

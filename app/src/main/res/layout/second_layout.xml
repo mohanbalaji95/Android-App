@@ -22,9 +22,9 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listV"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/actionText" />
+        android:layout_below="@+id/search"
+        android:id="@android:id/list"
+        android:layout_centerHorizontal="true" />
     <!--
     <TextView
         android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
         android:id="@android:id/empty"
         android:text="There is no data"
         android:textStyle="bold"
-        android:gravity="center" /> -->
+        android:gravity="center" />
     <TextView
         android:id="@+id/actionText"
         android:layout_width="wrap_content"
@@ -42,12 +42,11 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#ff00ff"
-        android:layout_below="@+id/search"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
+-->
 
 
 </RelativeLayout>

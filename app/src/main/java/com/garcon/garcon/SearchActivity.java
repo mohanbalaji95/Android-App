@@ -20,20 +20,25 @@ import android.widget.TextView;
  */
 public class SearchActivity extends ListActivity {
 
-    private TextView text;
-    private ListView listView;
-    private List<String> list;
+    private ListView LV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_layout);
 
+        LV = (ListView) findViewById(android.R.id.list);
+        String[] a = {"make", "america", "great", "again"};
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, a);
+        //LV.setAdapter(adapter);
+
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             search(query);
         }
+
+
     }
 
     protected void search (String query){

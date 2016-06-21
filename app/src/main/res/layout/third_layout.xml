@@ -12,6 +12,11 @@
         android:id="@+id/textView"
         android:layout_centerHorizontal="true"
         android:text="third\nFragment"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beacon"
+        android:id="@+id/beacon_button"/>
 
 
 

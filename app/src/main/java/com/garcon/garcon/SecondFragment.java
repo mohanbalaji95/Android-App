@@ -22,7 +22,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class SecondFragment extends Fragment {
 
     private TextView text;
@@ -34,29 +33,20 @@ public class SecondFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LV = new ListView(getActivity().getBaseContext());
-
-        listSetup(LV);
-
         return inflater.inflate(R.layout.second_layout, null);
     }
 
-    public void listSetup(ListView LV){
+    public void onViewCreated(View view, Bundle savedInstanceState){
+        LV = (ListView) getActivity().findViewById(android.R.id.list);
+        listSetup(LV);
+    }
 
+    public void listSetup(ListView LV){
         LV = (ListView) getActivity().findViewById (android.R.id.list);
-        String[] a = {"make", "america", "great", "again"};
+        String[] a = { "Android", "iPhone", "WindowsMobile",
+                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+                "Linux", "OS/2" , "asdf", "beep", "boop", "hello", "my", "name", "jeff"};
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, a);
         LV.setAdapter(adapter);
-
     }
-
-   /* public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-
-        return true;
-    }
-    */
-
-
 }

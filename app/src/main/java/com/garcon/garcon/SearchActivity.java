@@ -28,7 +28,7 @@ public class SearchActivity extends ListActivity {
         setContentView(R.layout.second_layout);
 
         LV = (ListView) findViewById(android.R.id.list);
-        String[] a = {"make", "america", "great", "again"};
+        String[] a = {"make", "america", "stupid", "again"};
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, a);
         //LV.setAdapter(adapter);
 
@@ -36,6 +36,7 @@ public class SearchActivity extends ListActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             search(query);
+            LV.setAdapter(adapter);
         }
 
 

@@ -24,9 +24,7 @@ import java.util.List;
 
 public class SecondFragment extends Fragment {
 
-    private TextView text;
     private ListView LV;
-    private List<String> list;
 
     @Nullable
     @Override
@@ -41,8 +39,10 @@ public class SecondFragment extends Fragment {
         listSetup(LV);
     }
 
+    //function to populate ListView with values
+    //currently a simple array as dummy data
+    //TODO: implement pipeline to database
     public void listSetup(ListView LV){
-        LV = (ListView) getActivity().findViewById (android.R.id.list);
         String[] a = { "Android", "iPhone", "WindowsMobile",
                 "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
                 "Linux", "OS/2" , "asdf", "beep", "boop", "hello", "my", "name", "jeff"};

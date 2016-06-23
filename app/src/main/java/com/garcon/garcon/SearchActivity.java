@@ -13,8 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
-
 /**
  * Created by Mayank Tiwari on 6/9/2016.
  */
@@ -27,23 +25,16 @@ public class SearchActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_layout);
 
-        LV = (ListView) findViewById(android.R.id.list);
-        String[] a = {"make", "america", "stupid", "again"};
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, a);
-        //LV.setAdapter(adapter);
-
         Intent intent = getIntent();
+        //intent to search
+        //TODO: implement search with database
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             search(query);
-            LV.setAdapter(adapter);
         }
-
-
     }
 
     protected void search (String query){
         //TODO: search based on data storage
     }
-
-    }
+}

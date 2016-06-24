@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1048655021390",
+    "firebase_url": "https://garcondatabase.firebaseio.com",
+    "project_id": "garcondatabase",
+    "storage_bucket": "garcondatabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048655021390:android:5939c3716875593f",
+        "android_client_info": {
+          "package_name": "com.garcon.garcon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048655021390-ui1nq670erdkgj1ep1aumt7ldnbr98me.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjKBMhf2w5UReqBz_tx2S93DwNuYUhYHw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

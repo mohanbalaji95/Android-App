@@ -5,6 +5,6 @@ package com.garcon.Constants;
  */
 public class Constants {
 
-    public static final String FIREBASE_URL = "https://radiant-heat-8646.firebaseio.com/";
+    public static final String FIREBASE_URL = "https://garcondatabase.firebaseio.com/";
 
 }

@@ -35,9 +35,13 @@ dependencies {
 
     //Amazon Web Services
     compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.amazonaws:aws-android-sdk-core:2.+'
-    compile 'com.amazonaws:aws-android-sdk-cognito:2.+'
     compile 'com.android.support:design:23.4.0'
-    compile 'com.firebase:firebase-client-android:2.5.2+'
+    compile 'com.google.firebase:firebase-core:9.0.2'
+    compile 'com.google.firebase:firebase-database:9.0.2'
+    compile 'com.google.firebase:firebase-auth:9.0.2'
     compile 'org.altbeacon:android-beacon-library:2.8.1'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+
 }
+
+apply plugin: 'com.google.gms.google-services'

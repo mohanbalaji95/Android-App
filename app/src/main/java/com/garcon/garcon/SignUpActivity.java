@@ -17,20 +17,32 @@ import android.widget.Toast;
 
 
 import com.garcon.Constants.Constants;
+import com.garcon.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Map;
 import java.util.concurrent.Executor;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private TextView textViewPersons;
+    private EditText editTextFirstName;
+    private EditText editTextLastName;
+    private EditText editTextUserName;
+    private EditText editTextConfirmPassword;
+    private EditText editTextPhoneNumber;
+
+
+
     private Button buttonSave;
 
     private View mProgressView;
@@ -40,7 +52,11 @@ public class SignUpActivity extends AppCompatActivity {
 
     //Firebase
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
     //private FirebaseAuth.AuthStateListener mAuthListener;
+    private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -49,8 +65,14 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         buttonSave = (Button) findViewById(R.id.buttonSave);
-        editTextEmail = (EditText) findViewById(R.id.editTextName);
-        editTextPassword = (EditText) findViewById(R.id.editTextAddress);
+        editTextEmail = (EditText) findViewById(R.id.signup_email);
+        editTextPassword = (EditText) findViewById(R.id.signup_password);
+        editTextFirstName = (EditText) findViewById(R.id.signup_firstname);
+        editTextLastName = (EditText) findViewById(R.id.signup_lastname);
+        editTextUserName = (EditText) findViewById(R.id.signup_username);
+        editTextConfirmPassword = (EditText) findViewById(R.id.signup_confirmpassword);
+        editTextPhoneNumber = (EditText) findViewById(R.id.signup_phonenumber);
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -88,8 +110,13 @@ public class SignUpActivity extends AppCompatActivity {
         editTextPassword.setError(null);
 
         // Store values at the time of the login attempt.
+        String firstName = editTextFirstName.getText().toString();
+        String lastName =  editTextLastName.getText().toString();
+        String userName = editTextUserName.getText().toString();
+        String phoneNumber = editTextPhoneNumber.getText().toString();
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
+        String confirmPassword = editTextConfirmPassword.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -98,6 +125,12 @@ public class SignUpActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             editTextPassword.setError(getString(R.string.error_invalid_password));
             focusView = editTextPassword;
+            cancel = true;
+        }
+
+        if(!confirmPassword.equals(password)){
+            editTextConfirmPassword.setError(getString(R.string.error_incorrect_confirmpassword));
+            focusView = editTextConfirmPassword;
             cancel = true;
         }
 
@@ -120,7 +153,7 @@ public class SignUpActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mSignupTask = new UserSignUpTask(email, password);
+            mSignupTask = new UserSignUpTask(email, password,firstName,lastName,phoneNumber,userName);
             mSignupTask.execute((Void) null);
         }
     }
@@ -132,7 +165,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        Pattern passwordPattern = Pattern.compile(PASSWORD_PATTERN);
+        Matcher passwordMatcher = passwordPattern.matcher(password);
+
+        return passwordMatcher.matches();
     }
 
     /**
@@ -174,14 +210,19 @@ public class SignUpActivity extends AppCompatActivity {
     
     public class UserSignUpTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
+        //private final String mEmail;
         private final String mPassword;
-
+        User newUser = new User();
         boolean signUpFlag = false;
         boolean doneFlag = false;
-        UserSignUpTask(String email,String password){
-            mEmail=email;
+        UserSignUpTask(String email,String password,String firstName, String lastName, String phoneNumber, String userName){
+            //mEmail=email;
             mPassword=password;
+            newUser.seteMail(email);
+            newUser.setFirstName(firstName);
+            newUser.setLastName(lastName);
+            newUser.setPhoneNumber(phoneNumber);
+            newUser.setUserName(userName);
 
         }
 
@@ -233,7 +274,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                */
 
-            mAuth.createUserWithEmailAndPassword(mEmail, mPassword)
+            mAuth.createUserWithEmailAndPassword(newUser.geteMail(), mPassword)
                     .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -257,8 +298,10 @@ public class SignUpActivity extends AppCompatActivity {
                                 updateDoneFlag(true);
                             }
                             else {
-                                System.out.println("Successfully created user account with uid: "+ task.getResult().toString());
+                                System.out.println("Successfully created user account with uid: "+ mAuth.getCurrentUser().getUid());
                                 Toast.makeText(SignUpActivity.this, R.string.success_account_created, Toast.LENGTH_LONG).show();
+                                newUser.setUserUID(mAuth.getCurrentUser().getUid());
+                                writeSignUpData(newUser);
                                 updateSignUpFlag(true);
                                 updateDoneFlag(true);
                             }
@@ -286,6 +329,12 @@ public class SignUpActivity extends AppCompatActivity {
                 System.out.println("Finishing the activity");
                 finish();
             }
+        }
+
+        public void writeSignUpData(User newUser){
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+            mDatabase.child("users").child(newUser.getUserUID()).setValue(newUser);
+
         }
 
     }

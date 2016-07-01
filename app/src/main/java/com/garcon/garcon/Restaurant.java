@@ -3,9 +3,9 @@ package com.garcon.garcon;
  * Created by Mayank on 6/27/2016.
  */
 public class Restaurant{
-    String name, location, ID, price, website, hours;
-    String[] Type;
-    int phone, rating;
+    private String name, location, ID, price, website, hours;
+    private String Type;
+    private int phone, rating;
 
     public Restaurant(){
         // empty default constructor, necessary for Firebase to be able to deserialize
@@ -46,10 +46,10 @@ public class Restaurant{
     public void setWebsite(String web) {
         this.website = web;
     }
-    public String[] getTypes() {
+    public String getTypes() {
         return Type;
     }
-    public void setTypes(String[] types) {
+    public void setTypes(String types) {
         this.Type = types;
     }
     public int getPhone() {

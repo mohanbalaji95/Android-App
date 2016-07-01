@@ -25,12 +25,4 @@
         android:layout_below="@+id/search"
         android:id="@android:id/list"
         android:layout_centerHorizontal="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/actionText"
-        android:id="@android:id/empty"
-        android:text="Enter a search query"
-        android:textStyle="bold"
-        android:gravity="center" />
 </RelativeLayout>

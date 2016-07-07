@@ -25,8 +25,9 @@ public class homeactivity extends AppCompatActivity{
     FragmentManager myFragmentManager;
     FragmentTransaction myFragmentTransaction;
 
-    //private FirebaseAuth.AuthStateListener mAuthListener;
 
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseAuth mAuth;
     private static final String TAG = LoginActivity.class.getName();
 
     @Override
@@ -34,8 +35,26 @@ public class homeactivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_homeactivity);
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    System.out.println("onAuthStateChanged:signed_in:" + user.getUid());
 
+                } else {
+                    // User is signed out
+                    Log.d(TAG,"onAuthStateChanged:signed_out");
+                    System.out.println("onAuthStateChanged:signed_out");
+                    finish();
 
+                }
+                // ...
+            }
+        };
 
 
         /**
@@ -53,6 +72,9 @@ public class homeactivity extends AppCompatActivity{
         myFragmentManager = getSupportFragmentManager();
         myFragmentTransaction = myFragmentManager.beginTransaction();
         myFragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
+
+
+
         /**
          * Setup click events on the Navigation View Items.
          */
@@ -76,10 +98,11 @@ public class homeactivity extends AppCompatActivity{
                     Log.d(TAG,"menu item clicked");
                     FirebaseAuth.getInstance().signOut();
                     LoginManager.getInstance().logOut();
-                    finishActivity(0);
-                    myDrawerLayout.closeDrawers();
-                }
+                    startActivity(new Intent(homeactivity.this,LoginActivity.class));
+                    //finishActivity(0);
 
+                }
+                myDrawerLayout.closeDrawers();
                 return false;
             }
 
@@ -97,22 +120,20 @@ public class homeactivity extends AppCompatActivity{
 
         mDrawerToggle.syncState();
 
-        /*mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                   Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
 
-                } else {
-                    // User is signed out
-                    Log.d(TAG,"onAuthStateChanged:signed_out");
 
-                }
-                // ...
-            }
-        };*/
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 }

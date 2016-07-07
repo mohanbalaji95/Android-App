@@ -32,6 +32,16 @@ public class ThirdFragment extends Fragment {
 
             }
         });
+
+        Button checkoutButton = (Button) v.findViewById(R.id.checkout_button);
+        checkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startCheckoutActivity = new Intent(getActivity(), CheckoutActivity.class);
+                startActivity(startCheckoutActivity);
+
+            }
+        });
         return v;
 
 

@@ -55,7 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     //private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})";
-
+    private static final String PHONENUMBER_PATTERN = "[0-9]{3}-[0-9]{3}-[0-9]{4}";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,14 +126,16 @@ public class SignUpActivity extends AppCompatActivity {
             editTextPassword.setError(getString(R.string.error_invalid_password));
             focusView = editTextPassword;
             cancel = true;
-        }
-
-        if(!confirmPassword.equals(password)){
+        } else if(!confirmPassword.equals(password)){
             editTextConfirmPassword.setError(getString(R.string.error_incorrect_confirmpassword));
             focusView = editTextConfirmPassword;
             cancel = true;
         }
-
+        if(isPhoneNumberValid(phoneNumber)){
+            editTextPhoneNumber.setError(getString(R.string.error_incorrect_phonenumber));
+            focusView = editTextPhoneNumber;
+            cancel = true;
+        }
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
             editTextEmail.setError(getString(R.string.error_field_required));
@@ -169,6 +171,13 @@ public class SignUpActivity extends AppCompatActivity {
         Matcher passwordMatcher = passwordPattern.matcher(password);
 
         return passwordMatcher.matches();
+    }
+    private  boolean isPhoneNumberValid(String phoneNumber){
+
+        Pattern phonePattern = Pattern.compile(PHONENUMBER_PATTERN);
+        Matcher phoneMatcher = phonePattern.matcher(phoneNumber);
+
+        return phoneMatcher.matches();
     }
 
     /**

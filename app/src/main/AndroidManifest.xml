@@ -15,8 +15,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <activity android:name=".SignUpActivity"></activity>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".SignUpActivity" />
         <activity
             android:name=".homeactivity"
             android:label="@string/title_activity_homeactivity"
@@ -35,8 +38,8 @@
 
             <meta-data
                 android:name="android.app.default_searchable"
-                android:value=".SearchActivity"
-                android:resource="@xml/searchable" />
+                android:resource="@xml/searchable"
+                android:value=".SearchActivity" />
         </activity>
         <activity
             android:name=".LoginActivity"
@@ -47,10 +50,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".BeaconActivity"
             android:label="@string/title_activity_beacon"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".CheckoutActivity"
+            android:label="@string/title_activity_checkout"
             android:theme="@style/AppTheme"></activity>
     </application>
 

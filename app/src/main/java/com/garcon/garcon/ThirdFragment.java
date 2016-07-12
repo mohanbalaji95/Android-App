@@ -38,6 +38,8 @@ public class ThirdFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent startCheckoutActivity = new Intent(getActivity(), CheckoutActivity.class);
+                startCheckoutActivity.putExtra("ticketnumber","oTpbBkqT");
+                startCheckoutActivity.putExtra("locationID","xc5rqEyc");
                 startActivity(startCheckoutActivity);
 
             }

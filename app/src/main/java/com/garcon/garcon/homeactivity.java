@@ -115,8 +115,8 @@ public class homeactivity extends AppCompatActivity{
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,myDrawerLayout, toolbar,R.string.app_name,
                 R.string.app_name);
-
-        myDrawerLayout.setDrawerListener(mDrawerToggle);
+        myDrawerLayout.addDrawerListener(mDrawerToggle);
+        //myDrawerLayout.setDrawerListener(mDrawerToggle);
 
         mDrawerToggle.syncState();
 

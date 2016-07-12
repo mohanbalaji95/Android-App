@@ -14,6 +14,13 @@
 
     <Button android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Open Tab"
+        android:id="@+id/open_tab_btn">
+
+    </Button>
+
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Send Order"
         android:id="@+id/submit_order">
 

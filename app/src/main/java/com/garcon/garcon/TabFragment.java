@@ -3,6 +3,7 @@ package com.garcon.garcon;
 /**
  * Created by kritikagopalakrishnan on 6/2/16.
  */
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -18,7 +19,7 @@ public class TabFragment extends Fragment {
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 3 ;
+    public static int int_items = 3;
 
     @Nullable
     @Override
@@ -26,7 +27,7 @@ public class TabFragment extends Fragment {
         /**
          *Inflate tab_layout and setup Views.
          */
-        View x =  inflater.inflate(R.layout.tab_layout, null);
+        View x = inflater.inflate(R.layout.tab_layout, null);
         tabLayout = (TabLayout) x.findViewById(R.id.tabs);
         viewPager = (ViewPager) x.findViewById(R.id.viewpager);
 
@@ -52,7 +53,7 @@ public class TabFragment extends Fragment {
 
     }
 
-    class MyAdapter extends FragmentPagerAdapter{
+    class MyAdapter extends FragmentPagerAdapter {
 
         public MyAdapter(FragmentManager fm) {
             super(fm);
@@ -63,12 +64,14 @@ public class TabFragment extends Fragment {
          */
 
         @Override
-        public Fragment getItem(int position)
-        {
-            switch (position){
-                case 0 : return new PrimaryFragment();
-                case 1 : return new SecondFragment();
-                case 2 : return new ThirdFragment();
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return new PrimaryFragment();
+                case 1:
+                    return new SecondFragment();
+                case 2:
+                    return new ThirdFragment();
             }
             return null;
         }
@@ -87,12 +90,12 @@ public class TabFragment extends Fragment {
         @Override
         public CharSequence getPageTitle(int position) {
 
-            switch (position){
-                case 0 :
+            switch (position) {
+                case 0:
                     return "Primary";
-                case 1 :
+                case 1:
                     return "Second";
-                case 2 :
+                case 2:
                     return "Third";
             }
             return null;

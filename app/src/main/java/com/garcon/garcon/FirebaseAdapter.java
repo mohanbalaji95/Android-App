@@ -17,7 +17,6 @@ public class FirebaseAdapter extends BaseAdapter {
     LayoutInflater inflater;
     Context context;
 
-
     public FirebaseAdapter(Context context, ArrayList myList) {
         super();
         this.myList = myList;
@@ -62,10 +61,13 @@ public class FirebaseAdapter extends BaseAdapter {
         mViewHolder.tvHours.setText(curRestaurant.getHours());
         mViewHolder.tvType.setText(curRestaurant.getTypes());
 
-
         return convertView;
     }
 
+    /**
+     * This class is for each list item
+     * TODO: Implement an image into search results
+     */
     private class MyViewHolder {
         TextView tvName, tvPrice, tvRating, tvLocation, tvHours, tvType;
 

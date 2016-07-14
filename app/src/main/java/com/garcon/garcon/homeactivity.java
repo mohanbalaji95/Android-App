@@ -1,7 +1,5 @@
 package com.garcon.garcon;
 
-
-
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -11,8 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-
-public class homeactivity extends AppCompatActivity{
+public class homeactivity extends AppCompatActivity {
     DrawerLayout myDrawerLayout;
     NavigationView myNavigationView;
     FragmentManager myFragmentManager;
@@ -21,10 +18,7 @@ public class homeactivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_homeactivity);
-
-
 
 
         /**
@@ -32,7 +26,7 @@ public class homeactivity extends AppCompatActivity{
          */
 
         myDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        myNavigationView = (NavigationView) findViewById(R.id.profile) ;
+        myNavigationView = (NavigationView) findViewById(R.id.profile);
 
         /**
          * Lets inflate the very first fragment
@@ -41,7 +35,7 @@ public class homeactivity extends AppCompatActivity{
 
         myFragmentManager = getSupportFragmentManager();
         myFragmentTransaction = myFragmentManager.beginTransaction();
-        myFragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
+        myFragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
         /**
          * Setup click events on the Navigation View Items.
          */
@@ -52,16 +46,15 @@ public class homeactivity extends AppCompatActivity{
                 myDrawerLayout.closeDrawers();
 
 
-
                 if (menuItem.getItemId() == R.id.nav_item_sent) {
                     FragmentTransaction fragmentTransaction = myFragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.containerView,new SentFragment()).commit();
+                    fragmentTransaction.replace(R.id.containerView, new SentFragment()).commit();
 
                 }
 
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {
                     FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
+                    xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
                 }
 
                 return false;
@@ -74,7 +67,7 @@ public class homeactivity extends AppCompatActivity{
          */
 
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
-        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,myDrawerLayout, toolbar,R.string.app_name,
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, toolbar, R.string.app_name,
                 R.string.app_name);
 
         myDrawerLayout.setDrawerListener(mDrawerToggle);

@@ -19,6 +19,7 @@ public class FirebaseAdapter extends BaseAdapter {
 
 
     public FirebaseAdapter(Context context, ArrayList myList) {
+        super();
         this.myList = myList;
         this.context = context;
         inflater = LayoutInflater.from(this.context);
@@ -35,6 +36,7 @@ public class FirebaseAdapter extends BaseAdapter {
     }
 
     @Override
+    //DO NOT USE: required by BaseAdapter but cannot return anything besides a long
     public long getItemId(int position) {
         return 0;
     }
@@ -55,18 +57,26 @@ public class FirebaseAdapter extends BaseAdapter {
 
         mViewHolder.tvName.setText(curRestaurant.getName());
         mViewHolder.tvPrice.setText(curRestaurant.getPrice());
-        mViewHolder.tvRating.setText(curRestaurant.getRating());
+        mViewHolder.tvRating.setText(Double.toString(curRestaurant.getRating()));
+        mViewHolder.tvLocation.setText(curRestaurant.getLocation());
+        mViewHolder.tvHours.setText(curRestaurant.getHours());
+        mViewHolder.tvType.setText(curRestaurant.getTypes());
+
 
         return convertView;
     }
 
     private class MyViewHolder {
-        TextView tvName, tvPrice, tvRating;
+        TextView tvName, tvPrice, tvRating, tvLocation, tvHours, tvType;
 
         public MyViewHolder(View item) {
             tvName = (TextView) item.findViewById(R.id.tvName);
             tvPrice = (TextView) item.findViewById(R.id.tvPrice);
             tvRating = (TextView) item.findViewById(R.id.tvRating);
+            tvLocation = (TextView) item.findViewById(R.id.tvLocation);
+            tvHours = (TextView) item.findViewById(R.id.tvHours);
+            tvType = (TextView) item.findViewById(R.id.tvType);
+
         }
     }
 }

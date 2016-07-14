@@ -11,13 +11,17 @@ import com.firebase.client.ValueEventListener;
 import com.garcon.Constants.Constants;
 
 import android.app.Activity;
+import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DatabaseError;
@@ -33,20 +37,24 @@ public class SecondFragment extends Fragment {
     private ListView LV;
     private Firebase ref;
     ArrayList<Restaurant> myList;
+
     @Override
     public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-
-    }
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(savedInstanceState== null){
             Firebase.setAndroidContext(this.getActivity().getBaseContext());
         }
-        ref= new Firebase(Constants.FIREBASE_RESTAURANT_URL);
 
+
+
+    }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        View view = inflater.inflate(R.layout.second_layout, null);
+
+        ref= new Firebase(Constants.FIREBASE_RESTAURANT_URL);
         myList = new ArrayList<Restaurant>();
-        final TextView textbox = (TextView) getActivity().findViewById(R.id.text2);
+        //final TextView textbox = (TextView) getActivity().findViewById(R.id.text2);
 
         //Add data into myList
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -61,24 +69,21 @@ public class SecondFragment extends Fragment {
             public void onCancelled(FirebaseError firebaseError) {}
         });
 
-        FirebaseAdapter fba = new FirebaseAdapter(this.getContext(), myList);
-        LV = (ListView) this.getActivity().findViewById(android.R.id.list);
+        //LayoutInflater inflater = getLayoutInflater(savedInstanceState);
+        //LV = (ListView) inflater.inflate(R.layout.second_layout, null).findViewById(R.id.fblist);
+        LV = (ListView) view.findViewById(R.id.fblist);
+        listSetup(LV, savedInstanceState);
 
-        listSetup(LV, fba);
-        View view = inflater.inflate(R.layout.second_layout, null);
+
+        //FirebaseAdapter fba = new FirebaseAdapter(this.getContext(), myList);
+        //LV.setAdapter(fba);
         return view;
     }
 
+
     //function to populate ListView with values
-    //TODO: implement pipeline to database
-    public void listSetup(ListView LV, FirebaseAdapter FBAdapter){
-
-        /**String[] a = { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2" , "asdf", "beep", "boop", "hello", "my", "name", "jeff"};
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, a);
-        **/
-
-        LV.setAdapter(FBAdapter);
+    public void listSetup(ListView LV, Bundle savedInstanceState){
+        FirebaseAdapter fba = new FirebaseAdapter(this.getContext(), myList);
+        LV.setAdapter(fba);
     }
 }

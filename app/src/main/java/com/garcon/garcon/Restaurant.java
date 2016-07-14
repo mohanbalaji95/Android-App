@@ -4,7 +4,7 @@ package com.garcon.garcon;
  */
 public class Restaurant{
     String name, location, ID, price, website, hours, Type, phone;
-    int rating;
+    double rating;
 
     public Restaurant(){
         // empty default constructor, necessary for Firebase to be able to deserialize JSON
@@ -15,7 +15,7 @@ public class Restaurant{
     public String getHours() {
         return hours;
     }
-    public String getLoc() {
+    public String getLocation() {
         return location;
     }
     public String getID() {
@@ -31,7 +31,17 @@ public class Restaurant{
         return Type;
     }
     public String getPhone() { return phone; }
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
+
+    public void setName(String newvar) {this.name = newvar;}
+    public void setHours(String newvar) {this.hours = newvar;}
+    public void setLocation(String newvar) {this.location = newvar;}
+    public void setID(String newvar) {this.ID = newvar;}
+    public void setPrice(String newvar) {this.price = newvar;}
+    public void setTypes(String newvar) {this.Type = newvar;}
+    public void setWebsite(String newvar) {this.website = newvar;}
+    public void setPhone(String newvar) {this.phone = newvar;}
+    public void setRating(double newvar) {this.rating = newvar;}
 }

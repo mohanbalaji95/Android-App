@@ -9,6 +9,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.firebase.client.Firebase;
+import com.firebase.client.Logger;
+
 public class homeactivity extends AppCompatActivity {
     DrawerLayout myDrawerLayout;
     NavigationView myNavigationView;
@@ -18,6 +21,8 @@ public class homeactivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.getDefaultConfig().setLogLevel(Logger.Level.DEBUG);
+
         setContentView(R.layout.activity_homeactivity);
 
 

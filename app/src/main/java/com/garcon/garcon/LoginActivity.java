@@ -114,12 +114,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String emailPref = sharedpreferences.getString(eMailkey,null);
         System.out.println("the email is "+emailPref);
+<<<<<<< HEAD
         /*if(emailPref!=null){
+=======
+
+        if(emailPref!=null){
+>>>>>>> Firebase_data_pipeline
             Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
             LoginActivity.this.startActivity(myIntent);
             finish();
 
+<<<<<<< HEAD
         }*/
+=======
+        }
+
+>>>>>>> Firebase_data_pipeline
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();

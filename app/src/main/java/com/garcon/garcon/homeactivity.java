@@ -1,8 +1,11 @@
 package com.garcon.garcon;
 
+<<<<<<< HEAD
 
 
 import android.content.Intent;
+=======
+>>>>>>> Firebase_data_pipeline
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -14,12 +17,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+<<<<<<< HEAD
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+=======
+import com.firebase.client.Firebase;
+import com.firebase.client.Logger;
+>>>>>>> Firebase_data_pipeline
 
-public class homeactivity extends AppCompatActivity{
+public class homeactivity extends AppCompatActivity {
     DrawerLayout myDrawerLayout;
     NavigationView myNavigationView;
     FragmentManager myFragmentManager;
@@ -33,6 +41,7 @@ public class homeactivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.getDefaultConfig().setLogLevel(Logger.Level.DEBUG);
 
         setContentView(R.layout.activity_homeactivity);
         mAuth = FirebaseAuth.getInstance();
@@ -51,18 +60,21 @@ public class homeactivity extends AppCompatActivity{
                     System.out.println("onAuthStateChanged:signed_out");
                     finish();
 
+<<<<<<< HEAD
                 }
                 // ...
             }
         };
 
+=======
+>>>>>>> Firebase_data_pipeline
 
         /**
          *Setup the DrawerLayout and NavigationView
          */
 
         myDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        myNavigationView = (NavigationView) findViewById(R.id.profile) ;
+        myNavigationView = (NavigationView) findViewById(R.id.profile);
 
         /**
          * Lets inflate the very first fragment
@@ -71,10 +83,14 @@ public class homeactivity extends AppCompatActivity{
 
         myFragmentManager = getSupportFragmentManager();
         myFragmentTransaction = myFragmentManager.beginTransaction();
+<<<<<<< HEAD
         myFragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
 
 
 
+=======
+        myFragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
+>>>>>>> Firebase_data_pipeline
         /**
          * Setup click events on the Navigation View Items.
          */
@@ -85,21 +101,25 @@ public class homeactivity extends AppCompatActivity{
 
 
 
-
                 if (menuItem.getItemId() == R.id.nav_item_sent) {
                     FragmentTransaction fragmentTransaction = myFragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.containerView,new SentFragment()).commit();
+                    fragmentTransaction.replace(R.id.containerView, new SentFragment()).commit();
 
                 }
 
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {
                     FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
+<<<<<<< HEAD
                     xfragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
                     Log.d(TAG,"menu item clicked");
                     FirebaseAuth.getInstance().signOut();
                     LoginManager.getInstance().logOut();
                     startActivity(new Intent(homeactivity.this,LoginActivity.class));
                     //finishActivity(0);
+=======
+                    xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
+                }
+>>>>>>> Firebase_data_pipeline
 
                 }
                 myDrawerLayout.closeDrawers();
@@ -113,7 +133,7 @@ public class homeactivity extends AppCompatActivity{
          */
 
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
-        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,myDrawerLayout, toolbar,R.string.app_name,
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, toolbar, R.string.app_name,
                 R.string.app_name);
         myDrawerLayout.addDrawerListener(mDrawerToggle);
         //myDrawerLayout.setDrawerListener(mDrawerToggle);

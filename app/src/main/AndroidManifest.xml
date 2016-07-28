@@ -17,6 +17,11 @@
 
         <activity android:name=".SignUpActivity"></activity>
 
+        <activity android:name=".FloatingRestaurantActivity"
+            android:theme="@style/AppTheme.FloatingWindow"
+            android:label="FloatingActivity"
+        ></activity>
+
         <activity
             android:name=".homeactivity"
             android:label="@string/title_activity_homeactivity"

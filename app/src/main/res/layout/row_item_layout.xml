@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root">
+
+    <TextView android:id="@+id/menu_item_string"
+        android:textColor="@color/garcon"
+        android:background="@color/yellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:textSize="18sp" />
+
+    <Button android:id="@+id/delete_btn"
+        android:text="X"
+        android:textColor="@color/garcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:minWidth="15dp" />
+
+    <Button android:id="@+id/more_btn"
+        android:text="@string/buttonItemDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/delete_btn"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:minWidth="15dp"/>
+
+</RelativeLayout>

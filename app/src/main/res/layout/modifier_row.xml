@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:id="@+id/menus"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <CheckedTextView android:id="@+id/mod_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:background="@color/lime"
+        android:checkMark="@null"
+        android:drawableRight="@null"
+        android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        />
+
+    <!--
+    ctv onClickListener
+    android:clickable="true"
+    android:focusable="true"
+    -->
+
+    <TextView android:id="@+id/mod_price"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:background="@color/aqua"
+        android:gravity="end"
+        android:clickable="false"
+        />
+
+</LinearLayout>

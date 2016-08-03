@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
     //session management
-    public static final String MyPREFERENCES = "GarconPref" ;
+    //public static final String MyPREFERENCES = "GarconPref" ;
     public static final String eMailkey = "emailkey";
     SharedPreferences sharedpreferences;
     private FirebaseAuth mAuth;
@@ -110,10 +110,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login2);
         mAuth = FirebaseAuth.getInstance();
 
-        System.out.println("Retrieving from  shared Preference");
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String emailPref = sharedpreferences.getString(eMailkey,null);
-        System.out.println("the email is "+emailPref);
+        //System.out.println("Retrieving from  shared Preference");
+        sharedpreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
+        //String emailPref = sharedpreferences.getString(eMailkey,null);
+        //System.out.println("the email is "+emailPref);
         /*if(emailPref!=null){
             Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
             LoginActivity.this.startActivity(myIntent);
@@ -201,6 +201,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 if (user != null) {
                     // User is signed in
                     System.out.println( "onAuthStateChanged:signed_in:" + user.getUid());
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString(getString(R.string.User_UUID_Key),user.getUid());
+                    editor.commit();
                     Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
                     LoginActivity.this.startActivity(myIntent);
 

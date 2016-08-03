@@ -52,4 +52,57 @@
     <!-- Facebook API-->
     <string name="facebook_app_id">1195655813788685</string>
     <string name="title_activity_checkout">CheckoutActivity</string>
+
+    <!--ViewCart-->
+    <string name="your_order">YOUR ORDER</string>
+    <string name="place_order">Place Order</string>
+    <string name="buttonTableSize">Table for 2</string>
+    <string name="buttonOrderDate">Today</string>
+    <string name="buttonOrderTime">00:00 AM</string>
+    <string name="editTextTableNumberHint">Table Number</string>
+    <string name="editTextSpecialInstructionsHint">Add special instructions or comment</string>
+    <string name="spinnerRestaurantAreaHint">Restaurant Area</string>
+    <string name="buttonItemDetails">Edit</string>
+    <string-array name="optionsOrderTime">
+        <item>00:00 AM</item>
+        <item>00:15 AM</item>
+        <item>00:30 AM</item>
+        <item>00:45 AM</item>
+        <item>01:00 AM</item>
+        <item>01:15 AM</item>
+        <item>01:30 AM</item>
+        <item>01:45 AM</item>
+        <item>02:00 AM</item>
+    </string-array>
+    <string-array name="optionsOrderDate">
+        <item>Today</item>
+        <item>Tomorrow</item>
+    </string-array>
+    <string-array name="optionsTableSize">
+        <item>Table for 1</item>
+        <item>Table for 2</item>
+        <item>Table for 3</item>
+        <item>Table for 4</item>
+        <item>Table for 5</item>
+        <item>Table for 6</item>
+        <item>Table for 7</item>
+        <item>Table for 8</item>
+    </string-array>
+    <string-array name="optionsRestaurantArea">
+        <item>Dining Area</item>
+        <item>Outside</item>
+        <item>Bar</item>
+    </string-array>
+
+    <!-- Strings related to shared preferences -->
+    <string name="shared_pref_file_name">GarconPref</string>
+    <string name="User_UUID_Key">UserUUID</string>
+
+    <!-- Strings related to checkout -->
+    <string name="subtotal">Subtotal</string>
+    <string name="buffer_amount">Buffer Amount</string>
+    <string name="tip">Tip</string>
+    <string name="total">Total</string>
+
+
 </resources>

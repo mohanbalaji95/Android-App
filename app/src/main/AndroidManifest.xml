@@ -58,6 +58,21 @@
             android:name=".CheckoutActivity"
             android:label="@string/title_activity_checkout"
             android:theme="@style/AppTheme"></activity>
+
+        <activity android:name=".MainMenuActivity">
+        </activity>
+        <activity android:name=".MainItemActivity"
+            android:theme="@style/AppTheme.ItemPopup">
+        </activity>
+        <activity android:name=".MainViewCartActivity"
+            android:theme="@style/AppTheme.ViewCartPopup">
+        </activity>
+        <activity android:name=".MainReviewActivity">
+
+        </activity>
+        <activity android:name=".MainCheckoutActivity">
+
+        </activity>
     </application>
 
 </manifest>

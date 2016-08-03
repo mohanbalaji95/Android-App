@@ -1,10 +1,10 @@
 package com.garcon.garcon;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.garcon.Constants.Constants;
+import com.garcon.Models.Table;
+import com.garcon.Models.Ticket;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,16 +29,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
-import us.monoid.web.Resty;
+import java.util.Map;
 
 public class CheckoutActivity extends AppCompatActivity {
     private static final String TAG = CheckoutActivity.class.getName();
     private DatabaseReference mDatabase;
+    SharedPreferences sharedpreferences;
+
     String ApiKey=null;
     String locationID;
     String ticketID;
+    Ticket ticket;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +69,8 @@ public class CheckoutActivity extends AppCompatActivity {
 
                                 setKey(dataSnapshot.getValue().toString());
                                 Log.d(TAG,"The Key is--> " + getKey());
-                                SendOrder so = new SendOrder();
-                                so.execute((Void) null);
+                                OpenTicket ot = new OpenTicket();
+                                ot.execute((Void) null);
 
 
 
@@ -115,7 +122,7 @@ public class CheckoutActivity extends AppCompatActivity {
     public String getKey(){
         return ApiKey;
     }
-    class SendOrder extends AsyncTask<Void, Void, JSONObject> {
+    class OpenTicket extends AsyncTask<Void, Void, JSONObject> {
 
 
 
@@ -156,10 +163,32 @@ public class CheckoutActivity extends AppCompatActivity {
                     json.append(tmp).append("\n");
                 reader.close();
                 Log.d(TAG,"json to string "+json.toString());
+                SharedPreferences sp = getApplicationContext().getSharedPreferences(getString(R.string.shared_pref_file_name),Context.MODE_PRIVATE);
+                SharedPreferences.Editor spEditor = sp.edit();
+                spEditor.putString("ticketString",json.toString());
+                spEditor.commit();
+                Log.d(TAG,"json in sharedpref "+sp.getString("ticketString",null));
                 JSONObject data = new JSONObject(json.toString());
                 Log.d(TAG,"The ticket ID is -->  "+data.getString("id"));
-                if(connection.getResponseCode()!=200){
+                ticketID = data.getString("id");
+                if(connection.getResponseCode()!=201){
                     return null;
+                }
+                else{
+                    Log.d(TAG,"Adding data to FireBase");
+                    sharedpreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
+                    String userUUID = sharedpreferences.getString(getString(R.string.User_UUID_Key),null);
+                    ticket = new Ticket(ticketID,"MjikgioG","KxiAaip5","LdiqGibo","jLiyniEb",2,"FirebaseTicket",true,userUUID,locationID);
+                    ticket.setOpen(data.getBoolean("open"));
+                    ticket.setOpened_at(data.getLong("opened_at"));
+                    Map<String,Object> ticketValues = ticket.toMap();
+                    String key = mDatabase.child("orders").push().getKey();
+                    Log.d(TAG,"The key is --> "+key);
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put("/orders/" + key, ticketValues);
+                    Log.d(TAG,"The updateChildren Object is --> "+childUpdates.toString());
+                    mDatabase.updateChildren(childUpdates);
+
                 }
                 Log.d(TAG,"json object to string "+data.toString());
                 return data;
@@ -236,5 +265,6 @@ public class CheckoutActivity extends AppCompatActivity {
             return null;
         }
     }
+
 
 }

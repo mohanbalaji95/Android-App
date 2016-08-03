@@ -41,8 +41,8 @@ dependencies {
     compile 'com.google.firebase:firebase-database:9.0.2'
     compile 'com.google.firebase:firebase-auth:9.0.2'
     compile 'org.altbeacon:android-beacon-library:2.8.1'
-    compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
+    compile 'com.google.code.gson:gson:2.7'
     compile 'us.monoid.web:resty:0.3.2'
 
 }

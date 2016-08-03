@@ -7,4 +7,10 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
+    
+     <!-- ViewCart -->
+    <dimen name="item_padding">2dp</dimen>
+    <dimen name="title_item_page">20sp</dimen>
+    <!-- Menu -->
+    <dimen name="default_margin">16dp</dimen>
 </resources>

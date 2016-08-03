@@ -2,6 +2,7 @@ package com.garcon.garcon;
 
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -56,13 +57,17 @@ public class homeactivity extends AppCompatActivity{
                 if (menuItem.getItemId() == R.id.nav_item_sent) {
                     FragmentTransaction fragmentTransaction = myFragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.containerView,new SentFragment()).commit();
-
                 }
 
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {
                     FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
                     xfragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
                 }
+                if (menuItem.getItemId() == R.id.nav_profilesettings) {
+                    Intent profile_settings = new Intent(getApplicationContext(), ProfileSettings.class);
+                    startActivity(profile_settings);
+                }
+
 
                 return false;
             }

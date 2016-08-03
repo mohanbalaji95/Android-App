@@ -28,7 +28,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4caaac7-a14a-4483-bc6b-d494ec7e5f8f" name="Default" comment="profile settings and maps">
+    <list default="true" id="a4caaac7-a14a-4483-bc6b-d494ec7e5f8f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AndroidGarcon.iws" />
@@ -2535,7 +2535,13 @@
       <option name="project" value="LOCAL" />
       <updated>1470260812639</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="profile settings and maps">
+      <created>1470260907449</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1470260907449</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">

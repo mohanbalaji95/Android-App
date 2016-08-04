@@ -106,6 +106,10 @@ public class homeactivity extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.containerView, new SentFragment()).commit();
 
                 }
+                if (menuItem.getItemId() == R.id.nav_profilesettings) {
+                    Intent profile_settings = new Intent(getApplicationContext(), ProfileSettings.class);
+                    startActivity(profile_settings);
+                }
 
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {
                     FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();

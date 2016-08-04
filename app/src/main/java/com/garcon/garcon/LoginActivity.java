@@ -24,7 +24,6 @@ import android.os.Build.VERSION;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -46,7 +45,6 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.garcon.Constants.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -57,7 +55,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -93,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
     //session management
-    public static final String MyPREFERENCES = "GarconPref" ;
+    //public static final String MyPREFERENCES = "GarconPref" ;
     public static final String eMailkey = "emailkey";
     SharedPreferences sharedpreferences;
     private FirebaseAuth mAuth;
@@ -110,11 +107,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login2);
         mAuth = FirebaseAuth.getInstance();
 
+<<<<<<< HEAD
         System.out.println("Retrieving from  shared Preference");
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String emailPref = sharedpreferences.getString(eMailkey,null);
         System.out.println("the email is "+emailPref);
 <<<<<<< HEAD
+=======
+        //System.out.println("Retrieving from  shared Preference");
+        sharedpreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
+        //String emailPref = sharedpreferences.getString(eMailkey,null);
+        //System.out.println("the email is "+emailPref);
+>>>>>>> origin/profile-settings-maps
         /*if(emailPref!=null){
 =======
 
@@ -195,7 +199,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignUpButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(LoginActivity.this, SignUpActivity.class);
+                Intent myIntent = new Intent(LoginActivity.this, SignupActivity.class);
                 //myIntent.putExtra("key", value); //Optional parameters
                 LoginActivity.this.startActivity(myIntent);
             }
@@ -211,6 +215,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 if (user != null) {
                     // User is signed in
                     System.out.println( "onAuthStateChanged:signed_in:" + user.getUid());
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString(getString(R.string.User_UUID_Key),user.getUid());
+                    editor.commit();
                     Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
                     LoginActivity.this.startActivity(myIntent);
 

@@ -37,16 +37,22 @@ dependencies {
     //Amazon Web Services
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
+    compile 'com.google.android.gms:play-services-maps:9.0.2'
     compile 'com.google.firebase:firebase-core:9.0.2'
     compile 'com.google.firebase:firebase-database:9.0.2'
     compile 'com.google.firebase:firebase-auth:9.0.2'
+<<<<<<< HEAD
     compile 'com.firebaseui:firebase-ui-database:0.4.1'
     compile 'com.firebase:firebase-client-android:2.5.2+'
+=======
+    compile 'com.google.firebase:firebase-storage:9.0.2'
+>>>>>>> origin/profile-settings-maps
     compile 'org.altbeacon:android-beacon-library:2.8.1'
-    compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
+    compile 'com.google.code.gson:gson:2.7'
     compile 'us.monoid.web:resty:0.3.2'
 
+    compile 'com.google.android.gms:play-services-appindexing:9.0.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

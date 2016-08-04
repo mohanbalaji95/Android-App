@@ -37,9 +37,10 @@ public class ThirdFragment extends Fragment {
         checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startCheckoutActivity = new Intent(getActivity(), CheckoutActivity.class);
+                Intent startCheckoutActivity = new Intent(getActivity(), MainMenuActivity.class);
                 startCheckoutActivity.putExtra("ticketnumber","oTpbBkqT");
-                startCheckoutActivity.putExtra("locationID","xc5rqEyc");
+                startCheckoutActivity.putExtra("locationID","8cg4k4kc");
+
                 startActivity(startCheckoutActivity);
 
             }

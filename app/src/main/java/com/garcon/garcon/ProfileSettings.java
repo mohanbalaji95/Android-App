@@ -357,7 +357,7 @@ public class ProfileSettings extends AppCompatActivity {
                     alertDialog = new AlertDialog.Builder(ProfileSettings.this);
                     alertDialog.setTitle("Cannot add a new card");
                     alertDialog.setMessage("User can add upto a maximum of 10 cards. Please delete a card to add another");
-                    alertDialog.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
+                    alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();

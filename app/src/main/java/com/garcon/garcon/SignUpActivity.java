@@ -3,6 +3,8 @@ package com.garcon.garcon;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -12,26 +14,21 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.garcon.Constants.Constants;
 import com.garcon.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Map;
-import java.util.concurrent.Executor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
 
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -40,7 +37,12 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText editTextUserName;
     private EditText editTextConfirmPassword;
     private EditText editTextPhoneNumber;
-
+    public static final String MyPREFERENCES = "GarconPref" ;
+    public static final String FirstName = "firstnameKey";
+    public static final String Phone = "phoneKey";
+    public static final String LastName = "lastnameKey";
+    public static final String UserName = "usernameKey";
+    SharedPreferences sharedpreferences;
 
 
     private Button buttonSave;
@@ -72,6 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
         editTextUserName = (EditText) findViewById(R.id.signup_username);
         editTextConfirmPassword = (EditText) findViewById(R.id.signup_confirmpassword);
         editTextPhoneNumber = (EditText) findViewById(R.id.signup_phonenumber);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -117,7 +120,12 @@ public class SignUpActivity extends AppCompatActivity {
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
         String confirmPassword = editTextConfirmPassword.getText().toString();
-
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(FirstName, firstName);
+        editor.putString(Phone, phoneNumber);
+        editor.putString(LastName, lastName);
+        editor.putString(UserName, userName);
+        editor.commit();
         boolean cancel = false;
         View focusView = null;
 
@@ -284,7 +292,7 @@ public class SignUpActivity extends AppCompatActivity {
                */
 
             mAuth.createUserWithEmailAndPassword(newUser.geteMail(), mPassword)
-                    .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             System.out.println( "createUserWithEmail:onComplete:" + task.isSuccessful());
@@ -293,7 +301,7 @@ public class SignUpActivity extends AppCompatActivity {
                             // the auth state listener will be notified and logic to handle the
                             // signed in user can be handled in the listener.
                             if (!task.isSuccessful()) {
-                                Toast.makeText(SignUpActivity.this, "Authentication failed.",
+                                Toast.makeText(SignupActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
                                 System.out.println("Error Code: " + task.getException());
                                 updateSignUpFlag(false);
@@ -308,7 +316,7 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                             else {
                                 System.out.println("Successfully created user account with uid: "+ mAuth.getCurrentUser().getUid());
-                                Toast.makeText(SignUpActivity.this, R.string.success_account_created, Toast.LENGTH_LONG).show();
+                                Toast.makeText(SignupActivity.this, R.string.success_account_created, Toast.LENGTH_LONG).show();
                                 newUser.setUserUID(mAuth.getCurrentUser().getUid());
                                 writeSignUpData(newUser);
                                 updateSignUpFlag(true);
@@ -348,3 +356,5 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 }
+
+

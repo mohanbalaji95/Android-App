@@ -24,7 +24,6 @@ import android.os.Build.VERSION;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -46,7 +45,6 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.garcon.Constants.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -57,7 +55,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -185,7 +182,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignUpButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(LoginActivity.this, SignUpActivity.class);
+                Intent myIntent = new Intent(LoginActivity.this, SignupActivity.class);
                 //myIntent.putExtra("key", value); //Optional parameters
                 LoginActivity.this.startActivity(myIntent);
             }

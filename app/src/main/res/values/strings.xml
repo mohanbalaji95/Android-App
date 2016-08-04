@@ -104,5 +104,13 @@
     <string name="tip">Tip</string>
     <string name="total">Total</string>
 
+    <string-array name="cardtype">
+        <item>American Express</item>
+        <item>Discover</item>
+        <item>MasterCard</item>
+        <item>Visa</item>
+    </string-array>
+
+
 
 </resources>

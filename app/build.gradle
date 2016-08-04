@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.garcon.garcon"
-        minSdkVersion 11
+        minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -28,6 +28,7 @@ android {
 }
 repositories {
     jcenter()
+    mavenCentral()
 }
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -42,7 +43,9 @@ dependencies {
     compile 'com.google.firebase:firebase-auth:9.0.2'
     compile 'com.google.firebase:firebase-storage:9.0.2'
     compile 'org.altbeacon:android-beacon-library:2.8.1'
-    compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'us.monoid.web:resty:0.3.2'
 
     compile 'com.google.android.gms:play-services-appindexing:9.0.2'
 }

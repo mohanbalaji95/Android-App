@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/checkout_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+    <ScrollView android:id="@+id/scrollview"
+        android:layout_height="0dip"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:background="@color/silver"
+            tools:context=".cart.MainCartActivity">
+
+            <RelativeLayout android:id="@+id/top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/aqua"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView android:id="@+id/textView"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:background="@color/garcon"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Cart"
+                    android:padding="10dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+                <Button android:id="@+id/seeMenu"
+                    android:onClick="view_menu"
+                    android:textSize="24sp"
+                    android:text="Menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/textView"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <Spinner android:id="@+id/tableSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:background="@color/white"
+                android:layout_below="@id/top"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+            <Spinner android:id="@+id/orderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/buttonOrderDate"
+                android:background="@color/white"
+                android:layout_alignBottom="@+id/tableSize"
+                android:layout_alignTop="@+id/tableSize"
+                android:layout_centerHorizontal="true" />
+            <Spinner android:id="@+id/orderTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="00:00 AM"
+                android:background="@color/white"
+                android:spinnerMode="dropdown"
+                android:layout_alignBottom="@+id/tableSize"
+                android:layout_alignTop="@+id/tableSize"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+            <com.garcon.garcon.NonScrollableListView android:id="@+id/itemsList"
+                android:layout_below="@id/tableSize"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:cacheColorHint="#00000000"
+                android:divider="@color/silver"
+                android:dividerHeight="2dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"/>
+
+            <EditText android:id="@+id/specialInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/itemsList"
+                android:layout_centerHorizontal="true"
+                android:hint="@string/editTextSpecialInstructionsHint"
+                android:textColor="@color/garcon"
+                android:background="@color/white"
+                android:textCursorDrawable="@null"/>
+            <EditText android:id="@+id/tableNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/specialInstructions"
+                android:layout_centerHorizontal="true"
+                android:hint="@string/editTextTableNumberHint" />
+
+            <Spinner android:id="@+id/restaurantArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tableNumber"
+                android:layout_centerHorizontal="true"
+                android:spinnerMode="dropdown" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <RelativeLayout android:id="@+id/displayReview"
+        android:background="@color/orange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0">
+
+        <Button android:id="@+id/placeOrderButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="placeOrder"
+            android:text="@string/place_order"
+            android:layout_margin="5dp"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:background="@color/garcon"
+             />
+
+    </RelativeLayout>
+
+</LinearLayout>

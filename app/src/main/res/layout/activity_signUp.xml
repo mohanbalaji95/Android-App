@@ -136,11 +136,11 @@
             </android.support.design.widget.TextInputLayout>
 
 
-            <Button
-                android:id="@+id/buttonSave"
-                android:text="@string/button_signup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/buttonSave"
+            android:text="@string/button_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

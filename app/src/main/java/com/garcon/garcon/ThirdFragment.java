@@ -32,6 +32,19 @@ public class ThirdFragment extends Fragment {
 
             }
         });
+
+        Button checkoutButton = (Button) v.findViewById(R.id.checkout_button);
+        checkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startCheckoutActivity = new Intent(getActivity(), MainMenuActivity.class);
+                startCheckoutActivity.putExtra("ticketnumber","oTpbBkqT");
+                startCheckoutActivity.putExtra("locationID","8cg4k4kc");
+
+                startActivity(startCheckoutActivity);
+
+            }
+        });
         return v;
 
 

@@ -1,10 +1,5 @@
 package com.garcon.Models;
 
-import com.google.firebase.database.Exclude;
-
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by akshaymathur on 6/13/16.
  */
@@ -16,16 +11,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private String card;
 
-    public User() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
-    }
-    public User(String username) {
-        this.userName = username;
-
-    }
-    public void setcardname(String cardname) { this.card = cardname; }
 
     public String geteMail() {
         return eMail;
@@ -84,10 +70,6 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-
                 '}';
     }
-
-
-
 }

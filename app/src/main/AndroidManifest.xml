@@ -8,20 +8,6 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <permission
-        android:name="com.garcon.garcon.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature" />
-
-    <uses-permission android:name="com.garcon.garcon.permission.MAPS_RECEIVE" />
-    <uses-permission android:name="com.egarcon.garcon.permission.MAPS_RECEIVE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -30,14 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAZ-Y1tA5KlmDG7CCpTQes1ytsHzEd8e84" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".ProfileSettings" />
         <activity
             android:name=".homeactivity"
             android:label="@string/title_activity_homeactivity"
@@ -55,8 +37,9 @@
             </intent-filter>
 
             <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
+                android:name="android.app.default_searchable"
+                android:resource="@xml/searchable"
+                android:value=".SearchActivity" />
         </activity>
         <activity
             android:name=".LoginActivity"
@@ -71,37 +54,25 @@
             android:name=".BeaconActivity"
             android:label="@string/title_activity_beacon"
             android:theme="@style/AppTheme" />
-        <activity android:name=".EditPassword" />
-        <!--
- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+        <activity
+            android:name=".CheckoutActivity"
+            android:label="@string/title_activity_checkout"
+            android:theme="@style/AppTheme"></activity>
 
-        <service
-            android:name=".getprofiledetails"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".editprofiledetails"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".addnewcard"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".removecard"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".getprofiledtails"
-            android:enabled="true"
-            android:exported="true" />
+        <activity android:name=".MainMenuActivity">
+        </activity>
+        <activity android:name=".MainItemActivity"
+            android:theme="@style/AppTheme.ItemPopup">
+        </activity>
+        <activity android:name=".MainViewCartActivity"
+            android:theme="@style/AppTheme.ViewCartPopup">
+        </activity>
+        <activity android:name=".MainReviewActivity">
 
-        <activity android:name=".othing"></activity>
+        </activity>
+        <activity android:name=".MainCheckoutActivity">
+
+        </activity>
     </application>
 
 </manifest>

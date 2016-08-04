@@ -3,8 +3,6 @@ package com.garcon.garcon;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -42,12 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText editTextUserName;
     private EditText editTextConfirmPassword;
     private EditText editTextPhoneNumber;
-    public static final String MyPREFERENCES = "GarconPref" ;
-    public static final String FirstName = "firstnameKey";
-    public static final String Phone = "phoneKey";
-    public static final String LastName = "lastnameKey";
-    public static final String UserName = "usernameKey";
-    SharedPreferences sharedpreferences;
+
 
 
     private Button buttonSave;
@@ -79,7 +72,6 @@ public class SignUpActivity extends AppCompatActivity {
         editTextUserName = (EditText) findViewById(R.id.signup_username);
         editTextConfirmPassword = (EditText) findViewById(R.id.signup_confirmpassword);
         editTextPhoneNumber = (EditText) findViewById(R.id.signup_phonenumber);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -125,12 +117,7 @@ public class SignUpActivity extends AppCompatActivity {
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
         String confirmPassword = editTextConfirmPassword.getText().toString();
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(FirstName, firstName);
-        editor.putString(Phone, phoneNumber);
-        editor.putString(LastName, lastName);
-        editor.putString(UserName, userName);
-        editor.commit();
+
         boolean cancel = false;
         View focusView = null;
 
@@ -228,8 +215,8 @@ public class SignUpActivity extends AppCompatActivity {
             mSignUpFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-
-
+    
+    
     public class UserSignUpTask extends AsyncTask<Void, Void, Boolean> {
 
         //private final String mEmail;
@@ -271,6 +258,7 @@ public class SignUpActivity extends AppCompatActivity {
                         updateSignUpFlag(true);
                         updateDoneFlag(true);
                     }
+
                     @Override
                     public void onError(FirebaseError firebaseError) {
                         // there was an error

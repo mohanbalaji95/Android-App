@@ -4,11 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
@@ -21,7 +24,9 @@ import android.os.Build.VERSION;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,10 +39,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.garcon.Constants.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -67,6 +81,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
+
+    private static final String TAG = LoginActivity.class.getName();
+
     private UserLoginTask mAuthTask = null;
 
     // UI references.
@@ -76,28 +93,33 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
     //session management
-    public static final String MyPREFERENCES = "GarconPref" ;
+    //public static final String MyPREFERENCES = "GarconPref" ;
     public static final String eMailkey = "emailkey";
     SharedPreferences sharedpreferences;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    //Facebook Login
+    private CallbackManager mCallbackManager;
+    LoginButton loginButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login2);
         mAuth = FirebaseAuth.getInstance();
 
-        System.out.println("Retrieving from  shared Preference");
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String emailPref = sharedpreferences.getString(eMailkey,null);
-        System.out.println("the email is "+emailPref);
-        if(emailPref!=null){
+        //System.out.println("Retrieving from  shared Preference");
+        sharedpreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
+        //String emailPref = sharedpreferences.getString(eMailkey,null);
+        //System.out.println("the email is "+emailPref);
+        /*if(emailPref!=null){
             Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
             LoginActivity.this.startActivity(myIntent);
             finish();
 
-        }
+        }*/
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -114,6 +136,44 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        Button btnForgotPassword = (Button) findViewById(R.id.forgotpassword_button);
+        btnForgotPassword.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+                final EditText edittext = new EditText(getApplicationContext());
+                edittext.setTextColor(Color.BLACK);
+                alert.setMessage("Enter your Email Address");
+                alert.setTitle("Forgot Password");
+
+                alert.setView(edittext);
+
+                alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //What ever you want to do with the value
+                        String emailAddress = edittext.getText().toString();
+                        mAuth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d(TAG, "Email sent.");
+                                            Toast.makeText(LoginActivity.this,R.string.toast_forgot_password_email,Toast.LENGTH_LONG);
+                                        }
+                                    }
+                                });
+                    }
+                });
+
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // what ever you want to do with No option.
+                        Log.d(TAG, "Cancel clicked");
+                    }
+                });
+
+                alert.show();
+            }
+        });
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -141,14 +201,80 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 if (user != null) {
                     // User is signed in
                     System.out.println( "onAuthStateChanged:signed_in:" + user.getUid());
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString(getString(R.string.User_UUID_Key),user.getUid());
+                    editor.commit();
+                    Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
+                    LoginActivity.this.startActivity(myIntent);
+
                 } else {
                     // User is signed out
                     System.out.println("onAuthStateChanged:signed_out");
+
                 }
                 // ...
             }
         };
+
+        // Initialize Facebook Login button
+        mCallbackManager = CallbackManager.Factory.create();
+        loginButton = (LoginButton) findViewById(R.id.fb_login_button);
+        loginButton.setReadPermissions("email", "public_profile");
+        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+                System.out.println("Successful facebook login");
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d(TAG, "facebook:onCancel");
+                // ...
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d(TAG, "facebook:onError", error);
+                // ...
+            }
+        });
+
+
+
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "signInWithCredential", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
+                    }
+                });
+    }
+
     @Override
     public void onStart() {
         super.onStart();

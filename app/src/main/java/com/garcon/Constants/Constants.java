@@ -5,6 +5,6 @@ package com.garcon.Constants;
  */
 public class Constants {
 
-    public static final String FIREBASE_URL = "https://garcondatabase.firebaseio.com/";
-    public static final String FIREBASE_URL_USERS = "https://garcondatabase.firebaseio.com/users";
+    public static final String OMNIVORE_API_BASE_URL = "https://api.omnivore.io/0.1/locations/";
+
 }

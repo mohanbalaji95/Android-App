@@ -22,6 +22,11 @@
         android:layout_height="wrap_content"
         android:text="Checkout"
         android:id="@+id/checkout_button"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Favourite"
+        android:id="@+id/favourite_button"/>
 
 
 

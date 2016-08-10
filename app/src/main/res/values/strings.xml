@@ -11,7 +11,8 @@
 
     <string name="search_title">Search</string>
     <string name="search_hint">Search restaurants</string>
-    <string name="button_signup">Sign Up</string>
+    <string name="text_signup">Dont have a account?Sign up!</string>
+    <string name="button_signup">Sign up!</string>
     <string name="signup_email">Email</string>
     <string name="signup_password">Password</string>
     <string name="button_signIn">Sign In</string>
@@ -21,8 +22,8 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="action_forgot_password">Forgot Password</string>
+    <string name="action_sign_in_short">Login</string>
+    <string name="action_forgot_password">Forgot your password?</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">The password should be 8–20 characters with 1 uppercase, 1 lowercase, 1 number</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -104,5 +105,5 @@
     <string name="tip">Tip</string>
     <string name="total">Total</string>
 
-
+    <string name="title_activity_favorite_activity">favorite_activity</string>
 </resources>

@@ -45,6 +45,15 @@ public class ThirdFragment extends Fragment {
 
             }
         });
+        Button favButton = (Button) v.findViewById(R.id.favourite_button);
+        favButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startCheckoutActivity = new Intent(getActivity(), favorite_activity.class);
+                startActivity(startCheckoutActivity);
+
+            }
+        });
         return v;
 
 

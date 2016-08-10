@@ -73,6 +73,10 @@
         <activity android:name=".MainCheckoutActivity">
 
         </activity>
+        <activity
+            android:name=".favorite_activity"
+            android:label="@string/title_activity_favorite_activity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

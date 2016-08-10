@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText editTextPhoneNumber;
 
 
-
+    private static final String TAG = SignUpActivity.class.getName();
     private Button buttonSave;
 
     private View mProgressView;
@@ -131,7 +132,8 @@ public class SignUpActivity extends AppCompatActivity {
             focusView = editTextConfirmPassword;
             cancel = true;
         }
-        if(isPhoneNumberValid(phoneNumber)){
+
+        if(!isPhoneNumberValid(phoneNumber)){
             editTextPhoneNumber.setError(getString(R.string.error_incorrect_phonenumber));
             focusView = editTextPhoneNumber;
             cancel = true;
@@ -173,10 +175,10 @@ public class SignUpActivity extends AppCompatActivity {
         return passwordMatcher.matches();
     }
     private  boolean isPhoneNumberValid(String phoneNumber){
-
+        Log.d(TAG,"phone Number entered --> "+phoneNumber);
         Pattern phonePattern = Pattern.compile(PHONENUMBER_PATTERN);
         Matcher phoneMatcher = phonePattern.matcher(phoneNumber);
-
+        Log.d(TAG,"is ph valid --> "+ phoneMatcher.matches());
         return phoneMatcher.matches();
     }
 

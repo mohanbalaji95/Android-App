@@ -41,12 +41,9 @@ dependencies {
     compile 'com.google.firebase:firebase-core:9.0.2'
     compile 'com.google.firebase:firebase-database:9.0.2'
     compile 'com.google.firebase:firebase-auth:9.0.2'
-<<<<<<< HEAD
     compile 'com.firebaseui:firebase-ui-database:0.4.1'
     compile 'com.firebase:firebase-client-android:2.5.2+'
-=======
     compile 'com.google.firebase:firebase-storage:9.0.2'
->>>>>>> origin/profile-settings-maps
     compile 'org.altbeacon:android-beacon-library:2.8.1'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.google.code.gson:gson:2.7'

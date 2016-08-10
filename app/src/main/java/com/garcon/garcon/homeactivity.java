@@ -1,11 +1,7 @@
 package com.garcon.garcon;
 
-<<<<<<< HEAD
-
 
 import android.content.Intent;
-=======
->>>>>>> Firebase_data_pipeline
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -17,26 +13,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-<<<<<<< HEAD
 import com.facebook.login.LoginManager;
+import com.firebase.client.Firebase;
+import com.firebase.client.Logger;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-=======
-import com.firebase.client.Firebase;
-import com.firebase.client.Logger;
->>>>>>> Firebase_data_pipeline
-
 public class homeactivity extends AppCompatActivity {
+    private static final String TAG = LoginActivity.class.getName();
     DrawerLayout myDrawerLayout;
     NavigationView myNavigationView;
     FragmentManager myFragmentManager;
     FragmentTransaction myFragmentTransaction;
-
-
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
-    private static final String TAG = LoginActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +46,14 @@ public class homeactivity extends AppCompatActivity {
 
                 } else {
                     // User is signed out
-                    Log.d(TAG,"onAuthStateChanged:signed_out");
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
                     System.out.println("onAuthStateChanged:signed_out");
                     finish();
 
-<<<<<<< HEAD
                 }
-                // ...
             }
         };
 
-=======
->>>>>>> Firebase_data_pipeline
 
         /**
          *Setup the DrawerLayout and NavigationView
@@ -83,14 +69,7 @@ public class homeactivity extends AppCompatActivity {
 
         myFragmentManager = getSupportFragmentManager();
         myFragmentTransaction = myFragmentManager.beginTransaction();
-<<<<<<< HEAD
-        myFragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
-
-
-
-=======
         myFragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
->>>>>>> Firebase_data_pipeline
         /**
          * Setup click events on the Navigation View Items.
          */
@@ -98,7 +77,6 @@ public class homeactivity extends AppCompatActivity {
         myNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
 
 
                 if (menuItem.getItemId() == R.id.nav_item_sent) {
@@ -113,23 +91,19 @@ public class homeactivity extends AppCompatActivity {
 
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {
                     FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
-<<<<<<< HEAD
-                    xfragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
-                    Log.d(TAG,"menu item clicked");
+                    xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
+                    Log.d(TAG, "menu item clicked");
                     FirebaseAuth.getInstance().signOut();
                     LoginManager.getInstance().logOut();
-                    startActivity(new Intent(homeactivity.this,LoginActivity.class));
+                    startActivity(new Intent(homeactivity.this, LoginActivity.class));
                     //finishActivity(0);
-=======
                     xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
                 }
->>>>>>> Firebase_data_pipeline
 
-                }
+
                 myDrawerLayout.closeDrawers();
                 return false;
             }
-
         });
 
         /**
@@ -145,8 +119,8 @@ public class homeactivity extends AppCompatActivity {
         mDrawerToggle.syncState();
 
 
-
     }
+
     @Override
     public void onStart() {
         super.onStart();

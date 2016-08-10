@@ -106,34 +106,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login2);
         mAuth = FirebaseAuth.getInstance();
-
-<<<<<<< HEAD
         System.out.println("Retrieving from  shared Preference");
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
         String emailPref = sharedpreferences.getString(eMailkey,null);
         System.out.println("the email is "+emailPref);
-<<<<<<< HEAD
-=======
-        //System.out.println("Retrieving from  shared Preference");
-        sharedpreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
-        //String emailPref = sharedpreferences.getString(eMailkey,null);
-        //System.out.println("the email is "+emailPref);
->>>>>>> origin/profile-settings-maps
-        /*if(emailPref!=null){
-=======
-
         if(emailPref!=null){
->>>>>>> Firebase_data_pipeline
             Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
             LoginActivity.this.startActivity(myIntent);
             finish();
 
-<<<<<<< HEAD
-        }*/
-=======
         }
 
->>>>>>> Firebase_data_pipeline
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -199,7 +182,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignUpButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(LoginActivity.this, SignupActivity.class);
+                Intent myIntent = new Intent(LoginActivity.this, SignUpActivity.class);
                 //myIntent.putExtra("key", value); //Optional parameters
                 LoginActivity.this.startActivity(myIntent);
             }

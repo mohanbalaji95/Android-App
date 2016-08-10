@@ -38,7 +38,7 @@
         android:text="price" />
 
     <TextView
-        android:id="@+id/tvHours"
+        android:id="@+id/tvLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -46,15 +46,6 @@
         android:layout_alignParentTop="true"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:text="hours" />
-
-    <TextView
-        android:id="@+id/tvLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvName"
-        android:layout_alignStart="@+id/tvName"
-        android:layout_below="@+id/tvName"
         android:text="location" />
 
     <TextView
@@ -62,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tvLocation"
-        android:layout_alignStart="@+id/tvLocation"
+        android:layout_alignStart="@+id/tvName"
         android:layout_below="@+id/tvLocation"
         android:text="type" />
 

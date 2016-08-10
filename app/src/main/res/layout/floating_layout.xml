@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="60dp"
+    android:layout_marginBottom="20dp"
     android:layout_marginEnd="20dp"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginStart="20dp"
-    android:layout_marginTop="60dp"
+    android:layout_marginTop="20dp"
     android:orientation="vertical">
 
     <ScrollView
@@ -46,12 +46,11 @@
                 android:id="@+id/tvHours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvName"
-                android:layout_marginLeft="5dp"
-                android:layout_toEndOf="@+id/tvLocation"
-                android:layout_toRightOf="@+id/tvLocation"
                 android:text="Hours"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_below="@+id/tvType"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 android:id="@+id/tvPrice"
@@ -68,8 +67,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvName"
                 android:layout_marginLeft="5dp"
-                android:layout_toEndOf="@+id/tvHours"
-                android:layout_toRightOf="@+id/tvHours"
+                android:layout_toEndOf="@+id/tvLocation"
+                android:layout_toRightOf="@+id/tvLocation"
                 android:text="Rating"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -87,39 +86,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvType"
-                android:text="Menu" />
+                android:text="Menu"
+                android:layout_alignRight="@+id/call"
+                android:layout_alignEnd="@+id/call" />
 
             <Button
                 android:id="@+id/call"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/menu"
-                android:text="Call" />
+                android:text="Call"
+                android:layout_toLeftOf="@+id/tvHours"
+                android:layout_toStartOf="@+id/tvHours" />
 
             <Button
                 android:id="@+id/take"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/exit"
-                android:layout_alignRight="@+id/exit"
                 android:layout_below="@+id/call"
-                android:text="Takeout" />
+                android:text="Takeout"
+                android:layout_toLeftOf="@+id/tvHours"
+                android:layout_toStartOf="@+id/tvHours" />
 
             <Button
                 android:id="@+id/info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/take"
-                android:layout_centerHorizontal="true"
-                android:text="Info" />
+                android:text="Info"
+                android:layout_toLeftOf="@+id/tvHours"
+                android:layout_toStartOf="@+id/tvHours" />
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/info"
-                android:layout_centerHorizontal="true"
-                android:text="Review" />
+                android:text="Review"
+                android:layout_toLeftOf="@+id/tvHours"
+                android:layout_toStartOf="@+id/tvHours" />
 
             <ImageButton
                 android:id="@+id/exit"

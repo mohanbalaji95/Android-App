@@ -28,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -292,7 +292,7 @@ public class SignupActivity extends AppCompatActivity {
                */
 
             mAuth.createUserWithEmailAndPassword(newUser.geteMail(), mPassword)
-                    .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             System.out.println( "createUserWithEmail:onComplete:" + task.isSuccessful());
@@ -301,7 +301,7 @@ public class SignupActivity extends AppCompatActivity {
                             // the auth state listener will be notified and logic to handle the
                             // signed in user can be handled in the listener.
                             if (!task.isSuccessful()) {
-                                Toast.makeText(SignupActivity.this, "Authentication failed.",
+                                Toast.makeText(SignUpActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
                                 System.out.println("Error Code: " + task.getException());
                                 updateSignUpFlag(false);
@@ -316,7 +316,7 @@ public class SignupActivity extends AppCompatActivity {
                             }
                             else {
                                 System.out.println("Successfully created user account with uid: "+ mAuth.getCurrentUser().getUid());
-                                Toast.makeText(SignupActivity.this, R.string.success_account_created, Toast.LENGTH_LONG).show();
+                                Toast.makeText(SignUpActivity.this, R.string.success_account_created, Toast.LENGTH_LONG).show();
                                 newUser.setUserUID(mAuth.getCurrentUser().getUid());
                                 writeSignUpData(newUser);
                                 updateSignUpFlag(true);

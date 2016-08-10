@@ -1,46 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.garcon.garcon">
-<<<<<<< HEAD
-=======
 
 
     <uses-permission android:name="android.permission.INTERNET" />
-
->>>>>>> origin/profile-settings-maps
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.INTERNET" />
-
-=======
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <permission
         android:name="com.garcon.garcon.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature"/>
-    <uses-permission android:name="com.garcon.garcon.permission.MAPS_RECEIVE"/>
+        android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.egarcon.garcon.permission.MAPS_RECEIVE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="com.garcon.garcon.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
->>>>>>> origin/profile-settings-maps
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAZ-Y1tA5KlmDG7CCpTQes1ytsHzEd8e84"/>
+            android:value="AIzaSyAZ-Y1tA5KlmDG7CCpTQes1ytsHzEd8e84" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -48,24 +40,16 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-<<<<<<< HEAD
-        <activity android:name=".SignUpActivity" />
-=======
-
-        <activity android:name=".SignUpActivity"></activity>
-
-        <activity android:name=".FloatingRestaurantActivity"
-            android:theme="@style/AppTheme.FloatingWindow"
+        <activity
+            android:name=".FloatingRestaurantActivity"
             android:label="FloatingActivity"
-        ></activity>
+            android:theme="@style/AppTheme.FloatingWindow"></activity>
 
->>>>>>> Firebase_data_pipeline
-=======
         <activity android:name=".SignupActivity" />
-        <activity android:name=".ProfileSettings"
+        <activity
+            android:name=".ProfileSettings"
             android:windowSoftInputMode="adjustPan" />
 
->>>>>>> origin/profile-settings-maps
         <activity
             android:name=".homeactivity"
             android:label="@string/title_activity_homeactivity"
@@ -74,19 +58,9 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable"
                 android:value=".SearchActivity" />
+
         </activity>
 
-<<<<<<< HEAD
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.default_searchable"
-                android:resource="@xml/searchable"
-                android:value=".SearchActivity" />
-        </activity>
-=======
->>>>>>> Firebase_data_pipeline
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login">
@@ -95,10 +69,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-=======
 
->>>>>>> Firebase_data_pipeline
         <activity
             android:name=".BeaconActivity"
             android:label="@string/title_activity_beacon"
@@ -107,30 +78,21 @@
             android:name=".CheckoutActivity"
             android:label="@string/title_activity_checkout"
             android:theme="@style/AppTheme"></activity>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> Firebase_data_pipeline
-=======
+        <activity android:name=".MainMenuActivity"></activity>
+        <activity
+            android:name=".MainItemActivity"
+            android:theme="@style/AppTheme.ItemPopup"></activity>
+        <activity
+            android:name=".MainViewCartActivity"
+            android:theme="@style/AppTheme.ViewCartPopup"></activity>
 
-        <activity android:name=".MainMenuActivity">
-        </activity>
-        <activity android:name=".MainItemActivity"
-            android:theme="@style/AppTheme.ItemPopup">
-        </activity>
-        <activity android:name=".MainViewCartActivity"
-            android:theme="@style/AppTheme.ViewCartPopup">
-        </activity>
         <activity android:name=".MainReviewActivity">
 
         </activity>
-        <activity android:name=".MainCheckoutActivity">
 
-        </activity>
-        ATTENTION: This was auto-generated to add Google Play services to your project for
-        App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
+        <activity android:name=".MainCheckoutActivity"></activity>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -151,8 +113,8 @@
         <service
             android:name=".getprofiledtails"
             android:enabled="true"
-            android:exported="true"></service>
->>>>>>> origin/profile-settings-maps
+            android:exported="true" />
+
     </application>
 
 </manifest>

@@ -8,16 +8,17 @@
     <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter Restaurant Name"
+        android:completionHint="Search Restaurants"
         android:id="@+id/autoCompleteTextView"
-        android:layout_above="@+id/mapFragmentContainer"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/mapFragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="465dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/autoCompleteTextView"
         android:orientation="vertical"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"

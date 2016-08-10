@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
- * Created by Mayank on 7/20/2016.
+ * Created by Mayank Tiwari on 7/20/2016.
  */
 public class FloatingRestaurantActivity extends Activity {
 
@@ -53,8 +53,12 @@ public class FloatingRestaurantActivity extends Activity {
         tvPrice.setText(b.getString("price"));
         tvRating.setText(Double.toString(b.getDouble("rating")));
         tvLocation.setText(b.getString("location"));
-        tvHours.setText(b.getString("hours"));
+        tvHours.setText( parseHours(b.getString("hours")) );
         tvType.setText(b.getString("type"));
+    }
+
+    public String parseHours(String hours){
+        return "hours";
     }
 
 }

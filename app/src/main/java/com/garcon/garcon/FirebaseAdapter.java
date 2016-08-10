@@ -58,7 +58,6 @@ public class FirebaseAdapter extends BaseAdapter {
         mViewHolder.tvPrice.setText(curRestaurant.getPrice());
         mViewHolder.tvRating.setText(Double.toString(curRestaurant.getRating()));
         mViewHolder.tvLocation.setText(curRestaurant.getLocation());
-        mViewHolder.tvHours.setText(curRestaurant.getHours());
         mViewHolder.tvType.setText(curRestaurant.getTypes());
 
         return convertView;
@@ -76,7 +75,6 @@ public class FirebaseAdapter extends BaseAdapter {
             tvPrice = (TextView) item.findViewById(R.id.tvPrice);
             tvRating = (TextView) item.findViewById(R.id.tvRating);
             tvLocation = (TextView) item.findViewById(R.id.tvLocation);
-            tvHours = (TextView) item.findViewById(R.id.tvHours);
             tvType = (TextView) item.findViewById(R.id.tvType);
 
         }

@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button btnForgotPassword = (Button) findViewById(R.id.forgotpassword_button);
+        TextView btnForgotPassword = (TextView) findViewById(R.id.forgotpassword_button);
         btnForgotPassword.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -178,7 +178,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 attemptLogin();
             }
         });
-        Button mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
+        TextView mEmailSignUpButton = (TextView) findViewById(R.id.email_sign_up_button);
         mEmailSignUpButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

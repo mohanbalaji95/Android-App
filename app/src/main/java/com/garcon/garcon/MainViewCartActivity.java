@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -254,26 +255,42 @@ public class MainViewCartActivity extends AppCompatActivity {
 
         @Override
         protected JSONObject doInBackground(Void... params) {
+            Log.d(LOG_TAG,"***Sending Items to Omnivore*** >" +listOfItems.size());
 
             try{
                 JSONArray itemArray = new JSONArray();
-                JSONObject item1 = new JSONObject();
-                item1.put("menu_item","gki84ia9");
-                item1.put("quantity",2);
-                item1.put("price_level","g4T4dTBj");
-                item1.put("comment","Bring it on!");
-                JSONArray modifierArray = new JSONArray();
-                item1.put("modifiers",modifierArray);
-                itemArray.put(item1);
 
-                JSONObject item2 = new JSONObject();
+                for (MenuItem menuItem : listOfItems){
+                    JSONObject item = new JSONObject();
+                    Log.d(LOG_TAG,"Item ID--> "+menuItem.getId());
+                    Log.d(LOG_TAG,"Item Quantity--> "+menuItem.getNumOrdered());
+                    Log.d(LOG_TAG,"Item Price Lvl--> "+menuItem.getPrice_levels().get(0).getId());
+                    Log.d(LOG_TAG,"Item Comments--> "+menuItem.getSpecialInstructions());
+
+                    item.put("menu_item",menuItem.getId());
+                    item.put("quantity",menuItem.getNumOrdered());
+                    item.put("price_level",menuItem.getPrice_levels().get(0).getId());
+                    item.put("comment",menuItem.getSpecialInstructions());
+
+                    itemArray.put(item);
+                }
+
+
+
+
+
+                //JSONArray modifierArray = new JSONArray();
+                //item1.put("modifiers",modifierArray);
+
+
+                /*JSONObject item2 = new JSONObject();
                 item2.put("menu_item","doTaLTyg");
                 item2.put("quantity",3);
                 item2.put("price_level","L4iqKid8");
                 item2.put("comment","Bring it on!");
                 JSONArray modifierArray2 = new JSONArray();
                 item2.put("modifiers",modifierArray2);
-                itemArray.put(item2);
+                itemArray.put(item2);*/
 
                 String newMenuItemString = String.format(Constants.OMNIVORE_API_BASE_URL+"%s/tickets/%s/items/",locationID,ticketID);
 
@@ -312,6 +329,12 @@ public class MainViewCartActivity extends AppCompatActivity {
                 Log.e(LOG_TAG,e.getMessage());
             }
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject jsonObject) {
+            super.onPostExecute(jsonObject);
+            //listOfItems.clear();
         }
     }
 
@@ -384,7 +407,7 @@ public class MainViewCartActivity extends AppCompatActivity {
                     Log.d(LOG_TAG,"The updateChildren Object is --> "+childUpdates.toString());
                     mDatabase.updateChildren(childUpdates);
 
-                    listOfItems.clear();
+
 
                 }
                 Log.d(LOG_TAG,"json object to string "+data.toString());
@@ -395,6 +418,16 @@ public class MainViewCartActivity extends AppCompatActivity {
                 //Log.e(TAG,);
             }
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject jsonObject) {
+            super.onPostExecute(jsonObject);
+            if(openTicket){
+                SendItems si = new SendItems();
+                si.execute();
+            }
+
         }
     }
 
@@ -538,8 +571,7 @@ public class MainViewCartActivity extends AppCompatActivity {
             String selectedRevCenter = revenueCenter_map.get(restaurantAreaSpinner.getSelectedItem().toString());
             OpenTicket ot = new OpenTicket();
             ot.execute(selectedTableNumber,selectedRevCenter);
-            SendItems si = new SendItems();
-            si.execute();
+
 
         }
 

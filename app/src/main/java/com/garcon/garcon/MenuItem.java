@@ -52,6 +52,14 @@ public class MenuItem implements Serializable {
 
     }
 
+    public ArrayList<PriceLevel> getPrice_levels() {
+        return price_levels;
+    }
+
+    public void setPrice_levels(ArrayList<PriceLevel> price_levels) {
+        this.price_levels = price_levels;
+    }
+
     String getId() {
         return id;
     }

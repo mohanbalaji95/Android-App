@@ -115,6 +115,13 @@
             android:enabled="true"
             android:exported="true" />
 
+=======
+        </activity>
+        <activity
+            android:name=".favorite_activity"
+            android:label="@string/title_activity_favorite_activity"
+            android:theme="@style/AppTheme"></activity>
+>>>>>>> origin/checkout-feature
     </application>
 
 </manifest>

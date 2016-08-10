@@ -9,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.garcon.garcon.LoginActivity">
+    tools:context="com.garcon.garcon.LoginActivity"
+    android:background="@color/red">
 
     <!-- Login progress -->
     <ProgressBar
@@ -23,17 +24,25 @@
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp">
 
         <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/completelogo"
+                />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:theme="@style/TextLabel">
 
                 <AutoCompleteTextView
                     android:id="@+id/email"
@@ -48,7 +57,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel">
 
                 <EditText
                     android:id="@+id/password"
@@ -63,40 +73,55 @@
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
-
+            <TextView
+                android:id="@+id/forgotpassword_button"
+                style="?android:textAppearanceSmall"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:text="@string/action_forgot_password"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
             <Button
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="117dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="16dp"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textStyle="bold"
                 android:text="@string/action_sign_in_short"
-                android:textStyle="bold" />
-            <Button
-                android:id="@+id/forgotpassword_button"
-                style="?android:textAppearanceSmall"
+                android:background="@drawable/buttonshape"
+                />
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/signuptopbar"/>
+            <TextView
+                android:id="@+id/email_sign_up_button"
+                style="?android:textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_forgot_password"
+                android:text="@string/text_signup"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
+
 
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/fb_login_button"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp" />
 
-            <Button
-                android:id="@+id/email_sign_up_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/button_signup"
-                android:textStyle="bold" />
+
 
         </LinearLayout>
     </ScrollView>

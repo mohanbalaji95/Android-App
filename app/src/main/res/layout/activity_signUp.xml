@@ -8,8 +8,13 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
+<<<<<<< HEAD
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SignupActivity">
+=======
+    android:background="@color/red"
+    tools:context=".SignUpActivity">
+>>>>>>> origin/checkout-feature
 
     <ProgressBar
         android:id="@+id/signup_progress"
@@ -27,9 +32,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shortlogo"
+                android:layout_gravity="center"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel">
 
                 <AutoCompleteTextView
                     android:id="@+id/signup_firstname"
@@ -38,12 +49,14 @@
                     android:hint="@string/prompt_firstname"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    />
 
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel">
 
                 <AutoCompleteTextView
                     android:id="@+id/signup_lastname"
@@ -57,7 +70,8 @@
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel">
 
                 <AutoCompleteTextView
                     android:id="@+id/signup_username"
@@ -71,9 +85,10 @@
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel">
 
-                <AutoCompleteTextView
+                <EditText
                     android:id="@+id/signup_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -85,7 +100,8 @@
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel">
 
                 <EditText
                     android:id="@+id/signup_password"
@@ -102,7 +118,8 @@
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel">
 
                 <EditText
                     android:id="@+id/signup_confirmpassword"
@@ -119,7 +136,8 @@
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel">
 
                 <EditText
                     android:id="@+id/signup_phonenumber"
@@ -139,8 +157,12 @@
         <Button
             android:id="@+id/buttonSave"
             android:text="@string/button_signup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="117dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:background="@drawable/buttonshape"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

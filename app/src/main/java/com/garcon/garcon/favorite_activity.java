@@ -44,15 +44,21 @@ public class favorite_activity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
         String value = sharedPreferences.getString("fav_string",null);
-        GsonBuilder gsonb = new GsonBuilder();
-        Gson gson = gsonb.create();
-        favcardview favcardarray[] = gson.fromJson(value, favcardview[].class);
+        if(value!=null){
+            GsonBuilder gsonb = new GsonBuilder();
+            Gson gson = gsonb.create();
+            favcardview favcardarray[] = gson.fromJson(value, favcardview[].class);
 
 
-        favcardviews = new ArrayList<>();
-        for(int i =0 ;i<favcardarray.length;i++){
-            favcardviews.add(new favcardview(favcardarray[i].name,favcardarray[i].photoid));
+            favcardviews = new ArrayList<>();
+            for(int i =0 ;i<favcardarray.length;i++){
+                favcardviews.add(new favcardview(favcardarray[i].name,R.drawable.la_vic));
+            }
         }
+        else{
+            favcardviews = new ArrayList<>();
+        }
+
         /*favcardviews.add(new favcardview("LA VIC",R.drawable.la_vic));
         favcardviews.add(new favcardview("Panda Express",R.drawable.la_vic));
         favcardviews.add(new favcardview("Chat Cuisinie", R.drawable.la_vic));
@@ -91,6 +97,12 @@ public class favorite_activity extends AppCompatActivity {
 //                                    Toast.makeText(MainActivity.this, mItems.get(position) + " swiped left", Toast.LENGTH_SHORT).show();
                                     favcardviews.remove(position);
                                     adapter.notifyItemRemoved(position);
+                                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor spEditor = sharedPreferences.edit();
+                                    GsonBuilder gsonb = new GsonBuilder();
+                                    Gson gson = gsonb.create();
+                                    spEditor.putString("fav_string",gson.toJson(favcardviews));
+                                    spEditor.commit();
                                 }
                                 adapter.notifyDataSetChanged();
                             }
@@ -101,6 +113,12 @@ public class favorite_activity extends AppCompatActivity {
 //                                    Toast.makeText(MainActivity.this, mItems.get(position) + " swiped right", Toast.LENGTH_SHORT).show();
                                     favcardviews.remove(position);
                                     adapter.notifyItemRemoved(position);
+                                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor spEditor = sharedPreferences.edit();
+                                    GsonBuilder gsonb = new GsonBuilder();
+                                    Gson gson = gsonb.create();
+                                    spEditor.putString("fav_string",gson.toJson(favcardviews));
+                                    spEditor.commit();
                                 }
                                 adapter.notifyDataSetChanged();
                             }

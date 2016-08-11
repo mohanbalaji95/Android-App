@@ -135,6 +135,13 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:src="@drawable/ic_menu_close_clear_cancel" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/star"
+                android:layout_below="@+id/button"
+                android:layout_centerHorizontal="true"
+                android:onClick="addToFav"/>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

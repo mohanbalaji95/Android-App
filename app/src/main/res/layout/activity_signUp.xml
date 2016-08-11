@@ -8,13 +8,10 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-<<<<<<< HEAD
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".SignupActivity">
-=======
+    tools:context=".SignUpActivity">
     android:background="@color/red"
     tools:context=".SignUpActivity">
->>>>>>> origin/checkout-feature
 
     <ProgressBar
         android:id="@+id/signup_progress"

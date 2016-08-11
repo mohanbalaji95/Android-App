@@ -31,7 +31,6 @@ public class homeactivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Firebase.getDefaultConfig().setLogLevel(Logger.Level.DEBUG);
 
         setContentView(R.layout.activity_homeactivity);
         mAuth = FirebaseAuth.getInstance();
@@ -88,6 +87,10 @@ public class homeactivity extends AppCompatActivity {
                     Intent profile_settings = new Intent(getApplicationContext(), ProfileSettings.class);
                     startActivity(profile_settings);
                 }
+                if (menuItem.getItemId() == R.id.nav_item_sent) {
+                    Intent fav_activity = new Intent(getApplicationContext(), favorite_activity.class);
+                    startActivity(fav_activity);
+                }
 
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {
                     FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
@@ -97,7 +100,6 @@ public class homeactivity extends AppCompatActivity {
                     LoginManager.getInstance().logOut();
                     startActivity(new Intent(homeactivity.this, LoginActivity.class));
                     //finishActivity(0);
-                    xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
                 }
 
 

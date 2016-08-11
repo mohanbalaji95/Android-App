@@ -88,7 +88,7 @@ public class SecondFragment extends Fragment {
                 for (DataSnapshot dataSnap : dataSnapshot.getChildren()) {
                     Restaurant res = dataSnap.getValue(Restaurant.class);
                     myList.add(res);
-                    Toast.makeText(getActivity().getBaseContext(), res.getName(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity().getBaseContext(), res.getName(), Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -105,7 +105,6 @@
     <string name="tip">Tip</string>
     <string name="total">Total</string>
 
-<<<<<<< HEAD
     <string-array name="cardtype">
         <item>American Express</item>
         <item>Discover</item>
@@ -115,7 +114,5 @@
 
 
 
-=======
     <string name="title_activity_favorite_activity">favorite_activity</string>
->>>>>>> origin/checkout-feature
 </resources>

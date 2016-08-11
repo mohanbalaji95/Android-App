@@ -16,8 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp"
-            android:layout_margin="3dp"
-            android:elevation="4dp">
+            android:layout_margin="1dp"
+            android:elevation="3dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
                 android:id="@+id/restaurant_name"
                 android:layout_toRightOf="@+id/restaurant_name"
                 android:layout_alignParentTop="true"
-                android:textSize="30sp"
+                android:textSize="30dp"
                 android:text="LA VIC"/>
             <CheckBox
                 android:id="@+id/child_list_item_crime_solved_check_box"

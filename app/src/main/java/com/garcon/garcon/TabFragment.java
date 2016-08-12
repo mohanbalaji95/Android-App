@@ -92,9 +92,9 @@ public class TabFragment extends Fragment {
 
             switch (position) {
                 case 0:
-                    return "Primary";
+                    return "Map";
                 case 1:
-                    return "Second";
+                    return "Restaurants";
                 case 2:
                     return "Third";
             }

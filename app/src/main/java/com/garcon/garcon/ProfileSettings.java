@@ -25,6 +25,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -83,9 +84,9 @@ public class ProfileSettings extends AppCompatActivity {
     Button savenewcard;
     Button canceladdnewcard;
     Button deletepropic;
-    ImageButton profilepic;
-    Button saveprofile;
-    Button editprofile;
+    ImageView profilepic;
+    ImageView saveprofile;
+    ImageView editprofile;
     Button remove_selected_card;
     TextView nameoncard;
     TextView expiry;
@@ -911,7 +912,7 @@ public class ProfileSettings extends AppCompatActivity {
 //        editcarddetails.setVisibility(View.VISIBLE);
         savenewcard = (Button) findViewById(R.id.savenewcard);
         savenewcard.setVisibility(View.INVISIBLE);
-        profilepic = (ImageButton) findViewById(R.id.profilepicture);
+        profilepic = (ImageView) findViewById(R.id.profilepicture);
         profilepic.setClickable(false);
         profilepic.setEnabled(false);
         cvvdefinition = (TextView) findViewById(R.id.cvvdefinition);
@@ -929,9 +930,9 @@ public class ProfileSettings extends AppCompatActivity {
         expiryformat.setVisibility(View.GONE);
         exactwarning.setVisibility(View.GONE);
         cardtype.setVisibility(View.GONE);
-        saveprofile = (Button) findViewById(R.id.saveprofile);
+        saveprofile = (ImageView) findViewById(R.id.saveprofile);
         saveprofile.setVisibility(View.GONE);
-        editprofile = (Button) findViewById(R.id.editprofile);
+        editprofile = (ImageView) findViewById(R.id.editprofile);
         remove_selected_card = (Button) findViewById(R.id.removeselectedcard);
         remove_selected_card.setVisibility(View.INVISIBLE);
         mInflater = (LayoutInflater) getApplicationContext()
@@ -1084,7 +1085,7 @@ public class ProfileSettings extends AppCompatActivity {
     }
     private  boolean isPhoneNumberValid(String phoneNumber){
 
-        Pattern phonePattern = Pattern.compile("[0-9]{10}");
+        Pattern phonePattern = Pattern.compile("[0-9]{3}-[0-9]{3}-[0-9]{4}");
         Matcher phoneMatcher = phonePattern.matcher(phoneNumber);
 
         return phoneMatcher.matches();

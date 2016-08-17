@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="false"
-    android:background="#f4f4f4"
+    android:background="@color/red"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -23,19 +23,19 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:orientation="vertical"
-            android:background="#f4f4f4">
+            android:background="@color/red">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Profile"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:id="@+id/profile"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:layout_alignParentTop="true" />
 
-            <Button
+            <!--<Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,34 +43,57 @@
                 android:id="@+id/saveprofile"
                 android:layout_alignTop="@+id/profile"
                 android:layout_alignRight="@+id/profile"
-                android:layout_alignEnd="@+id/editprofile" />
+                android:layout_alignEnd="@+id/editprofile"
+                android:background="@drawable/buttonshape"/>-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/saveicon"
+                android:id="@+id/saveprofile"
+                android:layout_alignStart="@+id/editprofile"
+
+                android:layout_alignRight="@+id/profile"
+                android:layout_alignEnd="@+id/editprofile"
+                />
 
 
-            <ImageButton
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+            <com.garcon.garcon.RoundedImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/profilepicture"
                 android:layout_above="@+id/editableusername"
-                android:layout_centerHorizontal="true" />
-            <Button
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/johndoe"
+                android:layout_below="@+id/saveprofile"/>
+            <!--<Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="EDIT"
-                android:textColor="#000000"
+                android:text="Edit"
                 android:id="@+id/editprofile"
                 android:textSize="17sp"
                 android:textAlignment="center"
                 android:layout_alignTop="@+id/saveprofile"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/buttonshape"
+                android:textColor="@color/white"
+                android:textAllCaps="false"/> -->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editprofile"
+                android:layout_alignTop="@+id/saveprofile"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/editsort"/>
             <TextView
-                android:text="UserName"
-                android:textColor="#000000"
+                android:text="Username:"
+                android:textColor="@color/white"
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17dip"
+                android:textSize="17sp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:layout_alignBaseline="@+id/editableusername"
@@ -79,21 +102,22 @@
                 android:layout_alignParentStart="true" />
 
             <EditText
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editableusername"
                 android:singleLine="true"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"/>
 
             <TextView
-                android:text="Password"
-                android:textColor="#000000"
+                android:text="Password:"
+                android:textColor="@color/white"
                 android:id="@+id/password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17dip"
+                android:textSize="17sp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:layout_alignParentLeft="true"
@@ -104,22 +128,23 @@
                 android:layout_toLeftOf="@+id/editablepassword" />
 
             <EditText
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editablepassword"
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:layout_below="@+id/editableusername"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"/>
 
             <TextView
-                android:text="Number"
-                android:textColor="#000000"
+                android:text="Number:"
+                android:textColor="@color/white"
                 android:id="@+id/phnumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17dip"
+                android:textSize="17sp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:layout_below="@+id/editablepassword"
@@ -127,21 +152,22 @@
                 android:layout_alignParentStart="true" />
 
             <EditText
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editablephnumber"
                 android:singleLine="true"
                 android:layout_below="@+id/editablepassword"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"/>
 
             <TextView
-                android:text="Email ID"
-                android:textColor="#000000"
+                android:text="Email Id:"
+                android:textColor="@color/white"
                 android:id="@+id/emailid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17dip"
+                android:textSize="17sp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:layout_below="@+id/editablephnumber"
@@ -149,63 +175,66 @@
                 android:layout_alignStart="@+id/phnumber" />
 
             <EditText
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:id="@+id/editableemailid"
                 android:layout_alignTop="@+id/emailid"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textSize="17dip"
+                android:textColor="@color/white"
+                android:textSize="17sp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:text="First Name"
+                android:text="First Name:"
                 android:id="@+id/firstname"
                 android:layout_alignBottom="@+id/editablefirstname"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
             <EditText
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:id="@+id/editablefirstname"
                 android:layout_below="@+id/editableemailid"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textSize="17dip"
+                android:textColor="@color/white"
+                android:textSize="17sp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:text="Last Name"
+                android:text="Last Name:"
                 android:id="@+id/lastname"
                 android:layout_alignBottom="@+id/editablelastname"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
             <EditText
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:id="@+id/editablelastname"
                 android:layout_below="@+id/editablefirstname"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Card Details"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:id="@+id/carddetails"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -239,14 +268,17 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="EDIT PASSWORD"
+                android:text="Edit Password"
                 android:id="@+id/editpassword"
                 android:layout_below="@+id/editableusername"
                 android:layout_alignRight="@+id/profilepicture"
                 android:layout_alignEnd="@+id/profilepicture"
                 android:layout_above="@+id/editablephnumber"
                 android:layout_toRightOf="@+id/password"
-                android:layout_toEndOf="@+id/password" />
+                android:layout_toEndOf="@+id/password"
+                android:background="@drawable/buttonshape"
+                android:textColor="@color/white"
+                android:textAllCaps="false"/>
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -263,11 +295,14 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="add card"
+                android:text="Add Card"
                 android:id="@+id/addcard"
                 android:layout_alignParentBottom="true"
                 android:layout_alignRight="@+id/editprofile"
-                android:layout_alignEnd="@+id/editprofile" />
+                android:layout_alignEnd="@+id/editprofile"
+                android:background="@drawable/buttonshape"
+                android:textColor="@color/white"
+                android:textAllCaps="false"/>
 
 
         </RelativeLayout>
@@ -280,7 +315,7 @@
             android:layout_below="@+id/editablecardnumber"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="#f4f4f4"
+            android:background="@color/red"
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
@@ -290,7 +325,7 @@
             android:layout_width="match_parent"
             android:layout_height="596dp"
             android:layout_below="@+id/layout"
-            android:background="#f4f4f4"
+            android:background="@color/red"
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
@@ -299,10 +334,13 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="REMOVE CARD"
+                android:text="Remove Card"
                 android:id="@+id/removecard"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:background="@drawable/buttonshape"/>
 
             <Spinner
                 android:layout_width="wrap_content"
@@ -322,7 +360,7 @@
                 android:text="Card Holder *"
                 android:id="@+id/nameoncard"
                 android:textSize="17dip"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:layout_alignTop="@+id/addnameoncard"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -337,7 +375,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignLeft="@+id/exactwarning"
-                android:layout_alignStart="@+id/exactwarning" />
+                android:layout_alignStart="@+id/exactwarning"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -354,7 +393,7 @@
                 android:text="Card Number *"
                 android:id="@+id/addcardnumber"
                 android:textSize="17dip"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:layout_below="@+id/exactwarning"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -365,14 +404,14 @@
                 android:id="@+id/addeditcardnumber"
                 android:layout_below="@+id/exactwarning"
                 android:layout_toRightOf="@+id/removecard"
-                />
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Expiry Date *"
                 android:id="@+id/expiry"
                 android:textSize="17dip"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:layout_below="@+id/addeditcardnumber"
                 android:layout_alignLeft="@+id/nameoncard"
                 android:layout_alignStart="@+id/nameoncard" />
@@ -383,7 +422,7 @@
                 android:id="@+id/addexpiry"
                 android:layout_below="@+id/addeditcardnumber"
                 android:layout_toRightOf="@+id/removecard"
-                />
+                android:textColor="@color/black"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -400,7 +439,8 @@
                 android:id="@+id/addcvv"
                 android:layout_below="@+id/expiryformat"
                 android:layout_alignLeft="@+id/expiryformat"
-                android:layout_alignStart="@+id/expiryformat" />
+                android:layout_alignStart="@+id/expiryformat"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -408,7 +448,7 @@
                 android:text="CVV *"
                 android:id="@+id/cvv"
                 android:textSize="17sp"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:layout_alignBottom="@+id/addcvv"
                 />
 
@@ -420,7 +460,10 @@
                 android:id="@+id/removeselectedcard"
                 android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/expiryformat"
-                android:layout_alignEnd="@+id/expiryformat" />
+                android:layout_alignEnd="@+id/expiryformat"
+                android:background="@drawable/buttonshape"
+                android:textColor="@color/white"
+                android:textAllCaps="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -439,16 +482,22 @@
                 android:id="@+id/savenewcard"
                 android:layout_below="@+id/cvvdefinition"
                 android:layout_alignRight="@+id/expiryformat"
-                android:layout_alignEnd="@+id/expiryformat" />
+                android:layout_alignEnd="@+id/expiryformat"
+                android:background="@drawable/buttonshape"
+                android:textColor="@color/white"
+                android:textAllCaps="false"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CANCEL"
+                android:text="Cancel"
                 android:id="@+id/canceladdnewcard"
                 android:layout_below="@+id/cvvdefinition"
                 android:layout_toRightOf="@+id/addcvv"
-                android:layout_toEndOf="@+id/addcvv" />
+                android:layout_toEndOf="@+id/addcvv"
+                android:background="@drawable/buttonshape"
+                android:textColor="@color/white"
+                android:textAllCaps="false"/>
 
 
         </RelativeLayout>

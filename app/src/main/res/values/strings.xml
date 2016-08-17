@@ -48,7 +48,7 @@
 
     <!-- Generic Strings -->
     <string name="error_oops">Oops! Something went wrong.</string>
-    <string name="title_activity_beacon">BeaconActivity</string>
+    <string name="title_activity_beacon">Nearby Restaurants</string>
 
     <!-- Facebook API-->
     <string name="facebook_app_id">1195655813788685</string>

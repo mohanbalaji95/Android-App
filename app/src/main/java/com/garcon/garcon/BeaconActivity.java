@@ -7,6 +7,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.garcon.garcon.R;
@@ -20,6 +22,7 @@ import org.altbeacon.beacon.MonitorNotifier;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class BeaconActivity extends AppCompatActivity implements BeaconConsumer{
@@ -92,12 +95,18 @@ public class BeaconActivity extends AppCompatActivity implements BeaconConsumer{
                     System.out.println( "distance: " + oneBeacon.getDistance() + " id:" + oneBeacon.getId1() + "/" + oneBeacon.getId2() + "/" + oneBeacon.getId3());
                     uuid=oneBeacon.getId1().toString();
                     major=oneBeacon.getId2().toString();
+                    final ArrayList<String> restList = new ArrayList<String>();
+                    if(major.equals("1")){
+                        restList.add("Virtual POS");
+                    }
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             String d= returnData();
                             text_UUID.setText(d.split(":")[0]);
                             text_major.setText(d.split(":")[1]);
+                            ListView lv = (ListView) findViewById(R.id.restaurant_list);
+                            lv.setAdapter(new ArrayAdapter<String>(BeaconActivity.this,android.R.layout.simple_list_item_1,(String[])restList.toArray()));
                         }
                     });
 

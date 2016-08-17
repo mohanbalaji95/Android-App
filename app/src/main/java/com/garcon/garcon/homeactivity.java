@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuView;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -42,6 +43,8 @@ public class homeactivity extends AppCompatActivity {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     System.out.println("onAuthStateChanged:signed_in:" + user.getUid());
+
+
 
                 } else {
                     // User is signed out
@@ -78,11 +81,7 @@ public class homeactivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
 
-                if (menuItem.getItemId() == R.id.nav_item_sent) {
-                    FragmentTransaction fragmentTransaction = myFragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.containerView, new SentFragment()).commit();
 
-                }
                 if (menuItem.getItemId() == R.id.nav_profilesettings) {
                     Intent profile_settings = new Intent(getApplicationContext(), ProfileSettings.class);
                     startActivity(profile_settings);

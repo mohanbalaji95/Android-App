@@ -96,7 +96,7 @@ public class TabFragment extends Fragment {
                 case 1:
                     return "Restaurants";
                 case 2:
-                    return "Third";
+                    return "Nearby";
             }
             return null;
         }

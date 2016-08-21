@@ -497,9 +497,19 @@ public class MainViewCartActivity extends AppCompatActivity {
         tableSizeSpinner = (Spinner) findViewById(R.id.tableSize);
         /*ArrayAdapter<CharSequence> tableSizeAdapter = ArrayAdapter.createFromResource(this, R.array.optionsTableSize,
                 android.R.layout.simple_spinner_dropdown_item);*/
-        ArrayAdapter<String> tableSizeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,tableArray);
-        tableSizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        tableSizeSpinner.setAdapter(tableSizeAdapter);
+        if(tableArray.size()>0){
+            ArrayAdapter<String> tableSizeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,tableArray);
+            tableSizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            tableSizeSpinner.setAdapter(tableSizeAdapter);
+
+        }
+        else{
+            tableArray.add("No Table Available");
+            ArrayAdapter<String> tableSizeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,tableArray);
+            tableSizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            tableSizeSpinner.setAdapter(tableSizeAdapter);
+        }
+
 
         Spinner orderDateSpinner = (Spinner) findViewById(R.id.orderDate);
         ArrayAdapter<CharSequence> orderDateAdapter = ArrayAdapter.createFromResource(this, R.array.optionsOrderDate,
@@ -567,10 +577,18 @@ public class MainViewCartActivity extends AppCompatActivity {
             si.execute();
         }
         else{
-            String selectedTableNumber = tableMap.get(Integer.parseInt(tableSizeSpinner.getSelectedItem().toString())).getTableID();
-            String selectedRevCenter = revenueCenter_map.get(restaurantAreaSpinner.getSelectedItem().toString());
-            OpenTicket ot = new OpenTicket();
-            ot.execute(selectedTableNumber,selectedRevCenter);
+            if(tableSizeSpinner.getSelectedItem().toString().equalsIgnoreCase("No Table Available")){
+                Toast.makeText(this,"Tables unavailable",Toast.LENGTH_LONG).show();
+                return;
+            }
+            else{
+                String selectedTableNumber = tableMap.get(Integer.parseInt(tableSizeSpinner.getSelectedItem().toString())).getTableID();
+                String selectedRevCenter = revenueCenter_map.get(restaurantAreaSpinner.getSelectedItem().toString());
+                OpenTicket ot = new OpenTicket();
+                ot.execute(selectedTableNumber,selectedRevCenter);
+            }
+            //String selectedTableNumber = tableMap.get(Integer.parseInt(tableSizeSpinner.getSelectedItem().toString())).getTableID();
+
 
 
         }

@@ -26,6 +26,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/text_major_holder"/>
 
+    <android.support.v7.widget.ListViewCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/restaurant_list">
+
+    </android.support.v7.widget.ListViewCompat>
+
 
 
 

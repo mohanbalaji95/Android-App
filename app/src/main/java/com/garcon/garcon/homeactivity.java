@@ -90,6 +90,10 @@ public class homeactivity extends AppCompatActivity {
                     Intent fav_activity = new Intent(getApplicationContext(), favorite_activity.class);
                     startActivity(fav_activity);
                 }
+                if (menuItem.getItemId() == R.id.nav_history) {
+                    Intent history = new Intent(getApplicationContext(), History.class);
+                    startActivity(history);
+                }
 
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {
                     FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
@@ -100,6 +104,7 @@ public class homeactivity extends AppCompatActivity {
                     startActivity(new Intent(homeactivity.this, LoginActivity.class));
                     //finishActivity(0);
                 }
+                
 
 
                 myDrawerLayout.closeDrawers();

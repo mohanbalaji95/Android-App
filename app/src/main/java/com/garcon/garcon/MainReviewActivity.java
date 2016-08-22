@@ -328,8 +328,9 @@ public class MainReviewActivity extends Activity {
     }
 
     public void see_checkout(View view){
-        Intent i = new Intent(this,MainCheckoutActivity.class);
-        i.putIntegerArrayListExtra("values", new ArrayList<Integer>(Arrays.asList(subtotal,tip,total)));
+        Intent i = new Intent(this, MainCheckoutActivity.class);
+        i.putIntegerArrayListExtra("values", new ArrayList<Integer>(Arrays.asList(subtotal, tip, total)));
+        i.putExtra("ticketID", ticketID);
         this.startActivity(i);
     }
 

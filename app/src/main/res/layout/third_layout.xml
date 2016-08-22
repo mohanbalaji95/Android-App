@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/white">
 
 
     <Button
@@ -11,7 +12,11 @@
         android:layout_height="wrap_content"
         android:text="Nearby"
         android:id="@+id/beacon_button"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:background="@drawable/buttonshape"/>
 
 
 

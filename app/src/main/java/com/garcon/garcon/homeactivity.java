@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class homeactivity extends AppCompatActivity {
-    private static final String TAG = LoginActivity.class.getName();
+    private static final String TAG = homeactivity.class.getName();
     DrawerLayout myDrawerLayout;
     NavigationView myNavigationView;
     FragmentManager myFragmentManager;
@@ -42,14 +42,14 @@ public class homeactivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    System.out.println("onAuthStateChanged:signed_in:" + user.getUid());
+                    //System.out.println("onAuthStateChanged:signed_in:" + user.getUid());
 
 
 
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                    System.out.println("onAuthStateChanged:signed_out");
+                    //System.out.println("onAuthStateChanged:signed_out");
                     finish();
 
                 }

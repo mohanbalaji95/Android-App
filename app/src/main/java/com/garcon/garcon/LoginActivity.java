@@ -197,12 +197,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                    System.out.println( "onAuthStateChanged:signed_in:" + user.getUid());
+                    Log.d(TAG,"onAuthStateChanged:signed_in:" + user.getUid());
+                    //System.out.println( "onAuthStateChanged:signed_in:" + user.getUid());
                     SharedPreferences.Editor editor = sharedpreferences.edit();
                     editor.putString(getString(R.string.User_UUID_Key),user.getUid());
                     editor.commit();
                     Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
                     LoginActivity.this.startActivity(myIntent);
+                    finish();
 
                 } else {
                     // User is signed out
@@ -637,10 +639,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString(eMailkey, mEmail);
                 editor.commit();
-                Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
+                //Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
                 //myIntent.putExtra("key", value); //Optional parameters
-                LoginActivity.this.startActivity(myIntent);
-                finish();
+                //LoginActivity.this.startActivity(myIntent);
+                //finish();
             } else {
 
                 if(errorCode == -16) {

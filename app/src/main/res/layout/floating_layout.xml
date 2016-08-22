@@ -1,22 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
-    android:layout_marginEnd="20dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="20dp"
-    android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:background="@color/red">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/exit"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="0.1"
+            android:src="@drawable/ic_menu_close_clear_cancel" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        >
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/ResImage"
@@ -24,15 +36,15 @@
                 android:layout_height="@dimen/nav_header_height"
                 android:layout_alignParentTop="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/garcon" />
+                android:src="@drawable/restaurant" />
 
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ResImage"
                 android:text="Restaurant Title"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/tvLocation"
@@ -40,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvName"
                 android:text="Location"
+                android:textColor="@color/white"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -48,100 +61,107 @@
                 android:layout_height="wrap_content"
                 android:text="Hours"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_below="@+id/tvType"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:textColor="@color/white" />
 
-            <TextView
-                android:id="@+id/tvPrice"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/tvName"
-                android:text="Price"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_weight="0.5"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"/>
 
-            <TextView
-                android:id="@+id/tvRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvName"
-                android:layout_marginLeft="5dp"
-                android:layout_toEndOf="@+id/tvLocation"
-                android:layout_toRightOf="@+id/tvLocation"
-                android:text="Rating"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:id="@+id/tvRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rating"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/white"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvLocation"
                 android:layout_marginTop="5dp"
                 android:text="Types of Food"
+                android:textColor="@color/white"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Button
                 android:id="@+id/menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvType"
                 android:text="Menu"
-                android:layout_alignRight="@+id/call"
-                android:layout_alignEnd="@+id/call" />
+                android:background="@drawable/buttonshape"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                />
 
             <Button
                 android:id="@+id/call"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/menu"
                 android:text="Call"
-                android:layout_toLeftOf="@+id/tvHours"
-                android:layout_toStartOf="@+id/tvHours" />
+                android:background="@drawable/buttonshape"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                 />
 
             <Button
                 android:id="@+id/take"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/call"
+
                 android:text="Takeout"
-                android:layout_toLeftOf="@+id/tvHours"
-                android:layout_toStartOf="@+id/tvHours" />
+                android:background="@drawable/buttonshape"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"/>
 
             <Button
                 android:id="@+id/info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/take"
+
                 android:text="Info"
-                android:layout_toLeftOf="@+id/tvHours"
-                android:layout_toStartOf="@+id/tvHours" />
+                android:background="@drawable/buttonshape"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+             />
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/info"
-                android:text="Review"
-                android:layout_toLeftOf="@+id/tvHours"
-                android:layout_toStartOf="@+id/tvHours" />
 
-            <ImageButton
-                android:id="@+id/exit"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/ic_menu_close_clear_cancel" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/star"
-                android:layout_below="@+id/button"
-                android:layout_centerHorizontal="true"
-                android:onClick="addToFav"/>
-        </RelativeLayout>
+                android:text="Review"
+                android:background="@drawable/buttonshape"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/star"
+                    android:layout_gravity="center_horizontal"
+                    android:onClick="addToFav"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
     </ScrollView>
-</RelativeLayout>
+</LinearLayout>

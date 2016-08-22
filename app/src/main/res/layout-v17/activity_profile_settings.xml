@@ -109,7 +109,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
             <TextView
                 android:text="Password:"
@@ -136,7 +136,7 @@
                 android:layout_below="@+id/editableusername"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
             <TextView
                 android:text="Number:"
@@ -159,7 +159,7 @@
                 android:layout_below="@+id/editablepassword"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
             <TextView
                 android:text="Email Id:"
@@ -182,7 +182,7 @@
                 android:layout_alignTop="@+id/emailid"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -205,7 +205,7 @@
                 android:layout_below="@+id/editableemailid"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -228,7 +228,7 @@
                 android:layout_below="@+id/editablefirstname"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -376,7 +376,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignLeft="@+id/exactwarning"
                 android:layout_alignStart="@+id/exactwarning"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -404,7 +404,7 @@
                 android:id="@+id/addeditcardnumber"
                 android:layout_below="@+id/exactwarning"
                 android:layout_toRightOf="@+id/removecard"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -422,7 +422,7 @@
                 android:id="@+id/addexpiry"
                 android:layout_below="@+id/addeditcardnumber"
                 android:layout_toRightOf="@+id/removecard"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -440,7 +440,7 @@
                 android:layout_below="@+id/expiryformat"
                 android:layout_alignLeft="@+id/expiryformat"
                 android:layout_alignStart="@+id/expiryformat"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="wrap_content"

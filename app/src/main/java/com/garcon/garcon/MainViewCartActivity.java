@@ -593,12 +593,13 @@ public class MainViewCartActivity extends AppCompatActivity {
 
         }
 
-
-        Intent intent = new Intent(this, MainReviewActivity.class);
+ Intent intent = new Intent(this, MainReviewActivity.class);
         intent.putExtra("instructions", ((EditText) findViewById(R.id.specialInstructions)).getText().toString());
         intent.putExtra("table", ((EditText) findViewById(R.id.tableNumber)).getText().toString());
         Spinner area = (Spinner) findViewById(R.id.restaurantArea);
         intent.putExtra("area", area.getItemAtPosition(area.getSelectedItemPosition()).toString());
+        intent.putExtra("ticketID", ticketID);
+
 
         this.startActivity(intent);
     }

@@ -15,12 +15,14 @@
 
             android:text="name"
             android:textSize="20sp"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:textColor="@color/black"/>
         <TextView
             android:id="@+id/tvType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="type" />
+            android:text="type"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <LinearLayout
@@ -32,13 +34,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="rat" />
+            android:text="rat"
+            android:textColor="@color/black"/>
         <TextView
+
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="price" />
+            android:text="price"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
 
@@ -50,7 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:text="location" />
+        android:text="location"
+        android:textColor="@color/black"/>
 
 
 

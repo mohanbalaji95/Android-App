@@ -203,6 +203,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     editor.commit();
                     Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
                     LoginActivity.this.startActivity(myIntent);
+                    finish();
 
                 } else {
                     // User is signed out

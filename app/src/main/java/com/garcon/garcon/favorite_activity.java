@@ -33,7 +33,7 @@ public class favorite_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_activity);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.fav_toolbar);
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();

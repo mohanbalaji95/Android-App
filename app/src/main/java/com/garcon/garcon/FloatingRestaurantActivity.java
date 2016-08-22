@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +39,15 @@ public class FloatingRestaurantActivity extends Activity {
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
 
-        params.height = 2200;
-        params.width = 1000;
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
+        int width = size.x-(int)(0.075*size.x);
+        int height = size.y;
+        Log.d("Floating Activity","The width is--> "+size.x);
+        params.height = height;
+        params.width = width;
 
         this.getWindow().setAttributes(params);
 

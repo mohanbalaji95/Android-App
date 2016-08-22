@@ -1,54 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/default_margin">
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <RelativeLayout android:id="@+id/subtotal"
+
+
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/process"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_margin">
+            <RadioGroup android:id="@+id/paymentOption"
+                android:layout_below="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkedButton="@+id/payApp"
+                android:orientation="vertical">
+                <RadioButton android:id="@+id/payApp"
+                    android:text="Pay Via App"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <RadioButton android:id="@+id/payStore"
+                    android:text="Pay At Counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+
+            </RadioGroup>
+            <RelativeLayout android:id="@+id/payment_information"
+                android:layout_below="@+id/paymentOption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.garcon.garcon.NonScrollableListView android:id="@+id/credit_cards"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:divider="@color/lime"
+                    android:dividerHeight="2dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:clickable="true" />
+                <TextView android:id="@+id/addCard"
+                    android:background="@color/lime"
+                    android:text="add card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/credit_cards"
+                    android:layout_alignRight="@+id/credit_cards"
+                    android:clickable="true"
+                    android:onClick="addCard"
+                    android:textSize="15dp"/>
+
+            </RelativeLayout>
+            <RelativeLayout android:id="@+id/subtotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView android:text="@string/subtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"/>
+                <TextView android:id="@+id/subtotal_final"
+                    android:text="@string/buffer_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+            <RelativeLayout android:id="@+id/tip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView android:text="@string/tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"/>
+                <TextView android:id="@+id/tip_final"
+                    android:text="@string/buffer_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+            <RelativeLayout android:id="@+id/total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView android:text="@string/total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"/>
+                <TextView android:id="@+id/total_final"
+                    android:text="@string/buffer_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="Process pAyment"
+        android:id="@+id/process"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <TextView android:text="@string/subtotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"/>
-        <TextView android:id="@+id/subtotal_final"
-            android:text="@string/buffer_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"/>
-
-    </RelativeLayout>
-    <RelativeLayout android:id="@+id/tip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView android:text="@string/tip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"/>
-        <TextView android:id="@+id/tip_final"
-            android:text="@string/buffer_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"/>
-
-    </RelativeLayout>
-    <RelativeLayout android:id="@+id/total"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView android:text="@string/total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"/>
-        <TextView android:id="@+id/total_final"
-            android:text="@string/buffer_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"/>
-
-    </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>

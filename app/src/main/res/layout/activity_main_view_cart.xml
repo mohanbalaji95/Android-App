@@ -131,8 +131,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/place_order"
                 android:layout_below="@+id/restaurantArea"
-                android:layout_centerInParent="true"
-                android:onClick="placeOrder" />
+                android:layout_centerInParent="true" />
 
         </RelativeLayout>
 

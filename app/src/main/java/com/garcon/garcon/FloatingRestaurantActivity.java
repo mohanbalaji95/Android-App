@@ -68,7 +68,7 @@ public class FloatingRestaurantActivity extends Activity {
             public void onClick(View v) {
                 Intent startCheckoutActivity = new Intent(FloatingRestaurantActivity.this, MainMenuActivity.class);
                 startCheckoutActivity.putExtra("ticketnumber","oTpbBkqT");
-                startCheckoutActivity.putExtra("locationID","8cg4k4kc");
+                startCheckoutActivity.putExtra("locationID","AieMdB5i");
 
                 startActivity(startCheckoutActivity);
             }

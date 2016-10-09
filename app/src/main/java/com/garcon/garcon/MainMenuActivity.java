@@ -47,8 +47,8 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         //TODO intent will send string for location
-        String location = "8cg4k4kc";
-        //old location xc5rqEyc
+        String location = "AieMdB5i";
+        //old location 8cg4k4kc
 
         categoriesList = new ArrayList<Category>();
         catRowAdapter = new MenuCategoryAdapter((ArrayList<Category>) categoriesList, this);
@@ -56,7 +56,7 @@ public class MainMenuActivity extends AppCompatActivity {
         itemRowAdapter = new MenuItemAdapter((ArrayList<MenuItem>) itemsList, this);
 
         //final String categoryURL = "https://api.omnivore.io/0.1/locations/"+location+"/menu/categories/";
-        final String categoryURL = "https://api.omnivore.io/0.1/locations/8cg4k4kc/menu/categories/";
+        final String categoryURL = "https://api.omnivore.io/0.1/locations/AieMdB5i/menu/categories/";
         String[] mURL = {categoryURL};
         new RetrievalTask(MainMenuActivity.this).execute(mURL);
 
@@ -186,7 +186,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
             Resty r = new Resty();
             // old 2e851bcd49b140eaaef20435f5ce15f1
-            r.withHeader("Api-Key", "057a28b1193c4b26b37c58264624bb4f");
+            r.withHeader("Api-Key", "590c27de8c41473b8014af7553bb85c4");
             JSONObject categoriesObject;
 
             try {

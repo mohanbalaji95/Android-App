@@ -57,9 +57,7 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="Garcon">
-
-        </activity>
+            android:label="Garcon" />
         <activity
             android:name=".BeaconActivity"
             android:label="@string/title_activity_beacon"
@@ -75,7 +73,7 @@
         <activity
             android:name=".MainViewCartActivity"
             android:theme="@style/AppTheme.ViewCartPopup" />
-        <activity android:name=".MainReviewActivity"></activity>
+        <activity android:name=".MainReviewActivity" />
         <activity android:name=".MainCheckoutActivity" />
 
         <meta-data
@@ -98,29 +96,6 @@
             android:name=".getprofiledtails"
             android:enabled="true"
             android:exported="true" />
-                    <activity
-            android:name=".addcardatcheckout"
-            android:theme="@android:style/Theme.Dialog"
-            android:windowSoftInputMode="stateVisible|adjustResize" />
-
-        <service
-            android:name=".PayAppCardDetails"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".addnewcardatcheckout"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".cardSelected"
-            android:enabled="true"
-            android:exported="true" />
-
-        <activity
-            android:name=".ReceiptActivity"
-            android:theme="@android:style/Theme.Dialog"></activity>
-        <activity android:name=".History"></activity>
-
 
         <activity
             android:name=".favorite_activity"
@@ -133,6 +108,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".PayAppCardDetails"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".cardSelected"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".ReceiptActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".addcardatcheckout"
+            android:theme="@android:style/Theme.Dialog"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+
+        <service
+            android:name=".addnewcardatcheckout"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".History"></activity>
     </application>
 
 </manifest>

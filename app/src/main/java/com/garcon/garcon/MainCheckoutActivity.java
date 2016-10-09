@@ -79,7 +79,6 @@ public class MainCheckoutActivity extends Activity {
         setContentView(R.layout.activity_main_checkout);
         values = getIntent().getIntegerArrayListExtra("values");
         ticketID = getIntent().getStringExtra("ticketID");
-        ticketID = "6i9R4REi";
         System.out.println("ticketID = " + ticketID);
         for(int i = 0; i < values.size(); i++)
             Log.i("information ",i+" "+values.get(i));
@@ -131,6 +130,7 @@ public class MainCheckoutActivity extends Activity {
                     intent.putIntegerArrayListExtra("values", values);
                     intent.putExtra("billingCard", selectedcard);
                     startActivity(intent);
+                    finish();
                 }
 
 
@@ -217,13 +217,13 @@ public class MainCheckoutActivity extends Activity {
         ColorDrawable buttonColor = (ColorDrawable) view.getBackground();
         int colorId = buttonColor.getColor();
         if (colorId == (getResources().getColor(R.color.garcon))) {
-            view.setBackgroundColor(getResources().getColor(R.color.blue));
+            view.setBackgroundColor(getResources().getColor(R.color.white));
             iscardselected = false;
         }
         if (!iscardselected) {
             Log.i(LOG_TAG, ((TextView) view).getText() + "card selected");
 
-            if (colorId == (getResources().getColor(R.color.blue))) {
+            if (colorId == (getResources().getColor(R.color.white))) {
                 view.setBackgroundColor(getResources().getColor(R.color.garcon));
                 selectedcard = ((TextView) view).getText().toString();
 //                if (MainCheckoutActivity.selectedcard.equals(null)) {
@@ -243,7 +243,7 @@ public class MainCheckoutActivity extends Activity {
                 startService(cardselected);
                 iscardselected = true;
             } else {
-                view.setBackgroundColor(getResources().getColor(R.color.blue));
+                view.setBackgroundColor(getResources().getColor(R.color.white));
                 selectedcard = null;
             }
 
@@ -270,8 +270,8 @@ public class MainCheckoutActivity extends Activity {
                 item2.put("cvc2",sharedpreferences.getString(tempCardcvv, null));
                 item2.put("number",sharedpreferences.getString(tempCardno, null));
                 item1.put("type","card_not_present");
-                item1.put("amount",0);
-                item1.put("tip",0);
+                item1.put("amount",String.valueOf(values.get(0)));
+                item1.put("tip",String.valueOf(values.get(1)));
                 item1.put("card_info",item2);
 //                JSONArray modifierArray = new JSONArray();
 //                itemArray.put(item1);

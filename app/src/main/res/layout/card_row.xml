@@ -9,6 +9,6 @@
     android:gravity="center"
     android:textSize="16sp"
     android:textStyle="bold"
-    android:textColor="@color/white"
-    android:background="@color/blue">
+    android:background="@color/white">
+    >
 </TextView>

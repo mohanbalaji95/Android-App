@@ -24,10 +24,10 @@ import java.util.TimerTask;
 public class MainReviewActivity extends Activity {
 
     private final static String LOG_TAG = MainReviewActivity.class.getSimpleName();
-    private RelativeLayout payment_information;
     private int subtotal;
     private int tip;
     private int total;
+    String ticketID=null;
 
     private boolean tip_selected = false;
     private View tip_view;
@@ -45,6 +45,7 @@ public class MainReviewActivity extends Activity {
         String instructions = intent.getStringExtra("instructions"); //comes from MainCartActivity
         String table_number = intent.getStringExtra("table");
         String table_area = intent.getStringExtra("area");
+        ticketID = intent.getStringExtra("ticketID");
 
         super.onCreate(savedInstance);
         ArrayList<MenuItem> ordered_items = OrderSingleton.getInstance().getList();
@@ -67,29 +68,9 @@ public class MainReviewActivity extends Activity {
         NonScrollableListView itemListView = (NonScrollableListView) findViewById(R.id.itemsList);
         itemListView.setAdapter(itemAdapter);
 
-        payment_information = (RelativeLayout) findViewById(R.id.payment_information);
-        payment_information.setVisibility(View.GONE);
-        RadioGroup choosePayment = (RadioGroup) findViewById(R.id.paymentOption);
-        choosePayment.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.payStore && payment_information.isShown()){
-                    toggle_contents(payment_information);
-                }
-                else if(checkedId == R.id.payApp){
-                    toggle_contents(payment_information);
-                }
-            }
-        });
 
-        ArrayList<String> cards = new ArrayList<String>();
-        //TODO intent should pick up stored cards
-        cards.add("AMERICAN EXPRESS");
-        cards.add("DISCOVER");
-        BaseAdapter cardAdapter = new OptionsAdapter(cards,this);
-        NonScrollableListView cardsLV = (NonScrollableListView) findViewById(R.id.credit_cards);
-        cardsLV.setAdapter(cardAdapter);
-        cards.add("ADD NEW CARD");
+
+
 
         final TextView total_display = (TextView) findViewById(R.id.total_amount);
 
@@ -310,28 +291,19 @@ public class MainReviewActivity extends Activity {
 
     }
 
-    public void toggle_contents(View view) {
-        //no effects
-        /*
-        options.setVisibility(optionsListView.isShown()
-                ? View.GONE
-                : View.VISIBLE);
-        */
-        if (payment_information.isShown()) {
-            UtilityFX.slide_up(this, payment_information);
-            payment_information.setVisibility(View.GONE);
-        } else {
-            payment_information.setVisibility(View.VISIBLE);
-            UtilityFX.slide_down(this, payment_information);
-        }
 
-    }
 
     public void see_checkout(View view){
+
+        Intent payappcarddetails = new Intent(getApplicationContext(), PayAppCardDetails.class);
+        startService(payappcarddetails);
         Intent i = new Intent(this, MainCheckoutActivity.class);
         i.putIntegerArrayListExtra("values", new ArrayList<Integer>(Arrays.asList(subtotal, tip, total)));
         i.putExtra("ticketID", ticketID);
+        stopService(payappcarddetails);
         this.startActivity(i);
+
+        finish();
     }
 
     public void tipOptionSelected(View view){

@@ -3,6 +3,10 @@ package com.garcon.garcon;
 /**
  * Created by Mayank on 6/27/2016.
  */
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Restaurant {
     String name, location, ID, price, website, hours, Type, phone;
     double rating;

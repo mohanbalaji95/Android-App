@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.garcon.garcon"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -38,6 +38,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.google.android.gms:play-services-maps:9.0.2'
+    compile 'com.google.android.gms:play-services-appindexing:9.0.2'
+    compile 'com.google.android.gms:play-services-location:9.0.2'
     compile 'com.google.firebase:firebase-core:9.0.2'
     compile 'com.google.firebase:firebase-database:9.0.2'
     compile 'com.google.firebase:firebase-auth:9.0.2'
@@ -48,8 +50,6 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.google.code.gson:gson:2.7'
     compile 'us.monoid.web:resty:0.3.2'
-
-    compile 'com.google.android.gms:play-services-appindexing:9.0.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

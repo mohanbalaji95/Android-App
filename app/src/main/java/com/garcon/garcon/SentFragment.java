@@ -18,7 +18,7 @@ public class SentFragment extends Fragment {
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 3 ;
+    public static int int_items = 2 ;
 
     @Nullable
     @Override
@@ -68,7 +68,7 @@ public class SentFragment extends Fragment {
             switch (position){
                 case 0 : return new PrimaryFragment();
                 case 1 : return new SecondFragment();
-                case 2 : return new ThirdFragment();
+//                case 2 : return new ThirdFragment();
             }
             return null;
         }
@@ -92,8 +92,8 @@ public class SentFragment extends Fragment {
                     return "Primary";
                 case 1 :
                     return "Second";
-                case 2 :
-                    return "Third";
+//                case 2 :
+//                    return "Third";
             }
             return null;
         }

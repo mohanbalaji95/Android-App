@@ -19,7 +19,7 @@ public class TabFragment extends Fragment {
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 3;
+    public static int int_items = 2;
 
     @Nullable
     @Override
@@ -70,8 +70,8 @@ public class TabFragment extends Fragment {
                     return new PrimaryFragment();
                 case 1:
                     return new SecondFragment();
-                case 2:
-                    return new ThirdFragment();
+//                case 2:
+//                    return new ThirdFragment();
             }
             return null;
         }
@@ -94,9 +94,9 @@ public class TabFragment extends Fragment {
                 case 0:
                     return "Map";
                 case 1:
-                    return "Restaurants";
-                case 2:
-                    return "Nearby";
+                    return "Restaurant";
+//                case 2:
+//                    return "Nearby";
             }
             return null;
         }

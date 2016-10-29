@@ -39,8 +39,6 @@ public class favorite_activity extends AppCompatActivity {
     private static final String TAG = favorite_activity.class.getName();
     DrawerLayout myDrawerLayout;
     NavigationView myNavigationView;
-    FragmentManager myFragmentManager;
-    FragmentTransaction myFragmentTransaction;
     private ArrayList<String> mItems;
 //    private CardViewAdapter mAdapter;
     private List<favcardview> favcardviews;
@@ -179,10 +177,6 @@ public class favorite_activity extends AppCompatActivity {
 
         myDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         myNavigationView = (NavigationView) findViewById(R.id.profile);
-
-//        myFragmentManager = getSupportFragmentManager();
-//        myFragmentTransaction = myFragmentManager.beginTransaction();
-//        myFragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
 
         myNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

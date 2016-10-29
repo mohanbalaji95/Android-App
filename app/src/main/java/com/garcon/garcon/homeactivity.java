@@ -1,6 +1,7 @@
 package com.garcon.garcon;
 
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,10 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.facebook.login.LoginManager;
 import com.firebase.client.Firebase;
 import com.firebase.client.Logger;
+import com.firebase.client.core.view.View;
+import com.google.android.gms.maps.MapFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -43,15 +47,11 @@ public class homeactivity extends AppCompatActivity {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     //System.out.println("onAuthStateChanged:signed_in:" + user.getUid());
-
-
-
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                     //System.out.println("onAuthStateChanged:signed_out");
                     finish();
-
                 }
             }
         };

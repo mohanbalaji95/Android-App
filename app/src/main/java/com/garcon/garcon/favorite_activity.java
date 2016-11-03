@@ -197,6 +197,11 @@ public class favorite_activity extends AppCompatActivity {
                     startActivity(history);
                 }
 
+                if (menuItem.getItemId() == R.id.nav_settings) {
+                    Intent settings = new Intent(getApplicationContext(), Settings.class);
+                    startActivity(settings);
+                }
+
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {
 //                    FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
 //                    xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();

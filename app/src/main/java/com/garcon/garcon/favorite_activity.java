@@ -39,8 +39,6 @@ public class favorite_activity extends AppCompatActivity {
     private static final String TAG = favorite_activity.class.getName();
     DrawerLayout myDrawerLayout;
     NavigationView myNavigationView;
-    FragmentManager myFragmentManager;
-    FragmentTransaction myFragmentTransaction;
     private ArrayList<String> mItems;
 //    private CardViewAdapter mAdapter;
     private List<favcardview> favcardviews;
@@ -180,10 +178,6 @@ public class favorite_activity extends AppCompatActivity {
         myDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         myNavigationView = (NavigationView) findViewById(R.id.profile);
 
-//        myFragmentManager = getSupportFragmentManager();
-//        myFragmentTransaction = myFragmentManager.beginTransaction();
-//        myFragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
-
         myNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(android.view.MenuItem menuItem) {
@@ -201,6 +195,11 @@ public class favorite_activity extends AppCompatActivity {
                 if (menuItem.getItemId() == R.id.nav_history) {
                     Intent history = new Intent(getApplicationContext(), History.class);
                     startActivity(history);
+                }
+
+                if (menuItem.getItemId() == R.id.nav_settings) {
+                    Intent settings = new Intent(getApplicationContext(), Settings.class);
+                    startActivity(settings);
                 }
 
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {

@@ -39,7 +39,7 @@
         <activity
             android:name=".FloatingRestaurantActivity"
             android:label="FloatingActivity"
-            android:theme="@style/AppTheme.FloatingWindow" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".SignUpActivity" />
         <activity
             android:name=".ProfileSettings"

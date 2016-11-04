@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.Logger;
 import com.firebase.client.ValueEventListener;
 import com.garcon.Constants.Constants;
 
@@ -49,6 +48,7 @@ public class SecondFragment extends Fragment {
 
         LV = (ListView) view.findViewById(R.id.fblist);
         listSetup(LV);
+
         LV.bringToFront();
         context = view.getContext(); // Assign your rootView to context
         LV.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
@@ -56,23 +56,23 @@ public class SecondFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Restaurant item = (Restaurant) LV.getItemAtPosition(position);
                 Intent intent = new Intent(context, FloatingRestaurantActivity.class);
-                Bundle bundle = new Bundle();
                 Restaurant cur = myList.get(position);
                 Toast.makeText(getContext(),"You selected : " + item.getName(),Toast.LENGTH_SHORT).show();
 
-                bundle.putString("location", cur.getLocation());
-                bundle.putString("hours", cur.getHours());
-                bundle.putString("id", cur.getID());
-                bundle.putString("name", cur.getName());
-                bundle.putString("price", cur.getPrice());
-                bundle.putString("type", cur.getTypes());
-                bundle.putString("phone", cur.getPhone());
-                bundle.putString("site", cur.getWebsite());
-                bundle.putDouble("rating", cur.getRating());
-                intent.putExtras(bundle);
+                intent.putExtra("location", cur.getLocation());
+                intent.putExtra("hours", cur.getHours());
+                intent.putExtra("id", cur.getID());
+                intent.putExtra("name", cur.getName());
+                intent.putExtra("price", cur.getPrice());
+                intent.putExtra("type", cur.getTypes());
+                intent.putExtra("phone", cur.getPhone());
+                intent.putExtra("site", cur.getWebsite());
+                intent.putExtra("rating", cur.getRating());
                 startActivity(intent);
             }
         });
+
+
         return view;
     }
     //connects to firebase and populates myList with data
@@ -104,4 +104,5 @@ public class SecondFragment extends Fragment {
         LV.setAdapter(fba);
         fba.notifyDataSetChanged();
     }
+
 }

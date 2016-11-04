@@ -2,12 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="@color/white">
 
     <SearchView
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:actionViewClass="android.widget.SearchView"
         android:icon="@drawable/ic_menu_search"
         android:iconifiedByDefault="false"
@@ -16,11 +19,10 @@
 
     <ListView
         android:id="@+id/fblist"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:dividerHeight="2dp"
+        android:layout_height="0dp"
+        android:layout_weight="1.00"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         />
 
 </LinearLayout>

@@ -10,10 +10,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuView;
 import android.util.Log;
 import android.view.MenuItem;
 
 import com.facebook.login.LoginManager;
+import com.firebase.client.Firebase;
+import com.firebase.client.Logger;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -115,7 +118,6 @@ public class homeactivity extends AppCompatActivity {
 
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
-        mDrawerToggle.setHomeAsUpIndicator(R.drawable.take_out);
         myDrawerLayout.addDrawerListener(mDrawerToggle);
         //myDrawerLayout.setDrawerListener(mDrawerToggle);
 

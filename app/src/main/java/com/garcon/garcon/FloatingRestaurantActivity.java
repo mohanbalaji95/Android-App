@@ -4,11 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +28,7 @@ import java.util.List;
  */
 public class FloatingRestaurantActivity extends Activity {
 
-    TextView tvName, tvPrice, tvLocation, tvHours, tvType;
+    TextView tvName, tvPrice, tvRating, tvLocation, tvHours, tvType;
 
     Button btn_Menu;
     String locationName;
@@ -32,23 +37,31 @@ public class FloatingRestaurantActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.floating_layout);
 
-//        WindowManager.LayoutParams params = getWindow().getAttributes();
-//
-//        Display display = getWindowManager().getDefaultDisplay();
-//        Point size = new Point();
-//        display.getSize(size);
-//
-//        int width = size.x-(int)(0.075*size.x);
-//        int height = size.y;
-//        Log.d("Floating Activity","The width is--> "+size.x);
-//        params.height = height;
-//        params.width = width;
-//
-//        this.getWindow().setAttributes(params);
+        WindowManager.LayoutParams params = getWindow().getAttributes();
 
-       Bundle bundle = getIntent().getExtras();
-        dataSetup(bundle);
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
 
+        int width = size.x-(int)(0.075*size.x);
+        int height = size.y;
+        Log.d("Floating Activity","The width is--> "+size.x);
+        params.height = height;
+        params.width = width;
+
+        this.getWindow().setAttributes(params);
+
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+        dataSetup(b);
+
+        //
+        ImageButton quit = (ImageButton) this.findViewById(R.id.exit);
+        quit.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                finish();
+            }
+        });
         btn_Menu = (Button) findViewById(R.id.menu);
         btn_Menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +69,7 @@ public class FloatingRestaurantActivity extends Activity {
                 Intent startCheckoutActivity = new Intent(FloatingRestaurantActivity.this, MainMenuActivity.class);
                 startCheckoutActivity.putExtra("ticketnumber","oTpbBkqT");
                 startCheckoutActivity.putExtra("locationID","AieMdB5i");
+
                 startActivity(startCheckoutActivity);
             }
         });
@@ -70,12 +84,14 @@ public class FloatingRestaurantActivity extends Activity {
     public void dataSetup(Bundle b) {
         tvName = (TextView) this.findViewById(R.id.tvName);
         tvPrice = (TextView) this.findViewById(R.id.tvPrice);
+        tvRating = (TextView) this.findViewById(R.id.tvRating);
         tvLocation = (TextView) this.findViewById(R.id.tvLocation);
         tvHours = (TextView) this.findViewById(R.id.tvHours);
         tvType = (TextView) this.findViewById(R.id.tvType);
 
         tvName.setText(b.getString("name"));
         tvPrice.setText(b.getString("price"));
+        tvRating.setText(Double.toString(b.getDouble("rating")));
         tvLocation.setText(b.getString("location"));
         tvHours.setText( parseHours(b.getString("hours")) );
         tvType.setText(b.getString("type"));

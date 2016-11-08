@@ -83,8 +83,8 @@ public class ProfileSettings extends AppCompatActivity {
     //    Button editcarddetails;
     Button savenewcard;
     Button canceladdnewcard;
-    Button deletepropic;
-    ImageView profilepic;
+//    Button deletepropic;
+//    ImageView profilepic;
     ImageView saveprofile;
     ImageView editprofile;
     Button remove_selected_card;
@@ -104,7 +104,7 @@ public class ProfileSettings extends AppCompatActivity {
     LayoutInflater mInflater;
     FirebaseStorage storage;
     StorageReference storageRef;
-    StorageReference profileimage;
+//    StorageReference profileimage;
     String cardtypestring;
     String[] edits = new String[2];
     static cardDetails card;
@@ -212,33 +212,33 @@ public class ProfileSettings extends AppCompatActivity {
                 editfirstname.setEnabled(true);
                 editprofile.setVisibility(View.INVISIBLE);
                 saveprofile.setVisibility(View.VISIBLE);
-                profilepic.setClickable(true);
-                profilepic.setEnabled(true);
+//                profilepic.setClickable(true);
+//                profilepic.setEnabled(true);
                 editpasswordbutton.setVisibility(View.VISIBLE);
-                deletepropic.setVisibility(View.VISIBLE);
+//                deletepropic.setVisibility(View.VISIBLE);
 
 
             }
 
         });
 
-        profilepic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    //Pick Image From Gallery
-                    Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(i, RESULT_SELECT_IMAGE);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        profilepic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//                    //Pick Image From Gallery
+//                    Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                    startActivityForResult(i, RESULT_SELECT_IMAGE);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
-        deletepropic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                profilepic.setImageBitmap(null);
+//        deletepropic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                profilepic.setImageBitmap(null);
                 // Create a reference to the file to delete
 //                StorageReference deleteref = storageRef.child("profileic/"+firebaseuser.getUid());
                 // Delete the file
@@ -254,8 +254,8 @@ public class ProfileSettings extends AppCompatActivity {
 //                        // Uh-oh, an error occurred!
 //                    }
 //                });
-            }
-        });
+//            }
+//        });
 
         saveprofile.setOnClickListener(new View.OnClickListener() {
 
@@ -290,9 +290,9 @@ public class ProfileSettings extends AppCompatActivity {
                     editlastname.setEnabled(false);
                     editprofile.setVisibility(View.VISIBLE);
                     saveprofile.setVisibility(View.INVISIBLE);
-                    profilepic.setClickable(false);
-                    profilepic.setEnabled(false);
-                    deletepropic.setVisibility(View.INVISIBLE);
+//                    profilepic.setClickable(false);
+//                    profilepic.setEnabled(false);
+//                    deletepropic.setVisibility(View.INVISIBLE);
                     editpasswordbutton.setVisibility(View.INVISIBLE);
 
                     SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -765,45 +765,45 @@ public class ProfileSettings extends AppCompatActivity {
 
                     BitmapFactory.Options o2 = new BitmapFactory.Options();
                     o2.inSampleSize = scale;
-                    try {
-                        profilepic.setImageBitmap(BitmapFactory.decodeStream(getApplicationContext().getContentResolver().openInputStream(selectedImage), null, o2));
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        profilepic.setImageBitmap(BitmapFactory.decodeStream(getApplicationContext().getContentResolver().openInputStream(selectedImage), null, o2));
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    }
                     // Create file metadata including the content type
 //                    StorageMetadata metadata = new StorageMetadata.Builder()
 //                            .setContentType("image/jpg")
 //                            .setCustomMetadata(firebaseuser.getUid(), firebaseuser.getEmail())
 //                            .build();
 //                    profileimage = storageRef.child("profileic/" + firebaseuser.getUid());
-                    UploadTask uploadTask = profileimage.putFile(selectedImage);
+//                    UploadTask uploadTask = profileimage.putFile(selectedImage);
 
 // Register observers to listen for when the download is done or if it fails
-                    uploadTask.addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle unsuccessful uploads
-                        }
-                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                            Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        }
-                    });
-                    // Observe state change events such as progress, pause, and resume
-                    uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = 100.0 * (taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                            System.out.println("Upload is " + progress + "% done");
-                        }
-                    }).addOnPausedListener(new OnPausedListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onPaused(UploadTask.TaskSnapshot taskSnapshot) {
-                            System.out.println("Upload is paused");
-                        }
-                    });
+//                    uploadTask.addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception exception) {
+//                            // Handle unsuccessful uploads
+//                        }
+//                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+//                            Uri downloadUrl = taskSnapshot.getDownloadUrl();
+//                        }
+//                    });
+//                    // Observe state change events such as progress, pause, and resume
+//                    uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+//                            double progress = 100.0 * (taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+//                            System.out.println("Upload is " + progress + "% done");
+//                        }
+//                    }).addOnPausedListener(new OnPausedListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onPaused(UploadTask.TaskSnapshot taskSnapshot) {
+//                            System.out.println("Upload is paused");
+//                        }
+//                    });
 
 
                 }
@@ -912,9 +912,9 @@ public class ProfileSettings extends AppCompatActivity {
 //        editcarddetails.setVisibility(View.VISIBLE);
         savenewcard = (Button) findViewById(R.id.savenewcard);
         savenewcard.setVisibility(View.INVISIBLE);
-        profilepic = (ImageView) findViewById(R.id.profilepicture);
-        profilepic.setClickable(false);
-        profilepic.setEnabled(false);
+//        profilepic = (ImageView) findViewById(R.id.profilepicture);
+//        profilepic.setClickable(false);
+//        profilepic.setEnabled(false);
         cvvdefinition = (TextView) findViewById(R.id.cvvdefinition);
         cvvdefinition.setVisibility(View.INVISIBLE);
         newcard = new View[10];
@@ -938,8 +938,8 @@ public class ProfileSettings extends AppCompatActivity {
         mInflater = (LayoutInflater) getApplicationContext()
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         storage = FirebaseStorage.getInstance();
-        deletepropic = (Button) findViewById(R.id.deletepropic);
-        deletepropic.setVisibility(View.GONE);
+//        deletepropic = (Button) findViewById(R.id.deletepropic);
+//        deletepropic.setVisibility(View.GONE);
         // Create a storage reference from our app
         storageRef = storage.getReferenceFromUrl("gs://garcondatabase.appspot.com");
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);

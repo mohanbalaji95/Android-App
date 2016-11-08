@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +28,11 @@ public class FloatingRestaurantActivity extends Activity {
     TextView tvName, tvPrice, tvLocation, tvHours, tvType;
 
     Button btn_Menu;
+    Button btn_Call;
+    Button btn_DineIn;
+    Button btn_TakeOut;
     String locationName;
+    String phoneNumber;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +56,44 @@ public class FloatingRestaurantActivity extends Activity {
         dataSetup(bundle);
 
         btn_Menu = (Button) findViewById(R.id.menu);
+        btn_Call = (Button) findViewById(R.id.btnCall);
+        btn_DineIn = (Button) findViewById(R.id.btnDineIn);
+        btn_TakeOut = (Button) findViewById(R.id.btbTakeOut);
+
         btn_Menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startCheckoutActivity = new Intent(FloatingRestaurantActivity.this, MainMenuActivity.class);
+                startCheckoutActivity.putExtra("ticketnumber","oTpbBkqT");
+                startCheckoutActivity.putExtra("locationID","AieMdB5i");
+                startActivity(startCheckoutActivity);
+            }
+        });
+
+        btn_Call.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                Intent callActivity = new Intent(Intent.ACTION_CALL);
+                callActivity.setData(Uri.parse("tel:"+phoneNumber));
+                if (callActivity.resolveActivity(getPackageManager()) != null)
+                {
+                    startActivity(callActivity);
+                }
+                //Snackbar.make(v,phoneNumber,Snackbar.LENGTH_LONG).show();
+            }
+        });
+        btn_DineIn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent startCheckoutActivity = new Intent(FloatingRestaurantActivity.this, MainMenuActivity.class);
+                startCheckoutActivity.putExtra("ticketnumber","oTpbBkqT");
+                startCheckoutActivity.putExtra("locationID","AieMdB5i");
+                startActivity(startCheckoutActivity);
+            }
+
+        });
+
+        btn_TakeOut.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent startCheckoutActivity = new Intent(FloatingRestaurantActivity.this, MainMenuActivity.class);
@@ -79,7 +122,7 @@ public class FloatingRestaurantActivity extends Activity {
         tvLocation.setText(b.getString("location"));
         tvHours.setText( parseHours(b.getString("hours")) );
         tvType.setText(b.getString("type"));
-
+        phoneNumber = b.getString("phone");
         locationName = b.getString("name");
     }
 

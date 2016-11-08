@@ -18,7 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimaryDark"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="History"
+            app:title="Order History"
             app:itemTextColor="@color/white"/>
 
     </android.support.design.widget.AppBarLayout>

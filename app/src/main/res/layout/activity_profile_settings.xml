@@ -46,12 +46,12 @@
                 android:layout_alignEnd="@+id/editprofile" />
 
 
-            <ImageButton
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:id="@+id/profilepicture"
-                android:layout_above="@+id/editableusername"
-                android:layout_centerHorizontal="true" />
+            <!--<ImageButton-->
+                <!--android:layout_width="300dp"-->
+                <!--android:layout_height="300dp"-->
+                <!--android:id="@+id/profilepicture"-->
+                <!--android:layout_above="@+id/editableusername"-->
+                <!--android:layout_centerHorizontal="true" />-->
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
@@ -248,23 +248,23 @@
                 android:text="EDIT PASSWORD"
                 android:id="@+id/editpassword"
                 android:layout_below="@+id/editableusername"
-                android:layout_alignRight="@+id/profilepicture"
-                android:layout_alignEnd="@+id/profilepicture"
+                android:layout_alignRight="@+id/profile"
+                android:layout_alignEnd="@+id/profile"
                 android:layout_above="@+id/editablephnumber"
                 android:layout_toRightOf="@+id/password"
                 android:layout_toEndOf="@+id/password" />
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="15dp"
-                android:layout_height="55dp"
-                android:id="@+id/deletepropic"
-                android:drawableBottom="@android:drawable/ic_menu_delete"
-                android:layout_alignTop="@+id/profilepicture"
-                android:layout_alignLeft="@+id/profilepicture"
-                android:layout_alignStart="@+id/profilepicture"
-                android:layout_alignRight="@+id/phnumber"
-                android:layout_alignEnd="@+id/phnumber" />
+            <!--<Button-->
+                <!--style="?android:attr/buttonStyleSmall"-->
+                <!--android:layout_width="15dp"-->
+                <!--android:layout_height="55dp"-->
+                <!--android:id="@+id/deletepropic"-->
+                <!--android:drawableBottom="@android:drawable/ic_menu_delete"-->
+                <!--android:layout_alignTop="@+id/profilepicture"-->
+                <!--android:layout_alignLeft="@+id/profilepicture"-->
+                <!--android:layout_alignStart="@+id/profilepicture"-->
+                <!--android:layout_alignRight="@+id/phnumber"-->
+                <!--android:layout_alignEnd="@+id/phnumber" />-->
 
             <Button
                 android:layout_width="wrap_content"

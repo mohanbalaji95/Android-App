@@ -1,5 +1,4 @@
 package com.garcon.garcon;
-import com.garcon.garcon.R;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,16 +13,16 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MenuItemAdapter extends BaseAdapter implements ListAdapter {
 
     public final static String LOG_TAG = MenuItemAdapter.class.getSimpleName();
-    private ArrayList<MenuItem> list;
+    private List<MenuItem> list;
     private Context context;
     View view;
 
-    public MenuItemAdapter(ArrayList<MenuItem> list, Context context) {
+    public MenuItemAdapter(List<MenuItem> list, Context context) {
         this.list = list;
         this.context = context;
     }

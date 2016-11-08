@@ -1,50 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainMenuActivity">
 
-    <LinearLayout android:id="@+id/menus"
-        android:padding="@dimen/default_margin"
-        android:layout_height="0dip"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <ListView android:id="@+id/categories"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@color/silver"
-            />
-        <ListView android:id="@+id/items"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@color/colorAccent"
-            />
-
-    </LinearLayout>
-
-    <RelativeLayout android:id="@+id/displayViewCart"
-        android:background="@color/garcon"
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0">
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-        <Button android:id="@+id/seeViewCartButton"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/orange"
-            android:text="View Order"
-            android:clickable="true"
-            android:onClick="view_order"
-            />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search Menu Item"/>
+    <LinearLayout
+        android:id="@+id/menus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    </RelativeLayout>
+        <ListView
+            android:id="@+id/categories"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:dividerHeight="4dp"/>
+
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <ListView
+            android:id="@+id/items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:dividerHeight="4dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/seeViewCartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@color/orange"
+        android:clickable="true"
+        android:onClick="view_order"
+        android:layout_gravity="center_horizontal"
+        android:text="View Order" />
 
 </LinearLayout>

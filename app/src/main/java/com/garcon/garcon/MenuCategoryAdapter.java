@@ -1,5 +1,4 @@
 package com.garcon.garcon;
-import com.garcon.garcon.R;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
@@ -11,16 +10,16 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
 
-    private ArrayList<Category> list;
+    private List<Category> list;
     private Context context;
     View view;
     public final static String LOG_TAG = MenuCategoryAdapter.class.getSimpleName();
 
-    public MenuCategoryAdapter(ArrayList<Category> list, Context context) {
+    public MenuCategoryAdapter(List<Category> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -47,12 +46,13 @@ public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         view = convertView;
         if (view == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = LayoutInflater.from(context);
             view = inflater.inflate(R.layout.menu_row, null);
         }
 
-        final TextView listItemText = (TextView) view.findViewById(R.id.rowTextView);
-        listItemText.setText(list.get(position).getName());
+        Category category = list.get(position);
+        TextView listItemText = (TextView) view.findViewById(R.id.rowTextView);
+        listItemText.setText(category.getName());
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
         int height = dm.heightPixels;
         listItemText.setHeight((int)(0.275*height));
@@ -70,8 +70,6 @@ public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
                 }
             }
         });
-
         return view;
     }
-
 }

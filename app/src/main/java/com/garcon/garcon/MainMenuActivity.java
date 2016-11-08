@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
@@ -23,7 +24,10 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public final static String LOG_TAG = MainMenuActivity.class.getSimpleName();
     ListView catListView, itemsListView;
-    List categoriesList, itemsList;
+
+    private Toolbar toolbar;
+    List<Category> categoriesList;
+    List<MenuItem> itemsList;
     List<Pair<Category,ArrayList<MenuItem>>> imported_list = new ArrayList<>();
     private boolean loaded = false;
     private Context context;
@@ -46,17 +50,22 @@ public class MainMenuActivity extends AppCompatActivity {
         OrderSingleton.getInstance();
         setContentView(R.layout.activity_main_menu);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Menu");
         //TODO intent will send string for location
         String location = "AieMdB5i";
         //old location 8cg4k4kc
+        catListView = (ListView) findViewById(R.id.categories);
+        itemsListView = (ListView) findViewById(R.id.items);
 
-        categoriesList = new ArrayList<Category>();
-        catRowAdapter = new MenuCategoryAdapter((ArrayList<Category>) categoriesList, this);
-        itemsList = new ArrayList<MenuItem>();
-        itemRowAdapter = new MenuItemAdapter((ArrayList<MenuItem>) itemsList, this);
+        categoriesList = new ArrayList<>();
+        catRowAdapter = new MenuCategoryAdapter(categoriesList, this);
+        itemsList = new ArrayList<>();
+        itemRowAdapter = new MenuItemAdapter(itemsList, this);
 
         //final String categoryURL = "https://api.omnivore.io/0.1/locations/"+location+"/menu/categories/";
-        final String categoryURL = "https://api.omnivore.io/0.1/locations/AieMdB5i/menu/categories/";
+        final String categoryURL = "https://api.omnivore.io/0.1/locations/7TAprKdT/menu/categories/";
         String[] mURL = {categoryURL};
         new RetrievalTask(MainMenuActivity.this).execute(mURL);
 
@@ -79,10 +88,9 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         */
 
-        catListView = (ListView) findViewById(R.id.categories);
+
         catListView.setAdapter(catRowAdapter);
 
-        itemsListView = (ListView) findViewById(R.id.items);
         itemsListView.setAdapter(itemRowAdapter);
 
         //synchronizes catListView with itemsListView
@@ -177,16 +185,16 @@ public class MainMenuActivity extends AppCompatActivity {
             dialog = new ProgressDialog(context);
         }
 
-        protected void onPreExecute() {
-            this.dialog.setMessage("Progress start");
-            this.dialog.show();
-        }
+//        protected void onPreExecute() {
+//            this.dialog.setMessage("Progress start");
+//            this.dialog.show();
+//        }
         @Override
         protected String doInBackground(String... urls) {
 
             Resty r = new Resty();
             // old 2e851bcd49b140eaaef20435f5ce15f1
-            r.withHeader("Api-Key", "590c27de8c41473b8014af7553bb85c4");
+            r.withHeader("api-key", "1c8df8e1001344e499fa3affc7990ee4");
             JSONObject categoriesObject;
 
             try {

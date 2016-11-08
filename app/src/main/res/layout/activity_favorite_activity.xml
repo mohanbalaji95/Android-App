@@ -19,7 +19,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimaryDark"
         app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:title="Favorites"
+        app:title="Manage Favorites"
         app:itemTextColor="@color/white"/>
 
     </android.support.design.widget.AppBarLayout>

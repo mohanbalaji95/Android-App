@@ -28,7 +28,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private Toolbar toolbar;
     List<Category> categoriesList;
     List<MenuItem> itemsList;
-    List<Pair<Category,ArrayList<MenuItem>>> imported_list = new ArrayList<>();
+    List<Pair<Category, ArrayList<MenuItem>>> imported_list = new ArrayList<>();
     private boolean loaded = false;
     private Context context;
 
@@ -45,7 +45,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private JSONObject mod_resource;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         OrderSingleton.getInstance();
         setContentView(R.layout.activity_main_menu);
@@ -61,6 +61,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         categoriesList = new ArrayList<>();
         catRowAdapter = new MenuCategoryAdapter(categoriesList, this);
+
         itemsList = new ArrayList<>();
         itemRowAdapter = new MenuItemAdapter(itemsList, this);
 
@@ -93,6 +94,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         itemsListView.setAdapter(itemRowAdapter);
 
+
         //synchronizes catListView with itemsListView
         itemsListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             //private int currentVisibleItemCount, currentScrollState, currentFirstVisibleItem, totalItem;
@@ -100,49 +102,52 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 checkSync();
             }
+
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 //checkSync();
                 //too much computation
             }
+
             private void checkSync() {
-            //attribute (id) is the position of the category in the left listview
-            //each item in the right listview has a string name and corresponding category's position
-            if(loaded){
+                //attribute (id) is the position of the category in the left listview
+                //each item in the right listview has a string name and corresponding category's position
+                if (loaded) {
 
-                int leftTop = catListView.getFirstVisiblePosition();
-                String leftTopAttribute = ((Category) categoriesList.get(leftTop)).getId();
+                    int leftTop = catListView.getFirstVisiblePosition();
+                    String leftTopAttribute = ((Category) categoriesList.get(leftTop)).getId();
 
-                int rightTop = itemsListView.getFirstVisiblePosition();
-                String rightTopAttribute = ((MenuItem) itemsList.get(rightTop)).getCategoryID();
+                    int rightTop = itemsListView.getFirstVisiblePosition();
+                    String rightTopAttribute = ((MenuItem) itemsList.get(rightTop)).getCategoryID();
 
-                //Log.i(LOG_TAG,"scroll "+leftTopAttribute+" "+rightTopAttribute);
+                    //Log.i(LOG_TAG,"scroll "+leftTopAttribute+" "+rightTopAttribute);
 
-                if(!leftTopAttribute.equals(rightTopAttribute)) {
-                    catListView.requestFocusFromTouch();
-                    for(int i = 0; i < categoriesList.size(); i++){
-                        if(((Category) categoriesList.get(i)).getId().equals(rightTopAttribute)){
-                            catListView.setSelection(i);
-                            break;
+                    if (!leftTopAttribute.equals(rightTopAttribute)) {
+                        catListView.requestFocusFromTouch();
+                        for (int i = 0; i < categoriesList.size(); i++) {
+                            if (((Category) categoriesList.get(i)).getId().equals(rightTopAttribute)) {
+                                catListView.setSelection(i);
+                                break;
+                            }
                         }
+                        catListView.requestFocus();
                     }
-                    catListView.requestFocus();
                 }
             }
-        }
-    });
+        });
 
         //TODO only show if number of items ordered if total > 0
         //final RelativeLayout displayOrderLV = (RelativeLayout) findViewById(R.id.displayViewCart);
         //displayOrderLV.setVisibility(View.GONE);
 
-            }
 
-    public void categorySelectedSync(int position){
+    }
+
+    public void categorySelectedSync(int position) {
         int itemsListPos = position;
-        for(int i = 0; i < itemsList.size(); i++){
+        for (int i = 0; i < itemsList.size(); i++) {
             MenuItem p = (MenuItem) itemsList.get(i);
-            if(p.getCategoryID().equals(((Category) categoriesList.get(position)).getId())){
+            if (p.getCategoryID().equals(((Category) categoriesList.get(position)).getId())) {
                 itemsListPos = i;
                 break;
             }
@@ -155,8 +160,8 @@ public class MainMenuActivity extends AppCompatActivity {
         itemsListView.requestFocus();
     }
 
-    public void sort(){
-    //TODO based on more feedback
+    public void sort() {
+        //TODO based on more feedback
     /*
     Collections.sort(myList, new Comparator<myDataType>(){
         public int compare(myDataType o1, myDataType o2){
@@ -168,7 +173,7 @@ public class MainMenuActivity extends AppCompatActivity {
     */
     }
 
-    public void view_order(View view){
+    public void view_order(View view) {
         //Log.i(LOG_TAG,"See order");
         Intent intent = new Intent(this, MainViewCartActivity.class);
         this.startActivity(intent);
@@ -185,7 +190,7 @@ public class MainMenuActivity extends AppCompatActivity {
             dialog = new ProgressDialog(context);
         }
 
-//        protected void onPreExecute() {
+        //        protected void onPreExecute() {
 //            this.dialog.setMessage("Progress start");
 //            this.dialog.show();
 //        }
@@ -237,8 +242,7 @@ public class MainMenuActivity extends AppCompatActivity {
                                     modifier_ref = itemJson.getJSONObject("_links").
                                             getJSONObject("modifier_groups").getString("href");
                                     mod_resource = r.json(modifier_ref).object();
-                                }
-                                catch(Exception e){
+                                } catch (Exception e) {
                                     Log.i("error with ref link", modifier_ref);
                                 }
 
@@ -261,7 +265,7 @@ public class MainMenuActivity extends AppCompatActivity {
                                             String name_mgroup = mod_group.getString("name");
 
                                             int max_mgroup;
-                                            if(mod_group.isNull("maximum"))
+                                            if (mod_group.isNull("maximum"))
                                                 max_mgroup = Integer.MAX_VALUE;
                                             else
                                                 max_mgroup = mod_group.getInt("maximum");
@@ -307,42 +311,40 @@ public class MainMenuActivity extends AppCompatActivity {
                                     MenuItem m = new MenuItem(id, name, price, list, in_stock, modifierGroupArrayList, modifier_groups_count, categoryID);
                                     imported_list.get(nCat).second.add(m);
 
-                                }
-                                catch(Exception e){
+                                } catch (Exception e) {
                                     Log.i(LOG_TAG, e.toString() + "FAILURE4");
                                 }
 
-                            }
-                            catch (Exception e) {
+                            } catch (Exception e) {
                                 Log.i(LOG_TAG, e.toString() + "FAILURE3");
                             }
 
                         }
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         Log.i(LOG_TAG, e.toString() + "FAILURE2");
                     }
                 }
             } catch (Exception e) {
                 Log.i(LOG_TAG, e.toString() + "FAILURE1");
             }
-            Log.i(LOG_TAG, "imported_list "+imported_list.size());
+            Log.i(LOG_TAG, "imported_list " + imported_list.size());
             return "DONE"; //if meaningful string is required, it can be done
         }
+
         @Override
         protected void onPostExecute(String result) {
             //categoriesList and itemsList instantiated
-            for(Pair p : imported_list){
+            for (Pair p : imported_list) {
                 Category c = (Category) p.first;
                 categoriesList.add(new Category(c.getId(), c.getName()));
-                for(MenuItem m : (ArrayList<MenuItem>) p.second){
+                for (MenuItem m : (ArrayList<MenuItem>) p.second) {
                     itemsList.add(m);
                 }
             }
             Log.i("onPostExecute",
-                    "number of categories "+String.valueOf(imported_list.size())+
-                    "categories "+String.valueOf(categoriesList.size())+
-                    " items "+String.valueOf(itemsList.size()));
+                    "number of categories " + String.valueOf(imported_list.size()) +
+                            "categories " + String.valueOf(categoriesList.size()) +
+                            " items " + String.valueOf(itemsList.size()));
             catRowAdapter.notifyDataSetChanged();
             itemRowAdapter.notifyDataSetChanged();
             loaded = true;

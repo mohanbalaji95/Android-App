@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:title="Hamburger"
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/hamburgerMenu"
         android:title="Cart"
         android:icon="@drawable/final_cart"
         app:showAsAction="always"/>
+
 </menu>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -47,11 +48,13 @@ public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
         view = convertView;
         if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            view = inflater.inflate(R.layout.menu_row, null);
+            view = inflater.inflate(R.layout.menu_row_category, null);
         }
 
         Category category = list.get(position);
-        TextView listItemText = (TextView) view.findViewById(R.id.rowTextView);
+        final TextView listItemText = (TextView) view.findViewById(R.id.rowTextView);
+        final LinearLayout llMenuCatItem = (LinearLayout) view.findViewById(R.id.llMenuCatItem);
+
         listItemText.setText(category.getName());
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
         int height = dm.heightPixels;
@@ -59,13 +62,18 @@ public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
         //duplicate command
         //listItemText.setWidth((int)(0.5*width));
 
+        llMenuCatItem.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+        listItemText.setTextColor(context.getResources().getColor(R.color.white));
+
         //if category is clicked, then items are correspondingly synchronized
-        listItemText.setOnClickListener(new View.OnClickListener(){
+        llMenuCatItem.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Log.i(LOG_TAG,"category selected");
                 if(context instanceof MainMenuActivity){
                     ((MainMenuActivity)context).categorySelectedSync(position);
+                    llMenuCatItem.setBackgroundColor(context.getResources().getColor(R.color.white));
+                    listItemText.setTextColor(context.getResources().getColor(R.color.colorPrimary));
                     notifyDataSetChanged();
                 }
             }

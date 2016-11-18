@@ -12,7 +12,10 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
     <permission
         android:name="com.garcon.garcon.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />

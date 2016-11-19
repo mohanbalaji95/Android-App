@@ -85,7 +85,6 @@ public class favorite_activity extends AppCompatActivity {
             }
         });
 
-
         Intent intent = getIntent();
         RecyclerView rv = (RecyclerView)findViewById(R.id.recycleview);
         rv.setHasFixedSize(true);

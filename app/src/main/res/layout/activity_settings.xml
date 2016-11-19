@@ -16,21 +16,13 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/set_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:background="?attr/colorPrimaryDark"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="Settings"
             app:itemTextColor="@color/white"/>
 
     </android.support.design.widget.AppBarLayout>
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
 
     <TextView
         android:id="@+id/textView1"
@@ -43,16 +35,14 @@
         android:text="Bluetooth"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/seeTermsandConditions"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="true"
+    <Switch
+        android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="Terms and Conditions"
-        android:clickable="true"
-        android:onClick="terms_conditions" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+
     <TextView
         android:id="@+id/contact"
         android:layout_width="wrap_content"
@@ -63,6 +53,16 @@
         android:gravity="center"
         android:text="Contact us: ceo@getgarcon.com"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+    <Button
+        android:id="@+id/seeTermsandConditions"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="Terms and Conditions"
+        android:clickable="true"
+        android:onClick="terms_conditions" />
 
     <!--<android.support.v4.widget.DrawerLayout-->
         <!--android:layout_height="match_parent"-->

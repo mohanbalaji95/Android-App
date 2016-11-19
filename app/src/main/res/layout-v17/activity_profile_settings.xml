@@ -57,14 +57,14 @@
                 />
 
 
-            <com.garcon.garcon.RoundedImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/profilepicture"
-                android:layout_above="@+id/editableusername"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/johndoe"
-                android:layout_below="@+id/saveprofile"/>
+            <!--<com.garcon.garcon.RoundedImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/profilepicture"-->
+                <!--android:layout_above="@+id/editableusername"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:src="@drawable/johndoe"-->
+                <!--android:layout_below="@+id/saveprofile"/>-->
             <!--<Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
@@ -126,17 +126,6 @@
                 android:layout_toStartOf="@+id/editablepassword"
                 android:layout_below="@+id/editableusername"
                 android:layout_toLeftOf="@+id/editablepassword" />
-
-            <EditText
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/editablepassword"
-                android:inputType="textPassword"
-                android:singleLine="true"
-                android:layout_below="@+id/editableusername"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:textColor="@color/white"/>
 
             <TextView
                 android:text="Number:"
@@ -271,8 +260,8 @@
                 android:text="Edit Password"
                 android:id="@+id/editpassword"
                 android:layout_below="@+id/editableusername"
-                android:layout_alignRight="@+id/profilepicture"
-                android:layout_alignEnd="@+id/profilepicture"
+                android:layout_alignRight="@+id/profile"
+                android:layout_alignEnd="@+id/profile"
                 android:layout_above="@+id/editablephnumber"
                 android:layout_toRightOf="@+id/password"
                 android:layout_toEndOf="@+id/password"
@@ -280,17 +269,17 @@
                 android:textColor="@color/white"
                 android:textAllCaps="false"/>
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="15dp"
-                android:layout_height="55dp"
-                android:id="@+id/deletepropic"
-                android:drawableBottom="@android:drawable/ic_menu_delete"
-                android:layout_alignTop="@+id/profilepicture"
-                android:layout_alignLeft="@+id/profilepicture"
-                android:layout_alignStart="@+id/profilepicture"
-                android:layout_alignRight="@+id/phnumber"
-                android:layout_alignEnd="@+id/phnumber" />
+            <!--<Button-->
+                <!--style="?android:attr/buttonStyleSmall"-->
+                <!--android:layout_width="15dp"-->
+                <!--android:layout_height="55dp"-->
+                <!--android:id="@+id/deletepropic"-->
+                <!--android:drawableBottom="@android:drawable/ic_menu_delete"-->
+                <!--android:layout_alignTop="@+id/profilepicture"-->
+                <!--android:layout_alignLeft="@+id/profilepicture"-->
+                <!--android:layout_alignStart="@+id/profilepicture"-->
+                <!--android:layout_alignRight="@+id/phnumber"-->
+                <!--android:layout_alignEnd="@+id/phnumber" />-->
 
             <Button
                 android:layout_width="wrap_content"
@@ -303,6 +292,17 @@
                 android:background="@drawable/buttonshape"
                 android:textColor="@color/white"
                 android:textAllCaps="false"/>
+
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editablepassword"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:layout_below="@+id/editableusername"
+                android:layout_toRightOf="@+id/profile"
+                android:layout_toEndOf="@+id/profile" />
 
 
         </RelativeLayout>

@@ -13,11 +13,15 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +35,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.garcon.Constants.Constants;
 import com.garcon.Models.User;
 import com.garcon.Models.cardDetails;
@@ -43,6 +48,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -63,7 +69,11 @@ import java.util.regex.Pattern;
 
 
 public class ProfileSettings extends AppCompatActivity {
-
+    private static final String TAG = favorite_activity.class.getName();
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseAuth mAuth;
+    DrawerLayout myDrawerLayout;
+    NavigationView myNavigationView;
     EditText editusername;
     EditText editfirstname;
     EditText editlastname;
@@ -83,8 +93,8 @@ public class ProfileSettings extends AppCompatActivity {
     //    Button editcarddetails;
     Button savenewcard;
     Button canceladdnewcard;
-    Button deletepropic;
-    ImageView profilepic;
+//    Button deletepropic;
+//    ImageView profilepic;
     ImageView saveprofile;
     ImageView editprofile;
     Button remove_selected_card;
@@ -104,7 +114,7 @@ public class ProfileSettings extends AppCompatActivity {
     LayoutInflater mInflater;
     FirebaseStorage storage;
     StorageReference storageRef;
-    StorageReference profileimage;
+//    StorageReference profileimage;
     String cardtypestring;
     String[] edits = new String[2];
     static cardDetails card;
@@ -145,7 +155,23 @@ public class ProfileSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_settings);
         initialize();
-
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    //System.out.println("onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                    //System.out.println("onAuthStateChanged:signed_out");
+                    finish();
+                }
+            }
+        };
 
 //        StorageReference profilepicdownload = storageRef.child("profileic/" + firebaseuser.getUid());
 
@@ -212,33 +238,33 @@ public class ProfileSettings extends AppCompatActivity {
                 editfirstname.setEnabled(true);
                 editprofile.setVisibility(View.INVISIBLE);
                 saveprofile.setVisibility(View.VISIBLE);
-                profilepic.setClickable(true);
-                profilepic.setEnabled(true);
+//                profilepic.setClickable(true);
+//                profilepic.setEnabled(true);
                 editpasswordbutton.setVisibility(View.VISIBLE);
-                deletepropic.setVisibility(View.VISIBLE);
+//                deletepropic.setVisibility(View.VISIBLE);
 
 
             }
 
         });
 
-        profilepic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    //Pick Image From Gallery
-                    Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(i, RESULT_SELECT_IMAGE);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        profilepic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//                    //Pick Image From Gallery
+//                    Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                    startActivityForResult(i, RESULT_SELECT_IMAGE);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
-        deletepropic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                profilepic.setImageBitmap(null);
+//        deletepropic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                profilepic.setImageBitmap(null);
                 // Create a reference to the file to delete
 //                StorageReference deleteref = storageRef.child("profileic/"+firebaseuser.getUid());
                 // Delete the file
@@ -254,8 +280,8 @@ public class ProfileSettings extends AppCompatActivity {
 //                        // Uh-oh, an error occurred!
 //                    }
 //                });
-            }
-        });
+//            }
+//        });
 
         saveprofile.setOnClickListener(new View.OnClickListener() {
 
@@ -290,9 +316,9 @@ public class ProfileSettings extends AppCompatActivity {
                     editlastname.setEnabled(false);
                     editprofile.setVisibility(View.VISIBLE);
                     saveprofile.setVisibility(View.INVISIBLE);
-                    profilepic.setClickable(false);
-                    profilepic.setEnabled(false);
-                    deletepropic.setVisibility(View.INVISIBLE);
+//                    profilepic.setClickable(false);
+//                    profilepic.setEnabled(false);
+//                    deletepropic.setVisibility(View.INVISIBLE);
                     editpasswordbutton.setVisibility(View.INVISIBLE);
 
                     SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -733,6 +759,55 @@ public class ProfileSettings extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+//        myDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+//        myNavigationView = (NavigationView) findViewById(R.id.profile);
+//
+//        myNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(android.view.MenuItem menuItem) {
+//
+//
+//                if (menuItem.getItemId() == R.id.nav_profilesettings) {
+//                    Intent profile_settings = new Intent(getApplicationContext(), ProfileSettings.class);
+//                    startActivity(profile_settings);
+//                }
+//                if (menuItem.getItemId() == R.id.nav_item_sent) {
+//                    Intent fav_activity = new Intent(getApplicationContext(), favorite_activity.class);
+//                    startActivity(fav_activity);
+//                }
+//
+//                if (menuItem.getItemId() == R.id.nav_history) {
+//                    Intent history = new Intent(getApplicationContext(), History.class);
+//                    startActivity(history);
+//                }
+//
+//                if (menuItem.getItemId() == R.id.nav_settings) {
+//                    Intent settings = new Intent(getApplicationContext(), Settings.class);
+//                    startActivity(settings);
+//                }
+//
+//                if (menuItem.getItemId() == R.id.nav_item_inbox) {
+////                    FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
+////                    xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
+//                    Log.d(TAG, "menu item clicked");
+//                    FirebaseAuth.getInstance().signOut();
+//                    LoginManager.getInstance().logOut();
+//                    startActivity(new Intent(ProfileSettings.this, LoginActivity.class));
+//                    //finishActivity(0);
+//                }
+//
+//
+//                myDrawerLayout.closeDrawers();
+//                return false;
+//            }
+//        });
+
+        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.prof_toolbar);
+//        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
+//        myDrawerLayout.addDrawerListener(mDrawerToggle);
+//
+//        mDrawerToggle.syncState();
     }
 
     @Override
@@ -765,45 +840,45 @@ public class ProfileSettings extends AppCompatActivity {
 
                     BitmapFactory.Options o2 = new BitmapFactory.Options();
                     o2.inSampleSize = scale;
-                    try {
-                        profilepic.setImageBitmap(BitmapFactory.decodeStream(getApplicationContext().getContentResolver().openInputStream(selectedImage), null, o2));
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        profilepic.setImageBitmap(BitmapFactory.decodeStream(getApplicationContext().getContentResolver().openInputStream(selectedImage), null, o2));
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    }
                     // Create file metadata including the content type
 //                    StorageMetadata metadata = new StorageMetadata.Builder()
 //                            .setContentType("image/jpg")
 //                            .setCustomMetadata(firebaseuser.getUid(), firebaseuser.getEmail())
 //                            .build();
 //                    profileimage = storageRef.child("profileic/" + firebaseuser.getUid());
-                    UploadTask uploadTask = profileimage.putFile(selectedImage);
+//                    UploadTask uploadTask = profileimage.putFile(selectedImage);
 
 // Register observers to listen for when the download is done or if it fails
-                    uploadTask.addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle unsuccessful uploads
-                        }
-                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                            Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        }
-                    });
-                    // Observe state change events such as progress, pause, and resume
-                    uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = 100.0 * (taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                            System.out.println("Upload is " + progress + "% done");
-                        }
-                    }).addOnPausedListener(new OnPausedListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onPaused(UploadTask.TaskSnapshot taskSnapshot) {
-                            System.out.println("Upload is paused");
-                        }
-                    });
+//                    uploadTask.addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception exception) {
+//                            // Handle unsuccessful uploads
+//                        }
+//                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+//                            Uri downloadUrl = taskSnapshot.getDownloadUrl();
+//                        }
+//                    });
+//                    // Observe state change events such as progress, pause, and resume
+//                    uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+//                            double progress = 100.0 * (taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+//                            System.out.println("Upload is " + progress + "% done");
+//                        }
+//                    }).addOnPausedListener(new OnPausedListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onPaused(UploadTask.TaskSnapshot taskSnapshot) {
+//                            System.out.println("Upload is paused");
+//                        }
+//                    });
 
 
                 }
@@ -912,9 +987,9 @@ public class ProfileSettings extends AppCompatActivity {
 //        editcarddetails.setVisibility(View.VISIBLE);
         savenewcard = (Button) findViewById(R.id.savenewcard);
         savenewcard.setVisibility(View.INVISIBLE);
-        profilepic = (ImageView) findViewById(R.id.profilepicture);
-        profilepic.setClickable(false);
-        profilepic.setEnabled(false);
+//        profilepic = (ImageView) findViewById(R.id.profilepicture);
+//        profilepic.setClickable(false);
+//        profilepic.setEnabled(false);
         cvvdefinition = (TextView) findViewById(R.id.cvvdefinition);
         cvvdefinition.setVisibility(View.INVISIBLE);
         newcard = new View[10];
@@ -938,8 +1013,8 @@ public class ProfileSettings extends AppCompatActivity {
         mInflater = (LayoutInflater) getApplicationContext()
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         storage = FirebaseStorage.getInstance();
-        deletepropic = (Button) findViewById(R.id.deletepropic);
-        deletepropic.setVisibility(View.GONE);
+//        deletepropic = (Button) findViewById(R.id.deletepropic);
+//        deletepropic.setVisibility(View.GONE);
         // Create a storage reference from our app
         storageRef = storage.getReferenceFromUrl("gs://garcondatabase.appspot.com");
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);

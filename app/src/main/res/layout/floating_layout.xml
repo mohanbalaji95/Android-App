@@ -144,7 +144,7 @@
                 android:drawablePadding="16dp"
                 android:paddingLeft="60dp"
                 android:paddingRight="60dp"
-                android:text="Dine in"
+                android:text="Dine-In"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                 android:textColor="@color/white" />
 
@@ -158,7 +158,7 @@
                 android:drawablePadding="16dp"
                 android:paddingLeft="60dp"
                 android:paddingRight="60dp"
-                android:text="Take Out"
+                android:text="Takeout"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                 android:textColor="@color/white" />
 
@@ -186,7 +186,7 @@
                 android:drawablePadding="16dp"
                 android:paddingLeft="60dp"
                 android:paddingRight="60dp"
-                android:text="Info"
+                android:text="Restaurant Info"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                 android:textColor="@color/white" />
         </LinearLayout>

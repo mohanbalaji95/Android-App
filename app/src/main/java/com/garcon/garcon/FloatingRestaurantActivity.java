@@ -14,8 +14,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +31,16 @@ public class FloatingRestaurantActivity extends Activity {
 
     TextView tvName, tvPrice, tvLocation, tvHours, tvType;
 
+
     Button btn_Menu;
     Button btn_Call;
     Button btn_DineIn;
     Button btn_TakeOut;
     String locationName;
     String phoneNumber;
+    double lat, longt;
+    GoogleMap Map;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +110,28 @@ public class FloatingRestaurantActivity extends Activity {
                 startActivity(startCheckoutActivity);
             }
         });
+        tvLocation.setOnClickListener(new View.OnClickListener(){
+            //int zoomLevel = 12;
+            @Override
+            public  void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setPackage("com.google.android.apps.maps");
+                String data = String.format("geo:%s,%s",+lat , +longt);
+                data = String.format("%s?q=%s,%s", data, +lat,+longt+"("+locationName+")");
 
+
+                intent.setData(Uri.parse(data));
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+
+                }
+
+
+            }
+
+
+        });
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -124,6 +153,9 @@ public class FloatingRestaurantActivity extends Activity {
         tvType.setText(b.getString("type"));
         phoneNumber = b.getString("phone");
         locationName = b.getString("name");
+        lat = b.getDouble("lat");
+        longt = b.getDouble("longt");
+
     }
 
     public String parseHours(String hours){
@@ -161,5 +193,6 @@ public class FloatingRestaurantActivity extends Activity {
         }
         Toast.makeText(this,"Added to your Favorites List",Toast.LENGTH_LONG).show();
     }
+
 
 }

@@ -9,10 +9,26 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Restaurant {
     String name, location, ID, price, website, hours, Type, phone;
-    double rating;
+    double rating, lat, longt;
 
     public Restaurant() {
         // empty default constructor, necessary for Firebase to be able to deserialize JSON
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLongt() {
+        return longt;
+    }
+
+    public void setLongt(double longt) {
+        this.longt = longt;
     }
 
     public String getName() {

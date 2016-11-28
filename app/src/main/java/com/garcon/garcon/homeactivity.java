@@ -1,7 +1,6 @@
 package com.garcon.garcon;
 
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,16 +10,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.menu.MenuView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import com.facebook.login.LoginManager;
-import com.firebase.client.Firebase;
-import com.firebase.client.Logger;
-import com.firebase.client.core.view.View;
-import com.google.android.gms.maps.MapFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -33,11 +29,16 @@ public class homeactivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
 
+    private SmartFragmentStatePagerAdapter statePagerAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_homeactivity);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -121,15 +122,44 @@ public class homeactivity extends AppCompatActivity {
          * Setup Drawer Toggle of the Toolbar
          */
 
-        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
+        mDrawerToggle.setDrawerIndicatorEnabled(false);
+
         myDrawerLayout.addDrawerListener(mDrawerToggle);
         //myDrawerLayout.setDrawerListener(mDrawerToggle);
 
         mDrawerToggle.syncState();
-
-
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        int id= item.getItemId();
+//        switch (id){
+//            case R.id.cartMenu:
+//                //To.Do
+//                break;
+//            case R.id.mapFlipMenu:
+//                if (item.getTitle() == "MAP") {
+//                    statePagerAdapter.getRegisteredFragment(3);
+//                    item.setTitle("LIST");
+//                }else if(item.getTitle() == "LIST"){
+//                    statePagerAdapter.getRegisteredFragment(0);
+//                    item.setTitle("MAP");
+//                }
+//                //myFragmentManager.beginTransaction().replace(R.id.containerView,new SecondFragment()).commit();
+//                break;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public void onStart() {

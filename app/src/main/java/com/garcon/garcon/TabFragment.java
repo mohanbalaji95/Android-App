@@ -21,6 +21,15 @@ public class TabFragment extends Fragment {
     public static ViewPager viewPager;
     public static int int_items = 2;
 
+    public static TabFragment newInstance(String flip) {
+
+        Bundle args = new Bundle();
+
+        TabFragment fragment = new TabFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,6 +78,8 @@ public class TabFragment extends Fragment {
                 case 0:
                     return new PrimaryFragment();
                 case 1:
+                    return new SecondFragment();
+                case 3:
                     return new SecondFragment();
 //                case 2:
 //                    return new ThirdFragment();

@@ -20,7 +20,7 @@
             android:title="Manage Favorites" />
         <item
             android:id="@+id/nav_history"
-            android:icon="@drawable/history48x"
+            android:icon="@drawable/favorite48x"
             android:title="Order History" />
         <item
             android:id="@+id/nav_settings"

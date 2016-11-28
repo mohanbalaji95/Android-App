@@ -62,9 +62,6 @@ public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
         //duplicate command
         //listItemText.setWidth((int)(0.5*width));
 
-        llMenuCatItem.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-        listItemText.setTextColor(context.getResources().getColor(R.color.white));
-
         //if category is clicked, then items are correspondingly synchronized
         llMenuCatItem.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -72,8 +69,6 @@ public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
                 Log.i(LOG_TAG,"category selected");
                 if(context instanceof MainMenuActivity){
                     ((MainMenuActivity)context).categorySelectedSync(position);
-                    llMenuCatItem.setBackgroundColor(context.getResources().getColor(R.color.white));
-                    listItemText.setTextColor(context.getResources().getColor(R.color.colorPrimary));
                     notifyDataSetChanged();
                 }
             }

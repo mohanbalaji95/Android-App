@@ -68,6 +68,9 @@ public class SecondFragment extends Fragment {
                 intent.putExtra("phone", cur.getPhone());
                 intent.putExtra("site", cur.getWebsite());
                 intent.putExtra("rating", cur.getRating());
+                intent.putExtra("lat", cur.getLat());
+                intent.putExtra("longt", cur.getLongt());
+
                 startActivity(intent);
             }
         });

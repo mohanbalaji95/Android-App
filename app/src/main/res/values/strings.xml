@@ -11,7 +11,7 @@
 
     <string name="search_title">Search</string>
     <string name="search_hint">Search restaurants</string>
-    <string name="text_signup">Don't have a account? Sign up!</string>
+    <string name="text_signup">Don\'t have a account? Sign up!</string>
     <string name="button_signup">Sign up!</string>
     <string name="signup_email">Email</string>
     <string name="signup_password">Password</string>

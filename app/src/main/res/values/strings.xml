@@ -115,4 +115,8 @@
 
     <string name="title_activity_favorite_activity">Favorites</string>
     <string name="menu_map">MAP</string>
+    <string name="menu_list">LIST</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

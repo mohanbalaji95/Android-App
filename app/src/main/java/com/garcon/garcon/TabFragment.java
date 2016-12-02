@@ -9,17 +9,18 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class TabFragment extends Fragment {
+public class TabFragment extends Fragment{
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
     public static int int_items = 2;
+
+    private MyAdapter myAdapter;
 
     public static TabFragment newInstance(String flip) {
 
@@ -43,7 +44,9 @@ public class TabFragment extends Fragment {
         /**
          *Set an Apater for the View Pager
          */
-        viewPager.setAdapter(new MyAdapter(getChildFragmentManager()));
+
+        myAdapter = new MyAdapter(getChildFragmentManager());
+        viewPager.setAdapter(myAdapter);
 
         /**
          * Now , this is a workaround ,
@@ -62,7 +65,11 @@ public class TabFragment extends Fragment {
 
     }
 
-    class MyAdapter extends FragmentPagerAdapter {
+    public Fragment getSelectedFragment(int position){
+        return myAdapter.getRegisteredFragment(position);
+    }
+
+    class MyAdapter extends SmartFragmentStatePagerAdapter {
 
         public MyAdapter(FragmentManager fm) {
             super(fm);
@@ -76,13 +83,9 @@ public class TabFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new PrimaryFragment();
+                    return new ContainerFragment();
                 case 1:
-                    return new SecondFragment();
-                case 3:
-                    return new SecondFragment();
-//                case 2:
-//                    return new ThirdFragment();
+                    return new RestaurantDetailFragment();
             }
             return null;
         }
@@ -113,4 +116,9 @@ public class TabFragment extends Fragment {
         }
     }
 
+    public void switchViewPagerPosition(int position){
+        if(viewPager!=null) {
+            viewPager.setCurrentItem(position);
+        }
+    }
 }

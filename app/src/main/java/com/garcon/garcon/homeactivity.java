@@ -20,7 +20,7 @@ import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class homeactivity extends AppCompatActivity {
+public class homeactivity extends AppCompatActivity implements SecondFragment.RestaurantClickedListener{
     private static final String TAG = homeactivity.class.getName();
     DrawerLayout myDrawerLayout;
     NavigationView myNavigationView;
@@ -29,7 +29,10 @@ public class homeactivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
 
-    private SmartFragmentStatePagerAdapter statePagerAdapter;
+    private MenuItem mapItem;
+    private MenuItem listItem;
+
+    private TabFragment tabFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,9 @@ public class homeactivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -71,8 +77,9 @@ public class homeactivity extends AppCompatActivity {
          */
 
         myFragmentManager = getSupportFragmentManager();
+        tabFragment = new TabFragment();
         myFragmentTransaction = myFragmentManager.beginTransaction();
-        myFragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
+        myFragmentTransaction.replace(R.id.containerView, tabFragment).commit();
         /**
          * Setup click events on the Navigation View Items.
          */
@@ -80,7 +87,6 @@ public class homeactivity extends AppCompatActivity {
         myNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
 
 
                 if (menuItem.getItemId() == R.id.nav_profilesettings) {
@@ -123,7 +129,7 @@ public class homeactivity extends AppCompatActivity {
          */
 
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
-        mDrawerToggle.setDrawerIndicatorEnabled(false);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
 
         myDrawerLayout.addDrawerListener(mDrawerToggle);
         //myDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -135,31 +141,41 @@ public class homeactivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
+        mapItem = menu.findItem(R.id.mapMenu);
+        listItem = menu.findItem(R.id.listMenu);
         return super.onCreateOptionsMenu(menu);
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//        int id= item.getItemId();
-//        switch (id){
-//            case R.id.cartMenu:
-//                //To.Do
-//                break;
-//            case R.id.mapFlipMenu:
-//                if (item.getTitle() == "MAP") {
-//                    statePagerAdapter.getRegisteredFragment(3);
-//                    item.setTitle("LIST");
-//                }else if(item.getTitle() == "LIST"){
-//                    statePagerAdapter.getRegisteredFragment(0);
-//                    item.setTitle("MAP");
-//                }
-//                //myFragmentManager.beginTransaction().replace(R.id.containerView,new SecondFragment()).commit();
-//                break;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.cartMenu:
+                //To.Do
+                break;
+            case R.id.mapMenu:
+                mapItem.setVisible(false);
+                listItem.setVisible(true);
+                openPrimaryFragment();
+                break;
+            case R.id.listMenu:
+                listItem.setVisible(false);
+                mapItem.setVisible(true);
+                openSecondFragment();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void openPrimaryFragment() {
+        ((ContainerFragment)tabFragment.getSelectedFragment(0)).switchFragments(true);
+    }
+
+    private void openSecondFragment() {
+        ((ContainerFragment)tabFragment.getSelectedFragment(0)).switchFragments(false);
+    }
 
     @Override
     public void onStart() {
@@ -173,5 +189,11 @@ public class homeactivity extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    @Override
+    public void onRestaurantClicked(Restaurant restaurant) {
+        ((RestaurantDetailFragment)tabFragment.getSelectedFragment(1)).dataSetup(restaurant);
+        tabFragment.switchViewPagerPosition(1);
     }
 }

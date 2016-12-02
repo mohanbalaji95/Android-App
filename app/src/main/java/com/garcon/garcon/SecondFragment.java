@@ -1,12 +1,6 @@
 package com.garcon.garcon;
 
-/**
- * Created by kritikagopalakrishnan on 6/2/16.
- * Edited by Mayank Tiwari
- */
-
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -24,63 +17,45 @@ import com.garcon.Constants.Constants;
 
 import java.util.ArrayList;
 
-
 public class SecondFragment extends Fragment {
 
 
     ArrayList<Restaurant> myList;
-    private ListView LV;
+    private ListView restaurantList;
     private Firebase ref;
-    private Context context;
+
+    private RestaurantClickedListener listener;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
             Firebase.setAndroidContext(this.getActivity().getBaseContext());
         }
-        connectFirebase();
-        onCreateView(getLayoutInflater(savedInstanceState), LV , savedInstanceState);
     }
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.second_layout, null);
 
-        LV = (ListView) view.findViewById(R.id.fblist);
-        listSetup(LV);
+        restaurantList = (ListView) view.findViewById(R.id.fblist);
 
-        LV.bringToFront();
-        context = view.getContext(); // Assign your rootView to context
-        LV.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+        connectFirebase();
+
+        restaurantList.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Restaurant item = (Restaurant) LV.getItemAtPosition(position);
-                Intent intent = new Intent(context, FloatingRestaurantActivity.class);
                 Restaurant cur = myList.get(position);
-                Toast.makeText(getContext(),"You selected : " + item.getName(),Toast.LENGTH_SHORT).show();
-
-                intent.putExtra("location", cur.getLocation());
-                intent.putExtra("hours", cur.getHours());
-                intent.putExtra("id", cur.getID());
-                intent.putExtra("name", cur.getName());
-                intent.putExtra("price", cur.getPrice());
-                intent.putExtra("type", cur.getTypes());
-                intent.putExtra("phone", cur.getPhone());
-                intent.putExtra("site", cur.getWebsite());
-                intent.putExtra("rating", cur.getRating());
-                intent.putExtra("lat", cur.getLat());
-                intent.putExtra("longt", cur.getLongt());
-
-                startActivity(intent);
+                ((RestaurantClickedListener)getContext()).onRestaurantClicked(cur);
             }
         });
 
-
         return view;
     }
+
     //connects to firebase and populates myList with data
     public void connectFirebase(){
-
         ref = new Firebase(Constants.FIREBASE_RESTAURANT_URL);
         myList = new ArrayList<Restaurant>();
 
@@ -91,8 +66,8 @@ public class SecondFragment extends Fragment {
                 for (DataSnapshot dataSnap : dataSnapshot.getChildren()) {
                     Restaurant res = dataSnap.getValue(Restaurant.class);
                     myList.add(res);
-                    //Toast.makeText(getActivity().getBaseContext(), res.getName(), Toast.LENGTH_SHORT).show();
                 }
+                listSetup();
             }
 
             public void onCancelled(FirebaseError firebaseError) {
@@ -102,10 +77,26 @@ public class SecondFragment extends Fragment {
     }
 
     //function to populate ListView with values from myList
-    public void listSetup(final ListView LV) {
+    public void listSetup() {
         FirebaseAdapter fba = new FirebaseAdapter(this.getContext(), myList);
-        LV.setAdapter(fba);
-        fba.notifyDataSetChanged();
+        restaurantList.setAdapter(fba);
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof RestaurantClickedListener) {
+            listener = (RestaurantClickedListener) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
+    }
+
+    public interface RestaurantClickedListener {
+        void onRestaurantClicked(Restaurant cur);
+    }
 }

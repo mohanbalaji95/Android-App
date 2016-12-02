@@ -33,6 +33,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,7 +45,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PrimaryFragment extends Fragment implements OnMapReadyCallback, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class PrimaryFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMarkerClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private MapView mapView;
     private GoogleMap googleMap;
     private GoogleApiClient googleApiClient;
@@ -54,15 +55,15 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback, Ada
     private ArrayAdapter<String> adapter;
 
     //These values show in autocomplete
-    ArrayList<String> item = new ArrayList<String>();
+    ArrayList<String> item = new ArrayList<>();
 
-    //    mylist.add(mystring);
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.primary_layout, container, false);
 //        RestaurantSearch = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextView);
 //        RestaurantSearch.setThreshold(1);
+
 
         // Create an instance of GoogleAPIClient.
         if (googleApiClient == null) {
@@ -85,7 +86,6 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback, Ada
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, item);
 
         RestaurantSearch.setThreshold(1);
-
         //Set adapter to AutoCompleteTextView
         RestaurantSearch.setAdapter(adapter);
         RestaurantSearch.setOnItemSelectedListener(this);
@@ -178,6 +178,8 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback, Ada
 
     }
 
+
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -246,6 +248,11 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback, Ada
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
     }
 
     private class RestaurantRequest extends AsyncTask<Void, Void, ArrayList<String>> {

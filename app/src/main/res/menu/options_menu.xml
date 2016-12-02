@@ -3,7 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/cartMenu"
         android:title="Cart"
         android:icon="@drawable/final_cart"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/mapMenu"
+        android:title="@string/menu_map"
+        app:showAsAction="always"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/listMenu"
+        android:title="@string/menu_list"
+        app:showAsAction="always"/>
+
 </menu>

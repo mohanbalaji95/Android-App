@@ -36,3 +36,4 @@ captures/
 # Android studio other files.
 */.idea/
 /.idea/workspace.xml
+*.xml

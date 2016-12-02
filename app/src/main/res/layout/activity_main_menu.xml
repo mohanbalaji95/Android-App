@@ -42,8 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:background="@color/colorPrimary"
-            android:dividerHeight="4dp" />
+            android:dividerHeight="4dp"/>
     </LinearLayout>
 
     <Button

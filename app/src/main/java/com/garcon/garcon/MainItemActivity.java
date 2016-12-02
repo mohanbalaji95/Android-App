@@ -1,5 +1,8 @@
 package com.garcon.garcon;
+import com.garcon.garcon.R;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -7,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -195,58 +199,58 @@ public class MainItemActivity extends Activity {
 
     public void setUpButtons(){
 
-//        final TextView tv = (TextView) findViewById(R.id.numItems);
-//        tv.setText(String.valueOf(numOrdered));
+        final TextView tv = (TextView) findViewById(R.id.numItems);
+        tv.setText(String.valueOf(numOrdered));
 
         final EditText userText = (EditText) findViewById(R.id.userText);
 
-//        Button addButton = (Button) findViewById(R.id.addButton);
-//        addButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //add item to viewcart
-//
-//                if(fromMenu){
-//                    if (numOrdered > 0 && checkMinMax()) {
-//                        //change num_ordered, special instructions,all modifiers
-//                        OrderSingleton.getInstance().addItem(item,numOrdered,userText.getText().toString());
-//                        Log.i(LOG_TAG, "item added");
-//                    }
-//                }
-//                else{
-//                    item.setNumOrdered(numOrdered);
-//                    item.setSpecialInstructions(userText.getText().toString());
-//                    OrderSingleton.getInstance().getList().set(position,item);
-//                    Log.i(LOG_TAG, "order edited");
-//                    MainCartActivity.rowAdapter.notifyDataSetChanged();
-//                }
-//                finish();
-//                //Intent intent = new Intent(MainItemActivity.this, MainMenuActivity.class);
-//                //MainItemActivity.this.startActivity(intent);
-//
-//            }
-//        });
+        Button addButton = (Button) findViewById(R.id.addButton);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //add item to viewcart
 
-//        Button decNumOrderedButton = (Button) findViewById(R.id.decNumOrderedButton);
-//        decNumOrderedButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //decrease number ordered by one until numOrdered = 0
-//                if (numOrdered > 1)
-//                    numOrdered--;
-//                tv.setText(String.valueOf(numOrdered));
-//            }
-//        });
-//
-//        Button incNumOrderedButton = (Button) findViewById(R.id.incNumOrderedButton);
-//        incNumOrderedButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //increase number ordered by one
-//                numOrdered++;
-//                tv.setText(String.valueOf(numOrdered));
-//            }
-//        });
+                if(fromMenu){
+                    if (numOrdered > 0 && checkMinMax()) {
+                        //change num_ordered, special instructions,all modifiers
+                        OrderSingleton.getInstance().addItem(item,numOrdered,userText.getText().toString());
+                        Log.i(LOG_TAG, "item added");
+                    }
+                }
+                else{
+                    item.setNumOrdered(numOrdered);
+                    item.setSpecialInstructions(userText.getText().toString());
+                    OrderSingleton.getInstance().getList().set(position,item);
+                    Log.i(LOG_TAG, "order edited");
+                    MainCartActivity.rowAdapter.notifyDataSetChanged();
+                }
+                finish();
+                //Intent intent = new Intent(MainItemActivity.this, MainMenuActivity.class);
+                //MainItemActivity.this.startActivity(intent);
+
+            }
+        });
+
+        Button decNumOrderedButton = (Button) findViewById(R.id.decNumOrderedButton);
+        decNumOrderedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //decrease number ordered by one until numOrdered = 0
+                if (numOrdered > 1)
+                    numOrdered--;
+                tv.setText(String.valueOf(numOrdered));
+            }
+        });
+
+        Button incNumOrderedButton = (Button) findViewById(R.id.incNumOrderedButton);
+        incNumOrderedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //increase number ordered by one
+                numOrdered++;
+                tv.setText(String.valueOf(numOrdered));
+            }
+        });
     }
 
     public boolean checkMinMax(){

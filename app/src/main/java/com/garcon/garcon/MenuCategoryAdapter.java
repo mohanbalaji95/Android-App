@@ -2,11 +2,11 @@ package com.garcon.garcon;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -47,13 +47,11 @@ public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
         view = convertView;
         if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            view = inflater.inflate(R.layout.menu_row_category, null);
+            view = inflater.inflate(R.layout.menu_row, null);
         }
 
         Category category = list.get(position);
-        final TextView listItemText = (TextView) view.findViewById(R.id.rowTextView);
-        final LinearLayout llMenuCatItem = (LinearLayout) view.findViewById(R.id.llMenuCatItem);
-
+        TextView listItemText = (TextView) view.findViewById(R.id.rowTextView);
         listItemText.setText(category.getName());
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
         int height = dm.heightPixels;
@@ -62,16 +60,16 @@ public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
         //listItemText.setWidth((int)(0.5*width));
 
         //if category is clicked, then items are correspondingly synchronized
-//        llMenuCatItem.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                Log.i(LOG_TAG,"category selected");
-//                if(context instanceof MainMenuActivity){
-//                    (context).categorySelectedSync(position);
-//                    notifyDataSetChanged();
-//                }
-//            }
-//        });
+        listItemText.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.i(LOG_TAG,"category selected");
+                if(context instanceof MainMenuActivity){
+                    ((MainMenuActivity)context).categorySelectedSync(position);
+                    notifyDataSetChanged();
+                }
+            }
+        });
         return view;
     }
 }

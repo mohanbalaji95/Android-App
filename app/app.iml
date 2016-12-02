@@ -127,13 +127,10 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/pre-dexed" />
-<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/reload-dex" />
 >>>>>>> master
-=======
->>>>>>> Stashed changes
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
@@ -193,5 +190,6 @@
     <orderEntry type="library" exported="" scope="TEST" name="junit-4.12" level="project" />
     <orderEntry type="library" exported="" name="javacc-4.1" level="project" />
     <orderEntry type="library" exported="" name="firebase-analytics-9.0.2" level="project" />
+    <orderEntry type="library" exported="" name="android-android-23" level="project" />
   </component>
 </module>

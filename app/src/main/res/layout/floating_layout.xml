@@ -2,11 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/red"
     android:id="@+id/restaurantLayout"
-    android:visibility="gone"
-    tools:visibility="visible">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/ResImage"
@@ -17,30 +14,26 @@
         android:scaleType="fitXY"
         android:src="@drawable/restaurant" />
 
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:background="#40000000"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        tools:text="Restaurant Title" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/tvName"
         android:layout_centerInParent="true"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:background="#40000000">
-
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            tools:text="Restaurant Title" />
-
-        <View
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:background="@color/white"
-            android:padding="2dp" />
 
         <TextView
             android:id="@+id/tvType"
@@ -79,24 +72,26 @@
         android:paddingRight="18dp">
 
         <TextView
-            android:id="@+id/tvLocation"
+            android:id="@+id/tvHours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="4dp"
+            android:text="Hours"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvHours"
             android:layout_marginTop="4dp"
             android:text="Location"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white" />
 
-        <TextView
-            android:id="@+id/tvHours"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvLocation"
-            android:layout_marginTop="4dp"
-            android:text="Hours"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/white" />
+
 
         <ImageView
             android:layout_width="40dp"
@@ -104,22 +99,21 @@
             android:layout_alignParentRight="true"
             android:layout_gravity="center_horizontal"
             android:onClick="addToFav"
-            android:src="@drawable/star" />
+            android:src="@drawable/like" />
 
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/llDiscountDetails"
-        android:layout_marginEnd="9dp"
-        android:layout_marginRight="9dp">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_below="@id/ResImage">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -129,10 +123,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/buttonshape"
-                android:drawableLeft="@drawable/menu_icon"
-                android:drawablePadding="16dp"
-                android:paddingLeft="60dp"
-                android:paddingRight="60dp"
+                android:drawableLeft="@drawable/menu48x"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
                 android:text="Menu"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                 android:textColor="@color/white" />
@@ -143,10 +136,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/buttonshape"
-                android:drawableLeft="@drawable/dine_in"
-                android:drawablePadding="16dp"
-                android:paddingLeft="60dp"
-                android:paddingRight="60dp"
+                android:drawableLeft="@drawable/inresturant48x"
+                android:drawablePadding="6dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
                 android:text="Dine-In"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                 android:textColor="@color/white" />
@@ -157,10 +150,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/buttonshape"
-                android:drawableLeft="@drawable/take_out"
+                android:drawableLeft="@drawable/takeout48"
                 android:drawablePadding="16dp"
-                android:paddingLeft="60dp"
-                android:paddingRight="60dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
                 android:text="Takeout"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                 android:textColor="@color/white" />
@@ -171,10 +164,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/buttonshape"
-                android:drawableLeft="@drawable/phone"
+                android:drawableLeft="@drawable/phone48"
                 android:drawablePadding="16dp"
-                android:paddingLeft="60dp"
-                android:paddingRight="60dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="90dp"
                 android:text="Call"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                 android:textColor="@color/white" />
@@ -185,11 +178,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/buttonshape"
-                android:drawableLeft="@drawable/information"
+                android:drawableLeft="@drawable/info48"
                 android:drawablePadding="16dp"
                 android:paddingLeft="60dp"
-                android:paddingRight="60dp"
-                android:text="Restaurant Info"
+                android:paddingRight="0dp"
+                android:text="Additional Info"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                 android:textColor="@color/white" />
         </LinearLayout>

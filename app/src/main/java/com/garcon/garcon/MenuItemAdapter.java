@@ -50,7 +50,11 @@ public class MenuItemAdapter extends BaseAdapter implements ListAdapter {
         view = convertView;
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+<<<<<<< HEAD
+            view = inflater.inflate(R.layout.menu_row_item, null);
+=======
             view = inflater.inflate(R.layout.menu_row, null);
+>>>>>>> master
         }
 
         final TextView listItemText = (TextView) view.findViewById(R.id.rowTextView);

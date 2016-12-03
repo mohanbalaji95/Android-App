@@ -5,7 +5,6 @@
     android:id="@+id/restaurantLayout"
     android:layout_height="match_parent">
 
-
     <ImageView
         android:id="@+id/ResImage"
         android:layout_width="match_parent"

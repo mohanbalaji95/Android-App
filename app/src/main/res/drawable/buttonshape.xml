@@ -3,12 +3,7 @@
     <corners
         android:radius="4dp" />
     <solid
-<<<<<<< HEAD
-        android:color="@color/colorPrimary"
-=======
-        android:color="@color/white"
->>>>>>> master
-        />
+        android:color="@color/colorPrimary"/>
     <padding
         android:left="0dp"
         android:top="12dp"

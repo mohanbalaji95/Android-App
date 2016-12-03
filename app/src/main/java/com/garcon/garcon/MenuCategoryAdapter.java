@@ -47,7 +47,7 @@ public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
         view = convertView;
         if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            view = inflater.inflate(R.layout.menu_row, null);
+            view = inflater.inflate(R.layout.menu_row_category, null);
         }
 
         Category category = list.get(position);

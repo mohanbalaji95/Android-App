@@ -8,17 +8,17 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<<<<<<< HEAD
+
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-pemission android:name="android.permission.CALL_PHONE" />
 
-=======
+
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
->>>>>>> master
+
     <permission
         android:name="com.garcon.garcon.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
@@ -47,14 +47,6 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".FloatingRestaurantActivity"
-            android:label="FloatingActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".SignUpActivity" />
-        <activity
-            android:name=".ProfileSettings"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
             android:name=".homeactivity"
             android:label="@string/title_activity_homeactivity"
             android:theme="@style/AppTheme">
@@ -63,6 +55,14 @@
                 android:resource="@xml/searchable"
                 android:value=".SearchActivity" />
         </activity>
+        <activity
+            android:name=".FloatingRestaurantActivity"
+            android:label="FloatingActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".SignUpActivity" />
+        <activity
+            android:name=".ProfileSettings"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".LoginActivity"
             android:label="Garcon" />

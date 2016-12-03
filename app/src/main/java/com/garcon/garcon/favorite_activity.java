@@ -101,7 +101,7 @@ public class favorite_activity extends AppCompatActivity {
 
             favcardviews = new ArrayList<>();
             for(int i =0 ;i<favcardarray.length;i++){
-                favcardviews.add(new favcardview(favcardarray[i].name,R.drawable.la_vic));
+                favcardviews.add(new favcardview(favcardarray[i].name,R.drawable.restaurant_thumbnail));
             }
         }
         else{

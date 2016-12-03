@@ -88,7 +88,7 @@ public class ProfileSettings extends AppCompatActivity {
     EditText[] editcardnumber;
     //    Button savecarddetails;
     Button addcard;
-    Button editpasswordbutton;
+    ImageView editpasswordbutton;
     Button removecard;
     //    Button editcarddetails;
     Button savenewcard;
@@ -975,7 +975,7 @@ public class ProfileSettings extends AppCompatActivity {
 //        savecarddetails = (Button) findViewById(R.id.savecarddetails);
 //        savecarddetails.setVisibility(View.GONE);
         addcard = (Button) findViewById(R.id.addcard);
-        editpasswordbutton = (Button) findViewById(R.id.editpassword);
+        editpasswordbutton = (ImageView) findViewById(R.id.editpassword);
         editpasswordbutton.setVisibility(View.GONE);
         canceladdnewcard = (Button) findViewById(R.id.canceladdnewcard);
         canceladdnewcard.setVisibility(View.INVISIBLE);

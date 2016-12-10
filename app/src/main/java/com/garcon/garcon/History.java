@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -27,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class History extends ListActivity {
+public class History extends AppCompatActivity {
     //LIST OF ARRAY STRINGS WHICH WILL SERVE AS LIST ITEMS
     ArrayList<String> listItems = new ArrayList<String>();
 
@@ -37,17 +39,19 @@ public class History extends ListActivity {
     //RECORDING HOW MANY TIMES THE BUTTON HAS BEEN CLICKED
     int clickCounter = 0;
     private static final String TAG = favorite_activity.class.getName();
-    DrawerLayout myDrawerLayout;
-    NavigationView myNavigationView;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
+    private Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.activity_history);
-        final Button mapbutton = (Button) findViewById(R.id.seeViewMap);
-        final Button restaurantbutton = (Button) findViewById(R.id.seeViewRestaurant);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("History");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -65,106 +69,50 @@ public class History extends ListActivity {
                 }
             }
         };
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,
-                listItems);
-        setListAdapter(adapter);
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReferenceFromUrl(Constants.FIREBASE_URL_USERS);
 
-        try {
-            ref.child(mAuth.getCurrentUser().getUid()).child("Receipt").addValueEventListener(
-                    new ValueEventListener() {
-
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            listItems.clear();
-                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-
-                                Receipt receipt = dataSnapshot1.getValue(Receipt.class);
-                                listItems.add(receipt.getdateAndTime()+"\n \nAmount Spent \n \nSubtotal - " + receipt.getsubTotal() + "\nTip - " + receipt.getTip() + "\nTotal - " + receipt.getTotal() + "\n \n Payment Method Used \n \n Card Type - " + receipt.getcardTypeUsed() + "\n Account# - " + receipt.getcardNumberUsed() + "\n Card Holder - " + receipt.getcardHolderUsed() + "\n");
-                                adapter.notifyDataSetChanged();
-
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-
-                    });
-
-
-        } catch (Exception e) {
-
-        }
-        mapbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mapIntent = new Intent(History.this, homeactivity.class);
-                History.this.startActivity(mapIntent);
-            }
-        });
-        restaurantbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent restaurantIntent = new Intent(History.this, homeactivity.class);
-                History.this.startActivity(restaurantIntent);
-            }
-        });
-
-        myDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        myNavigationView = (NavigationView) findViewById(R.id.profile);
-        myNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(android.view.MenuItem menuItem) {
-
-
-                if (menuItem.getItemId() == R.id.nav_profilesettings) {
-                    Intent profile_settings = new Intent(getApplicationContext(), ProfileSettings.class);
-                    startActivity(profile_settings);
-                }
-                if (menuItem.getItemId() == R.id.nav_item_sent) {
-                    Intent fav_activity = new Intent(getApplicationContext(), favorite_activity.class);
-                    startActivity(fav_activity);
-                }
-
-                if (menuItem.getItemId() == R.id.nav_history) {
-                    Intent history = new Intent(getApplicationContext(), History.class);
-                    startActivity(history);
-                }
-
-                if (menuItem.getItemId() == R.id.nav_settings) {
-                    Intent settings = new Intent(getApplicationContext(), Settings.class);
-                    startActivity(settings);
-                }
-
-                if (menuItem.getItemId() == R.id.nav_item_inbox) {
-//                    FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
-//                    xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
-                    Log.d(TAG, "menu item clicked");
-                    FirebaseAuth.getInstance().signOut();
-                    LoginManager.getInstance().logOut();
-                    startActivity(new Intent(History.this, LoginActivity.class));
-                    //finishActivity(0);
-                }
-
-
-                myDrawerLayout.closeDrawers();
-                return false;
-            }
-        });
-
-        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.his_toolbar);
-        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
-        myDrawerLayout.addDrawerListener(mDrawerToggle);
-
-        mDrawerToggle.syncState();
-
-
+//        try {
+//            ref.child(mAuth.getCurrentUser().getUid()).child("Receipt").addValueEventListener(
+//                    new ValueEventListener() {
+//
+//                        @Override
+//                        public void onDataChange(DataSnapshot dataSnapshot) {
+//                            listItems.clear();
+//                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+//
+//                                Receipt receipt = dataSnapshot1.getValue(Receipt.class);
+//                                listItems.add(receipt.getdateAndTime()+"\n \nAmount Spent \n \nSubtotal - " + receipt.getsubTotal() + "\nTip - " + receipt.getTip() + "\nTotal - " + receipt.getTotal() + "\n \n Payment Method Used \n \n Card Type - " + receipt.getcardTypeUsed() + "\n Account# - " + receipt.getcardNumberUsed() + "\n Card Holder - " + receipt.getcardHolderUsed() + "\n");
+//                                adapter.notifyDataSetChanged();
+//
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(DatabaseError databaseError) {
+//
+//                        }
+//
+//                    });
+//
+//
+//        } catch (Exception e) {
+//
+//        }
+//        adapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1,
+//                listItems);
+//        setListAdapter(adapter);
     }
 }
+
+
+
+
+
+
+
+//CODE FROM SUMMER 2016
 
 //public class History extends AppCompatActivity {
 //    FirebaseStorage storage;

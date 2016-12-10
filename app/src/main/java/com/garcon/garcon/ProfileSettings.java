@@ -19,6 +19,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -72,8 +73,7 @@ public class ProfileSettings extends AppCompatActivity {
     private static final String TAG = favorite_activity.class.getName();
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
-    DrawerLayout myDrawerLayout;
-    NavigationView myNavigationView;
+    private Toolbar toolbar;
     EditText editusername;
     EditText editfirstname;
     EditText editlastname;
@@ -151,10 +151,14 @@ public class ProfileSettings extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
         setContentView(R.layout.activity_profile_settings);
         initialize();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Profile");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -759,55 +763,6 @@ public class ProfileSettings extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
-//        myDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-//        myNavigationView = (NavigationView) findViewById(R.id.profile);
-//
-//        myNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(android.view.MenuItem menuItem) {
-//
-//
-//                if (menuItem.getItemId() == R.id.nav_profilesettings) {
-//                    Intent profile_settings = new Intent(getApplicationContext(), ProfileSettings.class);
-//                    startActivity(profile_settings);
-//                }
-//                if (menuItem.getItemId() == R.id.nav_item_sent) {
-//                    Intent fav_activity = new Intent(getApplicationContext(), favorite_activity.class);
-//                    startActivity(fav_activity);
-//                }
-//
-//                if (menuItem.getItemId() == R.id.nav_history) {
-//                    Intent history = new Intent(getApplicationContext(), History.class);
-//                    startActivity(history);
-//                }
-//
-//                if (menuItem.getItemId() == R.id.nav_settings) {
-//                    Intent settings = new Intent(getApplicationContext(), Settings.class);
-//                    startActivity(settings);
-//                }
-//
-//                if (menuItem.getItemId() == R.id.nav_item_inbox) {
-////                    FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
-////                    xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
-//                    Log.d(TAG, "menu item clicked");
-//                    FirebaseAuth.getInstance().signOut();
-//                    LoginManager.getInstance().logOut();
-//                    startActivity(new Intent(ProfileSettings.this, LoginActivity.class));
-//                    //finishActivity(0);
-//                }
-//
-//
-//                myDrawerLayout.closeDrawers();
-//                return false;
-//            }
-//        });
-
-        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.prof_toolbar);
-//        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
-//        myDrawerLayout.addDrawerListener(mDrawerToggle);
-//
-//        mDrawerToggle.syncState();
     }
 
     @Override

@@ -41,14 +41,6 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".FloatingRestaurantActivity"
-            android:label="FloatingActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".SignUpActivity" />
-        <activity
-            android:name=".ProfileSettings"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
             android:name=".homeactivity"
             android:label="@string/title_activity_homeactivity"
             android:theme="@style/AppTheme">
@@ -57,6 +49,71 @@
                 android:resource="@xml/searchable"
                 android:value=".SearchActivity" />
         </activity>
+        <activity
+            android:name=".favorite_activity"
+            android:label="@string/title_activity_favorite_activity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".homeactivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".homeactivity" />
+        </activity>
+        <activity
+            android:name=".Settings"
+            android:label="@string/title_activity_favorite_activity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".homeactivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".homeactivity" />
+        </activity>
+        <activity
+            android:name=".History"
+            android:label="@string/title_activity_favorite_activity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".homeactivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".homeactivity" />
+        </activity>
+        <activity
+            android:name=".termsandconditions"
+            android:label="@string/title_activity_favorite_activity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".Settings" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".homeactivity" />
+        </activity>
+        <activity
+            android:name=".ProfileSettings"
+            android:label="@string/title_activity_favorite_activity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".homeactivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".homeactivity" />
+        </activity>
+        <activity
+            android:name=".InfoActivity"
+            android:label="@string/title_activity_favorite_activity"
+            android:theme="@style/AppTheme">
+        </activity>
+
+
+
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FloatingRestaurantActivity"
+            android:label="FloatingActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".SignUpActivity" />
         <activity
             android:name=".LoginActivity"
             android:label="Garcon" />
@@ -98,19 +155,6 @@
             android:name=".getprofiledtails"
             android:enabled="true"
             android:exported="true" />
-
-        <activity
-            android:name=".favorite_activity"
-            android:label="@string/title_activity_favorite_activity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
         <service
             android:name=".PayAppCardDetails"
             android:enabled="true"
@@ -119,7 +163,6 @@
             android:name=".cardSelected"
             android:enabled="true"
             android:exported="true" />
-
         <activity
             android:name=".ReceiptActivity"
             android:theme="@android:style/Theme.Dialog" />
@@ -127,16 +170,10 @@
             android:name=".addcardatcheckout"
             android:theme="@android:style/Theme.Dialog"
             android:windowSoftInputMode="stateVisible|adjustResize" />
-
         <service
             android:name=".addnewcardatcheckout"
             android:enabled="true"
             android:exported="true" />
-
-        <activity android:name=".History" />
-        <activity android:name=".Settings" />
-        <activity android:name=".termsandconditions" />
-        <activity android:name=".InfoActivity"></activity>
     </application>
 
 </manifest>

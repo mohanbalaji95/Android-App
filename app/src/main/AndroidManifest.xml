@@ -8,11 +8,44 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<<<<<<< HEAD
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+<<<<<<< Updated upstream
 
+=======
+=======
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+=======
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+<<<<<<< Updated upstream
+>>>>>>> master
+=======
+=======
+
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> master
+>>>>>>> Stashed changes
     <permission
         android:name="com.garcon.garcon.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />

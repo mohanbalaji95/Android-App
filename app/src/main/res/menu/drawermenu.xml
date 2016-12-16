@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Username"
-        android:id="@+id/nav_profile"
-        android:background = "@color/white">
-        <menu>
-
-        </menu>
-    </item>
 
     <group android:checkableBehavior="single">
 
@@ -26,13 +19,13 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/gears96x"
             android:title="Settings" />
+    </group>
 
+    <group android:id="@+id/nav_footer">
         <item
             android:id="@+id/nav_item_inbox"
-            android:icon="@drawable/logout96x"
+            android:icon="@drawable/logout144x"
             android:title="Logout" />
-
-
     </group>
 
 

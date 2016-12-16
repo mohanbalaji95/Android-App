@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,8 +29,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class Settings extends AppCompatActivity {
     private static final String TAG = Settings.class.getName();
-    DrawerLayout myDrawerLayout;
-    NavigationView myNavigationView;
+    private Toolbar toolbar;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
     Switch switchButton;
@@ -41,8 +42,11 @@ public class Settings extends AppCompatActivity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.activity_settings);
-        final Button mapbutton = (Button) findViewById(R.id.seeViewMap);
-        final Button restaurantbutton = (Button) findViewById(R.id.seeViewRestaurant);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Settings");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         final Button termsandconditionsbutton = (Button) findViewById(R.id.seeTermsandConditions);
         switchButton = (Switch) findViewById(R.id.switch1);
         textview = (TextView) findViewById(R.id.textView1);
@@ -64,21 +68,7 @@ public class Settings extends AppCompatActivity {
                 }
             }
         };
-        mapbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mapIntent = new Intent(Settings.this, homeactivity.class);
-                Settings.this.startActivity(mapIntent);
-            }
-        });
 
-        restaurantbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent restaurantIntent = new Intent(Settings.this, homeactivity.class);
-                Settings.this.startActivity(restaurantIntent);
-            }
-        });
         termsandconditionsbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,55 +100,4 @@ public class Settings extends AppCompatActivity {
         bluetoothadapter.disable();
         textview.setText("Bluetooth OFF");
     }
-
-
-    //    myDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-//    myNavigationView = (NavigationView) findViewById(R.id.profile);
-//    myNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//        @Override
-//        public boolean onNavigationItemSelected(android.view.MenuItem menuItem) {
-//
-//
-//            if (menuItem.getItemId() == R.id.nav_profilesettings) {
-//                Intent profile_settings = new Intent(getApplicationContext(), ProfileSettings.class);
-//                startActivity(profile_settings);
-//            }
-//            if (menuItem.getItemId() == R.id.nav_item_sent) {
-//                Intent fav_activity = new Intent(getApplicationContext(), favorite_activity.class);
-//                startActivity(fav_activity);
-//            }
-//
-//            if (menuItem.getItemId() == R.id.nav_history) {
-//                Intent history = new Intent(getApplicationContext(), History.class);
-//                startActivity(history);
-//            }
-//
-//            if (menuItem.getItemId() == R.id.nav_settings) {
-//                Intent settings = new Intent(getApplicationContext(), Settings.class);
-//                startActivity(settings);
-//            }
-//
-//            if (menuItem.getItemId() == R.id.nav_item_inbox) {
-////                    FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
-////                    xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
-//                Log.d(TAG, "menu item clicked");
-//                FirebaseAuth.getInstance().signOut();
-//                LoginManager.getInstance().logOut();
-//                startActivity(new Intent(Settings.this, LoginActivity.class));
-//                //finishActivity(0);
-//            }
-//
-//
-//            myDrawerLayout.closeDrawers();
-//            return false;
-//        }
-//    });
-//
-//    android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.set_toolbar);
-//    ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
-//    myDrawerLayout.addDrawerListener(mDrawerToggle);
-//
-//    mDrawerToggle.syncState();
-
-
 }

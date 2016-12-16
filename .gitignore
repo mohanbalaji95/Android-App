@@ -47,6 +47,7 @@ captures/
 /.idea/workspace.xml
 *.xml
 >>>>>>> master
+<<<<<<< Updated upstream
 
 .idea/libraries/recyclerview_v7_23_4_0.xml
 
@@ -79,3 +80,5 @@ captures/
 .idea/workspace.xml
 
 app/src/main/AndroidManifest.xml
+=======
+>>>>>>> Stashed changes

@@ -14,8 +14,11 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 =======
+=======
+>>>>>>> Stashed changes
 =======
 <<<<<<< Updated upstream
 <<<<<<< HEAD
@@ -45,6 +48,9 @@
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
 >>>>>>> master
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     <permission
         android:name="com.garcon.garcon.permission.MAPS_RECEIVE"

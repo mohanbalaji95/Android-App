@@ -29,6 +29,7 @@ public class RestaurantDetailFragment extends Fragment {
     Button btn_Call;
     Button btn_DineIn;
     Button btn_TakeOut;
+    Button btn_Info;
     String locationName;
     String phoneNumber;
     double lat, longt;

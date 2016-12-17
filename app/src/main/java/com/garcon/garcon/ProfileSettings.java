@@ -1182,5 +1182,24 @@ public class ProfileSettings extends AppCompatActivity {
         inflater.inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+    @Override
+    public boolean onOptionsItemSelected (android.view.MenuItem item) {
+
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_cart:
+                Intent cart = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(cart);
+                return true;
+
+            case R.id.action_checkout:
+                Intent checkout = new Intent(getApplicationContext(), CheckoutActivity.class);
+                startActivity(checkout);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
 

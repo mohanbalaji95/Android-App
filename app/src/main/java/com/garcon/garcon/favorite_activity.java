@@ -13,7 +13,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
+import android.view.*;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import com.facebook.login.LoginManager;
@@ -29,10 +30,12 @@ public class favorite_activity extends AppCompatActivity {
     private static final String TAG = favorite_activity.class.getName();
     private Toolbar toolbar;
     private ArrayList<String> mItems;
-//    private CardViewAdapter mAdapter;
+    //    private CardViewAdapter mAdapter;
     private List<favcardview> favcardviews;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
+    private MenuItem restaurantItem;
+    private MenuItem itemItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,25 +66,24 @@ public class favorite_activity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        RecyclerView rv = (RecyclerView)findViewById(R.id.recycleview);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.recycleview);
         rv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
 
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
-        String value = sharedPreferences.getString("fav_string",null);
-        if(value!=null){
+        String value = sharedPreferences.getString("fav_string", null);
+        if (value != null) {
             GsonBuilder gsonb = new GsonBuilder();
             Gson gson = gsonb.create();
             favcardview favcardarray[] = gson.fromJson(value, favcardview[].class);
 
 
             favcardviews = new ArrayList<>();
-            for(int i =0 ;i<favcardarray.length;i++){
-                favcardviews.add(new favcardview(favcardarray[i].name,R.drawable.restaurant_thumbnail));
+            for (int i = 0; i < favcardarray.length; i++) {
+                favcardviews.add(new favcardview(favcardarray[i].name, R.drawable.restaurant_thumbnail));
             }
-        }
-        else{
+        } else {
             favcardviews = new ArrayList<>();
         }
 
@@ -127,7 +129,7 @@ public class favorite_activity extends AppCompatActivity {
                                     SharedPreferences.Editor spEditor = sharedPreferences.edit();
                                     GsonBuilder gsonb = new GsonBuilder();
                                     Gson gson = gsonb.create();
-                                    spEditor.putString("fav_string",gson.toJson(favcardviews));
+                                    spEditor.putString("fav_string", gson.toJson(favcardviews));
                                     spEditor.commit();
                                 }
                                 adapter.notifyDataSetChanged();
@@ -143,7 +145,7 @@ public class favorite_activity extends AppCompatActivity {
                                     SharedPreferences.Editor spEditor = sharedPreferences.edit();
                                     GsonBuilder gsonb = new GsonBuilder();
                                     Gson gson = gsonb.create();
-                                    spEditor.putString("fav_string",gson.toJson(favcardviews));
+                                    spEditor.putString("fav_string", gson.toJson(favcardviews));
                                     spEditor.commit();
                                 }
                                 adapter.notifyDataSetChanged();
@@ -152,4 +154,51 @@ public class favorite_activity extends AppCompatActivity {
 
         rv.addOnItemTouchListener(swipeTouchListener);
     }
-}
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.favorite_menu, menu);
+        restaurantItem = menu.findItem(R.id.restaurantMenu);
+        itemItem = menu.findItem(R.id.itemMenu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected (android.view.MenuItem item) {
+
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_cart:
+                Intent cart = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(cart);
+                return true;
+
+            case R.id.action_checkout:
+                Intent checkout = new Intent(getApplicationContext(), CheckoutActivity.class);
+                startActivity(checkout);
+                return true;
+
+            case R.id.mapMenu:
+                restaurantItem.setVisible(false);
+                itemItem.setVisible(true);
+//                openPrimaryFragment();
+                break;
+            case R.id.listMenu:
+                itemItem.setVisible(false);
+                restaurantItem.setVisible(true);
+//                openSecondFragment();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+        }
+//    private void openPrimaryFragment() {
+//        ((ContainerFragment)tabFragment.getSelectedFragment(0)).switchFragments(true);
+//    }
+//
+//    private void openSecondFragment() {
+//        ((ContainerFragment)tabFragment.getSelectedFragment(0)).switchFragments(false);
+//    }
+
+    }

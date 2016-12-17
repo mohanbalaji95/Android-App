@@ -24,6 +24,8 @@ import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -1174,6 +1176,30 @@ public class ProfileSettings extends AppCompatActivity {
             return null;
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected (android.view.MenuItem item) {
+
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_cart:
+                Intent cart = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(cart);
+                return true;
+
+            case R.id.action_checkout:
+                Intent checkout = new Intent(getApplicationContext(), CheckoutActivity.class);
+                startActivity(checkout);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
 

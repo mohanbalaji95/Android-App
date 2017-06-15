@@ -119,32 +119,7 @@
         <activity
             android:name=".InfoActivity"
             android:label="@string/title_activity_favorite_activity"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan"
-            android:parentActivityName=".homeactivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".homeactivity" />
-        </activity>
-        <activity
-            android:name=".CartActivity"
-            android:label="@string/title_activity_favorite_activity"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan"
-            android:parentActivityName=".homeactivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".homeactivity" />
-        </activity>
-        <activity
-            android:name=".CheckoutActivity"
-            android:label="@string/title_activity_favorite_activity"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan"
-            android:parentActivityName=".homeactivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".homeactivity" />
+            android:theme="@style/AppTheme">
         </activity>
 
 
@@ -166,6 +141,10 @@
         <activity
             android:name=".BeaconActivity"
             android:label="@string/title_activity_beacon"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".CheckoutActivity"
+            android:label="@string/title_activity_checkout"
             android:theme="@style/AppTheme" />
         <activity android:name=".MainMenuActivity" />
         <activity

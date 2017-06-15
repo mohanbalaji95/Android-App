@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 
 public class MenuItem implements Serializable {
-
+    
     protected String id;
     protected String name;
     protected int price;

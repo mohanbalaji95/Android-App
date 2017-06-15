@@ -11,8 +11,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -91,33 +89,6 @@ public class Settings extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected (android.view.MenuItem item) {
-
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.action_cart:
-                Intent cart = new Intent(getApplicationContext(), CartActivity.class);
-                startActivity(cart);
-                return true;
-
-            case R.id.action_checkout:
-                Intent checkout = new Intent(getApplicationContext(), CheckoutActivity.class);
-                startActivity(checkout);
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 
     public void BluetoothEnable() {
         bluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);

@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//When you checkout and pay, and want to add a card at that moment, this is what this activity does
 public class addcardatcheckout extends Activity {
     Button savenewcard;
     EditText addcardholder;

@@ -12,17 +12,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.*;
-
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import static android.R.attr.id;
 
 /**
  * Created by cesar_000 on 11/6/2016.
@@ -61,31 +55,4 @@ public class termsandconditions extends AppCompatActivity {
             }
         };
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected (android.view.MenuItem item) {
-
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.action_cart:
-                Intent cart = new Intent(getApplicationContext(), CartActivity.class);
-                startActivity(cart);
-                return true;
-
-            case R.id.action_checkout:
-                Intent checkout = new Intent(getApplicationContext(), CheckoutActivity.class);
-                startActivity(checkout);
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 }

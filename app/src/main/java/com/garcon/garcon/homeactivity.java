@@ -15,12 +15,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class homeactivity extends AppCompatActivity implements SecondFragment.RestaurantClickedListener{
+public class homeactivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,SecondFragment.RestaurantClickedListener{
     private static final String TAG = homeactivity.class.getName();
     DrawerLayout myDrawerLayout;
     NavigationView myNavigationView;
@@ -28,7 +32,7 @@ public class homeactivity extends AppCompatActivity implements SecondFragment.Re
     FragmentTransaction myFragmentTransaction;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
-
+    private GoogleApiClient mGoogleApiClient;
     private MenuItem mapItem;
     private MenuItem listItem;
 
@@ -39,7 +43,10 @@ public class homeactivity extends AppCompatActivity implements SecondFragment.Re
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_homeactivity);
-
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API)
+                .build();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -109,12 +116,25 @@ public class homeactivity extends AppCompatActivity implements SecondFragment.Re
                 }
 
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {
-                    FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
-                    Log.d(TAG, "menu item clicked");
-                    FirebaseAuth.getInstance().signOut();
-                    LoginManager.getInstance().logOut();
+                    try {
+                        FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
+                        xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
+                        Log.d(TAG, "menu item clicked");
+                        FirebaseAuth.getInstance().signOut();
+                        LoginManager.getInstance().logOut();
+                        // Firebase sign out
+                        mAuth.signOut();
+finish();
+                        // Google sign out
+                        Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+
+                    }
+                    catch(Exception e)
+                    {
+                        String s=e.getMessage();
+                    }
                     startActivity(new Intent(homeactivity.this, LoginActivity.class));
+
                     //finishActivity(0);
                 }
 
@@ -181,6 +201,7 @@ public class homeactivity extends AppCompatActivity implements SecondFragment.Re
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+        mGoogleApiClient.connect();
     }
 
     @Override
@@ -195,5 +216,10 @@ public class homeactivity extends AppCompatActivity implements SecondFragment.Re
     public void onRestaurantClicked(Restaurant restaurant) {
         ((RestaurantDetailFragment)tabFragment.getSelectedFragment(1)).dataSetup(restaurant);
         tabFragment.switchViewPagerPosition(1);
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }

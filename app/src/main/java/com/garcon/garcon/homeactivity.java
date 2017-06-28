@@ -88,6 +88,11 @@ public class homeactivity extends AppCompatActivity implements SecondFragment.Re
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
+                
+                if (menuItem.getItemId() == R.id.nav_home) {
+                    Intent homeactivity = new Intent(getApplicationContext(), homeactivity.class);
+                    startActivity(homeactivity);
+                }
 
                 if (menuItem.getItemId() == R.id.nav_profilesettings) {
                     Intent profile_settings = new Intent(getApplicationContext(), ProfileSettings.class);

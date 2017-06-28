@@ -4,6 +4,12 @@
     <group android:checkableBehavior="single">
 
         <item
+            android:title=""/>
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/resturants96x"
+            android:title="Home" />
+        <item
             android:id="@+id/nav_profilesettings"
             android:icon="@drawable/profileicon_96"
             android:title="Manage Profile" />

@@ -23,6 +23,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.*;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -167,6 +169,7 @@ public class SignUpActivity extends AppCompatActivity {
             showProgress(true);
             mSignupTask = new UserSignUpTask(email, password,firstName,lastName,phoneNumber,userName);
             mSignupTask.execute((Void) null);
+
         }
     }
 
@@ -180,7 +183,8 @@ public class SignUpActivity extends AppCompatActivity {
         Pattern passwordPattern = Pattern.compile(PASSWORD_PATTERN);
         Matcher passwordMatcher = passwordPattern.matcher(password);
 
-        return passwordMatcher.matches();
+       // return passwordMatcher.matches();
+        return true;
     }
     private  boolean isPhoneNumberValid(String phoneNumber){
         Log.d(TAG,"phone Number entered --> "+phoneNumber);
@@ -294,6 +298,8 @@ public class SignUpActivity extends AppCompatActivity {
                */
 
             mAuth.createUserWithEmailAndPassword(newUser.geteMail(), mPassword)
+
+
                     .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -317,9 +323,25 @@ public class SignUpActivity extends AppCompatActivity {
                                 updateDoneFlag(true);
                             }
                             else {
-                                System.out.println("Successfully created user account with uid: "+ mAuth.getCurrentUser().getUid());
+                                System.out.println("Successfully created user account with uid: " + mAuth.getCurrentUser().getUid());
                                 Toast.makeText(SignUpActivity.this, R.string.success_account_created, Toast.LENGTH_LONG).show();
                                 newUser.setUserUID(mAuth.getCurrentUser().getUid());
+                                mAuth.signInWithEmailAndPassword(newUser.geteMail(), mPassword);
+                                String e=mAuth.getCurrentUser().getEmail();
+                                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d(TAG, "Email sent.");
+                                            Toast.makeText(SignUpActivity.this, "Please complete email verification to login", Toast.LENGTH_LONG);
+                                            FirebaseAuth.getInstance().signOut();
+                                        }
+                                        else
+                                        {
+                                            String s=task.getException().toString();
+                                        }
+                                    }
+                                });
                                 writeSignUpData(newUser);
                                 updateSignUpFlag(true);
                                 updateDoneFlag(true);
@@ -328,6 +350,7 @@ public class SignUpActivity extends AppCompatActivity {
                             // ...
                         }
                     });
+
             while(!doneFlag){}
             if (signUpFlag) {
                 return true;

@@ -209,22 +209,38 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+
                 if (user != null) {
-                    // User is signed in
-                    Log.d(TAG,"onAuthStateChanged:signed_in:" + user.getUid());
-                    //System.out.println( "onAuthStateChanged:signed_in:" + user.getUid());
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-                    editor.putString(getString(R.string.User_UUID_Key),user.getUid());
-                    editor.commit();
-                    Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
-                    LoginActivity.this.startActivity(myIntent);
-                    finish();
+                    boolean isEmailVerified=user.isEmailVerified();
+                    if(isEmailVerified) {
+                        // User is signed in
+                        Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                        //System.out.println( "onAuthStateChanged:signed_in:" + user.getUid());
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString(getString(R.string.User_UUID_Key), user.getUid());
+                        editor.commit();
+                        Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
+                        LoginActivity.this.startActivity(myIntent);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(LoginActivity.this, "Email not yet verified",
+                                Toast.LENGTH_SHORT).show();
+                    }
 
                 } else {
                     // User is signed out
                     System.out.println("onAuthStateChanged:signed_out");
 
                 }
+                Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+                mEmailSignInButton.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        attemptLogin();
+                    }
+                });
                 // ...
             }
         };
@@ -456,6 +472,8 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
+
+
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
@@ -674,6 +692,7 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
                     return false;
                 }
                 */
+
             mAuth.signInWithEmailAndPassword(mEmail, mPassword)
                     .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -695,15 +714,65 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
                             }
                             else {
                                 //System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-                                System.out.println("Successful login");
-                                updateFlag(true);
-                                updateDoneFlag(true);
+                                boolean isEmailVerified=mAuth.getInstance().getCurrentUser().isEmailVerified();
+                                if(isEmailVerified) {
+                                    System.out.println("Successful login");
+                                    Toast.makeText(LoginActivity.this, "Email Verification success.",
+                                            Toast.LENGTH_SHORT).show();
+                                    updateFlag(true);
+                                    updateDoneFlag(true);
+                                }
+                                else {
+                                    AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+
+
+                                    alert.setMessage("Kindly check your mailbox for verification Email");
+                                    alert.setTitle("Email Not Verified");
+
+
+
+                                    alert.setPositiveButton("Resend", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            //What ever you want to do with the value
+
+                                            mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Log.d(TAG, "Email sent.");
+                                                        Toast.makeText(LoginActivity.this, "Please complete email verification to login", Toast.LENGTH_LONG);
+                                                    }
+                                                    showProgress(false);
+                                                }
+                                            });
+                                        }
+                                    });
+
+                                    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            // what ever you want to do with No option.
+                                            Log.d(TAG, "Cancel clicked");
+                                            showProgress(false);
+                                        }
+                                    });
+
+                                    alert.show();
+
+
+                                    //System.out.println("Error Code:"+firebaseError.getCode());
+                                    //System.out.println("Error:"+ firebaseError.getMessage());
+                                    //updateErrorCode(firebaseError.getCode());
+                                    updateFlag(false);
+                                    updateDoneFlag(true);
+
+                                }
 
                             }
 
                             // ...
                         }
                     });
+
             while (!doneFlag){}
             if(authFlag == true){
                 return true;

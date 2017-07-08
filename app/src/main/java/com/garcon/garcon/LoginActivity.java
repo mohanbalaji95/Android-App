@@ -53,6 +53,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -447,7 +448,7 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -770,6 +771,29 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
                             }
 
                             // ...
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        public void onFailure(@NonNull Exception e) {
+                            AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+
+                            alert.setMessage(e.getMessage());
+                            alert.setTitle("Login Failed.");
+
+
+
+
+
+                            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    // what ever you want to do with No option.
+                                    Log.d(TAG, "Cancel clicked");
+                                }
+                            });
+
+                            alert.show();
+
+                            updateDoneFlag(true);
                         }
                     });
 

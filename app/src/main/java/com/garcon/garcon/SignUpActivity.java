@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.garcon.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -183,8 +184,8 @@ public class SignUpActivity extends AppCompatActivity {
         Pattern passwordPattern = Pattern.compile(PASSWORD_PATTERN);
         Matcher passwordMatcher = passwordPattern.matcher(password);
 
-       // return passwordMatcher.matches();
-        return true;
+        return passwordMatcher.matches();
+
     }
     private  boolean isPhoneNumberValid(String phoneNumber){
         Log.d(TAG,"phone Number entered --> "+phoneNumber);
@@ -309,10 +310,13 @@ public class SignUpActivity extends AppCompatActivity {
                             // the auth state listener will be notified and logic to handle the
                             // signed in user can be handled in the listener.
                             if (!task.isSuccessful()) {
-                                Toast.makeText(SignUpActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                                System.out.println("Error Code: " + task.getException());
-                                updateSignUpFlag(false);
+                                if(!task.getException().toString().contains("already in use")) {
+
+
+                                    Toast.makeText(SignUpActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                    System.out.println("Error Code: " + task.getException());
+                                    updateSignUpFlag(false);
                                 /*System.out.println("Error : " + firebaseError.getMessage());
                                 if (firebaseError.getCode() == -18) {
                                     editTextEmail.setError(getString(R.string.error_email_exists));
@@ -320,7 +324,8 @@ public class SignUpActivity extends AppCompatActivity {
                                 } else {
                                     Toast.makeText(SignUpActivity.this, R.string.error_oops, Toast.LENGTH_LONG).show();
                                 }*/
-                                updateDoneFlag(true);
+                                    updateDoneFlag(true);
+                                }
                             }
                             else {
                                 System.out.println("Successfully created user account with uid: " + mAuth.getCurrentUser().getUid());
@@ -349,7 +354,16 @@ public class SignUpActivity extends AppCompatActivity {
 
                             // ...
                         }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(SignUpActivity.this,e.getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                            updateSignUpFlag(false);
+                            updateDoneFlag(true);
+                        }
                     });
+
 
             while(!doneFlag){}
             if (signUpFlag) {

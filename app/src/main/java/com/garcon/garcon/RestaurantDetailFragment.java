@@ -76,6 +76,7 @@ public class RestaurantDetailFragment extends Fragment {
         btn_Call = (Button) v.findViewById(R.id.btnCall);
         btn_DineIn = (Button) v.findViewById(R.id.btnDineIn);
         btn_TakeOut = (Button) v.findViewById(R.id.btbTakeOut);
+        btn_Info = (Button) v.findViewById(R.id.btnInfo);
 
         btn_Menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +120,15 @@ public class RestaurantDetailFragment extends Fragment {
                 startActivity(startCheckoutActivity);
             }
         });
+
+        btn_Info.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent startInfoActivity = new Intent();
+                startActivity(startInfoActivity);
+            }
+        });
+
         tvLocation.setOnClickListener(new View.OnClickListener(){
             //int zoomLevel = 12;
             @Override

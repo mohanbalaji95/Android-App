@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9f6290e-c7ca-46ef-9471-e7d570857fc6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/design_23_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/design_23_4_0.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/design_23_4_0.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_9_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_9_0_2.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_impl_9_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_analytics_impl_9_0_2.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_common_9_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_common_9_0_2.xml" />
@@ -19,8 +19,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_ui_database_0_4_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_ui_database_0_4_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_9_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_9_0_2.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_4_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_info.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_info.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/RestaurantDetailFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/RestaurantDetailFragment.java" />
     </list>
     <ignored path="AndroidGarcon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,40 +57,14 @@
       <file leaf-file-name="favorite_activity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/favorite_activity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2794">
-              <caret line="154" column="1" selection-start-line="154" selection-start-column="1" selection-end-line="154" selection-end-column="1" />
+            <state relative-caret-position="1980">
+              <caret line="115" column="25" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="false" />
                 <element signature="e#4716#4717#0" expanded="false" />
                 <element signature="e#4791#4792#0" expanded="false" />
                 <element signature="e#4903#4904#0" expanded="false" />
                 <element signature="e#4978#4979#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MenuItem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/MenuItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#2063#2064#0" expanded="false" />
-                <element signature="e#2098#2099#0" expanded="false" />
-                <element signature="e#2239#2240#0" expanded="false" />
-                <element signature="e#2264#2265#0" expanded="false" />
-                <element signature="e#2286#2287#0" expanded="false" />
-                <element signature="e#2313#2314#0" expanded="false" />
-                <element signature="e#2342#2343#0" expanded="false" />
-                <element signature="e#2375#2376#0" expanded="false" />
-                <element signature="e#2395#2396#0" expanded="false" />
-                <element signature="e#2428#2429#0" expanded="false" />
-                <element signature="e#2586#2587#0" expanded="false" />
-                <element signature="e#2621#2622#0" expanded="false" />
-                <element signature="e#2745#2746#0" expanded="false" />
-                <element signature="e#2795#2796#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -107,14 +83,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_info.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="activity_info.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_info.xml">
           <provider editor-type-id="android-designer2">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1616">
+            <state relative-caret-position="6336">
               <caret line="288" column="40" selection-start-line="288" selection-start-column="40" selection-end-line="288" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="options_menu.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/options_menu.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RestaurantDetailFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/RestaurantDetailFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="126" column="56" selection-start-line="126" selection-start-column="56" selection-end-line="126" selection-end-column="56" />
+              <folding>
+                <element signature="e#2538#2953#0" expanded="true" />
+                <element signature="e#2952#2953#0" expanded="true" />
+                <element signature="e#2993#3501#0" expanded="true" />
+                <element signature="e#3500#3501#0" expanded="true" />
+                <element signature="e#3542#3957#0" expanded="true" />
+                <element signature="e#3956#3957#0" expanded="true" />
+                <element signature="e#4000#4414#0" expanded="true" />
+                <element signature="e#4413#4414#0" expanded="true" />
+                <element signature="e#4454#4676#0" expanded="true" />
+                <element signature="e#4675#4676#0" expanded="true" />
+                <element signature="e#4718#5402#0" expanded="true" />
+                <element signature="e#5401#5402#0" expanded="true" />
+                <element signature="e#5604#5645#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="616">
+              <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -123,9 +146,11 @@
       <file leaf-file-name="ContainerFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/ContainerFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
-              <folding />
+            <state relative-caret-position="616">
+              <caret line="33" column="45" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -134,7 +159,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/MenuCategoryAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="814">
-              <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+              <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="false" />
                 <element signature="e#904#905#0" expanded="false" />
@@ -144,28 +169,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MenuItemAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/MenuItemAdapter.java">
+      <file leaf-file-name="menu_row_item.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/menu_row_item.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="814">
-              <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#968#969#0" expanded="false" />
-                <element signature="e#1004#1005#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="682">
+              <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="homeactivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/homeactivity.java">
+      <file leaf-file-name="menu_row_category.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/menu_row_category.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3410">
-              <caret line="172" column="0" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state relative-caret-position="418">
+              <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -176,6 +201,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
+        <option value="layoutResourceFile_vertical" />
       </list>
     </option>
   </component>
@@ -1928,7 +1954,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="C:\Users\Peter Campi\Documents\GitHub\Android-App" value="4496325119140" />
+        <entry key="C:\Users\Peter Campi\Documents\GitHub\Android-App" value="4497538623130" />
         <entry key="C:\Users\cesar_000\Desktop\AndroidGarcon" value="4435511774044" />
         <entry key="D:\Android-App" value="4494006304164" />
       </map>
@@ -2194,12 +2220,16 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/favorite_activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/PrimaryFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_info.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/menu_row_category.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/menu_row_item.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/RestaurantDetailFragment.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="116" />
-    <option name="y" value="96" />
+    <option name="x" value="146" />
+    <option name="y" value="71" />
     <option name="width" value="1485" />
     <option name="height" value="880" />
   </component>
@@ -2228,6 +2258,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2235,62 +2269,26 @@
               <option name="myItemId" value="Android-App" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Android-App" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Android-App" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android-App" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Garcon/Garconinternship/Garconinternship/Android-App" />
     <property name="device.picker.selection" value="Galaxy_Nexus_API_23_Marshmallow" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
   </component>
@@ -2663,17 +2661,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="116" y="96" width="1485" height="880" extended-state="0" />
+    <frame x="146" y="71" width="1485" height="880" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32551318" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32305434" sideWeight="0.48899928" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32305434" sideWeight="0.5110007" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30201343" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18803419" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2697,6 +2694,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -2755,35 +2753,13 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/homeactivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3410">
-          <caret line="172" column="0" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/favorite_activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2794">
-          <caret line="154" column="1" selection-start-line="154" selection-start-column="1" selection-end-line="154" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#4716#4717#0" expanded="false" />
-            <element signature="e#4791#4792#0" expanded="false" />
-            <element signature="e#4903#4904#0" expanded="false" />
-            <element signature="e#4978#4979#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/ContainerFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2810,11 +2786,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="814">
           <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#968#969#0" expanded="false" />
-            <element signature="e#1004#1005#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3036,16 +3007,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/options_menu.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/ProfileSettings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
@@ -3089,7 +3050,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1364">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3105,34 +3065,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/favorite_menu.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_container.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/MenuCategoryAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#904#905#0" expanded="false" />
-            <element signature="e#940#941#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/menu_row_category.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/menu_row_item.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/favorite_activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2794">
-          <caret line="154" column="1" selection-start-line="154" selection-start-column="1" selection-end-line="154" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#4716#4717#0" expanded="false" />
-            <element signature="e#4791#4792#0" expanded="false" />
-            <element signature="e#4903#4904#0" expanded="false" />
-            <element signature="e#4978#4979#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/PrimaryFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1368">
@@ -3144,11 +3076,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="814">
           <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#968#969#0" expanded="false" />
-            <element signature="e#1004#1005#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3156,22 +3083,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/favorite_activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1980">
+          <caret line="115" column="25" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#2063#2064#0" expanded="false" />
-            <element signature="e#2098#2099#0" expanded="false" />
-            <element signature="e#2239#2240#0" expanded="false" />
-            <element signature="e#2264#2265#0" expanded="false" />
-            <element signature="e#2286#2287#0" expanded="false" />
-            <element signature="e#2313#2314#0" expanded="false" />
-            <element signature="e#2342#2343#0" expanded="false" />
-            <element signature="e#2375#2376#0" expanded="false" />
-            <element signature="e#2395#2396#0" expanded="false" />
-            <element signature="e#2428#2429#0" expanded="false" />
-            <element signature="e#2586#2587#0" expanded="false" />
-            <element signature="e#2621#2622#0" expanded="false" />
-            <element signature="e#2745#2746#0" expanded="false" />
-            <element signature="e#2795#2796#0" expanded="false" />
+            <element signature="e#4716#4717#0" expanded="false" />
+            <element signature="e#4791#4792#0" expanded="false" />
+            <element signature="e#4903#4904#0" expanded="false" />
+            <element signature="e#4978#4979#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/ContainerFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="33" column="45" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3187,10 +3121,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/ContainerFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/options_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+        <state relative-caret-position="264">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/menu_row_category.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/MenuCategoryAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="814">
+          <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#904#905#0" expanded="false" />
+            <element signature="e#940#941#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/menu_row_item.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
           <folding />
         </state>
       </provider>
@@ -3200,9 +3171,39 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1616">
+        <state relative-caret-position="6336">
           <caret line="288" column="40" selection-start-line="288" selection-start-column="40" selection-end-line="288" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/garcon/garcon/RestaurantDetailFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="126" column="56" selection-start-line="126" selection-start-column="56" selection-end-line="126" selection-end-column="56" />
+          <folding>
+            <element signature="e#2538#2953#0" expanded="true" />
+            <element signature="e#2952#2953#0" expanded="true" />
+            <element signature="e#2993#3501#0" expanded="true" />
+            <element signature="e#3500#3501#0" expanded="true" />
+            <element signature="e#3542#3957#0" expanded="true" />
+            <element signature="e#3956#3957#0" expanded="true" />
+            <element signature="e#4000#4414#0" expanded="true" />
+            <element signature="e#4413#4414#0" expanded="true" />
+            <element signature="e#4454#4676#0" expanded="true" />
+            <element signature="e#4675#4676#0" expanded="true" />
+            <element signature="e#4718#5402#0" expanded="true" />
+            <element signature="e#5401#5402#0" expanded="true" />
+            <element signature="e#5604#5645#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

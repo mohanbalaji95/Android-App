@@ -1,6 +1,7 @@
 package com.garcon.garcon;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -21,6 +23,8 @@ import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -116,24 +120,49 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
                 }
 
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {
-                    try {
-                        FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
-                        xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
-                        Log.d(TAG, "menu item clicked");
-                        FirebaseAuth.getInstance().signOut();
-                        LoginManager.getInstance().logOut();
-                        // Firebase sign out
-                        mAuth.signOut();
-finish();
-                        // Google sign out
-                        Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(homeactivity.this);
 
-                    }
-                    catch(Exception e)
-                    {
-                        String s=e.getMessage();
-                    }
-                    startActivity(new Intent(homeactivity.this, LoginActivity.class));
+
+                    alert.setMessage("Are you sure you want to logout ?");
+                    alert.setTitle("Confirmation");
+
+
+
+                    alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            //What ever you want to do with the value
+
+                            try {
+                                FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
+                                xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
+                                Log.d(TAG, "menu item clicked");
+                                FirebaseAuth.getInstance().signOut();
+                                LoginManager.getInstance().logOut();
+                                // Firebase sign out
+                                mAuth.signOut();
+                                finish();
+                                // Google sign out
+                                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+
+                            }
+                            catch(Exception e)
+                            {
+                                Log.d(TAG, e.getMessage());
+                            }
+                            startActivity(new Intent(homeactivity.this, LoginActivity.class));
+                        }
+                    });
+
+                    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // what ever you want to do with No option.
+                            Log.d(TAG, "Cancel clicked");
+
+                        }
+                    });
+
+                    alert.show();
+
 
                     //finishActivity(0);
                 }

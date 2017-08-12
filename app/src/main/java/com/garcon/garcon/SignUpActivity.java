@@ -38,7 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText editTextPassword;
     private EditText editTextFirstName;
     private EditText editTextLastName;
-    private EditText editTextUserName;
+   // private EditText editTextUserName;
     private EditText editTextConfirmPassword;
     private EditText editTextPhoneNumber;
     public static final String MyPREFERENCES = "GarconPref" ;
@@ -75,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
         editTextPassword = (EditText) findViewById(R.id.signup_password);
         editTextFirstName = (EditText) findViewById(R.id.signup_firstname);
         editTextLastName = (EditText) findViewById(R.id.signup_lastname);
-        editTextUserName = (EditText) findViewById(R.id.signup_username);
+       // editTextUserName = (EditText) findViewById(R.id.signup_username);
         editTextConfirmPassword = (EditText) findViewById(R.id.signup_confirmpassword);
         editTextPhoneNumber = (EditText) findViewById(R.id.signup_phonenumber);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -119,7 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
         // Store values at the time of the login attempt.
         String firstName = editTextFirstName.getText().toString();
         String lastName =  editTextLastName.getText().toString();
-        String userName = editTextUserName.getText().toString();
+        //String userName = editTextUserName.getText().toString();
         String phoneNumber = editTextPhoneNumber.getText().toString();
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
@@ -128,7 +128,7 @@ public class SignUpActivity extends AppCompatActivity {
         editor.putString(FirstName, firstName);
         editor.putString(Phone, phoneNumber);
         editor.putString(LastName, lastName);
-        editor.putString(UserName, userName);
+        //editor.putString(UserName, userName);
         editor.commit();
         boolean cancel = false;
         View focusView = null;
@@ -168,7 +168,7 @@ public class SignUpActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mSignupTask = new UserSignUpTask(email, password,firstName,lastName,phoneNumber,userName);
+            mSignupTask = new UserSignUpTask(email, password,firstName,lastName,phoneNumber);
             mSignupTask.execute((Void) null);
 
         }
@@ -239,14 +239,14 @@ public class SignUpActivity extends AppCompatActivity {
         User newUser = new User();
         boolean signUpFlag = false;
         boolean doneFlag = false;
-        UserSignUpTask(String email,String password,String firstName, String lastName, String phoneNumber, String userName){
+        UserSignUpTask(String email,String password,String firstName, String lastName, String phoneNumber){
             //mEmail=email;
             mPassword=password;
             newUser.seteMail(email);
             newUser.setFirstName(firstName);
             newUser.setLastName(lastName);
             newUser.setPhoneNumber(phoneNumber);
-            newUser.setUserName(userName);
+           // newUser.setUserName(userName);
 
         }
 

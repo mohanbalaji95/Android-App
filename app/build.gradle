@@ -2,14 +2,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.garcon.garcon"
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -17,6 +18,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    //To stop that error of gradle/non-gradle files
+    aaptOptions {
+        cruncherEnabled = false
+    }
+
 
     //Add the following block
     packagingOptions{
@@ -35,22 +42,29 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     //Amazon Web Services
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.google.android.gms:play-services-maps:9.6.0'
-    compile 'com.google.android.gms:play-services-appindexing:9.6.0'
-    compile 'com.google.android.gms:play-services-location:9.6.0'
-    compile 'com.google.android.gms:play-services-auth:9.6.0'
-    compile 'com.google.firebase:firebase-core:9.6.0'
-    compile 'com.google.firebase:firebase-database:9.6.0'
-    compile 'com.google.firebase:firebase-auth:9.6.0'
-    compile 'com.firebaseui:firebase-ui-database:0.4.1'
-    compile 'com.firebase:firebase-client-android:2.5.2+'
-    compile 'com.google.firebase:firebase-storage:9.6.0'
-    compile 'org.altbeacon:android-beacon-library:2.8.1'
-    compile 'com.facebook.android:facebook-android-sdk:4.+'
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'us.monoid.web:resty:0.3.2'
+
+    implementation 'com.android.support:appcompat-v7:25.3.1'
+    implementation 'com.android.support:design:25.3.1'
+    implementation 'com.google.android.gms:play-services-maps:9.6.0'
+    implementation 'com.google.android.gms:play-services-appindexing:9.6.0'
+    implementation 'com.google.android.gms:play-services-location:9.6.0'
+    implementation 'com.google.android.gms:play-services-auth:9.6.0'
+    implementation 'com.google.firebase:firebase-core:9.6.0'
+    implementation 'com.google.firebase:firebase-database:9.6.0'
+    implementation 'com.google.firebase:firebase-auth:9.6.0'
+    implementation 'com.firebaseui:firebase-ui-database:0.4.1'
+    implementation 'com.firebase:firebase-client-android:2.5.2'
+    implementation 'com.google.firebase:firebase-storage:9.6.0'
+    implementation 'org.altbeacon:android-beacon-library:2.8.1'
+    implementation 'com.facebook.android:facebook-android-sdk:4.10.0'
+    implementation 'com.google.code.gson:gson:2.7'
+    implementation 'us.monoid.web:resty:0.3.2'
+    implementation 'com.android.volley:volley:1.0.0'
+    implementation 'com.madgag.spongycastle:core:1.54.0.0'
+    implementation 'com.madgag.spongycastle:prov:1.54.0.0'
+    implementation 'com.madgag.spongycastle:pkix:1.54.0.0'
+    implementation 'com.madgag.spongycastle:pg:1.54.0.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

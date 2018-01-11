@@ -170,7 +170,6 @@ public class SignUpActivity extends AppCompatActivity {
             showProgress(true);
             mSignupTask = new UserSignUpTask(email, password,firstName,lastName,phoneNumber);
             mSignupTask.execute((Void) null);
-
         }
     }
 
@@ -185,7 +184,6 @@ public class SignUpActivity extends AppCompatActivity {
         Matcher passwordMatcher = passwordPattern.matcher(password);
 
         return passwordMatcher.matches();
-
     }
     private  boolean isPhoneNumberValid(String phoneNumber){
         Log.d(TAG,"phone Number entered --> "+phoneNumber);
@@ -299,8 +297,6 @@ public class SignUpActivity extends AppCompatActivity {
                */
 
             mAuth.createUserWithEmailAndPassword(newUser.geteMail(), mPassword)
-
-
                     .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -324,11 +320,11 @@ public class SignUpActivity extends AppCompatActivity {
                                 } else {
                                     Toast.makeText(SignUpActivity.this, R.string.error_oops, Toast.LENGTH_LONG).show();
                                 }*/
-                                    updateDoneFlag(true);
-                                }
+                                updateDoneFlag(true);
+                            }
                             }
                             else {
-                                System.out.println("Successfully created user account with uid: " + mAuth.getCurrentUser().getUid());
+                                System.out.println("Successfully created user account with uid: "+ mAuth.getCurrentUser().getUid());
                                 Toast.makeText(SignUpActivity.this, R.string.success_account_created, Toast.LENGTH_LONG).show();
                                 newUser.setUserUID(mAuth.getCurrentUser().getUid());
                                 mAuth.signInWithEmailAndPassword(newUser.geteMail(), mPassword);
@@ -363,8 +359,6 @@ public class SignUpActivity extends AppCompatActivity {
                             updateDoneFlag(true);
                         }
                     });
-
-
             while(!doneFlag){}
             if (signUpFlag) {
                 return true;

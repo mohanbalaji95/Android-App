@@ -26,6 +26,7 @@ public class FirebaseAdapter extends BaseAdapter {
         super();
         this.myList = myList;
         this.context = context;
+        assert(context!=null);
         inflater = LayoutInflater.from(this.context);
     }
 
@@ -66,9 +67,9 @@ public class FirebaseAdapter extends BaseAdapter {
 
         mViewHolder.tvName.setText(curRestaurant.getName());
         mViewHolder.tvPrice.setText(curRestaurant.getPrice());
-        mViewHolder.ratingRestaurant.setRating((float) curRestaurant.getRating());
+        //mViewHolder.ratingRestaurant.setRating((float) curRestaurant.getRating());
         mViewHolder.tvLocation.setText(curRestaurant.getLocation().trim());
-        mViewHolder.tvType.setText(curRestaurant.getTypes());
+        mViewHolder.tvType.setText(curRestaurant.getType());
 
         return convertView;
     }

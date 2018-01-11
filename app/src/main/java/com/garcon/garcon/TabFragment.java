@@ -22,6 +22,11 @@ public class TabFragment extends Fragment{
 
     private MyAdapter myAdapter;
 
+    // Code added to Change the words "Map" and "Restaurant" on bottom two tabs and put the Maps and Restaurant icons instead
+    public int[] tabIcons = {
+            R.drawable.maap,
+            R.drawable.rest
+    };
     public static TabFragment newInstance(String flip) {
 
         Bundle args = new Bundle();
@@ -58,11 +63,19 @@ public class TabFragment extends Fragment{
             @Override
             public void run() {
                 tabLayout.setupWithViewPager(viewPager);
+                // Code added to Change the words "Map" and "Restaurant" on bottom two tabs and put the Maps and Restaurant icons instead
+                setupTabIcons();
             }
         });
 
         return x;
 
+    }
+
+    // Code added to Change the words "Map" and "Restaurant" on bottom two tabs and put the Maps and Restaurant icons instead
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
     }
 
     public Fragment getSelectedFragment(int position){
@@ -83,9 +96,15 @@ public class TabFragment extends Fragment{
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new ContainerFragment();
+                    //interchanging Map and RestaurantList fragments
+                  //  return new ContainerFragment();
+                    return new SecondFragment();
+
                 case 1:
-                    return new RestaurantDetailFragment();
+                    //return new SecondFragment();
+                //   return new RestaurantDetailFragment();
+                     return new ContainerFragment();
+
             }
             return null;
         }
@@ -103,13 +122,17 @@ public class TabFragment extends Fragment{
 
         @Override
         public CharSequence getPageTitle(int position) {
-
             switch (position) {
                 case 0:
-                    return "Map";
+                    //return "Restaurant"
+                    // Code added to Change the words "Map" and "Restaurant" on bottom two tabs and put the Maps and Restaurant icons instead
+                    return  "";
+
                 case 1:
-                    return "Restaurant";
-//                case 2:
+                    //return "Map"
+                    // Code added to Change the words "Map" and "Restaurant" on bottom two tabs and put the Maps and Restaurant icons instead
+                    return "";
+//              case 2:
 //                    return "Nearby";
             }
             return null;

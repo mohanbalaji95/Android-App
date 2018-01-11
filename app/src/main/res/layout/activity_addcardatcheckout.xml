@@ -8,151 +8,195 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/colorPrimary"
     tools:context="com.garcon.garcon.addcardatcheckout">
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+        android:layout_height="wrap_content">
 
-            <Spinner
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="select card type"
+                android:textColor="@color/white"
+                android:textSize="17dip" />
+
+            <Spinner
                 android:id="@+id/cardtypeatcheckout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="35dp"
-                android:spinnerMode="dropdown"
-                android:entries="@array/cardtype"/>
+                android:entries="@array/cardtype"
+                android:spinnerMode="dropdown" />
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Card Holder *"
                 android:id="@+id/nameoncardatcheckout"
-                android:textSize="17dip"
-                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignTop="@+id/addnameoncardatcheckout"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Card Holder *"
+                android:textColor="@color/white"
+                android:textSize="17dip" />
 
             <EditText
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/addnameoncardatcheckout"
-                android:singleLine="true"
-                android:layout_marginTop="37dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/addeditcardnumberatcheckout"
+                android:layout_alignStart="@+id/addeditcardnumberatcheckout"
                 android:layout_below="@+id/cardtypeatcheckout"
-                android:layout_alignLeft="@+id/addeditcardnumberatcheckout"
-                android:layout_alignStart="@+id/addeditcardnumberatcheckout" />
+                android:layout_marginTop="37dp"
+                android:singleLine="true" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="exactly as shown on card"
                 android:id="@+id/exactwarningatcheckout"
-                android:layout_below="@+id/addnameoncardatcheckout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/addeditcardnumberatcheckout"
-                android:layout_alignStart="@+id/addeditcardnumberatcheckout" />
+                android:layout_alignStart="@+id/addeditcardnumberatcheckout"
+                android:layout_below="@+id/addnameoncardatcheckout"
+                android:text="exactly as shown on card" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Card Number *"
                 android:id="@+id/addcardnumberatcheckout"
-                android:textSize="17dip"
-                android:textColor="@color/white"
-                android:layout_below="@+id/exactwarningatcheckout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-            <EditText
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/addeditcardnumberatcheckout"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/exactwarningatcheckout"
-                android:layout_alignLeft="@+id/addexpiryatcheckout"
-                android:layout_alignStart="@+id/addexpiryatcheckout" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Expiry Date *"
-                android:id="@+id/expiryatcheckout"
-                android:textSize="17dip"
+                android:text="Card Number *"
                 android:textColor="@color/white"
-                android:layout_below="@+id/addeditcardnumberatcheckout"
-                android:layout_alignLeft="@+id/nameoncardatcheckout"
-                android:layout_alignStart="@+id/nameoncardatcheckout" />
+                android:textSize="17dip" />
 
             <EditText
+                android:id="@+id/cardnumberatcheckout"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/addexpiryatcheckout"
-                android:layout_below="@+id/addeditcardnumberatcheckout"
-                android:layout_toRightOf="@+id/addcardnumberatcheckout"
-                android:layout_toEndOf="@+id/addcardnumberatcheckout" />
+                android:layout_alignLeft="@+id/addexpiryatcheckout"
+                android:layout_alignStart="@+id/addexpiryatcheckout"
+                android:layout_below="@+id/exactwarningatcheckout" />
 
             <TextView
+                android:id="@+id/expiryatcheckout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="mm-yy"
+                android:layout_alignLeft="@+id/nameoncardatcheckout"
+                android:layout_alignStart="@+id/nameoncardatcheckout"
+                android:layout_below="@+id/addeditcardnumberatcheckout"
+                android:text="Expiry Date *"
+                android:textColor="@color/white"
+                android:textSize="17dip" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/addexpirymonthatcheckout"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/addeditcardnumberatcheckout"
+                    android:layout_toEndOf="@+id/addcardnumberatcheckout"
+                    android:layout_toRightOf="@+id/addcardnumberatcheckout" />
+                <EditText
+                    android:id="@+id/addexpiryyearatcheckout"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/addeditcardnumberatcheckout"
+                    android:layout_toEndOf="@+id/addcardnumberatcheckout"
+                    android:layout_toRightOf="@+id/addcardnumberatcheckout" />
+
+            </LinearLayout>
+
+
+            <TextView
                 android:id="@+id/expiryformatatcheckout"
-                android:layout_below="@+id/addexpiryatcheckout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/addexpiryatcheckout"
-                android:layout_alignStart="@+id/addexpiryatcheckout" />
+                android:layout_alignStart="@+id/addexpiryatcheckout"
+                android:layout_below="@+id/addexpiryatcheckout"
+                android:text="mm-yy" />
 
             <EditText
+                android:id="@+id/addcvvatcheckout"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/addcvvatcheckout"
-                android:layout_below="@+id/expiryformatatcheckout"
                 android:layout_alignLeft="@+id/expiryformatatcheckout"
-                android:layout_alignStart="@+id/expiryformatatcheckout" />
+                android:layout_alignStart="@+id/expiryformatatcheckout"
+                android:layout_below="@+id/expiryformatatcheckout" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CVV *"
                 android:id="@+id/cvvatcheckout"
-                android:textSize="17sp"
-                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/addcvvatcheckout"
-                />
+                android:text="CVV *"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="The 3 or 4 digit number in the end of the card"
                 android:id="@+id/cvvdefinitionatcheckout"
-                android:layout_below="@+id/addcvvatcheckout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/addcvvatcheckout"
-                android:layout_alignStart="@+id/addcvvatcheckout" />
+                android:layout_alignStart="@+id/addcvvatcheckout"
+                android:layout_below="@+id/addcvvatcheckout"
+                android:text="The 3 or 4 digit number in the end of the card" />
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save new card"
-                android:id="@+id/savenewcardatcheckout"
-                android:layout_below="@+id/cvvdefinitionatcheckout"
-                android:layout_toEndOf="@+id/cvvatcheckout"
-                android:layout_alignBottom="@+id/canceladdnewcardatcheckout"
-                android:layout_toRightOf="@+id/cvvatcheckout" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CANCEL"
-                android:id="@+id/canceladdnewcardatcheckout"
-                android:layout_below="@+id/cvvdefinitionatcheckout"
-                android:layout_toRightOf="@+id/addcvvatcheckout"
-                android:layout_alignRight="@+id/addexpiryatcheckout"
-                android:layout_alignEnd="@+id/addexpiryatcheckout" />
+                <Button
+                    android:id="@+id/savenewcardatcheckout"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/canceladdnewcardatcheckout"
+                    android:layout_below="@+id/cvvdefinitionatcheckout"
+                    android:layout_toEndOf="@+id/cvvatcheckout"
+                    android:layout_toRightOf="@+id/cvvatcheckout"
+                    android:text="Save new card" />
 
+                <Button
+                    android:id="@+id/canceladdnewcardatcheckout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/addexpiryatcheckout"
+                    android:layout_alignRight="@+id/addexpiryatcheckout"
+                    android:layout_below="@+id/cvvdefinitionatcheckout"
+                    android:layout_toRightOf="@+id/addcvvatcheckout"
+                    android:text="CANCEL" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onclickpay"
+                    android:layout_alignBaseline="@+id/savenewcardatcheckout"
+                    android:layout_alignBottom="@+id/savenewcardatcheckout"
+                    android:layout_toEndOf="@+id/textView2"
+                    android:layout_toRightOf="@+id/textView2"
+                    android:text="pay" />
+
+            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

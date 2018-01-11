@@ -1,8 +1,12 @@
 package com.garcon.garcon;
 import com.garcon.garcon.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -20,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by raja on 7/6/2016.
@@ -32,13 +37,15 @@ public class MainItemActivity extends Activity {
     private int numOrdered = 1;
     boolean fromMenu;
     private int position;
-
+    String locationName;
+    String restaurantname;
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
 
         Bundle extras = getIntent().getExtras();
         item = (MenuItem) extras.getSerializable("menu-item"); //comes from MainMenuActivity -> MenuItemAdapter -> listItemText
+        restaurantname=getIntent().getStringExtra("currentrestaurant");
         fromMenu = true;
         if(item==null){ // comes from MainCartActivity -> CartRowItemAdapter -> editButton
             position = extras.getInt("position");
@@ -55,7 +62,7 @@ public class MainItemActivity extends Activity {
 
         setUpButtons();
         setUpSizes();
-        setUpFoodImage();
+        //setUpFoodImage();
         setUpFoodInformation(item);
 
         RelativeLayout description = (RelativeLayout) findViewById(R.id.foodInformation);
@@ -89,7 +96,8 @@ public class MainItemActivity extends Activity {
             }
 
             mod_title.setTextSize(20f);
-            mod_title.setBackgroundColor(Color.YELLOW);
+            mod_title.setBackgroundColor(Color.rgb(201,0,0));
+            mod_title.setTextColor(Color.WHITE);
             mod_title.setLayoutParams(p_title);
 
             description.addView(mod_title);
@@ -180,21 +188,53 @@ public class MainItemActivity extends Activity {
         TextView itemName = (TextView) findViewById(R.id.item_name);
         itemName.setWidth((int) (0.5 * width));
 
-        ImageView foodImage = (ImageView) findViewById(R.id.foodImage);
-        foodImage.setMaxHeight((int) (0.4 * height));
+        /*ImageView foodImage = (ImageView) findViewById(R.id.foodImage);
+        foodImage.setMaxHeight((int) (0.4 * height)); */
 
     }
 
-    public void setUpFoodImage() {
+  /*  public void setUpFoodImage() {
         ImageView foodPic = (ImageView) findViewById(R.id.foodImage);
         foodPic.setScaleType(ImageView.ScaleType.FIT_XY);
-    }
+    } */
 
     public void setUpFoodInformation(MenuItem item) {
         TextView foodPic = (TextView) findViewById(R.id.item_name);
         foodPic.setText(item.getName());
+        locationName=item.getName();
         TextView item_price = (TextView) findViewById(R.id.item_price);
         item_price.setText(String.valueOf(item.getPrice()));
+    }
+    public void addToFav(View view){
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
+        String value = sharedPreferences.getString("favmenu3_string",null);
+        if(value!=null){
+            GsonBuilder gsonb = new GsonBuilder();
+            Gson gson = gsonb.create();
+            favcardview favcardarray[] = gson.fromJson(value, favcardview[].class);
+
+            List<favcardview> favcardviews;
+            favcardviews = new ArrayList<>();
+            for(int i =0 ;i<favcardarray.length;i++){
+                favcardviews.add(new favcardview(favcardarray[i].name,R.drawable.salad,favcardarray[i].extra));
+            }
+            favcardviews.add(new favcardview(locationName,R.drawable.salad,restaurantname));
+            SharedPreferences.Editor spEditor = sharedPreferences.edit();
+            spEditor.putString("favmenu3_string",gson.toJson(favcardviews));
+            spEditor.commit();
+        }
+        else{
+            GsonBuilder gsonb = new GsonBuilder();
+            Gson gson = gsonb.create();
+            List<favcardview> favcardviews;
+            favcardviews = new ArrayList<>();
+            favcardviews.add(new favcardview(locationName,R.drawable.salad,restaurantname));
+            SharedPreferences.Editor spEditor = sharedPreferences.edit();
+            spEditor.putString("favmenu3_string",gson.toJson(favcardviews));
+            spEditor.commit();
+
+        }
+        Toast.makeText(this,"Added to your Favorites List",Toast.LENGTH_LONG).show();
     }
 
     public void setUpButtons(){

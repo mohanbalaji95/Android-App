@@ -13,12 +13,16 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
+import com.garcon.Constants.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import us.monoid.json.JSONArray;
 import us.monoid.json.JSONObject;
 import us.monoid.web.Resty;
+
+
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -39,10 +43,14 @@ public class MainMenuActivity extends AppCompatActivity {
     private static final String IN_STOCK = "in_stock";
     private static final String MODIFIER_GROUPS_COUNT = "modifier_groups_count";
 
+
     private MenuCategoryAdapter catRowAdapter;
     private MenuItemAdapter itemRowAdapter;
     private String modifier_ref;
     private JSONObject mod_resource;
+
+
+    private static final String subPath = "menu/categories/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -50,11 +58,12 @@ public class MainMenuActivity extends AppCompatActivity {
         OrderSingleton.getInstance();
         setContentView(R.layout.activity_main_menu);
 
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Menu");
         //TODO intent will send string for location
-        String location = "AieMdB5i";
+        //String location = "AieMdB5i";
         //old location 8cg4k4kc
         catListView = (ListView) findViewById(R.id.categories);
         itemsListView = (ListView) findViewById(R.id.items);
@@ -65,7 +74,9 @@ public class MainMenuActivity extends AppCompatActivity {
         itemRowAdapter = new MenuItemAdapter(itemsList, this);
 
         //final String categoryURL = "https://api.omnivore.io/0.1/locations/"+location+"/menu/categories/";
-        final String categoryURL = "https://api.omnivore.io/0.1/locations/7TAprKdT/menu/categories/";
+        //final String categoryURL = "https://api.omnivore.io/0.1/locations/7TAprKdT/menu/categories/";
+        final String categoryURL = Constants.OMNIVORE_API_BASE_URL+Constants.LOCATION_KEY+subPath;
+
         String[] mURL = {categoryURL};
         new RetrievalTask(MainMenuActivity.this).execute(mURL);
 
@@ -106,37 +117,37 @@ public class MainMenuActivity extends AppCompatActivity {
                 //too much computation
             }
             private void checkSync() {
-            //attribute (id) is the position of the category in the left listview
-            //each item in the right listview has a string name and corresponding category's position
-            if(loaded){
+                //attribute (id) is the position of the category in the left listview
+                //each item in the right listview has a string name and corresponding category's position
+                if(loaded){
 
-                int leftTop = catListView.getFirstVisiblePosition();
-                String leftTopAttribute = ((Category) categoriesList.get(leftTop)).getId();
+                    int leftTop = catListView.getFirstVisiblePosition();
+                    String leftTopAttribute = ((Category) categoriesList.get(leftTop)).getId();
 
-                int rightTop = itemsListView.getFirstVisiblePosition();
-                String rightTopAttribute = ((MenuItem) itemsList.get(rightTop)).getCategoryID();
+                    int rightTop = itemsListView.getFirstVisiblePosition();
+                    String rightTopAttribute = ((MenuItem) itemsList.get(rightTop)).getCategoryID();
 
-                //Log.i(LOG_TAG,"scroll "+leftTopAttribute+" "+rightTopAttribute);
+                    //Log.i(LOG_TAG,"scroll "+leftTopAttribute+" "+rightTopAttribute);
 
-                if(!leftTopAttribute.equals(rightTopAttribute)) {
-                    catListView.requestFocusFromTouch();
-                    for(int i = 0; i < categoriesList.size(); i++){
-                        if(((Category) categoriesList.get(i)).getId().equals(rightTopAttribute)){
-                            catListView.setSelection(i);
-                            break;
+                    if(!leftTopAttribute.equals(rightTopAttribute)) {
+                        catListView.requestFocusFromTouch();
+                        for(int i = 0; i < categoriesList.size(); i++){
+                            if(((Category) categoriesList.get(i)).getId().equals(rightTopAttribute)){
+                                catListView.setSelection(i);
+                                break;
+                            }
                         }
+                        catListView.requestFocus();
                     }
-                    catListView.requestFocus();
                 }
             }
-        }
-    });
+        });
 
         //TODO only show if number of items ordered if total > 0
         //final RelativeLayout displayOrderLV = (RelativeLayout) findViewById(R.id.displayViewCart);
         //displayOrderLV.setVisibility(View.GONE);
 
-            }
+    }
 
     public void categorySelectedSync(int position){
         int itemsListPos = position;
@@ -156,7 +167,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void sort(){
-    //TODO based on more feedback
+        //TODO based on more feedback
     /*
     Collections.sort(myList, new Comparator<myDataType>(){
         public int compare(myDataType o1, myDataType o2){
@@ -174,6 +185,7 @@ public class MainMenuActivity extends AppCompatActivity {
         this.startActivity(intent);
     }
 
+
     private class RetrievalTask extends AsyncTask<String, Integer, String> {
 
         private ProgressDialog dialog;
@@ -185,7 +197,7 @@ public class MainMenuActivity extends AppCompatActivity {
             dialog = new ProgressDialog(context);
         }
 
-//        protected void onPreExecute() {
+        //        protected void onPreExecute() {
 //            this.dialog.setMessage("Progress start");
 //            this.dialog.show();
 //        }
@@ -194,7 +206,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
             Resty r = new Resty();
             // old 2e851bcd49b140eaaef20435f5ce15f1
-            r.withHeader("api-key", "1c8df8e1001344e499fa3affc7990ee4");
+            r.withHeader("api-key", Constants.API_KEY);
             JSONObject categoriesObject;
 
             try {
@@ -220,7 +232,7 @@ public class MainMenuActivity extends AppCompatActivity {
                                 JSONObject itemJson = category_array.getJSONObject(nItem);
                                 String id = itemJson.getString(ID);
                                 String name = itemJson.getString(NAME);
-                                int price = itemJson.getInt(PRICE);
+                                Double price = itemJson.getDouble(PRICE);
                                 boolean in_stock = itemJson.getBoolean(IN_STOCK);
                                 int modifier_groups_count = itemJson.getInt(MODIFIER_GROUPS_COUNT);
                                 String categoryID = (String) imported_list.get(nCat).first.getId();
@@ -341,8 +353,8 @@ public class MainMenuActivity extends AppCompatActivity {
             }
             Log.i("onPostExecute",
                     "number of categories "+String.valueOf(imported_list.size())+
-                    "categories "+String.valueOf(categoriesList.size())+
-                    " items "+String.valueOf(itemsList.size()));
+                            "categories "+String.valueOf(categoriesList.size())+
+                            " items "+String.valueOf(itemsList.size()));
             catRowAdapter.notifyDataSetChanged();
             itemRowAdapter.notifyDataSetChanged();
             loaded = true;

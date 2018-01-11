@@ -2,18 +2,29 @@ package com.garcon.garcon;
 
 /**
  * Created by kritikagopalakrishnan on 6/2/16.
+ *
+ * Edited :
+ *
+ * Name | Changes | Date
+ * Kusuma | Map to represent all the restaurents -setAllRestaurents() method | June 23 rd
+ *
  */
+
+import android.content.Intent;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.graphics.Color;
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
+
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,15 +42,21 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -48,35 +65,39 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
 import static android.content.Context.LOCATION_SERVICE;
-import static com.google.android.gms.internal.zzs.TAG;
-
+import static com.google.android.gms.internal.zzs.*;
 
 public class PrimaryFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMarkerClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private MapView mapView;
     private GoogleMap googleMap;
     private GoogleApiClient googleApiClient;
-
     SupportMapFragment mapFragment;
+    private final static String TAG = PrimaryFragment.class.getSimpleName();
+
     AutoCompleteTextView RestaurantSearch;
     private ArrayAdapter<String> adapter;
 
-    //These values show in autocomplete
+    //"item" has the restaurents to shouw in search in an adapter
     ArrayList<String> item = new ArrayList<>();
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+	
+	public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    //Array to get all restaurents from async task on implementing an interface Intertogetrestaurents
+    public ArrayList<Restaurant> array_restaurent=new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.primary_layout, container, false);
 //        RestaurantSearch = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextView);
 //        RestaurantSearch.setThreshold(1);
+        Log.d(TAG,"onCreate");
 
-        checkPermission();
         // Create an instance of GoogleAPIClient.
         if (googleApiClient == null) {
             googleApiClient = new GoogleApiClient.Builder(getActivity())
@@ -86,28 +107,69 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
                     .build();
         }
 
-        new RestaurantRequest().execute();
         RestaurantSearch = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextView);
+
+        // Inflate the layout for this fragment
+        return v;
+    }
+
+    private void setupMarkers(){
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+        ref=ref.child("Restaurants");
+        ref.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    Restaurant restaurent = dataSnapshot1.getValue(Restaurant.class);
+                    //Getting restaurents objects and storing it in an array
+//                    Restaurant restaurent = new Restaurant();
+//                    restaurent.setId(dataSnapshot1.child("ID").getValue().toString());
+//                    restaurent.setHours(dataSnapshot1.child("hours").getValue().toString());
+//                    restaurent.setLat(Double.parseDouble(dataSnapshot1.child("lat").getValue().toString()));
+//                    restaurent.setLongt(Double.parseDouble(dataSnapshot1.child("longt").getValue().toString()));
+//                    restaurent.setLocation(dataSnapshot1.child("location").getValue().toString());
+//                    restaurent.setType(dataSnapshot1.child("Type").getValue().toString());
+//                    restaurent.setName(dataSnapshot1.child("name").getValue().toString());
+//                    restaurent.setPhone(dataSnapshot1.child("phone").getValue().toString());
+//                    restaurent.setPrice(dataSnapshot1.child("price").getValue().toString());
+//                    restaurent.setWebsite(dataSnapshot1.child("website").getValue().toString());
+                    array_restaurent.add(restaurent);
+                    item.add(restaurent.getName()+","+restaurent.getLocation());
+
+                }
+                setAllRestaurents(array_restaurent);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
+
         RestaurantSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 RestaurantSearch.setText("");
             }
         });
+
+
         //Create adapter
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, item);
-
         RestaurantSearch.setThreshold(1);
+
         //Set adapter to AutoCompleteTextView
         RestaurantSearch.setAdapter(adapter);
         RestaurantSearch.setOnItemSelectedListener(this);
         RestaurantSearch.setOnItemClickListener(this);
-        // Inflate the layout for this fragment
-        return v;
     }
 
     // SOUMITHRI - check for the GPS to turn the location on
     private void checkPermission() {
+        Log.d(TAG,"checking for permission");
         if (ActivityCompat.checkSelfPermission(this.getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this.getContext(),
                 android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -118,12 +180,16 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            Log.d(TAG,"permission not granted... requesting...");
+            requestPermissions(
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_LOCATION);
 
         }
         else {
-            ActivityCompat.requestPermissions(this.getActivity(),
+            /*ActivityCompat.requestPermissions(this.getActivity(),
                     new String[]{Manifest.permission. ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_LOCATION);
+                    MY_PERMISSIONS_REQUEST_LOCATION);*/
             statusCheck((AppCompatActivity) this.getActivity()); // Call the status check method to check whether the GPS is disabled or not
         }
     }
@@ -131,6 +197,10 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+    }
+
+    private void setupMap(){
         FragmentManager fm = getChildFragmentManager();
         mapFragment = (SupportMapFragment) fm.findFragmentByTag("mapFragment");
         if (mapFragment == null) {
@@ -144,18 +214,21 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
 
     }
 
+
     //    @Override
-//    public void onViewCreated(View view, Bundle savedInstanceState)
-//{
-//    mapView = (MapView) view.findViewById(R.id.map);
-//    mapView.onCreate(savedInstanceState);
-//    mapView.onResume();
-//    mapView.getMapAsync(this);
-//}
-//    @Override
     public void onMapReady(GoogleMap map) {
         googleMap = map;
         googleMap.setMyLocationEnabled(true);
+        setupMarkers();
+        //We have to add add a listener for the marker clicking
+        googleMap.setOnMarkerClickListener(this);
+
+    }
+
+    private void goToLocationZoom(double lat, double lng, float zoom) {
+        LatLng ll = new LatLng(lat, lng);
+        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, zoom);
+        googleMap.moveCamera(update);
     }
 
     public void onDestroyView() {
@@ -184,31 +257,35 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
         String[] str_array = search.split(", ");
         String stringa = str_array[0];
         String stringb = str_array[1];
-        System.out.println("location" + stringb);
+        System.out.println("location"+stringb);
         Geocoder coder = new Geocoder(getActivity());
         List<Address> address = null;
         LatLng p1 = null;
 
         try {
-            address = coder.getFromLocationName(stringa, 5);
+            address = coder.getFromLocationName(stringb, 5);
             if (address == null) {
             }
             Address location = address.get(0);
             location.getLatitude();
             location.getLongitude();
 
-            p1 = new LatLng(location.getLatitude(), location.getLongitude());
+            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
 // Show the current location in Google Map
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(p1));
 
             // Zoom in the Google Map
             googleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
             googleMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title(stringa).snippet(stringb)).showInfoWindow();
+
         } catch (Exception ex) {
 
             ex.printStackTrace();
         }
+
+
     }
+
 
 
     @Override
@@ -225,10 +302,23 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
 
     @Override
     public void onStart() {
-
         googleApiClient.connect();
         super.onStart();
     }
+
+    @Override
+    public  void onResume()
+    {
+
+        super.onResume();
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+    }
+
 
     @Override
     public void onStop() {
@@ -236,34 +326,25 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
         super.onStop();
     }
 
-    //** UPDATED onConnected method by SOUMITHRI. Added checkSelfPermission to this method to enable location
-    // services for the app in the settings( when the app is installed for the first time)
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        new RestaurantRequest().execute();
-        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-        if (mLastLocation != null) {
-            showLocationOnMap(mLastLocation);
-        } else {
-            LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, createLocationRequest(), new com.google.android.gms.location.LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {
-                    showLocationOnMap(location);
-                    LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
-                }
-            });
-        }
+        checkPermission();
     }
 
     private void showLocationOnMap(Location location) {
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
         LatLng latLng = new LatLng(latitude, longitude);
-        if (googleMap != null) {
+        if(googleMap!=null) {
             googleMap.addMarker(new MarkerOptions().position(latLng));
 
+            //TODO: For Later Implementation - TO show restaurents in a range
+            //Adding a circle around the current location with a radius
+           /* googleMap.addCircle(new CircleOptions().center(latLng).radius(3000).strokeColor(Color.LTGRAY)
+                    .fillColor(Color.TRANSPARENT));*/
+
             // change the last element to control zoom level
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,12));
         }
     }
 
@@ -287,6 +368,47 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+
+        //Call connectFirebase() to get the restaurants into the ArrayList from Firebase. Uses the Firebase Reference to do it
+        //connectFirebase();
+
+        //Get the position of the marker. So then we can compare it to the restaurant.
+        LatLng markerPos = marker.getPosition();
+
+        //index for for loop
+        int index = 0;
+
+        //Do a for each loop to check the restauarnt info with the Marker info. And open the page for it.
+        //Make an Intent to open the specified restaurant.
+
+        //for loop for this
+        //if the marker's latitude equals the arrayList's lattitude AND if marker's longitude equals arrayList's longitude, then open that restaurant's activity
+        //for loop for this
+        for (index = 0; index < array_restaurent.size(); index++) {
+            Log.d("In for", "In the for loop");
+            if ((markerPos.latitude == array_restaurent.get(index).getLat() && (markerPos.longitude == array_restaurent.get(index).getLongt()))) {
+                //MAKE INTENT TO START ACTIVITY OF THAT RESTAURANT
+                Intent chosenRestaurant = new Intent(getContext(), RestaurantDetailActivity.class);
+                chosenRestaurant.putExtra("RestaurantObject", array_restaurent.get(index));  //may not need this
+                startActivity(chosenRestaurant);
+                break;
+
+
+
+
+
+                //return true;
+                // this is if your querying for the latLong child
+
+
+                //NOTE THIS
+                //if (val.child("hotel").getValue(String.class).contains("hotel")) {
+
+                //}
+
+
+            }
+        }
         return false;
     }
 
@@ -295,7 +417,7 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
         protected ArrayList<String> doInBackground(Void... params) {
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
             final DatabaseReference ref = database.getReferenceFromUrl("https://garcondatabase.firebaseio.com/Restaurants");
-            final ArrayList listView = new ArrayList<String>();
+            final ArrayList listView= new ArrayList<String>();
 
             ref.addValueEventListener(new ValueEventListener() {
 
@@ -305,7 +427,7 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
 //                    Log.i("player", player.getKey());
 //                        Restaurants restaurants = dataSnapshot1.getValue(Restaurants.class);
 //                        String name = (String) ;
-                        item.add(dataSnapshot1.child("name").getValue().toString() + ", " + dataSnapshot1.child("location").getValue().toString());
+                        item.add(dataSnapshot1.child("name").getValue().toString()+", "+dataSnapshot1.child("location").getValue().toString());
 
                     }
 
@@ -323,7 +445,7 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
         @Override
         protected void onPostExecute(ArrayList<String> RestaurantList) {
             super.onPostExecute(RestaurantList);
-            if (RestaurantList != null) {
+            if (RestaurantList != null ) {
 
 //                PlaceAutocompleteAdapter mArrayAdapter = new PlaceAutocompleteAdapter(getActivity(), R.layout.primary_layout, RestaurantList);
 //                RestaurantSearch.setAdapter(mArrayAdapter);
@@ -331,10 +453,10 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
         }
     }
 
-    // SOUMITHRI - REQUEST for location permission callback method
+   // SOUMITHRI - REQUEST for location permission callback method
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        Log.d(TAG,"yoo");
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        Log.d(TAG,"onRequestPermissionsResult...");
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
@@ -346,6 +468,7 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
                             Manifest.permission. ACCESS_FINE_LOCATION)
                             == PackageManager.PERMISSION_GRANTED) {
                         Log.d(TAG,"permission accepted");
+                        getLocationFromService();
                     }
                 } else {
                     // permission denied, boo! Disable the
@@ -357,6 +480,22 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
         }
     }
 
+    private void getLocationFromService(){
+        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        if (mLastLocation != null) {
+            showLocationOnMap(mLastLocation);
+        }else {
+            LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, createLocationRequest(), new com.google.android.gms.location.LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                    showLocationOnMap(location);
+                    LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient,this);
+                }
+            });
+        }
+        setupMap();
+    }
+
     //******* SOUMITHRI *******//
     // Check the status of the GPS. If it is not turned on call the buildAlertMessageNoGps() method
     public void statusCheck(AppCompatActivity activity) {
@@ -366,6 +505,8 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
             buildAlertMessageNoGps();
 
         }
+
+        setupMap();
     }
 
     //****** SOUMITHRI ******//
@@ -387,6 +528,24 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
                 });
         final AlertDialog alert = builder.create();
         alert.show();
+    }
+	
+	
+	
+    //Below Function will show all the restaurents preent in Firebase in GoogleMap
+    public void setAllRestaurents(ArrayList<Restaurant> res)
+    {
+        for(int i=0;i<res.size();i++)
+        {
+            if(googleMap !=null)
+            {
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(res.get(i).getLat(),res.get(i).getLongt())).title(res.get(i).getName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))).showInfoWindow();
+
+            }
+       }
+       if(googleMap !=null)
+           googleMap.animateCamera(CameraUpdateFactory.zoomTo(8));
+
     }
 
 }

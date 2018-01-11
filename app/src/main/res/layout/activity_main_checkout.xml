@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools">
 
 
 
@@ -15,12 +16,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/default_margin">
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Check"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:layout_height="match_parent" />
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/orderlist"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical">
+
+            </android.support.v7.widget.RecyclerView>
             <RadioGroup android:id="@+id/paymentOption"
                 android:layout_below="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkedButton="@+id/payApp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
                 <RadioButton android:id="@+id/payApp"
                     android:text="Pay Via App"
                     android:layout_width="wrap_content"
@@ -57,7 +74,8 @@
                     android:layout_alignRight="@+id/credit_cards"
                     android:clickable="true"
                     android:onClick="addCard"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:visibility="gone"/>
 
             </RelativeLayout>
             <RelativeLayout android:id="@+id/subtotal"
@@ -75,15 +93,15 @@
                     android:layout_alignParentRight="true"/>
 
             </RelativeLayout>
-            <RelativeLayout android:id="@+id/tip"
+            <RelativeLayout android:id="@+id/tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView android:text="@string/tip"
+                <TextView android:text="@string/tax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"/>
-                <TextView android:id="@+id/tip_final"
+                <TextView android:id="@+id/tax_final"
                     android:text="@string/buffer_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -104,6 +122,23 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"/>
 
+
+            </RelativeLayout>
+            <RelativeLayout android:id="@+id/due"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                <TextView android:text="Due"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_alignParentLeft="true"/>
+                <TextView android:id="@+id/due_final"
+                          android:text="@string/buffer_amount"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_alignParentRight="true"/>
+
+
             </RelativeLayout>
 
         </LinearLayout>
@@ -114,6 +149,7 @@
         android:text="Process pAyment"
         android:id="@+id/process"
         android:layout_gravity="bottom"
+        android:onClick="processPayment"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

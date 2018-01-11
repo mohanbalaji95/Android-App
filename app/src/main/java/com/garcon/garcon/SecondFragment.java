@@ -1,6 +1,7 @@
 package com.garcon.garcon;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -43,11 +44,18 @@ public class SecondFragment extends Fragment {
 
         connectFirebase();
 
-        restaurantList.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+        //restaurantList.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+        restaurantList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Restaurant cur = myList.get(position);
-                ((RestaurantClickedListener)getContext()).onRestaurantClicked(cur);
+            //public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+              //  Restaurant cur = myList.get(position);
+                //((RestaurantClickedListener)getContext()).onRestaurantClicked(cur);
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
+                Intent appInfo = new Intent(getContext(), RestaurantDetailActivity.class);
+
+                appInfo.putExtra("RestaurantObject",myList.get(position));
+                startActivity(appInfo);
+
             }
         });
 

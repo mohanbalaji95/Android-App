@@ -2,6 +2,7 @@ package com.garcon.garcon;
 import com.garcon.Constants.Constants;
 import com.garcon.Models.Table;
 import com.garcon.Models.Ticket;
+import com.garcon.garcon.Payment.CheckoutandPay;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +38,10 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @TargetApi(21)
 public class MainViewCartActivity extends AppCompatActivity {
@@ -52,7 +56,7 @@ public class MainViewCartActivity extends AppCompatActivity {
     private Boolean done=false;
 
     String ApiKey=null;
-    String locationID="8cg4k4kc";
+    String locationID="AieMdB5i";
     String ticketID=null;
     Map<Integer,Table> tableMap = null;
     ArrayList<String> tableArray = null;
@@ -317,10 +321,43 @@ public class MainViewCartActivity extends AppCompatActivity {
                 Log.d(LOG_TAG,"json to string "+json.toString());
                 JSONObject data = new JSONObject(json.toString());
                 Log.d(LOG_TAG,"The ticket ID is -->  "+data.getString("id"));
+                SharedPreferences sp = getSharedPreferences("garconpref",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString("ticketnumber", data.getString("id"));
+                editor.commit();
+
                 if(connection.getResponseCode()!=200){
                     return null;
                 }
                 Log.d(LOG_TAG,"json object to string "+data.toString());
+
+                Log.d(LOG_TAG,"Adding data to FireBase");
+                sharedpreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
+                String userUUID = sharedpreferences.getString(getString(R.string.User_UUID_Key),null);
+                ticket = new Ticket(ticketID,"MjikgioG","KxiAaip5","LdiqGibo","jLiyniEb",2,"FirebaseTicket",true,userUUID,locationID);
+                ticket.setOpen(data.getBoolean("open"));
+                ticket.setOpened_at(data.getLong("opened_at"));
+                Map<String,Object> ticketValues = ticket.toMap();
+                String key = mDatabase.child("orders").push().getKey();
+                Log.d(LOG_TAG,"The key is --> "+key);
+                Map<String, Object> childUpdates = new HashMap<>();
+                childUpdates.put("/orders/" + key, ticketValues);
+                Log.d(LOG_TAG,"The updateChildren Object is --> "+childUpdates.toString());
+                mDatabase.updateChildren(childUpdates);
+                mDatabase.child("orders").child(key).child("menu_items").setValue(listOfItems);
+
+                Intent intent = new Intent(MainViewCartActivity.this, CheckoutandPay.class);
+                //intent.putExtra("instructions", ((EditText) findViewById(R.id.specialInstructions)).getText().toString());
+                //intent.putExtra("table", ((EditText) findViewById(R.id.tableNumber)).getText().toString());
+                //Spinner area = (Spinner) findViewById(R.id.restaurantArea);
+                //intent.putExtra("area", area.getItemAtPosition(area.getSelectedItemPosition()).toString());
+                intent.putExtra("ticketID", ticketID);
+                intent.putExtra("firebasekey",key);
+                editor.putString("firebasekey",key);
+                editor.commit();
+                OrderSingleton.getInstance().clearList();
+                startActivity(intent);
+                finish();
                 return data;
 
 
@@ -511,7 +548,7 @@ public class MainViewCartActivity extends AppCompatActivity {
         }
 
 
-        Spinner orderDateSpinner = (Spinner) findViewById(R.id.orderDate);
+        /*Spinner orderDateSpinner = (Spinner) findViewById(R.id.orderDate);
         ArrayAdapter<CharSequence> orderDateAdapter = ArrayAdapter.createFromResource(this, R.array.optionsOrderDate,
                 android.R.layout.simple_spinner_dropdown_item);
         orderDateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -521,7 +558,7 @@ public class MainViewCartActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> timeAdapter = ArrayAdapter.createFromResource(this, R.array.optionsOrderTime,
                 android.R.layout.simple_spinner_dropdown_item);
         timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        timeSpinner.setAdapter(timeAdapter);
+        timeSpinner.setAdapter(timeAdapter);*/
 
     /*  listOfItems.add("REALLY LONG TEXT STRING TO TEST IF IT PROPERLY WRAPS FOR THE TABLET THE TABLET THE TABLET...");
         listOfItems.add("Old Fashioned Buttermilk Pancakes");
@@ -594,14 +631,15 @@ public class MainViewCartActivity extends AppCompatActivity {
         }
 
 
-        Intent intent = new Intent(this, MainReviewActivity.class);
+        //Take this out to stop the Place ORder crashing error
+        /*Intent intent = new Intent(this, MainReviewActivity.class);
         intent.putExtra("instructions", ((EditText) findViewById(R.id.specialInstructions)).getText().toString());
         intent.putExtra("table", ((EditText) findViewById(R.id.tableNumber)).getText().toString());
         Spinner area = (Spinner) findViewById(R.id.restaurantArea);
         intent.putExtra("area", area.getItemAtPosition(area.getSelectedItemPosition()).toString());
         intent.putExtra("ticketID", ticketID);
 
-        this.startActivity(intent);
+        this.startActivity(intent);*/
     }
 
 }

@@ -70,6 +70,8 @@
                 android:resource="@xml/searchable"
                 android:value=".SearchActivity" />
         </activity>
+        <activity android:name=".Payment.CheckoutandPay"/>
+
         <activity
             android:name=".favorite_activity"
             android:label="@string/title_activity_favorite_activity"
@@ -97,6 +99,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".homeactivity" />
         </activity>
+        <activity android:name=".RestaurantDetailActivity"></activity>
         <activity
             android:name=".termsandconditions"
             android:label="@string/title_activity_favorite_activity"
@@ -155,6 +158,7 @@
             android:theme="@style/AppTheme.ViewCartPopup" />
         <activity android:name=".MainReviewActivity" />
         <activity android:name=".MainCheckoutActivity" />
+        <activity android:name=".Payment.OnPayment"/>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -195,6 +199,12 @@
             android:name=".addnewcardatcheckout"
             android:enabled="true"
             android:exported="true" />
+        <activity
+            android:name=".manageProfileActivity"
+            android:label="@string/title_activity__profile_tab"
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".OrderHistoryActivity"/>
+        <activity android:name=".FavoriteActivity"/>
     </application>
 
 </manifest>

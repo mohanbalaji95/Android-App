@@ -78,7 +78,7 @@ public class MainReviewActivity extends Activity {
         subtotal = 0;
 
         for(MenuItem m : OrderSingleton.getInstance().getList()){
-            int base = m.getPrice();
+            Double base = m.getPrice();
             for(MenuItem.ModifierGroup mgrp : m.getModifierGroups()){
                 for(MenuItem.ModifierGroup.ItemModifier im : mgrp.getModifierList()){
                     if(im.isAdded()){

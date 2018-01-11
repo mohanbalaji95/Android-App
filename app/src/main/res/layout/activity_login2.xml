@@ -49,8 +49,10 @@
                     android:textColorHint="@color/gray"
                     android:padding="12dp"
                     android:inputType="textEmailAddress"
+                    android:textCursorDrawable="@drawable/blackcursor"
                     android:maxLines="1"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
+
                     android:singleLine="true" />
 
                 <EditText
@@ -66,7 +68,8 @@
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@drawable/blackcursor"
                     android:maxLines="1"
                     android:singleLine="true" />
 

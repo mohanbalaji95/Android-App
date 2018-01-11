@@ -1,1 +1,1 @@
-include ':app', ':listviewtest'
+include ':app'

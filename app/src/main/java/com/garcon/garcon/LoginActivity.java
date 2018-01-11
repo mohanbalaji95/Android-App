@@ -110,8 +110,6 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
     //Facebook Login
     private CallbackManager mCallbackManager;
     LoginButton loginButton;
-    //Google Login
-    // private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 
     private GoogleApiClient mGoogleApiClient;
@@ -210,19 +208,18 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-
                 if (user != null) {
                     boolean isEmailVerified=user.isEmailVerified();
                     if(isEmailVerified) {
-                        // User is signed in
-                        Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                        //System.out.println( "onAuthStateChanged:signed_in:" + user.getUid());
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
-                        editor.putString(getString(R.string.User_UUID_Key), user.getUid());
-                        editor.commit();
-                        Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
-                        LoginActivity.this.startActivity(myIntent);
-                        finish();
+                    // User is signed in
+                    Log.d(TAG,"onAuthStateChanged:signed_in:" + user.getUid());
+                    //System.out.println( "onAuthStateChanged:signed_in:" + user.getUid());
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString(getString(R.string.User_UUID_Key),user.getUid());
+                    editor.commit();
+                    Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
+                    LoginActivity.this.startActivity(myIntent);
+                    finish();
                     }
                     else
                     {
@@ -289,7 +286,6 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
         SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -473,8 +469,6 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-
-
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
@@ -693,7 +687,6 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
                     return false;
                 }
                 */
-
             mAuth.signInWithEmailAndPassword(mEmail, mPassword)
                     .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -717,11 +710,11 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
                                 //System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
                                 boolean isEmailVerified=mAuth.getInstance().getCurrentUser().isEmailVerified();
                                 if(isEmailVerified) {
-                                    System.out.println("Successful login");
+                                System.out.println("Successful login");
                                     Toast.makeText(LoginActivity.this, "Email Verification success.",
                                             Toast.LENGTH_SHORT).show();
-                                    updateFlag(true);
-                                    updateDoneFlag(true);
+                                updateFlag(true);
+                                updateDoneFlag(true);
                                 }
                                 else {
                                     AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
@@ -767,7 +760,6 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
                                     updateDoneFlag(true);
 
                                 }
-
                             }
 
                             // ...
@@ -796,7 +788,6 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
                             updateDoneFlag(true);
                         }
                     });
-
             while (!doneFlag){}
             if(authFlag == true){
                 return true;

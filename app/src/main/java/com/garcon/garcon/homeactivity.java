@@ -21,14 +21,15 @@ import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.common.ConnectionResult;
+import com.garcon.garcon.Payment.CheckoutandPay;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class homeactivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,SecondFragment.RestaurantClickedListener{
+public class homeactivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, SecondFragment.RestaurantClickedListener {
     private static final String TAG = homeactivity.class.getName();
     DrawerLayout myDrawerLayout;
     NavigationView myNavigationView;
@@ -39,6 +40,8 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
     private GoogleApiClient mGoogleApiClient;
     private MenuItem mapItem;
     private MenuItem listItem;
+    private MenuItem payItem;
+
 
     private TabFragment tabFragment;
 
@@ -100,17 +103,25 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
 
+                if (menuItem.getItemId() == R.id.nav_home) {
+                    Intent homeactivity = new Intent(getApplicationContext(), homeactivity.class);
+                    startActivity(homeactivity);
+                }
+
                 if (menuItem.getItemId() == R.id.nav_profilesettings) {
-                    Intent profile_settings = new Intent(getApplicationContext(), ProfileSettings.class);
+                    //Can change this back since manageProfileActivity isn't compeltely full
+                    //Intent profile_settings = new Intent(getApplicationContext(), ProfileSettings.class);
+                    Intent profile_settings = new Intent(getApplicationContext(), manageProfileActivity.class);
                     startActivity(profile_settings);
                 }
                 if (menuItem.getItemId() == R.id.nav_item_sent) {
-                    Intent fav_activity = new Intent(getApplicationContext(), favorite_activity.class);
+                    //Intent fav_activity = new Intent(getApplicationContext(), favorite_activity.class);
+                    Intent fav_activity = new Intent(getApplicationContext(), FavoriteActivity.class);
                     startActivity(fav_activity);
                 }
 
                 if (menuItem.getItemId() == R.id.nav_history) {
-                    Intent history = new Intent(getApplicationContext(), History.class);
+                    Intent history = new Intent(getApplicationContext(), OrderHistoryActivity.class);
                     startActivity(history);
                 }
 
@@ -125,7 +136,6 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
 
                     alert.setMessage("Are you sure you want to logout ?");
                     alert.setTitle("Confirmation");
-
 
 
                     alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -144,9 +154,7 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
                                 // Google sign out
                                 Auth.GoogleSignInApi.signOut(mGoogleApiClient);
 
-                            }
-                            catch(Exception e)
-                            {
+                            } catch (Exception e) {
                                 Log.d(TAG, e.getMessage());
                             }
                             startActivity(new Intent(homeactivity.this, LoginActivity.class));
@@ -162,7 +170,6 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
                     });
 
                     alert.show();
-
 
                     //finishActivity(0);
                 }
@@ -190,8 +197,9 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
-        mapItem = menu.findItem(R.id.mapMenu);
-        listItem = menu.findItem(R.id.listMenu);
+        payItem = menu.findItem(R.id.pay);
+        //mapItem = menu.findItem(R.id.mapMenu);
+        //listItem = menu.findItem(R.id.listMenu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -199,10 +207,20 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+        Intent intent = new Intent(getApplicationContext(), CheckoutandPay.class);
+        Intent intent2 = new Intent(getApplicationContext(), MainViewCartActivity.class);
         switch (id) {
             case R.id.cartMenu:
-                //To.Do
+                startActivity(intent2);
+                //To Do
                 break;
+            case R.id.pay:
+                startActivity(intent);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }         /*
             case R.id.mapMenu:
                 mapItem.setVisible(false);
                 listItem.setVisible(true);
@@ -212,18 +230,21 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
                 listItem.setVisible(false);
                 mapItem.setVisible(true);
                 openSecondFragment();
-                break;
-        }
+                break; */
+    //    }
 
-        return super.onOptionsItemSelected(item);
-    }
+    //  return super.onOptionsItemSelected(item);
+    //}
+
+    //30 June commenting out as there is no call
+
 
     private void openPrimaryFragment() {
-        ((ContainerFragment)tabFragment.getSelectedFragment(0)).switchFragments(true);
+        ((ContainerFragment) tabFragment.getSelectedFragment(0)).switchFragments(true);
     }
 
     private void openSecondFragment() {
-        ((ContainerFragment)tabFragment.getSelectedFragment(0)).switchFragments(false);
+        ((ContainerFragment) tabFragment.getSelectedFragment(0)).switchFragments(false);
     }
 
     @Override
@@ -243,8 +264,9 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
 
     @Override
     public void onRestaurantClicked(Restaurant restaurant) {
-        ((RestaurantDetailFragment)tabFragment.getSelectedFragment(1)).dataSetup(restaurant);
-        tabFragment.switchViewPagerPosition(1);
+        // ((RestaurantDetailFragment)tabFragment.getSelectedFragment(1)).dataSetup(restaurant);
+
+        tabFragment.switchViewPagerPosition(0);
     }
 
     @Override

@@ -1,6 +1,9 @@
 package com.garcon.Models;
 
+import com.garcon.garcon.MenuItem;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +27,33 @@ public class Ticket implements Serializable{
     private boolean auto_send;
     private String userUUID;
     private String omnivore_location_id;
+    private ArrayList<MenuItem> mMenuItemArrayList;
+    private String totalAmount;
+    private String ccLast4Digits;
+
+    public String getCcLast4Digits() {
+        return ccLast4Digits;
+    }
+
+    public void setCcLast4Digits(String ccLast4Digits) {
+        this.ccLast4Digits = ccLast4Digits;
+    }
+
+    public String getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(String totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public ArrayList<MenuItem> getMenuItemArrayList() {
+        return mMenuItemArrayList;
+    }
+
+    public void setMenuItemArrayList(ArrayList<MenuItem> menuItemArrayList) {
+        mMenuItemArrayList = menuItemArrayList;
+    }
 
     public String getOmnivore_location_id() {
         return omnivore_location_id;
@@ -184,6 +214,7 @@ public class Ticket implements Serializable{
         result.put("name", ticketName);
         result.put("auto_send", auto_send);
         result.put("omnivore_loc_id", omnivore_location_id);
+        result.put("menu_items",mMenuItemArrayList);
 
         return result;
     }

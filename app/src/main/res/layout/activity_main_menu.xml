@@ -19,6 +19,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Search Menu Item"/>
+    <Button
+        android:id="@+id/seeViewCartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@color/orange"
+        android:clickable="true"
+        android:onClick="view_order"
+        android:layout_gravity="center_horizontal"
+        android:text="View Order" />
     <LinearLayout
         android:id="@+id/menus"
         android:layout_width="match_parent"
@@ -42,17 +51,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:dividerHeight="4dp"/>
+            android:dividerHeight="4dp"
+
+            />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/seeViewCartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:background="@color/orange"
-        android:clickable="true"
-        android:onClick="view_order"
-        android:layout_gravity="center_horizontal"
-        android:text="View Order" />
+
 
 </LinearLayout>

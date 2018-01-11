@@ -8,10 +8,10 @@ import java.util.ArrayList;
  */
 
 public class MenuItem implements Serializable {
-    
-    protected String id;
-    protected String name;
-    protected int price;
+
+    public String id;
+    public String name;
+    public Double price;
     protected ArrayList<PriceLevel> price_levels;
     protected boolean in_stock;
     protected int modifier_groups_count;
@@ -21,7 +21,7 @@ public class MenuItem implements Serializable {
     protected String categoryID;
 
     //user defined variable
-    private int numOrdered = 0;
+    public int numOrdered = 0;
     private String specialInstructions = "";
 
     //http://stackoverflow.com/questions/18814076/how-to-make-intellij-show-eclipse-like-api-documentation-on-mouse-hover
@@ -38,7 +38,7 @@ public class MenuItem implements Serializable {
      * @param  categoryID parent category's id NOT name
      */
 
-    public MenuItem(String id, String name, Integer price, ArrayList<PriceLevel> price_levels,
+    public MenuItem(String id, String name, Double price, ArrayList<PriceLevel> price_levels,
                     boolean in_stock, ArrayList<ModifierGroup> mGroups, Integer modifier_groups_count, String categoryID){
         this.id = id;
         this.name = name;
@@ -60,16 +60,16 @@ public class MenuItem implements Serializable {
         this.price_levels = price_levels;
     }
 
-    String getId() {
+    public String getId() {
         return id;
     }
-    String getName(){
+    public String getName(){
         return name;
     }
     String getCategoryID() {
         return categoryID;
     }
-    int getPrice(){
+    public Double getPrice(){
         return this.price;
     }
     ArrayList<ModifierGroup> getModifierGroups(){ return this.mGroups;}
@@ -138,15 +138,15 @@ public class MenuItem implements Serializable {
 
     }
 
-    static class PriceLevel implements Serializable{
-        private String id;
-        private Integer price;
+    public static class PriceLevel implements Serializable{
+        public  String id;
+        public  Integer price;
         public PriceLevel(String id, Integer price){
             this.id = id;
             this.price = price;
         }
-        String getId(){return id;}
-        Integer getPrice(){return price;}
+        public String getId(){return id;}
+        public Integer getPrice(){return price;}
     }
 
 }

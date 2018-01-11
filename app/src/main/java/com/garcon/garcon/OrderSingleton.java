@@ -23,6 +23,10 @@ public class OrderSingleton {
         return mInstance;
     }
 
+    public void clearList(){
+        mList = new ArrayList<MenuItem>();
+    }
+
     public ArrayList<MenuItem> getList() {
         return this.mList;
     }

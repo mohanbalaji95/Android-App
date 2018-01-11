@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,12 +29,14 @@ public class favcardadapter extends RecyclerView.Adapter<favcardadapter.favcarda
         CardView cv;
         TextView restaurantname;
         ImageView personPhoto;
+        CheckBox extra;
 
         favcardadapterholder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
             restaurantname = (TextView)itemView.findViewById(R.id.restaurant_name);
             personPhoto = (ImageView)itemView.findViewById(R.id.imageView2);
+            extra=(CheckBox)itemView.findViewById(R.id.child_list_item_crime_solved_check_box);
         }
     }
 
@@ -53,6 +56,7 @@ public class favcardadapter extends RecyclerView.Adapter<favcardadapter.favcarda
     public void onBindViewHolder(favcardadapterholder favcardadapterholders, final int position) {
         favcardadapterholders.restaurantname.setText(favcardviews.get(position).name);
         favcardadapterholders.personPhoto.setImageResource(favcardviews.get(position).photoid);
+        favcardadapterholders.extra.setText(favcardviews.get(position).extra);
 
 
 

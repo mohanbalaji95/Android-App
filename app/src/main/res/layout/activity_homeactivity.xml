@@ -40,7 +40,6 @@
             android:id="@+id/profile"
             app:itemTextColor="@color/black"
             app:menu="@menu/drawermenu"
-            android:layout_marginTop="-24dp"
             />
 
     </android.support.v4.widget.DrawerLayout>

@@ -9,14 +9,9 @@
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/mapMenu"
-        android:title="@string/menu_map"
+        android:id="@+id/pay"
+        android:title="PAY"
+        android:icon="@drawable/finalpayment96x"
         app:showAsAction="always"
-        android:visible="false"/>
-
-    <item
-        android:id="@+id/listMenu"
-        android:title="@string/menu_list"
-        app:showAsAction="always"/>
-
+        />
 </menu>

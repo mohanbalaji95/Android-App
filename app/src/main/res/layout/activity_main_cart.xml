@@ -34,13 +34,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@color/aqua"
+                android:background="@color/garcon"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp">
 
                 <TextView android:id="@+id/textView"
                     android:textSize="24sp"
                     android:gravity="center"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
                     android:background="@color/garcon"
                     android:textColor="@color/white"
                     android:layout_width="wrap_content"
@@ -54,6 +56,7 @@
                 <Button android:id="@+id/seeMenu"
                     android:onClick="view_menu"
                     android:textSize="24sp"
+                    android:background="@color/white"
                     android:text="Menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,7 +73,7 @@
                 android:layout_below="@id/top"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
-            <Spinner android:id="@+id/orderDate"
+            <!--<Spinner android:id="@+id/orderDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/buttonOrderDate"
@@ -87,7 +90,7 @@
                 android:layout_alignBottom="@+id/tableSize"
                 android:layout_alignTop="@+id/tableSize"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true" />-->
             <com.garcon.garcon.NonScrollableListView android:id="@+id/itemsList"
                 android:layout_below="@id/tableSize"
                 android:layout_width="match_parent"
@@ -110,17 +113,17 @@
                 android:textColor="@color/garcon"
                 android:background="@color/white"
                 android:textCursorDrawable="@null"/>
-            <EditText android:id="@+id/tableNumber"
+            <!--<EditText android:id="@+id/tableNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/specialInstructions"
                 android:layout_centerHorizontal="true"
-                android:hint="@string/editTextTableNumberHint" />
+                android:hint="@string/editTextTableNumberHint" />-->
 
             <Spinner android:id="@+id/restaurantArea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tableNumber"
+                android:layout_below="@id/specialInstructions"
                 android:layout_centerHorizontal="true"
                 android:spinnerMode="dropdown" />
 

@@ -36,7 +36,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabelSignUp">
 
                 <AutoCompleteTextView
                     android:id="@+id/signup_firstname"
@@ -44,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_firstname"
                     android:inputType="textEmailAddress"
+                    android:textColor="@color/white"
                     android:maxLines="1"
                     android:singleLine="true"
                     />
@@ -52,7 +53,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabelSignUp">
 
                 <AutoCompleteTextView
                     android:id="@+id/signup_lastname"
@@ -60,15 +61,31 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_lastname"
                     android:inputType="textEmailAddress"
+                    android:textColor="@color/white"
                     android:maxLines="1"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
-
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabelSignUp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/signup_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_username"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/white"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabelSignUp">
 
                 <EditText
                     android:id="@+id/signup_email"
@@ -76,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
+                    android:textColor="@color/white"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -83,7 +101,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabelSignUp">
 
                 <EditText
                     android:id="@+id/signup_password"
@@ -93,6 +111,7 @@
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
+                    android:textColor="@color/white"
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -101,7 +120,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabelSignUp">
 
                 <EditText
                     android:id="@+id/signup_confirmpassword"
@@ -112,6 +131,7 @@
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
+                    android:textColor="@color/white"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -119,7 +139,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabelSignUp">
 
                 <EditText
                     android:id="@+id/signup_phonenumber"
@@ -131,6 +151,7 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="phone"
                     android:maxLines="1"
+                    android:textColor="@color/white"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>

@@ -31,11 +31,11 @@ public class FloatingRestaurantActivity extends Activity {
 
     TextView tvName, tvPrice, tvLocation, tvHours, tvType;
 
-
-    Button btn_Menu;
-    Button btn_Call;
-    Button btn_DineIn;
-    Button btn_TakeOut;
+// commenting out buttons from menu
+  //  Button btn_Menu;
+   // Button btn_Call;
+    //Button btn_DineIn;
+    //Button btn_TakeOut;
     String locationName;
     String phoneNumber;
     double lat, longt;
@@ -63,7 +63,8 @@ public class FloatingRestaurantActivity extends Activity {
        Bundle bundle = getIntent().getExtras();
         dataSetup(bundle);
 
-        btn_Menu = (Button) findViewById(R.id.menu);
+        // commenting out buttons from menu
+     /*   btn_Menu = (Button) findViewById(R.id.menu);
         btn_Call = (Button) findViewById(R.id.btnCall);
         btn_DineIn = (Button) findViewById(R.id.btnDineIn);
         btn_TakeOut = (Button) findViewById(R.id.btbTakeOut);
@@ -109,7 +110,7 @@ public class FloatingRestaurantActivity extends Activity {
                 startCheckoutActivity.putExtra("locationID","AieMdB5i");
                 startActivity(startCheckoutActivity);
             }
-        });
+        });*/
         tvLocation.setOnClickListener(new View.OnClickListener(){
             //int zoomLevel = 12;
             @Override

@@ -61,7 +61,7 @@ public class ReviewRowItemAdapter extends BaseAdapter implements ListAdapter {
 
         final TextView price = (TextView) view.findViewById(R.id.price);
         MenuItem m = list.get(position);
-        int base = m.getPrice();
+        Double base = m.getPrice();
         for(MenuItem.ModifierGroup mgrp : m.getModifierGroups()){
             for(MenuItem.ModifierGroup.ItemModifier im : mgrp.getModifierList()){
                 if(im.isAdded()){
@@ -69,7 +69,7 @@ public class ReviewRowItemAdapter extends BaseAdapter implements ListAdapter {
                 }
             }
         }
-        int subtotal = base*m.getNumOrdered();
+        Double subtotal = base*m.getNumOrdered();
         price.setText(String.valueOf(subtotal));
 
         DisplayMetrics dm = context.getResources().getDisplayMetrics();

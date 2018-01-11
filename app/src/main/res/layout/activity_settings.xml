@@ -1,65 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:id="@+id/toolbar"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    >
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/red"
     android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:textAlignment="center"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:layout_gravity="start"
+            android:textAlignment="textStart"
+            app:srcCompat="@mipmap/app_launcher" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Back"
+            android:textColor="@color/white"
+
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="274dp"
+        android:id="@+id/listView"
+
+
+        >
+
+
+        </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal"
+        android:layout_margin="20dp"
+
+        >
+
+        <!--CHANGE TO A BUTTON POSSIBLY?? -->
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Terms and Conditions"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/toolbar"
+        <TextView
+            android:id="@+id/txtContactUs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Contact US"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
+            android:id="@+id/txtSendEmail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/switch1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="62dp"
-            android:gravity="center"
-            android:text="Bluetooth"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
+            android:allowUndo="false"
+            android:pointerIcon="hand"
+            android:text="garcon@garconllc.com"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/contact"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="62dp"
-            android:gravity="center"
-            android:text="Contact us: ceo@getgarcon.com"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-        <Button
-            android:id="@+id/seeTermsandConditions"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:text="Terms and Conditions"
-            android:clickable="true"
-            android:onClick="terms_conditions" />
-
-        </LinearLayout>
-        <FrameLayout
+            android:id="@+id/txtCallPhone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/containerView">
-        </FrameLayout>
+            android:layout_height="wrap_content"
+            android:text="574-785-9842"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
 </LinearLayout>
+
+</android.support.v7.widget.Toolbar>

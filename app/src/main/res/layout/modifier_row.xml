@@ -8,10 +8,10 @@
     android:padding="10dp">
 
     <CheckedTextView android:id="@+id/mod_name"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_weight="0.5"
-        android:background="@color/lime"
+        android:background="@color/white"
         android:checkMark="@null"
         android:drawableRight="@null"
         android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
@@ -25,10 +25,10 @@
     -->
 
     <TextView android:id="@+id/mod_price"
-        android:layout_width="match_parent"
+        android:layout_width="30dp"
         android:layout_height="match_parent"
         android:layout_weight="0.5"
-        android:background="@color/aqua"
+        android:background="@color/white"
         android:gravity="end"
         android:clickable="false"
         />

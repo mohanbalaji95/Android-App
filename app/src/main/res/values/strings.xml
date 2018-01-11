@@ -102,6 +102,7 @@
     <!-- Strings related to checkout -->
     <string name="subtotal">Subtotal</string>
     <string name="buffer_amount">Buffer Amount</string>
+    <string name="tax">Tax</string>
     <string name="tip">Tip</string>
     <string name="total">Total</string>
 
@@ -119,4 +120,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="due">Due</string>
+    <string name="str_quantity">Quantity</string>
+    <string name="str_price">Price</string>
+    <string name="title_activity__manage_profile">activity_ManageProfile</string>
+    <string name="title_activity__profile_tab">activity_Profile_tab</string>
 </resources>

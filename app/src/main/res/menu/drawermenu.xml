@@ -3,8 +3,10 @@
 
     <group android:checkableBehavior="single">
 
-        <item
-            android:title=""/>
+        if (menuItem.getItemId() == R.id.nav_home) {
+        Intent homeactivity = new Intent(getApplicationContext(), homeactivity.class);
+        startActivity(homeactivity);
+        }
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/resturants96x"

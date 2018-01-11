@@ -4,30 +4,36 @@ package com.garcon.garcon;
  * Created by Mayank on 6/27/2016.
  */
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class Restaurant {
-    String name, location, ID, price, website, hours, Type, phone;
-    double rating, lat, longt;
+public class Restaurant implements Serializable{
+    String name="", location="", id="", price="", website="", hours="", type="", phone="";
+    String lat, longt;
 
     public Restaurant() {
         // empty default constructor, necessary for Firebase to be able to deserialize JSON
+
     }
+
 
     public double getLat() {
-        return lat;
+        return Double.parseDouble(lat);
     }
 
-    public void setLat(double lat) {
+    public void setLat(String lat) {
         this.lat = lat;
     }
 
     public double getLongt() {
-        return longt;
+        return Double.parseDouble(longt);
     }
 
-    public void setLongt(double longt) {
+    public void setLongt(String longt) {
         this.longt = longt;
     }
 
@@ -55,12 +61,12 @@ public class Restaurant {
         this.location = newvar;
     }
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String newvar) {
-        this.ID = newvar;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPrice() {
@@ -79,12 +85,12 @@ public class Restaurant {
         this.website = newvar;
     }
 
-    public String getTypes() {
-        return Type;
+    public String getType() {
+        return type;
     }
 
-    public void setTypes(String newvar) {
-        this.Type = newvar;
+    public void setType(String newvar) {
+        this.type = newvar;
     }
 
     public String getPhone() {
@@ -95,11 +101,4 @@ public class Restaurant {
         this.phone = newvar;
     }
 
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double newvar) {
-        this.rating = newvar;
-    }
 }

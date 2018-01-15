@@ -1,0 +1,184 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.garcon.garcon.manageProfileActivity$PlaceholderFragment">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="596dp"
+        android:layout_below="@+id/layout"
+        android:background="@color/red"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <Button
+            android:id="@+id/removecard"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="REMOVE CARD" />
+
+        <Spinner
+            android:id="@+id/cardtype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/removecard"
+            android:layout_marginTop="35dp"
+            android:entries="@array/cardtype"
+            android:spinnerMode="dropdown" />
+
+
+        <TextView
+            android:id="@+id/nameoncard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/addnameoncard"
+            android:text="Card Holder *"
+            android:textColor="#000000"
+            android:textSize="17dip" />
+
+        <EditText
+            android:id="@+id/addnameoncard"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/exactwarning"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/exactwarning"
+            android:layout_below="@+id/cardtype"
+            android:layout_marginTop="38dp"
+            android:singleLine="true"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/exactwarning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/addeditcardnumber"
+            android:layout_alignStart="@+id/addeditcardnumber"
+            android:layout_below="@+id/addnameoncard"
+            android:text="exactly as shown on card" />
+
+        <TextView
+            android:id="@+id/addcardnumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/exactwarning"
+            android:text="Card Number *"
+            android:textColor="#000000"
+            android:textSize="17dip" />
+
+        <EditText
+            android:id="@+id/addeditcardnumber"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/exactwarning"
+            android:layout_toRightOf="@+id/removecard"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/expiry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/nameoncard"
+            android:layout_alignStart="@+id/nameoncard"
+            android:layout_below="@+id/addeditcardnumber"
+            android:text="Expiry Date *"
+            android:textColor="#000000"
+            android:textSize="17dip" />
+
+        <EditText
+            android:id="@+id/addexpiry"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addeditcardnumber"
+            android:layout_toRightOf="@+id/removecard"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/expiryformat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addexpiry"
+            android:layout_toEndOf="@+id/removecard"
+            android:layout_toRightOf="@+id/removecard"
+            android:text="mm-yy" />
+
+        <EditText
+            android:id="@+id/addcvv"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/expiryformat"
+            android:layout_alignStart="@+id/expiryformat"
+            android:layout_below="@+id/expiryformat"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/cvv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/addcvv"
+            android:text="CVV *"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/removeselectedcard"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/expiryformat"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/expiryformat"
+            android:text="Remove selected card" />
+
+        <TextView
+            android:id="@+id/cvvdefinition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/addcvv"
+            android:layout_alignStart="@+id/addcvv"
+            android:layout_below="@+id/addcvv"
+            android:text="The 3 or 4 digit number in the end of the card" />
+
+        <Button
+            android:id="@+id/savenewcard"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/expiryformat"
+            android:layout_alignRight="@+id/expiryformat"
+            android:layout_below="@+id/cvvdefinition"
+            android:text="Save new card" />
+
+        <Button
+            android:id="@+id/canceladdnewcard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cvvdefinition"
+            android:layout_toEndOf="@+id/addcvv"
+            android:layout_toRightOf="@+id/addcvv"
+            android:text="CANCEL" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

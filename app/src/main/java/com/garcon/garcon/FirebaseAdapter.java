@@ -54,9 +54,9 @@ public class FirebaseAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.restaurant_list_item, parent, false);
             mViewHolder = new RestaurantViewHolder(convertView);
 
-            Drawable progressStar =  mViewHolder.ratingRestaurant.getProgressDrawable();
-            DrawableCompat.setTint(progressStar, Color.RED);
-            mViewHolder.ratingRestaurant.setProgressDrawable(progressStar);
+            //Drawable progressStar =  mViewHolder.ratingRestaurant.getProgressDrawable();
+            //DrawableCompat.setTint(progressStar, Color.RED);
+            //mViewHolder.ratingRestaurant.setProgressDrawable(progressStar);
 
             convertView.setTag(mViewHolder);
         } else {
@@ -81,12 +81,12 @@ public class FirebaseAdapter extends BaseAdapter {
     private class RestaurantViewHolder {
         TextView tvName, tvPrice, tvLocation, tvHours, tvType;
         ImageView ivRestaurant;
-        RatingBar ratingRestaurant;
+        //RatingBar ratingRestaurant;
 
         public RestaurantViewHolder(View item) {
             tvName = (TextView) item.findViewById(R.id.tvName);
             tvPrice = (TextView) item.findViewById(R.id.tvPrice);
-            ratingRestaurant = (RatingBar) item.findViewById(R.id.ratingRestaurant);
+            //ratingRestaurant = (RatingBar) item.findViewById(R.id.ratingRestaurant);
             tvLocation = (TextView) item.findViewById(R.id.tvLocation);
             tvType = (TextView) item.findViewById(R.id.tvType);
             ivRestaurant = (ImageView)item.findViewById(R.id.ivRestaurant);

@@ -21,11 +21,11 @@ public class TabFragment extends Fragment{
     public static int int_items = 2;
 
     private MyAdapter myAdapter;
-
     // Code added to Change the words "Map" and "Restaurant" on bottom two tabs and put the Maps and Restaurant icons instead
+    //This is the correct code to make restaurants and map icons switched! Rest is now on the left and maps on the right
     public int[] tabIcons = {
-            R.drawable.maap,
-            R.drawable.rest
+            R.drawable.rest,
+            R.drawable.maap
     };
     public static TabFragment newInstance(String flip) {
 

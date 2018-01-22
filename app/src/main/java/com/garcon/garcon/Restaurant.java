@@ -14,6 +14,8 @@ import java.io.Serializable;
 public class Restaurant implements Serializable{
     String name="", location="", id="", price="", website="", hours="", type="", phone="";
     String lat, longt;
+    String alcohol,ambience,bikeParking, caters,delivery, dogsAllowed, outdoorSeating, parking;
+    String reservations,takeout,television,waiterService, wheelchairAccessible, wifi;
 
     public Restaurant() {
         // empty default constructor, necessary for Firebase to be able to deserialize JSON
@@ -101,4 +103,115 @@ public class Restaurant implements Serializable{
         this.phone = newvar;
     }
 
+    public String getAlcohol() {
+        return alcohol;
+    }
+
+    public void setAlcohol(String alcohol) {
+        this.alcohol = alcohol;
+    }
+
+    public String getAmbience() {
+        return ambience;
+    }
+
+    public void setAmbience(String ambience) {
+        this.ambience = ambience;
+    }
+
+    public String getBikeParking() {
+        return bikeParking;
+    }
+
+    public void setBikeParking(String bikeParking) {
+        this.bikeParking = bikeParking;
+    }
+
+    public String getCaters() {
+        return caters;
+    }
+
+    public void setCaters(String caters) {
+        this.caters = caters;
+    }
+
+    public String getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(String delivery) {
+        this.delivery = delivery;
+    }
+
+    public String getDogsAllowed() {
+        return dogsAllowed;
+    }
+
+    public void setDogsAllowed(String dogsAllowed) {
+        this.dogsAllowed = dogsAllowed;
+    }
+
+    public String getOutdoorSeating() {
+        return outdoorSeating;
+    }
+
+    public void setOutdoorSeating(String outdoorSeating) {
+        this.outdoorSeating = outdoorSeating;
+    }
+
+    public String getParking() {
+        return parking;
+    }
+
+    public void setParking(String parking) {
+        this.parking = parking;
+    }
+
+    public String getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(String reservations) {
+        this.reservations = reservations;
+    }
+
+    public String getTakeout() {
+        return takeout;
+    }
+
+    public void setTakeout(String takeout) {
+        this.takeout = takeout;
+    }
+
+    public String getTelevision() {
+        return television;
+    }
+
+    public void setTelevision(String television) {
+        this.television = television;
+    }
+
+    public String getWaiterService() {
+        return waiterService;
+    }
+
+    public void setWaiterService(String waiterService) {
+        this.waiterService = waiterService;
+    }
+
+    public String getWheelchairAccessible() {
+        return wheelchairAccessible;
+    }
+
+    public void setWheelchairAccessible(String wheelchairAccessible) {
+        this.wheelchairAccessible = wheelchairAccessible;
+    }
+
+    public String getWifi() {
+        return wifi;
+    }
+
+    public void setWifi(String wifi) {
+        this.wifi = wifi;
+    }
 }

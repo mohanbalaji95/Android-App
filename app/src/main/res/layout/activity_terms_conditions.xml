@@ -23,4 +23,13 @@
         android:layout_height="match_parent"
         android:id="@+id/containerView">
     </FrameLayout>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/FirstParagraph"
+        android:text="Here is the first paragraph of Garcon's Terms and Conditions. We will add more within time."
+        android:textSize="20sp"
+        />
+    
 </LinearLayout>

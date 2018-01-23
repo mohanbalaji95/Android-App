@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +28,9 @@ public class termsandconditions extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
     private Toolbar toolbar;
+    
+    //Create a TextView named firstParagraph
+    private TextView firstParagraph;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -36,6 +40,9 @@ public class termsandconditions extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Terms and Conditions");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
+        //This sets the textview for the first paragraph from the activity_terms_conditions.xml file
+        firstParagraph = (TextView)findViewById(R.id.FirstParagraph);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {

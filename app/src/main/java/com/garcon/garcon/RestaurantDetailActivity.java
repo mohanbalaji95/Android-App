@@ -55,7 +55,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     //from main menu activity
     public final static String LOG_TAG = RestaurantDetailActivity.class.getSimpleName();
     ListView catListView, itemsListView;
-    ImageView img;
+    ImageView img,extraInfo;
     // ScrollView sv1, sv2;
 
     private Toolbar toolbar;
@@ -103,6 +103,18 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         itemsList = new ArrayList<>();
         
         img = (ImageView) findViewById((R.id.BackArrow));
+        extraInfo = (ImageView) findViewById(R.id.extra_info);
+        extraInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RestaurantDetailActivity.this,InfoActivity.class);
+                Restaurant restaurant = (Restaurant)i.getSerializableExtra("RestaurantObject");
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("RestaurantObject",restaurant);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
         //sv1 = (ScrollView) findViewById(R.id.sv1);
         //sv2 = (ScrollView) findViewById(R.id.sv2);
 		

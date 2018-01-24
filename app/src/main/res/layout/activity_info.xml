@@ -1,241 +1,540 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    android:orientation="vertical">
-    <android.support.v7.widget.Toolbar
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:id="@+id/toolbar"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="Additional Info"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Contact Info"
-        android:textColor="#222"
-        android:textStyle="bold"
-        android:layout_marginLeft="14dp"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
 
-        />
-    <android.support.v7.widget.CardView
-        xmlns:cv="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cv"
-        cv:cardCornerRadius="8dp"
-        android:layout_margin="8dp"
-        >
-
-        <RelativeLayout
+        <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:padding="16dp"
-            >
-            <TextView
-                android:text="Phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/phone"
-                android:textColor="#222"
-                android:textStyle="bold"
+            android:background="@color/colorPrimaryDark"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="Additional Info"
+            />
 
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="16dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/phone1"
-                tools:text="9205845453453"
-                android:layout_below="@+id/phone"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/silver"
-                android:layout_below="@id/phone1"
-                android:layout_marginTop="8dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="16dp"
+            android:text="Contact Info"
+            android:textColor="#222"
+            android:textStyle="bold"
 
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/website"
-              android:text="Website"
-              android:textColor="#222"
-              android:textStyle="bold"
-              android:layout_below="@id/phone1"
-              android:layout_marginTop="16dp"
-              />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/website1"
-                tools:text="www.something.com"
-                android:layout_below="@+id/website"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/silver"
-                android:layout_below="@id/phone1"
-                android:layout_marginTop="8dp"/>
+            />
 
-
-        </RelativeLayout>
-
-
-    </android.support.v7.widget.CardView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Operating Hours"
-        android:textColor="#222"
-        android:textStyle="bold"
-        android:layout_marginLeft="14dp"
-
-        />
-    <android.support.v7.widget.CardView
-        xmlns:cv1="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cv1"
-        cv1:cardCornerRadius="8dp"
-        android:layout_margin="8dp"
-        >
-        <RelativeLayout
+        <android.support.v7.widget.CardView
+            xmlns:cv="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:layout_margin="8dp"
+            cv:cardCornerRadius="8dp"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/hours"
-                android:text="Hours"
-                android:textColor="#222"
-                android:textStyle="bold"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="16dp"
-                />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/hours1"
-                tools:text="10:00am - 11:00pm"
-                android:layout_below="@+id/hours"
-                />
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:padding="16dp"
+                >
 
-    <android.support.v7.widget.CardView
-        xmlns:cv1="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cv1"
-        cv1:cardCornerRadius="8dp"
-        android:layout_margin="8dp"
-       >
-        <RelativeLayout
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="16dp"
+
+                    android:text="Phone"
+                    android:textColor="#222"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/phone_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/phone"
+                    tools:text="9205845453453"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/phone_number"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/website"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/phone_number"
+                    android:layout_marginTop="16dp"
+                    android:text="Website"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/website_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/website"
+                    tools:text="www.something.com"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/phone_number"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="8dp"
+            android:text="Operating Hours"
+            android:textColor="#222"
+            android:textStyle="bold"
+
+            />
+
+        <android.support.v7.widget.CardView
+            xmlns:cv="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cvHours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:layout_margin="8dp"
+            cv:cardCornerRadius="8dp"
             >
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/reservation"
-                android:text="Takes Reservations"
-                android:textColor="#222"
-                android:textStyle="bold"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="16dp"
-
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/reservation1"
-                tools:text="Yes"
-                android:layout_below="@+id/reservation"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/silver"
-                android:layout_below="@id/reservation1"
-                android:layout_marginTop="8dp"/>
-
-
-            <TextView
-                android:text="Delivery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/delivery"
-                android:textColor="#222"
-                android:textStyle="bold"
-                android:layout_below="@id/reservation1"
-                android:layout_marginTop="16dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/delivery1"
-                tools:text="Yes"
-                android:layout_below="@+id/delivery"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/silver"
-                android:layout_below="@id/delivery1"
-                android:layout_marginTop="8dp"/>
-
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/takeout"
-                android:text="Take-Out"
-                android:textColor="#222"
-                android:textStyle="bold"
-                android:layout_below="@id/delivery1"
-                android:layout_marginTop="16dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/takeout1"
-                tools:text="Yes"
-                android:layout_below="@+id/takeout"
-                />
-            <View
+                android:padding="16dp"
+                >
+
+                <TextView
+                    android:id="@+id/hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="16dp"
+                    android:text="Hours"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/hours1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hours"
+                    tools:text="10:00am - 11:00pm"
+                    />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:cv="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cvExtraInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            cv:cardCornerRadius="8dp"
+            >
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/silver"
-                android:layout_below="@id/takeout1"
-                android:layout_marginTop="8dp"/>
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                >
 
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/reservation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="16dp"
+                    android:text="Takes Reservations"
+                    android:textColor="#222"
+                    android:textStyle="bold"
 
-    </android.support.v7.widget.CardView>
 
-</LinearLayout>
+                    />
+
+                <TextView
+                    android:id="@+id/reservation1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/reservation"
+                    tools:text="Yes"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/reservation1"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+
+                <TextView
+                    android:id="@+id/delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/reservation1"
+                    android:layout_marginTop="16dp"
+                    android:text="Delivery"
+                    android:textColor="#222"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/delivery1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/delivery"
+                    tools:text="Yes"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/delivery1"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/takeout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delivery1"
+                    android:layout_marginTop="16dp"
+                    android:text="Take-Out"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/tvTakeoutStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/takeout"
+                    tools:text="Yes"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tvTakeoutStatus"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/label_alcohol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvTakeoutStatus"
+                    android:layout_marginTop="16dp"
+                    android:text="Alcohol"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/alcoholStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_alcohol"
+                    tools:text="Yes"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/alcoholStatus"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/label_ambience"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/alcoholStatus"
+                    android:layout_marginTop="16dp"
+                    android:text="Ambience"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/ambience"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_ambience"
+                    tools:text="Casual"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/ambience"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/label_bike_parking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ambience"
+                    android:layout_marginTop="16dp"
+                    android:text="Bike Parking"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/bike_parking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_bike_parking"
+                    tools:text="Yes"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/bike_parking"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/label_caters"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/bike_parking"
+                    android:layout_marginTop="16dp"
+                    android:text="Caters"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/caters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_caters"
+                    tools:text="Yes"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/caters"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/label_dogs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/caters"
+                    android:layout_marginTop="16dp"
+                    android:text="Dogs Allowed"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/dogs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_dogs"
+                    tools:text="Yes"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/dogs"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/label_outdoor_seating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dogs"
+                    android:layout_marginTop="16dp"
+                    android:text="Outdoor Seating"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/outdoor_seating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_outdoor_seating"
+                    tools:text="Yes"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/outdoor_seating"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/label_parking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/outdoor_seating"
+                    android:layout_marginTop="16dp"
+                    android:text="Parking"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/parking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_parking"
+                    tools:text="Garage, Street"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/parking"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/label_television"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/parking"
+                    android:layout_marginTop="16dp"
+                    android:text="Television"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/television"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_television"
+                    tools:text="Yes"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/television"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/label_waiter_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/television"
+                    android:layout_marginTop="16dp"
+                    android:text="Waiter Service"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/waiter_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_waiter_service"
+                    tools:text="Yes"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/waiter_service"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/label_wheelchair"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/waiter_service"
+                    android:layout_marginTop="16dp"
+                    android:text="Wheelchair Accessible"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/wheelchair_accessible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_wheelchair"
+                    tools:text="Yes"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/wheelchair_accessible"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/silver"/>
+
+                <TextView
+                    android:id="@+id/label_wifi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/wheelchair_accessible"
+                    android:layout_marginTop="16dp"
+                    android:text="Wifi"
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/wifi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_wifi"
+                    tools:text="Yes"
+                    />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

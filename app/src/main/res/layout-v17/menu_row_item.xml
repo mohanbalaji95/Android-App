@@ -28,5 +28,15 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:textSize="16sp"
-    />
+        />
+    <Button android:id="@+id/addButton"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:textColor="@color/red"
+        android:text="ADD TO CART"
+        />
+
 </LinearLayout>
+

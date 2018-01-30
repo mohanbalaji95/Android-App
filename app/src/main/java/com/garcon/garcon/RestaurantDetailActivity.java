@@ -28,6 +28,7 @@ import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import us.monoid.json.JSONArray;
@@ -38,7 +39,8 @@ import us.monoid.web.Resty;
 
 
 public class RestaurantDetailActivity extends AppCompatActivity {
-    TextView tvName, tvPrice, tvLocation, tvHours, tvType;
+    private static final String TAG = RestaurantDetailActivity.class.getSimpleName();
+    TextView tvName, tvPrice, tvLocation, tvHours, tvType,tvHoursAffected;
 
     Button btn_Menu;
     Button btn_Call;
@@ -208,6 +210,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         tvLocation = (TextView) findViewById(R.id.tvLocation);
         tvHours = (TextView) findViewById(R.id.tvHours);
         tvType = (TextView) findViewById(R.id.tvType);
+        tvHoursAffected = (TextView) findViewById(R.id.tvHoursAffected);
 
 
 
@@ -283,7 +286,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         String data = hours;
         // String header = "Hours:Today ";
         String[] weekday = data.split("[;]");
-        String header = "Hours:Today ";
+        String header = "Hours: ";
         String Monday = weekday[0].substring(8);
         String Tuesday = weekday[1].substring(9);
         String Wednesday = weekday[2].substring(11);
@@ -294,6 +297,16 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         //String finalhour = header + newFriday;
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
+        int month = calendar.get(Calendar.MONTH);
+        int date = calendar.get(Calendar.DAY_OF_MONTH);
+        String key = month + "-" + date;
+        Log.d(TAG,"Today's day key "+key);
+        HashMap<String,String> holidayCalendar = HolidayCalendarSingleton.getInstance().getHolidayCalendar();
+        if(holidayCalendar!=null && holidayCalendar.size()>0){
+            if(holidayCalendar.containsKey(key)){
+                tvHoursAffected.setVisibility(View.VISIBLE);
+            }
+        }
 
 
         switch (day) {

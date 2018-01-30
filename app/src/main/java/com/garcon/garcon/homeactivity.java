@@ -28,6 +28,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class homeactivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, SecondFragment.RestaurantClickedListener {
     private static final String TAG = homeactivity.class.getName();
@@ -41,6 +49,8 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
     private MenuItem mapItem;
     private MenuItem listItem;
     private MenuItem payItem;
+
+    private FirebaseDatabase mDatabase;
 
 
     private TabFragment tabFragment;
@@ -58,6 +68,8 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        mDatabase = FirebaseDatabase.getInstance();
+
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -76,7 +88,7 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
                 }
             }
         };
-
+        getHolidayCalendar();
 
         /**
          *Setup the DrawerLayout and NavigationView
@@ -272,5 +284,27 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    private void getHolidayCalendar(){
+
+        DatabaseReference hoidayCalendarRef = mDatabase.getReference().child("holidayCalendar");
+
+        hoidayCalendarRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                HashMap<String,String> map = (HashMap<String,String>) dataSnapshot.getValue();
+                Log.d(TAG,"Holiday Calendar Size = "+ map.size());
+                for(String key: map.keySet()){
+                    Log.d(TAG,"Holiday "+ map.get(key));
+                }
+                HolidayCalendarSingleton.getInstance().setHolidayCalendar(map);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

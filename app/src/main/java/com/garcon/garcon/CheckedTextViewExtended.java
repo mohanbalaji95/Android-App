@@ -7,6 +7,7 @@ import android.widget.CheckedTextView;
 
 /**
  * Created by raja on 7/29/2016.
+ * A custom designed TextView
  */
 
 @TargetApi(21)

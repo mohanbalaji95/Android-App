@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 /**
  * Created by raja on 7/28/2016.
+ * A custom designed EditText
  */
 @TargetApi(21)
 public class CheckedEditText extends EditText implements Checkable {

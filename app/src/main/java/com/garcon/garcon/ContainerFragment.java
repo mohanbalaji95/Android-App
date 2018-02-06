@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * Container Fragment to display map and restaurant list view.
+ */
 public class ContainerFragment extends Fragment {
 
     public ContainerFragment() {

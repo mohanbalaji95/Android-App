@@ -44,6 +44,14 @@ import java.util.List;
 import java.util.Map;
 
 @TargetApi(21)
+/**
+ * This activity places user's order to Restaurant. Below are the steps.
+ *
+ * 1. Open a ticket with Omnivore and obtain the ticket number.
+ *      i. fetch and display open tables in dropdown
+ *     ii. fetch and display revenue centers
+ * 2. Add the user's items to the Ticket Created.
+ */
 public class MainViewCartActivity extends AppCompatActivity {
 
     static final String LOG_TAG = MainViewCartActivity.class.getSimpleName();
@@ -122,6 +130,8 @@ public class MainViewCartActivity extends AppCompatActivity {
     public String getKey(){
         return ApiKey;
     }
+
+    //async task to fetch revenue centers at the location.
     class FetchRevenueCenters extends AsyncTask<Void, Void, Map<String, String>>{
 
 
@@ -187,6 +197,8 @@ public class MainViewCartActivity extends AppCompatActivity {
             restaurantAreaSpinner.setAdapter(restaurantAreaAdapter);
         }
     }
+
+    //async task to fetch available table.
     class fetchTables extends AsyncTask<Void, Void, ArrayList<Table>> {
 
         @Override
@@ -254,7 +266,7 @@ public class MainViewCartActivity extends AppCompatActivity {
             setupUI();
         }
     }
-
+    //async task to add items to the omnivore ticket ID.
     class SendItems extends AsyncTask<Void, Void, JSONObject> {
 
         @Override
@@ -374,7 +386,7 @@ public class MainViewCartActivity extends AppCompatActivity {
             //listOfItems.clear();
         }
     }
-
+    //async task to open a ticket at omnivore and save the ticket number.
     class OpenTicket extends AsyncTask<String, Void, JSONObject> {
 
 
@@ -603,6 +615,10 @@ public class MainViewCartActivity extends AppCompatActivity {
 
     }
 
+    /* This method executes the Send items async task to add items to the open ticket.
+       if the ticket is not open due to tables being unavailable the appropriate message is displayed.
+       otherwise the open ticket async task is called to open a ticket with omnivore.
+    */
     public void placeOrder(View view){
         Log.i(LOG_TAG,"place order");
 

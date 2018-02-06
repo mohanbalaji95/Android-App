@@ -34,7 +34,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * This activity places user's order to Restaurant. Below are the steps.
+ *
+ * 1. Open a ticket with Omnivore and obtain the ticket number.
+ * 2. Add the user's items to the Ticket Created.
+ */
 public class CheckoutActivity extends AppCompatActivity {
     private static final String TAG = CheckoutActivity.class.getName();
     private DatabaseReference mDatabase;

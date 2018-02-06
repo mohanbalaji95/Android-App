@@ -29,6 +29,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 //When you checkout and pay, and want to add a card at that moment, this is what this activity does
+
+/**
+ * Activity to add cards at checkout. This code is no longer being used.
+ * Cards storage would be moved to Spreedly
+ */
 public class addcardatcheckout extends Activity {
     Button savenewcard;
     EditText addcardholder;

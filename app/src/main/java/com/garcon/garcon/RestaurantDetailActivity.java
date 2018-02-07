@@ -37,6 +37,11 @@ import us.monoid.web.Resty;
 
 //import android.view.MenuItem;
 
+/**
+ * Displayed when user clicks on a restaurant.
+ * Displays basic restaurant details with option to view additional info
+ * Also fetches and displays the menu information from Omnivore
+ */
 
 public class RestaurantDetailActivity extends AppCompatActivity {
     private static final String TAG = RestaurantDetailActivity.class.getSimpleName();
@@ -281,7 +286,8 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 
         });
     }
-
+    //method to create string to represent hours for the day.
+    // modified to account for national holidays.
     public String parseHours(String hours) {
         String data = hours;
         // String header = "Hours:Today ";
@@ -331,6 +337,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         return null;
 
     }
+    //logic to store favourite restaurants.
     public void addToFav(View view){
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
         String value = sharedPreferences.getString("fav_string",null);

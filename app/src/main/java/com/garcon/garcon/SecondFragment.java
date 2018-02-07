@@ -18,6 +18,9 @@ import com.garcon.Constants.Constants;
 
 import java.util.ArrayList;
 
+/**
+ * Connects to Firebase to retrieve the list of partner restaurants and display them in a list.
+ */
 public class SecondFragment extends Fragment {
 
 

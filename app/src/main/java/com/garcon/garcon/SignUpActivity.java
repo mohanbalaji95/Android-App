@@ -32,6 +32,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Activity for requesting details from the user to signup.
+ * The phone number and passwords are validated.
+ */
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText editTextEmail;

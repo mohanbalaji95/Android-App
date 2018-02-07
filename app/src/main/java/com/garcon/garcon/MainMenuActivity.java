@@ -22,7 +22,9 @@ import us.monoid.json.JSONArray;
 import us.monoid.json.JSONObject;
 import us.monoid.web.Resty;
 
-
+/**
+ * Not used any more. code ported to RestaurantDetailActivity.
+ */
 
 public class MainMenuActivity extends AppCompatActivity {
 

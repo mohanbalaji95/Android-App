@@ -20,6 +20,10 @@ import java.util.List;
 import java.util.ArrayList;
 import static android.app.PendingIntent.getActivity;
 import static android.content.Intent.getIntent;
+/**
+ * An adapter for list of the menu items.
+ * It is being used on RestaurantDetailActivity.
+ */
 public class MenuItemAdapter extends BaseAdapter implements ListAdapter {
 
     public final static String LOG_TAG = MenuItemAdapter.class.getSimpleName();

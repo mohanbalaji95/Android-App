@@ -15,7 +15,9 @@ import java.util.ArrayList;
 /**
  * Created by raja on 7/27/2016.
  */
-
+/**
+ * An adapter for various modifiers of the menu item categories.
+ */
 public class ModifierAdapter extends BaseAdapter implements ListAdapter {
 
     public final static String LOG_TAG = ModifierAdapter.class.getSimpleName();

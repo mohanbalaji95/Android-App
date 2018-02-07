@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 /**
  * Created by raja on 7/17/2016.
+ * Singleton which maintenance reference to the user's cart.
+ *
+ * Supports methods to add items, clear list and return the list of items.
  */
 
 public class OrderSingleton {

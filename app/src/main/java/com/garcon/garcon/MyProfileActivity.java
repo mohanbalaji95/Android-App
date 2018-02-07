@@ -45,6 +45,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Bharathi Raja on 7/29/2017.
+ * Shows user's profile.
  */
 
 public class MyProfileActivity extends Fragment{

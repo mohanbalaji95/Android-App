@@ -18,6 +18,7 @@ import android.widget.ImageView;
 
 /**
  * Created by akshaymathur on 8/15/16.
+ * custom image view to display rounded images
  */
 public class RoundedImageView extends ImageView {
 

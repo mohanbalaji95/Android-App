@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 /**
  * Created by siddhiparekh11 on 8/18/17.
+ * Activity to display order details.
  */
 
 public class OrderDetail extends AppCompatActivity {

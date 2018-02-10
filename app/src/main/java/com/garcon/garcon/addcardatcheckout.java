@@ -32,9 +32,7 @@ import java.util.regex.Pattern;
 
 /**
  * Activity to add cards at checkout. This code is no longer being used.
- * Cards storage would be moved to Spreedly
- *
- * 
+ * Cards storage would be moved to Spreedly.
  */
 public class addcardatcheckout extends Activity {
     Button savenewcard;

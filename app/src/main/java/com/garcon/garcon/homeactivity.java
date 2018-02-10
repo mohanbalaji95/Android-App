@@ -37,6 +37,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This activity does the following:
+ *  a. it hosts the container fragment to display the two tabs: list and map view of restaurants.
+ *  b. Fetches and stores the holiday calendar into HolidayCalendarSingleton from Firebase database.
+ *  c. Sets up the slide in menu on the left.
+ *  d. Inflates the Action Bar(toolbar) menu.
+ */
 public class homeactivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, SecondFragment.RestaurantClickedListener {
     private static final String TAG = homeactivity.class.getName();
     DrawerLayout myDrawerLayout;

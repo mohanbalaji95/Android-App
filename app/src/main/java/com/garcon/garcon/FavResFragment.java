@@ -28,6 +28,7 @@ import java.util.Iterator;
 
 /**
  * Created by siddhiparekh11 on 7/24/17.
+ * This fragment displays user's favourite restaurants with support for swipe to dismiss.
  */
 
 public class FavResFragment extends Fragment {

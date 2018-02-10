@@ -20,7 +20,9 @@ import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Not used.
+ */
 public class NewRestDetailFragment extends Fragment {
 
     TextView tvName, tvPrice, tvLocation, tvHours, tvType;

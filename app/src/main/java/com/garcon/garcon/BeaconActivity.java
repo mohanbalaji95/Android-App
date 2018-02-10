@@ -24,7 +24,10 @@ import org.altbeacon.beacon.Region;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
+/**
+ * iBeacon implementation.
+ * No longer used.
+ */
 public class BeaconActivity extends AppCompatActivity implements BeaconConsumer{
 
     private BeaconManager beaconManager;

@@ -12,6 +12,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ * An adapter for list of the menu item categories.
+ * It is being used on RestaurantDetailActivity.
+ */
 public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
 
     private List<Category> list;

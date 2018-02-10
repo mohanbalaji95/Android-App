@@ -17,6 +17,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activity to display extra information about a restaurant.
+ * The activity pulls the data about the restaurant from Firebase.
+ */
 public class InfoActivity extends AppCompatActivity {
 
     TextView tvPhone,tvWebsite,tvDogsAllowed,tvBikeParking,tvWheelChairAccessible,tvOutdoorSeating;

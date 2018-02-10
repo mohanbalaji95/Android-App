@@ -2,6 +2,8 @@ package com.garcon.garcon;
 
 /**
  * Created by Mayank on 6/27/2016.
+ *
+ * Model class to hold a Restaurant location details.
  */
 
 import android.os.Parcel;

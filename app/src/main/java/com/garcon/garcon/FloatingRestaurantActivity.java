@@ -26,6 +26,7 @@ import java.util.List;
 
 /**
  * Created by Mayank Tiwari on 7/20/2016.
+ * no longer used.
  */
 public class FloatingRestaurantActivity extends Activity {
 

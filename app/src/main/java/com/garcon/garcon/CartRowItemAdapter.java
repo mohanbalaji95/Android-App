@@ -19,7 +19,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.*;
-
+/**
+ *  Adapter class to display items in the user's cart.
+ */
 public class CartRowItemAdapter extends BaseAdapter implements ListAdapter {
 
     public final static String LOG_TAG = CartRowItemAdapter.class.getSimpleName();

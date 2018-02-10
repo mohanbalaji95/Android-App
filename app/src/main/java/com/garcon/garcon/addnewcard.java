@@ -28,6 +28,10 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Service to store card details.
+ * No longer used.
+ */
 public class addnewcard extends Service {
 
     public addnewcard() {

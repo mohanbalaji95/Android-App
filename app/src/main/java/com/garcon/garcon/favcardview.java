@@ -2,6 +2,7 @@ package com.garcon.garcon;
 
 /**
  * Created by kushaldileep on 6/21/2016.
+ * Model class to display the favourite item
  */
 public class favcardview {
 String name;

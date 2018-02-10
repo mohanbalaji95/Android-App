@@ -28,6 +28,10 @@ import java.util.List;
 
 /**
  * Created by raja on 7/6/2016.
+ * Activity displays details about the item selected by the user and allows the user to
+ * select the quantity to be ordered.
+ *
+ * Also the user can select customizations possibles for the item.
  */
 
 public class MainItemActivity extends Activity {

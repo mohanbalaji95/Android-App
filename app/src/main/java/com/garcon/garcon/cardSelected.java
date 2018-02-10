@@ -20,7 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.javacc.jjtree.Main;
-
+/**
+ * Related to store and retrieve credit cards
+ * No longer used.
+ */
 public class cardSelected extends Service {
     public cardSelected() {
     }

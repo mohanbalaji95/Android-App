@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 /**
  * Created by raja on 7/6/2016.
+ * Custom non scrollable list view
  */
 public class NonScrollableListView extends ListView {
 

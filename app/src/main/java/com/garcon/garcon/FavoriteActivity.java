@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by siddhiparekh11 on 7/24/17.
+ * Activity which displays the favourite items of the user.
  */
 
 public class FavoriteActivity extends AppCompatActivity implements SecondFragment.RestaurantClickedListener{

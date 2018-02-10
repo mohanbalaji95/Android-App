@@ -27,6 +27,10 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Service to store cards.
+ * No longer being used.
+ */
 public class addnewcardatcheckout extends Service {
 
     public addnewcardatcheckout() {

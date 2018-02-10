@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.List;
 /**
  * Created by kushaldileep on 6/21/2016.
+ * Adapter to display User's favourite restaurants
  */
 public class favcardadapter extends RecyclerView.Adapter<favcardadapter.favcardadapterholder> {
     private Context context;

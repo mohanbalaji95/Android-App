@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Mayank on 7/6/2016.
+ * This adapter displays the list of restaurants with few details on one of the tabs on home screen.
  */
 public class FirebaseAdapter extends BaseAdapter {
     ArrayList<Restaurant> myList = new ArrayList<Restaurant>();

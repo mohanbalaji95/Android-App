@@ -2,6 +2,7 @@ package com.garcon.garcon;
 
 /**
  * Created by raja on 7/21/2016.
+ * Model class for food item Category
  */
 public class Category {
 

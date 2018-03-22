@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView2"
-                android:layout_alignTop="@+id/person_photo"
+                
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/la_vic" />
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/restaurant_name"
-                android:layout_toRightOf="@+id/restaurant_name"
+                
                 android:layout_alignParentTop="true"
                 android:textSize="30dp"
                 android:text="LA VIC"/>

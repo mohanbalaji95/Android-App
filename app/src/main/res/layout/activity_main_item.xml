@@ -14,30 +14,31 @@
         android:layout_weight="1">
 
         <RelativeLayout android:id="@+id/foodInformation"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/red"
-                android:weightSum="1">
+            android:weightSum="1">
 
-                <ImageView android:id="@+id/foodImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds= "true"
-                    android:src="@drawable/salad"
-                    />
-                <TextView android:id="@+id/item_name"
+            <ImageView android:id="@+id/foodImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds= "true"
+                android:src="@drawable/salad"
+                />
+            <TextView android:id="@+id/item_name"
                 android:textColor="@color/white"
-                    android:background="@color/red"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/foodImage"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:padding="@dimen/item_padding"
-                    android:layout_margin="12dp"
-                    android:textSize="@dimen/title_item_page"/>
+                android:background="@color/red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/foodImage"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:padding="@dimen/item_padding"
+                android:layout_margin="12dp"
+                android:textSize="@dimen/title_item_page"/>
             <ImageView
+                android:id="@+id/tvFav"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -46,49 +47,49 @@
                 android:layout_gravity="center_horizontal"
                 android:onClick="addToFav"
                 android:src="@drawable/like" />
-                <TextView android:id="@+id/item_price"
+            <TextView android:id="@+id/item_price"
                 android:textColor="@color/white"
-                    android:background="@color/red"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/foodImage"
-                    android:padding="@dimen/item_padding"
-                    android:layout_marginLeft="10dp"
-                    android:layout_margin="12dp"
-                    android:textSize="@dimen/title_item_page"
-                    android:layout_alignParentRight="true" />
-                <TextView android:id="@+id/item_description"
-                    android:background="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:text="Petite prawns, Andouille sausage, mushrooms, scallions, peppers and Cajun cream sauce served over blackened catfish"
-                    android:layout_below="@+id/item_name"
-                    android:layout_margin="12dp"
-                    android:padding="@dimen/item_padding"
+                android:background="@color/red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/foodImage"
+                android:padding="@dimen/item_padding"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="12dp"
+                android:textSize="@dimen/title_item_page"
+                android:layout_alignParentRight="true" />
+            <TextView android:id="@+id/item_description"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Petite prawns, Andouille sausage, mushrooms, scallions, peppers and Cajun cream sauce served over blackened catfish"
+                android:layout_below="@+id/item_name"
+                android:layout_margin="12dp"
+                android:padding="@dimen/item_padding"
                 android:textColor="@color/white"
-                    />
-                <TextView android:id="@+id/specialInstructions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/silver"
-                    android:layout_margin="12dp"
-                    android:textSize="16sp"
+                />
+            <TextView android:id="@+id/specialInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/silver"
+                android:layout_margin="12dp"
+                android:textSize="16sp"
                 android:textColor="@color/white"
-                    android:text="SPECIAL INSTRUCTIONS"
-                    android:layout_below="@+id/item_description"
-                    />
-                <EditText android:id="@+id/userText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
-                    android:textSize="16dp"
-                    android:hint="E.g. Dressing on side or no onion no garlic"
+                android:text="SPECIAL INSTRUCTIONS"
+                android:layout_below="@+id/item_description"
+                />
+            <EditText android:id="@+id/userText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:textSize="16dp"
+                android:hint="E.g. Dressing on side or no onion no garlic"
                 android:textColorHint="@color/white"
                 android:layout_below="@+id/specialInstructions"
-                    android:textCursorDrawable="@null"
+                android:textCursorDrawable="@null"
                 android:textColor="@color/white"
-                    />
+                />
         </RelativeLayout>
 
     </ScrollView>
@@ -116,7 +117,8 @@
             android:padding="20dp"
             android:background="@color/white"
             android:textColor="@color/red"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            />
         <Button android:id="@+id/incNumOrderedButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -138,3 +140,139 @@
     </LinearLayout>
 
 </LinearLayout>
+
+
+    <!-- <?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@color/red"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ScrollView android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:fillViewport="true"
+            android:layout_height="0dip"
+            android:layout_weight="1">
+            <RelativeLayout
+                android:id="@+id/foodInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:weightSum="1">
+                <ImageView
+                    android:id="@+id/foodImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/salad" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="38dp"
+                    android:onClick="addToFav"
+                    android:src="@drawable/like" />
+                <TextView
+                    android:id="@+id/item_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/foodImage"
+                    android:layout_toLeftOf="@+id/imageView"
+                    android:layout_toStartOf="@+id/imageView"
+                    android:background="@color/white"
+                    android:padding="@dimen/item_padding"
+                    android:text="Petite prawns, Andouille sausage, mushrooms, scallions, peppers and Cajun cream sauce served over blackened catfish"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/specialInstructions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/item_description"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:text="SPECIAL INSTRUCTIONS"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/userText"
+                    style="@android:style/Widget.AutoCompleteTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/specialInstructions"
+                    android:hint="E.g.Dressing on side or no onion no garlic"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="10dp"
+                    android:selectAllOnFocus="false"
+                    android:singleLine="false"
+                    android:style="@android:style/Widget.Material.AutoCompleteTextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColorHint="@color/black"
+                    android:textCursorDrawable="@null"
+                    android:visibility="visible" />
+            </RelativeLayout>
+        </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+            android:background="@color/white">
+            <Button
+                android:id="@+id/decNumOrderedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="@color/red"
+                android:text="-"
+                android:textColor="@color/white"
+                android:textSize="40dp" />
+            <TextView
+                android:id="@+id/numItems"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="@color/red"
+                android:gravity="center"
+                android:padding="20dp"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+            <Button
+                android:id="@+id/incNumOrderedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="@color/red"
+                android:text="+"
+                android:textColor="@color/white"
+                android:textSize="40dp" />
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="@drawable/cart72x"
+                android:backgroundTint="@color/red"
+                android:text=""
+                android:textColor="@color/red" />
+        </LinearLayout>
+    </LinearLayout>
+
+    -->

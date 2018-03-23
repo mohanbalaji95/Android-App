@@ -67,7 +67,7 @@ public class MainItemActivity extends Activity {
         setUpButtons();
         setUpSizes();
         //setUpFoodImage();
-        setUpFoodInformation(item);
+        //setUpFoodInformation(item);
 
         RelativeLayout description = (RelativeLayout) findViewById(R.id.foodInformation);
         //Log.i("clash","num mod groups: "+item.getModifierGroups().size());
@@ -189,8 +189,8 @@ public class MainItemActivity extends Activity {
         int height = dm.heightPixels;
         //getWindow().setLayout((int) (width * 0.875), (int) (height * 0.875));
 
-        TextView itemName = (TextView) findViewById(R.id.item_name);
-        itemName.setWidth((int) (0.5 * width));
+        /*TextView itemName = (TextView) findViewById(R.id.item_name);
+        itemName.setWidth((int) (0.5 * width));*/
 
         /*ImageView foodImage = (ImageView) findViewById(R.id.foodImage);
         foodImage.setMaxHeight((int) (0.4 * height)); */
@@ -202,13 +202,13 @@ public class MainItemActivity extends Activity {
         foodPic.setScaleType(ImageView.ScaleType.FIT_XY);
     } */
 
-    public void setUpFoodInformation(MenuItem item) {
+    /*public void setUpFoodInformation(MenuItem item) {
         TextView foodPic = (TextView) findViewById(R.id.item_name);
         foodPic.setText(item.getName());
         locationName=item.getName();
         TextView item_price = (TextView) findViewById(R.id.item_price);
         item_price.setText(String.valueOf(item.getPrice()));
-    }
+    }*/
     public void addToFav(View view){
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
         String value = sharedPreferences.getString("favmenu3_string",null);

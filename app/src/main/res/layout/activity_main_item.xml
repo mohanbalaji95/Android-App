@@ -1,148 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/red"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <ScrollView android:id="@+id/scrollview"
-        android:layout_width="match_parent"
-        android:fillViewport="true"
-        android:layout_height="0dip"
-        android:layout_weight="1">
-
-        <RelativeLayout android:id="@+id/foodInformation"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/red"
-            android:weightSum="1">
-
-            <ImageView android:id="@+id/foodImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds= "true"
-                android:src="@drawable/salad"
-                />
-            <TextView android:id="@+id/item_name"
-                android:textColor="@color/white"
-                android:background="@color/red"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/foodImage"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:padding="@dimen/item_padding"
-                android:layout_margin="12dp"
-                android:textSize="@dimen/title_item_page"/>
-            <ImageView
-                android:id="@+id/tvFav"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="80dp"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center_horizontal"
-                android:onClick="addToFav"
-                android:src="@drawable/like" />
-            <TextView android:id="@+id/item_price"
-                android:textColor="@color/white"
-                android:background="@color/red"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/foodImage"
-                android:padding="@dimen/item_padding"
-                android:layout_marginLeft="10dp"
-                android:layout_margin="12dp"
-                android:textSize="@dimen/title_item_page"
-                android:layout_alignParentRight="true" />
-            <TextView android:id="@+id/item_description"
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Petite prawns, Andouille sausage, mushrooms, scallions, peppers and Cajun cream sauce served over blackened catfish"
-                android:layout_below="@+id/item_name"
-                android:layout_margin="12dp"
-                android:padding="@dimen/item_padding"
-                android:textColor="@color/white"
-                />
-            <TextView android:id="@+id/specialInstructions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/silver"
-                android:layout_margin="12dp"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:text="SPECIAL INSTRUCTIONS"
-                android:layout_below="@+id/item_description"
-                />
-            <EditText android:id="@+id/userText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:textSize="16dp"
-                android:hint="E.g. Dressing on side or no onion no garlic"
-                android:textColorHint="@color/white"
-                android:layout_below="@+id/specialInstructions"
-                android:textCursorDrawable="@null"
-                android:textColor="@color/white"
-                />
-        </RelativeLayout>
-
-    </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="0">
-
-        <Button android:id="@+id/decNumOrderedButton"
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:textSize="40dp"
-            android:textColor="@color/red"
-            android:text="-"
-            />
-        <TextView android:id="@+id/numItems"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:padding="20dp"
-            android:background="@color/white"
-            android:textColor="@color/red"
-            android:textSize="20dp"
-            />
-        <Button android:id="@+id/incNumOrderedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:background="@color/white"
-            android:textColor="@color/red"
-            android:textSize="40dp"
-            android:text="+"
-            />
-        <Button android:id="@+id/addButton"
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:textColor="@color/red"
-            android:text="ADD TO CART"
-            />
-
-    </LinearLayout>
-
-</LinearLayout>
-
-
-    <!-- <?xml version="1.0" encoding="utf-8"?>
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:background="@color/red"
@@ -222,7 +78,7 @@
                     android:paddingTop="10dp"
                     android:selectAllOnFocus="false"
                     android:singleLine="false"
-                    android:style="@android:style/Widget.Material.AutoCompleteTextView"
+
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColorHint="@color/black"
                     android:textCursorDrawable="@null"
@@ -275,4 +131,150 @@
         </LinearLayout>
     </LinearLayout>
 
-    -->
+
+
+
+<!--
+    <?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:background="@color/red"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+
+<ScrollView android:id="@+id/scrollview"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="0dip"
+    android:layout_weight="1">
+
+    <RelativeLayout android:id="@+id/foodInformation"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/red"
+        android:weightSum="1">
+
+        <ImageView android:id="@+id/foodImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds= "true"
+            android:src="@drawable/salad"
+            />
+        <TextView android:id="@+id/item_name"
+            android:textColor="@color/white"
+            android:background="@color/red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/foodImage"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:padding="@dimen/item_padding"
+            android:layout_margin="12dp"
+            android:textSize="@dimen/title_item_page"/>
+        <ImageView
+            android:id="@+id/tvFav"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_horizontal"
+            android:onClick="addToFav"
+            android:src="@drawable/like" />
+        <TextView android:id="@+id/item_price"
+            android:textColor="@color/white"
+            android:background="@color/red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/foodImage"
+            android:padding="@dimen/item_padding"
+            android:layout_marginLeft="10dp"
+            android:layout_margin="12dp"
+            android:textSize="@dimen/title_item_page"
+            android:layout_alignParentRight="true" />
+        <TextView android:id="@+id/item_description"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Petite prawns, Andouille sausage, mushrooms, scallions, peppers and Cajun cream sauce served over blackened catfish"
+            android:layout_below="@+id/item_name"
+            android:layout_margin="12dp"
+            android:padding="@dimen/item_padding"
+            android:textColor="@color/white"
+            />
+        <TextView android:id="@+id/specialInstructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/silver"
+            android:layout_margin="12dp"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="SPECIAL INSTRUCTIONS"
+            android:layout_below="@+id/item_description"
+            />
+        <EditText android:id="@+id/userText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:textSize="16dp"
+            android:hint="E.g. Dressing on side or no onion no garlic"
+            android:textColorHint="@color/white"
+            android:layout_below="@+id/specialInstructions"
+            android:textCursorDrawable="@null"
+            android:textColor="@color/white"
+            />
+    </RelativeLayout>
+
+</ScrollView>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_weight="0">
+
+    <Button android:id="@+id/decNumOrderedButton"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:textSize="40dp"
+        android:textColor="@color/red"
+        android:text="-"
+        />
+    <TextView android:id="@+id/numItems"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:background="@color/white"
+        android:textColor="@color/red"
+        android:textSize="20dp"
+        />
+    <Button android:id="@+id/incNumOrderedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:textColor="@color/red"
+        android:textSize="40dp"
+        android:text="+"
+        />
+    <Button android:id="@+id/addButton"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:textColor="@color/red"
+        android:text="ADD TO CART"
+        />
+
+</LinearLayout>
+
+</LinearLayout>
+-->

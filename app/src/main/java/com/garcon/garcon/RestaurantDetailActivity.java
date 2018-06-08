@@ -99,7 +99,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 
             GsonBuilder gsonb = new GsonBuilder();
             Gson gson = gsonb.create();
-            FavRestaurents favcardarray[] = gson.fromJson(value, FavRestaurents[].class);
+            FavRestaurants favcardarray[] = gson.fromJson(value, FavRestaurants[].class);
             int found=0;
             for(int i=0;i<favcardarray.length;i++)
             {
@@ -114,12 +114,12 @@ public class RestaurantDetailActivity extends AppCompatActivity {
             }
             if(found==0)
             {
-                List<FavRestaurents> favcardviews;
+                List<FavRestaurants> favcardviews;
                 favcardviews = new ArrayList<>();
                 for(int i =0 ;i<favcardarray.length;i++){
-                    favcardviews.add(new FavRestaurents(favcardarray[i].name,favcardarray[i].fav_status));
+                    favcardviews.add(new FavRestaurants(favcardarray[i].name,favcardarray[i].fav_status));
                 }
-                favcardviews.add(new FavRestaurents(locationName,false));
+                favcardviews.add(new FavRestaurants(locationName,false));
 
                 PreferenceManager.getDefaultSharedPreferences(this)
                         .edit()
@@ -133,9 +133,9 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 
             GsonBuilder gsonb = new GsonBuilder();
             Gson gson = gsonb.create();
-            List<FavRestaurents> favcardviews;
+            List<FavRestaurants> favcardviews;
             favcardviews = new ArrayList<>();
-            favcardviews.add(new FavRestaurents(locationName,false));
+            favcardviews.add(new FavRestaurants(locationName,false));
             PreferenceManager.getDefaultSharedPreferences(this)
                     .edit()
                     .putString("fav_res_string",
@@ -313,8 +313,8 @@ public class RestaurantDetailActivity extends AppCompatActivity {
             Resources res = getResources();
             GsonBuilder gsonb = new GsonBuilder();
             Gson gson = gsonb.create();
-            FavRestaurents favcardarray[] = gson.fromJson(value, FavRestaurents[].class);
-            List<FavRestaurents> favcardviews;
+            FavRestaurants favcardarray[] = gson.fromJson(value, FavRestaurants[].class);
+            List<FavRestaurants> favcardviews;
             favcardviews = new ArrayList<>();
             for(int i =0 ;i<favcardarray.length;i++){
                 if(favcardarray[i].name.equals(locationName))
@@ -332,7 +332,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                         favIcon.setImageDrawable(res.getDrawable(R.drawable.liked));
                     }
                 }
-                favcardviews.add(new FavRestaurents(favcardarray[i].name,favcardarray[i].fav_status));
+                favcardviews.add(new FavRestaurants(favcardarray[i].name,favcardarray[i].fav_status));
             }
 
             PreferenceManager.getDefaultSharedPreferences(this)

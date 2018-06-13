@@ -1,6 +1,5 @@
 package com.garcon.garcon;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +18,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.garcon.Constants.Constants;
 import com.google.android.gms.maps.GoogleMap;
@@ -44,7 +42,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     Button btn_Call;
     Button btn_DineIn;
     Button btn_TakeOut;
-    Button btn_Info;
+    ImageView btn_Info;
     String locationName;
     String phoneNumber;
     double lat, longt;
@@ -101,6 +99,15 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         categoriesList = new ArrayList<>();
         catRowAdapter = new MenuCategoryAdapter(categoriesList, getApplicationContext());
         itemsList = new ArrayList<>();
+        btn_Info = (ImageView) findViewById(R.id.extra_info);
+        btn_Info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
+                intent.putExtra("RestaurantObject", i.getSerializableExtra("RestaurantObject")); //pass the current bundle on to InfoActivity
+                startActivity(intent);
+            }
+        });
         
         img = (ImageView) findViewById((R.id.BackArrow));
         //sv1 = (ScrollView) findViewById(R.id.sv1);

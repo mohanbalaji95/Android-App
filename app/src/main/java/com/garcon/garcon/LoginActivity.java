@@ -27,6 +27,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -72,23 +73,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         View.OnClickListener,
         LoaderCallbacks<Cursor> {
 
-    //session management
-    //public static final String MyPREFERENCES = "GarconPref" ;
     public static final String eMailkey = "emailkey";
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
     private static final int REQUEST_READ_CONTACTS = 0;
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
+
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
+
 
     private static final String TAG = LoginActivity.class.getName();
     private static final int RC_SIGN_IN = 9001;
@@ -99,8 +90,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private View mProgressView;
     private View mLoginFormView;
     private FirebaseAuth mAuth;
-    //private FirebaseAuth.AuthStateListener mAuthListener;
-    //Facebook Login
     private CallbackManager mCallbackManager;
     private GoogleApiClient mGoogleApiClient;
 
@@ -112,10 +101,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
-        System.out.println("Retrieving from  shared Preference");
         sharedpreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
         String emailPref = sharedpreferences.getString(eMailkey, null);
-        System.out.println("the email is " + emailPref);
 
 
         // Set up the login form.
@@ -137,18 +124,17 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         btnForgotPassword.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
-                final EditText edittext = new EditText(getApplicationContext());
-                edittext.setTextColor(Color.BLACK);
-                alert.setMessage("Enter your Email Address");
-                alert.setTitle("Forgot Password");
 
-                alert.setView(edittext);
+                LayoutInflater layoutInflaterAndroid = LayoutInflater.from(LoginActivity.this);
+                View mView = layoutInflaterAndroid.inflate(R.layout.user_input_dialog_box, null);
+                AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+                alert.setView(mView);
+                final EditText edittext = (EditText) mView.findViewById(R.id.userInputDialog);
 
                 alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        //What ever you want to do with the value
                         String emailAddress = edittext.getText().toString();
+                        if(isEmailValid(emailAddress))
                         mAuth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
@@ -160,13 +146,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             }
 
                         });
+                        else
+                        {
+                            Toast.makeText(LoginActivity.this, "Enter correct email id.", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
 
                 alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        // what ever you want to do with No option.
-                        Log.d(TAG, "Cancel clicked");
                     }
                 });
 
@@ -437,18 +425,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             mEmail = email;
             mPassword = password;
 
-
-
-
             mAuth.signInWithEmailAndPassword(mEmail, mPassword)
                     .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             System.out.println("signInWithEmail:onComplete:" + task.isSuccessful());
-
-                            // If sign in fails, display a message to the user. If sign in succeeds
-                            // the auth state listener will be notified and logic to handle the
-                            // signed in user can be handled in the listener.
                             if (!task.isSuccessful()) {
                                 System.out.println("signInWithEmail" + task.getException());
 
@@ -462,11 +443,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
                                 LoginActivity.this.startActivity(myIntent);
                                 finish();
-
-
                             }
 
-                            // ...
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -475,12 +453,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                             alert.setMessage(e.getMessage());
                             alert.setTitle("Login Failed.");
-
-
                             alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                    // what ever you want to do with No option.
-                                    Log.d(TAG, "Cancel clicked");
+
                                 }
                             });
 
@@ -488,22 +463,18 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                         }
                     });
-
-
-
         }
     }
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return email.contains("@") && email.length()!=0 && email.contains(".");
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }
-
 
 
     @Override
@@ -532,7 +503,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             cursor.moveToNext();
         }
 
-        //addEmailsToAutoComplete(emails);
     }
 
     @Override

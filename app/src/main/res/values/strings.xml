@@ -25,7 +25,7 @@
     <string name="action_sign_in_short">Login</string>
     <string name="action_forgot_password">Forgot your password?</string>
     <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">The password should be 8–20 characters with 1 uppercase, 1 lowercase, 1 number</string>
+    <string name="error_invalid_password">The password should be atleast 6 characters</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_incorrect_confirmpassword">The passwords do not match.</string>
     <string name="error_incorrect_phonenumber">The phone number is not valid.</string>
@@ -43,7 +43,7 @@
     <string name="prompt_lastname">Last Name</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_confirmpassword">Confirm Password</string>
-    <string name="prompt_phonenumber">Phone Number (999-999-9999)</string>
+    <string name="prompt_phonenumber">Phone Number</string>
 
 
     <!-- Generic Strings -->

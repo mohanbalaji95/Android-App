@@ -38,10 +38,7 @@ import us.monoid.web.Resty;
 public class RestaurantDetailActivity extends AppCompatActivity {
     TextView tvName, tvPrice, tvLocation, tvHours, tvType;
 
-    Button btn_Menu;
-    Button btn_Call;
-    Button btn_DineIn;
-    Button btn_TakeOut;
+
     ImageView btn_Info;
 
     String locationName;
@@ -359,9 +356,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                     .apply();
         }
         else{
-            Context context = RestaurantDetailActivity.this;
-            String textToShow = "Search clicked";
-            Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
+
 
         }
 

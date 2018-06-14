@@ -115,7 +115,21 @@ public class SignUpActivity extends AppCompatActivity {
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+
+        if ( (firstName.length()==0) ) {
+            editTextFirstName.setError("Name required");
+            focusView = editTextFirstName;
+            cancel = true;
+        }
+
+        if ( (lastName.length()==0) ) {
+            editTextLastName.setError("Name required");
+            focusView = editTextLastName;
+            cancel = true;
+        }
+
+
+        if ( (password.length()==0) || !isPasswordValid(password) ) {
             editTextPassword.setError(getString(R.string.error_invalid_password));
             focusView = editTextPassword;
             cancel = true;

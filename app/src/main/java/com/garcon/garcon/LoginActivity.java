@@ -275,8 +275,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
 
-            // User is signed in
-            Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
             //System.out.println( "onAuthStateChanged:signed_in:" + user.getUid());
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(getString(R.string.User_UUID_Key), user.getUid());
@@ -286,8 +284,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             finish();
 
         } else {
-            // User is signed out
-            System.out.println("onAuthStateChanged:signed_out");
 
         }
     }
@@ -431,11 +427,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             System.out.println("signInWithEmail:onComplete:" + task.isSuccessful());
                             if (!task.isSuccessful()) {
-                                System.out.println("signInWithEmail" + task.getException());
 
 
                             } else {
-                                System.out.println("Saving to shared Preference");
                                 SharedPreferences.Editor editor = sharedpreferences.edit();
                                 editor.putString(eMailkey, mEmail);
                                 editor.apply();
@@ -450,7 +444,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     .addOnFailureListener(new OnFailureListener() {
                         public void onFailure(@NonNull Exception e) {
                             AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
-
                             alert.setMessage(e.getMessage());
                             alert.setTitle("Login Failed.");
                             alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -458,9 +451,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                                 }
                             });
-
                             alert.show();
-
                         }
                     });
         }

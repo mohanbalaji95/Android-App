@@ -31,6 +31,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -103,7 +104,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         mAuth = FirebaseAuth.getInstance();
         sharedpreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
         String emailPref = sharedpreferences.getString(eMailkey, null);
-
 
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.email);
@@ -214,14 +214,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .requestEmail()
                 .build();
 
-// [START build_client]
-        // Build a GoogleApiClient with access to the Google Sign-In API and the
-        // options specified by gso.
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-// Set the dimensions of the sign-in button.
         SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
     }
@@ -420,6 +416,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
             mEmail = email;
             mPassword = password;
+            mProgressView.setVisibility(View.VISIBLE);
 
             mAuth.signInWithEmailAndPassword(mEmail, mPassword)
                     .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -430,6 +427,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
 
                             } else {
+                                mProgressView.setVisibility(View.GONE);
                                 SharedPreferences.Editor editor = sharedpreferences.edit();
                                 editor.putString(eMailkey, mEmail);
                                 editor.apply();
@@ -443,6 +441,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         public void onFailure(@NonNull Exception e) {
+                            mProgressView.setVisibility(View.GONE);
                             AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
                             alert.setMessage(e.getMessage());
                             alert.setTitle("Login Failed.");

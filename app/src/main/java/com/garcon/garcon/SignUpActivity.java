@@ -52,6 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText editTextPhoneNumber;
     private Button buttonSave;
     private View mSignUpFormView;
+    private View mProgressView;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -68,6 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
         editTextLastName = (EditText) findViewById(R.id.signup_lastname);
         editTextPhoneNumber = (EditText) findViewById(R.id.signup_phonenumber);
         mSignUpFormView = findViewById(R.id.signup_form);
+        mProgressView = findViewById(R.id.signup_progress);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         FirebaseApp.initializeApp(this);
@@ -146,6 +148,7 @@ public class SignUpActivity extends AppCompatActivity {
             newUser.setFirstName(firstName);
             newUser.setLastName(lastName);
             newUser.setPhoneNumber(phoneNumber);
+            mProgressView.setVisibility(View.VISIBLE);
 
             mAuth.createUserWithEmailAndPassword(newUser.geteMail(), mPassword)
                     .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
@@ -158,16 +161,18 @@ public class SignUpActivity extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 if (!task.getException().toString().contains("already in use")) {
 
-
+                                    mProgressView.setVisibility(View.GONE);
                                     Toast.makeText(SignUpActivity.this, "Some Error has occured",
                                             Toast.LENGTH_SHORT).show();
                                     Log.i("TAG", task.getException().toString());
 
                                 }
                             } else {
+                                mProgressView.setVisibility(View.GONE);
                                 Toast.makeText(SignUpActivity.this, R.string.success_account_created, Toast.LENGTH_LONG).show();
                                 newUser.setUserUID(mAuth.getCurrentUser().getUid());
                                 writeSignUpData(newUser);
+                                FirebaseAuth.getInstance().signOut();
                                 finish();
                             }
 
@@ -175,6 +180,7 @@ public class SignUpActivity extends AppCompatActivity {
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         public void onFailure(@NonNull Exception e) {
+                            mProgressView.setVisibility(View.GONE);
                             Toast.makeText(SignUpActivity.this, e.getMessage(),
                                     Toast.LENGTH_SHORT).show();
                         }

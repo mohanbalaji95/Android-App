@@ -27,9 +27,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -42,12 +44,9 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInApi;
-
-
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
@@ -55,6 +54,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -70,66 +70,40 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements  GoogleApiClient.OnConnectionFailedListener,
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener,
         LoaderCallbacks<Cursor> {
 
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
+    public static final String eMailkey = "emailkey";
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
+
 
     private static final String TAG = LoginActivity.class.getName();
-
-    private UserLoginTask mAuthTask = null;
-
-    // UI references.
+    private static final int RC_SIGN_IN = 9001;
+    SharedPreferences sharedpreferences;
+    LoginButton loginButton;
     private EditText mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-
-    //session management
-    //public static final String MyPREFERENCES = "GarconPref" ;
-    public static final String eMailkey = "emailkey";
-    SharedPreferences sharedpreferences;
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-
-    //Facebook Login
     private CallbackManager mCallbackManager;
-    LoginButton loginButton;
-    private static final int RC_SIGN_IN = 9001;
-
     private GoogleApiClient mGoogleApiClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login2);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
+        FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
-        System.out.println("Retrieving from  shared Preference");
         sharedpreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
-        String emailPref = sharedpreferences.getString(eMailkey,null);
-        System.out.println("the email is "+emailPref);
-        /*if(emailPref!=null){
-            Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
-            LoginActivity.this.startActivity(myIntent);
-            finish();
-
-        }*/
+        String emailPref = sharedpreferences.getString(eMailkey, null);
 
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.email);
@@ -147,43 +121,47 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
         });
 
         TextView btnForgotPassword = (TextView) findViewById(R.id.forgotpassword_button);
-        btnForgotPassword.setOnClickListener(new OnClickListener(){
+        btnForgotPassword.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
-                final EditText edittext = new EditText(getApplicationContext());
-                edittext.setTextColor(Color.BLACK);
-                alert.setMessage("Enter your Email Address");
-                alert.setTitle("Forgot Password");
 
-                alert.setView(edittext);
+                LayoutInflater layoutInflaterAndroid = LayoutInflater.from(LoginActivity.this);
+                View mView = layoutInflaterAndroid.inflate(R.layout.user_input_dialog_box, null);
+                AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+                alert.setView(mView);
+                final EditText edittext = (EditText) mView.findViewById(R.id.userInputDialog);
 
                 alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        //What ever you want to do with the value
                         String emailAddress = edittext.getText().toString();
+                        if(isEmailValid(emailAddress))
                         mAuth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Log.d(TAG, "Email sent.");
-                                            Toast.makeText(LoginActivity.this,R.string.toast_forgot_password_email,Toast.LENGTH_LONG);
-                                        }
-                                    }
-                                });
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "Email sent.");
+                                    Toast.makeText(LoginActivity.this, R.string.toast_forgot_password_email, Toast.LENGTH_LONG).show();
+                                }
+
+                            }
+
+                        });
+                        else
+                        {
+                            Toast.makeText(LoginActivity.this, "Enter correct email id.", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
 
                 alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        // what ever you want to do with No option.
-                        Log.d(TAG, "Cancel clicked");
                     }
                 });
 
                 alert.show();
             }
         });
+
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -191,57 +169,18 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
                 attemptLogin();
             }
         });
+
         TextView mEmailSignUpButton = (TextView) findViewById(R.id.email_sign_up_button);
         mEmailSignUpButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(LoginActivity.this, SignUpActivity.class);
-                //myIntent.putExtra("key", value); //Optional parameters
                 LoginActivity.this.startActivity(myIntent);
             }
         });
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    boolean isEmailVerified=user.isEmailVerified();
-                    if(isEmailVerified) {
-                    // User is signed in
-                    Log.d(TAG,"onAuthStateChanged:signed_in:" + user.getUid());
-                    //System.out.println( "onAuthStateChanged:signed_in:" + user.getUid());
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-                    editor.putString(getString(R.string.User_UUID_Key),user.getUid());
-                    editor.commit();
-                    Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
-                    LoginActivity.this.startActivity(myIntent);
-                    finish();
-                    }
-                    else
-                    {
-                        Toast.makeText(LoginActivity.this, "Email not yet verified",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                } else {
-                    // User is signed out
-                    System.out.println("onAuthStateChanged:signed_out");
-
-                }
-                Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-                mEmailSignInButton.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        attemptLogin();
-                    }
-                });
-                // ...
-            }
-        };
 
         // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
@@ -275,14 +214,10 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
                 .requestEmail()
                 .build();
 
-// [START build_client]
-        // Build a GoogleApiClient with access to the Google Sign-In API and the
-        // options specified by gso.
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-// Set the dimensions of the sign-in button.
         SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
     }
@@ -333,11 +268,22 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
 
-        //updateUI(currentUser);
-        mAuth.addAuthStateListener(mAuthListener);
+            //System.out.println( "onAuthStateChanged:signed_in:" + user.getUid());
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(getString(R.string.User_UUID_Key), user.getUid());
+            editor.commit();
+            Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
+            LoginActivity.this.startActivity(myIntent);
+            finish();
+
+        } else {
+
+        }
     }
+
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
@@ -365,13 +311,12 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
                     }
                 });
     }
+
     @Override
     public void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
     }
+
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
@@ -428,9 +373,6 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
 
         // Reset errors.
         mEmailView.setError(null);
@@ -468,15 +410,55 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+
+            final String mEmail;
+            final String mPassword;
+
+            mEmail = email;
+            mPassword = password;
+            mProgressView.setVisibility(View.VISIBLE);
+
+            mAuth.signInWithEmailAndPassword(mEmail, mPassword)
+                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            System.out.println("signInWithEmail:onComplete:" + task.isSuccessful());
+                            if (!task.isSuccessful()) {
+
+
+                            } else {
+                                mProgressView.setVisibility(View.GONE);
+                                SharedPreferences.Editor editor = sharedpreferences.edit();
+                                editor.putString(eMailkey, mEmail);
+                                editor.apply();
+
+                                Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
+                                LoginActivity.this.startActivity(myIntent);
+                                finish();
+                            }
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        public void onFailure(@NonNull Exception e) {
+                            mProgressView.setVisibility(View.GONE);
+                            AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+                            alert.setMessage(e.getMessage());
+                            alert.setTitle("Login Failed.");
+                            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+
+                                }
+                            });
+                            alert.show();
+                        }
+                    });
         }
     }
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return email.contains("@") && email.length()!=0 && email.contains(".");
     }
 
     private boolean isPasswordValid(String password) {
@@ -484,41 +466,6 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
         return password.length() > 4;
     }
 
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
-
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
-    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -546,7 +493,6 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
             cursor.moveToNext();
         }
 
-        //addEmailsToAutoComplete(emails);
     }
 
     @Override
@@ -563,29 +509,21 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
                 break;
         }
     }
+
     private void signIn() {
         try {
             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
             startActivityForResult(signInIntent, RC_SIGN_IN);
-        }
-        catch(Exception e)
-        {
-            String s=e.getMessage();
+        } catch (Exception e) {
+            String s = e.getMessage();
         }
     }
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
 
-//    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-//        //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-//        ArrayAdapter<String> adapter =
-//                new ArrayAdapter<>(LoginActivity.this,
-//                        android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
-//
-//        mEmailView.setAdapter(adapter);
-//    }
 
     private interface ProfileQuery {
         String[] PROJECTION = {
@@ -627,220 +565,6 @@ public class LoginActivity extends AppCompatActivity implements  GoogleApiClient
         }
     }
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
-        private final String mPassword;
-
-        boolean authFlag = false;
-        boolean doneFlag = false;
-        int errorCode =0;
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-        void updateFlag(boolean newFlag){
-            authFlag=newFlag;
-        }
-        void updateDoneFlag(boolean dFlag){
-            doneFlag=dFlag;
-        }
-        void updateErrorCode(int eCode){
-            errorCode=eCode;
-        }
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-
-                // Simulate network access.
-                System.out.println("Attempting to authenticate");
-                /*
-                ref.authWithPassword(mEmail, mPassword, new Firebase.AuthResultHandler() {
-                    @Override
-                    public void onAuthenticated(AuthData authData) {
-                        System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-                        updateFlag(true);
-                        updateDoneFlag(true);
-                    }
-
-                    @Override
-                    public void onAuthenticationError(FirebaseError firebaseError) {
-                        // there was an error
-                        System.out.println("Error Code:"+firebaseError.getCode());
-                        System.out.println("Error:"+ firebaseError.getMessage());
-                        updateErrorCode(firebaseError.getCode());
-                        updateFlag(false);
-                        updateDoneFlag(true);
-                    }
-                });
-                //Thread.sleep(2000);
-                while (!doneFlag){}
-                if(authFlag == true){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-                */
-            mAuth.signInWithEmailAndPassword(mEmail, mPassword)
-                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            System.out.println( "signInWithEmail:onComplete:" + task.isSuccessful());
-
-                            // If sign in fails, display a message to the user. If sign in succeeds
-                            // the auth state listener will be notified and logic to handle the
-                            // signed in user can be handled in the listener.
-                            if (!task.isSuccessful()) {
-                                System.out.println("signInWithEmail" + task.getException());
-                                Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                                //System.out.println("Error Code:"+firebaseError.getCode());
-                                //System.out.println("Error:"+ firebaseError.getMessage());
-                                //updateErrorCode(firebaseError.getCode());
-                                updateFlag(false);
-                                updateDoneFlag(true);
-                            }
-                            else {
-                                //System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-                                boolean isEmailVerified=mAuth.getInstance().getCurrentUser().isEmailVerified();
-                                if(isEmailVerified) {
-                                System.out.println("Successful login");
-                                    Toast.makeText(LoginActivity.this, "Email Verification success.",
-                                            Toast.LENGTH_SHORT).show();
-                                updateFlag(true);
-                                updateDoneFlag(true);
-                                }
-                                else {
-                                    AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
-
-
-                                    alert.setMessage("Kindly check your mailbox for verification Email");
-                                    alert.setTitle("Email Not Verified");
-
-
-
-                                    alert.setPositiveButton("Resend", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                            //What ever you want to do with the value
-
-                                            mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if (task.isSuccessful()) {
-                                                        Log.d(TAG, "Email sent.");
-                                                        Toast.makeText(LoginActivity.this, "Please complete email verification to login", Toast.LENGTH_LONG);
-                                                    }
-                                                    showProgress(false);
-                                                }
-                                            });
-                                        }
-                                    });
-
-                                    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                            // what ever you want to do with No option.
-                                            Log.d(TAG, "Cancel clicked");
-                                            showProgress(false);
-                                        }
-                                    });
-
-                                    alert.show();
-
-
-                                    //System.out.println("Error Code:"+firebaseError.getCode());
-                                    //System.out.println("Error:"+ firebaseError.getMessage());
-                                    //updateErrorCode(firebaseError.getCode());
-                                    updateFlag(false);
-                                    updateDoneFlag(true);
-
-                                }
-                            }
-
-                            // ...
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        public void onFailure(@NonNull Exception e) {
-                            AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
-
-                            alert.setMessage(e.getMessage());
-                            alert.setTitle("Login Failed.");
-
-
-
-
-
-                            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    // what ever you want to do with No option.
-                                    Log.d(TAG, "Cancel clicked");
-                                }
-                            });
-
-                            alert.show();
-
-                            updateDoneFlag(true);
-                        }
-                    });
-            while (!doneFlag){}
-            if(authFlag == true){
-                return true;
-            }
-            else{
-                return false;
-            }
-
-/*
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }*/
-
-            // TODO: register the new account here.
-            //return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                System.out.println("Saving to shared Preference");
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString(eMailkey, mEmail);
-                editor.commit();
-                //Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
-                //myIntent.putExtra("key", value); //Optional parameters
-                //LoginActivity.this.startActivity(myIntent);
-                //finish();
-            } else {
-
-                if(errorCode == -16) {
-                    mPasswordView.setError(getString(R.string.error_incorrect_password));
-                    mPasswordView.requestFocus();
-                }
-                else if(errorCode == -17) {
-                    mEmailView.setError(getString(R.string.error_incorrect_email));
-                    mEmailView.requestFocus();
-                }
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
-    }
 }
 

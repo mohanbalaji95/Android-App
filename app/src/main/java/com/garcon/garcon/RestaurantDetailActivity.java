@@ -1,9 +1,11 @@
 package com.garcon.garcon;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.context.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,14 +17,23 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.garcon.Constants.Constants;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.security.GeneralSecurityException;
+import java.util.concurrent.ExecutionException;
+import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -296,6 +307,27 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         //String finalhour = header + newFriday;
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        boolean isHoliday = Boolean.FALSE;
+        try {
+            // Getting the date as needed by the API
+            SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+            String date = dateformat.format(calendar.getTime()).toString();
+
+            // Passing the current date to the AsyncTask to check if its a holiday
+            isHoliday = new CheckHoliday().execute(date).get();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        // Appending the alert string for Holidays, otherwise set to blank
+        String holidayalert = "";
+        if(isHoliday.booleanValue()){
+            holidayalert = " (Holiday may affect these hours)";
+        }
 
 
         switch (day) {

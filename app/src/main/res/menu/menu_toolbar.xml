@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/cartMenu"
+        android:title="Cart"
+        android:icon="@drawable/final_cart"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/pay"
+        android:title="PAY"
+        android:icon="@drawable/finalpayment96x"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/resturants96x"
+        android:title="Home"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/nav_profilesettings"
+        android:icon="@drawable/profileicon_96"
+        android:title="Manage Profile"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/nav_item_sent"
+        android:icon="@drawable/favorite96x"
+        android:title="Manage Favorites"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/nav_history"
+        android:icon="@drawable/history96x"
+        android:title="Order History"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/gears96x"
+        android:title="Settings"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/nav_item_inbox"
+        android:icon="@drawable/logout144x"
+        android:title="Logout"
+        app:showAsAction="never"/>
+
+
+</menu>

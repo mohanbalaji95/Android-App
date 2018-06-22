@@ -14,10 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.garcon.Constants.Constants;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,6 +41,8 @@ import us.monoid.web.Resty;
 public class RestaurantDetailActivity extends AppCompatActivity {
     TextView tvName, tvPrice, tvLocation, tvHours, tvType;
 
+    Animation slide_down, slide_up;
+
     Button btn_Menu;
     Button btn_Call;
     Button btn_DineIn;
@@ -52,7 +57,6 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     ImageView favIcon;
 
 
-
     //from main menu activity
     public final static String LOG_TAG = RestaurantDetailActivity.class.getSimpleName();
     ListView catListView, itemsListView;
@@ -62,7 +66,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     private Toolbar toolbar;
     List<Category> categoriesList;
     List<MenuItem> itemsList;
-    List<Pair<Category,ArrayList<MenuItem>>> imported_list = new ArrayList<>();
+    List<Pair<Category, ArrayList<MenuItem>>> imported_list = new ArrayList<>();
     private boolean loaded = false;
     private Context context;
 
@@ -92,39 +96,35 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         setContentView(R.layout.floating_layout);
 
         initializeUI();
-        i=getIntent();
-        dataSetup((Restaurant)i.getSerializableExtra("RestaurantObject"));
+        i = getIntent();
+        dataSetup((Restaurant) i.getSerializableExtra("RestaurantObject"));
 
 
-        String value= PreferenceManager.getDefaultSharedPreferences(this)
+        String value = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString("fav_res_string", null);
         Resources res = getResources();
-        if(value!=null)
-        {
+        if (value != null) {
 
             GsonBuilder gsonb = new GsonBuilder();
             Gson gson = gsonb.create();
             FavRestaurants favcardarray[] = gson.fromJson(value, FavRestaurants[].class);
-            int found=0;
-            for(int i=0;i<favcardarray.length;i++)
-            {
-                if(favcardarray[i].name.equals(locationName))
-                {   found=1;
-                    if(favcardarray[i].fav_status)
-                    {
+            int found = 0;
+            for (int i = 0; i < favcardarray.length; i++) {
+                if (favcardarray[i].name.equals(locationName)) {
+                    found = 1;
+                    if (favcardarray[i].fav_status) {
                         favIcon.setImageDrawable(res.getDrawable(R.drawable.liked));
                     }
 
                 }
             }
-            if(found==0)
-            {
+            if (found == 0) {
                 List<FavRestaurants> favcardviews;
                 favcardviews = new ArrayList<>();
-                for(int i =0 ;i<favcardarray.length;i++){
-                    favcardviews.add(new FavRestaurants(favcardarray[i].name,favcardarray[i].fav_status));
+                for (int i = 0; i < favcardarray.length; i++) {
+                    favcardviews.add(new FavRestaurants(favcardarray[i].name, favcardarray[i].fav_status));
                 }
-                favcardviews.add(new FavRestaurants(locationName,false));
+                favcardviews.add(new FavRestaurants(locationName, false));
 
                 PreferenceManager.getDefaultSharedPreferences(this)
                         .edit()
@@ -132,15 +132,13 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                                 gson.toJson(favcardviews))
                         .apply();
             }
-        }
-        else
-        {
+        } else {
 
             GsonBuilder gsonb = new GsonBuilder();
             Gson gson = gsonb.create();
             List<FavRestaurants> favcardviews;
             favcardviews = new ArrayList<>();
-            favcardviews.add(new FavRestaurants(locationName,false));
+            favcardviews.add(new FavRestaurants(locationName, false));
             PreferenceManager.getDefaultSharedPreferences(this)
                     .edit()
                     .putString("fav_res_string",
@@ -167,7 +165,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        
+
 
         img = (ImageView) findViewById((R.id.BackArrow));
         //sv1 = (ScrollView) findViewById(R.id.sv1);
@@ -175,11 +173,11 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 
         //Commented out from "this" to Siddhi's thing
         //itemRowAdapter = new MenuItemAdapter(itemsList, this);
-        itemRowAdapter = new MenuItemAdapter(itemsList, this,tvName.getText().toString());
+        itemRowAdapter = new MenuItemAdapter(itemsList, this, tvName.getText().toString());
 
         //final String categoryURL = "https://api.omnivore.io/0.1/locations/"+location+"/menu/categories/";
         //final String categoryURL = "https://api.omnivore.io/0.1/locations/7TAprKdT/menu/categories/";
-        final String categoryURL = Constants.OMNIVORE_API_BASE_URL+Constants.LOCATION_KEY+subPath;
+        final String categoryURL = Constants.OMNIVORE_API_BASE_URL + Constants.LOCATION_KEY + subPath;
 
         String[] mURL = {categoryURL};
         //  new MainMenuActivity.RetrievalTask(MainMenuActivity.this).execute(mURL);
@@ -190,9 +188,29 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 
 
         catListView.setAdapter(catRowAdapter);
+
+   /*     // set items list to the first element that is an element of the clicked category Mark Banks 6-21-2018
+        catListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String clickedCategory = ((Category) categoriesList.get(position)).getId();
+                Log.i(LOG_TAG, "clicked " + clickedCategory + " position " + position);
+                for (int i = 0; i < itemsList.size(); i++) {
+                    Log.i(LOG_TAG, "itemList category ID " + ((MenuItem) itemsList.get(i)).getCategoryID());
+                    if (((MenuItem) itemsList.get(i)).getCategoryID().equals(clickedCategory)) {
+                        itemsListView.requestFocusFromTouch();
+                        itemsListView.smoothScrollToPosition(i);
+                        break;
+                    }
+                }
+
+            }
+        });
+        // end set items list to the clicked category */
+
         itemsListView.setAdapter(itemRowAdapter);
         //sv2.addView(catListView);
-
 
         //synchronizes catListView with itemsListView
         itemsListView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -201,15 +219,17 @@ public class RestaurantDetailActivity extends AppCompatActivity {
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 checkSync();
             }
+
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 //checkSync();
                 //too much computation
             }
+
             private void checkSync() {
                 //attribute (id) is the position of the category in the left listview
                 //each item in the right listview has a string name and corresponding category's position
-                if(loaded){
+                if (loaded) {
 
                     int leftTop = catListView.getFirstVisiblePosition();
                     String leftTopAttribute = ((Category) categoriesList.get(leftTop)).getId();
@@ -217,13 +237,25 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                     int rightTop = itemsListView.getFirstVisiblePosition();
                     String rightTopAttribute = ((MenuItem) itemsList.get(rightTop)).getCategoryID();
 
-                    //Log.i(LOG_TAG,"scroll "+leftTopAttribute+" "+rightTopAttribute);
+                    //code to hide and show the restaurant heading based on the right side scroll Mark Banks 6-21-2018
+                    if (rightTop == 0 && restaurantLayout.getVisibility() == View.GONE) {
+                        //UtilityFX.slide_down(getApplicationContext(), restaurantLayout);
+                        restaurantLayout.setVisibility(View.VISIBLE);
+                        itemsListView.smoothScrollToPosition(0);
 
-                    if(!leftTopAttribute.equals(rightTopAttribute)) {
+                    } else if (rightTop != 0 && restaurantLayout.getVisibility() == View.VISIBLE) {
+                        //UtilityFX.slide_up(getApplicationContext(), restaurantLayout);
+                        restaurantLayout.setVisibility(View.GONE);
+                    }
+                    //end code to hide and show the restaurant heading
+                   //Log.i(LOG_TAG, "scroll " + leftTopAttribute + " " + rightTopAttribute);
+
+
+                    if (!leftTopAttribute.equals(rightTopAttribute)) {
                         catListView.requestFocusFromTouch();
-                        for(int i = 0; i < categoriesList.size(); i++){
-                            if(((Category) categoriesList.get(i)).getId().equals(rightTopAttribute)){
-                                catListView.setSelection(i);
+                        for (int i = 0; i < categoriesList.size(); i++) {
+                            if (((Category) categoriesList.get(i)).getId().equals(rightTopAttribute)) {
+                                catListView.smoothScrollToPosition(i);
                                 break;
                             }
                         }
@@ -234,13 +266,13 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         });
 
         //   return view;
-    }
 
+    }
 
 
     public void dataSetup(Restaurant restaurant) {
 
-        if(restaurant!=null) {
+        if (restaurant != null) {
             restaurantLayout.setVisibility(View.VISIBLE);
             tvName.setText(restaurant.getName());
             tvPrice.setText(restaurant.getPrice());
@@ -255,25 +287,24 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         }
     }
 
-    private void initializeUI()
-    {
-        restaurantLayout =  findViewById(R.id.restaurantLayout);
+    private void initializeUI() {
+        restaurantLayout = findViewById(R.id.restaurantLayout);
         tvName = (TextView) findViewById(R.id.tvName);
         tvPrice = (TextView) findViewById(R.id.tvPrice);
         tvLocation = (TextView) findViewById(R.id.tvLocation);
         tvHours = (TextView) findViewById(R.id.tvHours);
         tvType = (TextView) findViewById(R.id.tvType);
-        favIcon = (ImageView)  findViewById(R.id.fav_icon);
+        favIcon = (ImageView) findViewById(R.id.fav_icon);
 
-        tvLocation.setOnClickListener(new View.OnClickListener(){
+        tvLocation.setOnClickListener(new View.OnClickListener() {
             //int zoomLevel = 12;
             @Override
-            public  void onClick(View v) {
+            public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.setPackage("com.google.android.apps.maps");
-                String data = String.format("geo:%s,%s",+lat , +longt);
-                data = String.format("%s?q=%s,%s", data, +lat,+longt+"("+locationName+")");
+                String data = String.format("geo:%s,%s", +lat, +longt);
+                data = String.format("%s?q=%s,%s", data, +lat, +longt + "(" + locationName + ")");
                 intent.setData(Uri.parse(data));
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
@@ -323,33 +354,30 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         return null;
 
     }
-    public void addToFav(View view){
-        String value= PreferenceManager.getDefaultSharedPreferences(this)
+
+    public void addToFav(View view) {
+        String value = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString("fav_res_string", null);
-        if(value!=null){
+        if (value != null) {
             Resources res = getResources();
             GsonBuilder gsonb = new GsonBuilder();
             Gson gson = gsonb.create();
             FavRestaurants favcardarray[] = gson.fromJson(value, FavRestaurants[].class);
             List<FavRestaurants> favcardviews;
             favcardviews = new ArrayList<>();
-            for(int i =0 ;i<favcardarray.length;i++){
-                if(favcardarray[i].name.equals(locationName))
-                {
-                    if(favcardarray[i].fav_status)
-                    {
+            for (int i = 0; i < favcardarray.length; i++) {
+                if (favcardarray[i].name.equals(locationName)) {
+                    if (favcardarray[i].fav_status) {
 
-                        favcardarray[i].fav_status=false;
+                        favcardarray[i].fav_status = false;
                         favIcon.setImageDrawable(res.getDrawable(R.drawable.like));
-                    }
-                    else
-                    {
+                    } else {
 
-                        favcardarray[i].fav_status=true;
+                        favcardarray[i].fav_status = true;
                         favIcon.setImageDrawable(res.getDrawable(R.drawable.liked));
                     }
                 }
-                favcardviews.add(new FavRestaurants(favcardarray[i].name,favcardarray[i].fav_status));
+                favcardviews.add(new FavRestaurants(favcardarray[i].name, favcardarray[i].fav_status));
             }
 
             PreferenceManager.getDefaultSharedPreferences(this)
@@ -357,8 +385,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                     .putString("fav_res_string",
                             gson.toJson(favcardviews))
                     .apply();
-        }
-        else{
+        } else {
             Context context = RestaurantDetailActivity.this;
             String textToShow = "Search clicked";
             Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
@@ -377,11 +404,11 @@ And do the same in restaurantDetailActivity.java
      */
 
 
-    public void categorySelectedSync(int position){
+    public void categorySelectedSync(int position) {
         int itemsListPos = position;
-        for(int i = 0; i < itemsList.size(); i++){
+        for (int i = 0; i < itemsList.size(); i++) {
             MenuItem p = (MenuItem) itemsList.get(i);
-            if(p.getCategoryID().equals(((Category) categoriesList.get(position)).getId())){
+            if (p.getCategoryID().equals(((Category) categoriesList.get(position)).getId())) {
                 itemsListPos = i;
                 break;
             }
@@ -394,20 +421,19 @@ And do the same in restaurantDetailActivity.java
         itemsListView.requestFocus();
     }
 
-    public void sort(){
+    public void sort() {
         //TODO based on more feedback
 
     }
 
-    public void view_order(View view){
+    public void view_order(View view) {
         //Log.i(LOG_TAG,"See order");
         //Intent intent = new Intent(this, MainViewCartActivity.class);
         Intent intent = new Intent(getApplicationContext(), MainViewCartActivity.class);
         this.startActivity(intent);
     }
 
-    public void BackButton(View v)
-    {
+    public void BackButton(View v) {
 //img.setOnClickListener(new View.OnClickListener() {
         //  @Override
         //public void onClick(View v) {
@@ -416,7 +442,6 @@ And do the same in restaurantDetailActivity.java
         //  }
 //});
     }
-
 
 
     //changed private to public
@@ -483,8 +508,7 @@ And do the same in restaurantDetailActivity.java
                                     modifier_ref = itemJson.getJSONObject("_links").
                                             getJSONObject("modifier_groups").getString("href");
                                     mod_resource = r.json(modifier_ref).object();
-                                }
-                                catch(Exception e){
+                                } catch (Exception e) {
                                     Log.i("error with ref link", modifier_ref);
                                 }
 
@@ -507,7 +531,7 @@ And do the same in restaurantDetailActivity.java
                                             String name_mgroup = mod_group.getString("name");
 
                                             int max_mgroup;
-                                            if(mod_group.isNull("maximum"))
+                                            if (mod_group.isNull("maximum"))
                                                 max_mgroup = Integer.MAX_VALUE;
                                             else
                                                 max_mgroup = mod_group.getInt("maximum");
@@ -553,42 +577,40 @@ And do the same in restaurantDetailActivity.java
                                     MenuItem m = new MenuItem(id, name, price, list, in_stock, modifierGroupArrayList, modifier_groups_count, categoryID);
                                     imported_list.get(nCat).second.add(m);
 
-                                }
-                                catch(Exception e){
+                                } catch (Exception e) {
                                     Log.i(LOG_TAG, e.toString() + "FAILURE4");
                                 }
 
-                            }
-                            catch (Exception e) {
+                            } catch (Exception e) {
                                 Log.i(LOG_TAG, e.toString() + "FAILURE3");
                             }
 
                         }
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         Log.i(LOG_TAG, e.toString() + "FAILURE2");
                     }
                 }
             } catch (Exception e) {
                 Log.i(LOG_TAG, e.toString() + "FAILURE1");
             }
-            Log.i(LOG_TAG, "imported_list "+imported_list.size());
+            Log.i(LOG_TAG, "imported_list " + imported_list.size());
             return "DONE"; //if meaningful string is required, it can be done
         }
+
         @Override
         protected void onPostExecute(String result) {
             //categoriesList and itemsList instantiated
-            for(Pair p : imported_list){
+            for (Pair p : imported_list) {
                 Category c = (Category) p.first;
                 categoriesList.add(new Category(c.getId(), c.getName()));
-                for(MenuItem m : (ArrayList<MenuItem>) p.second){
+                for (MenuItem m : (ArrayList<MenuItem>) p.second) {
                     itemsList.add(m);
                 }
             }
             Log.i("onPostExecute",
-                    "number of categories "+String.valueOf(imported_list.size())+
-                            "categories "+String.valueOf(categoriesList.size())+
-                            " items "+String.valueOf(itemsList.size()));
+                    "number of categories " + String.valueOf(imported_list.size()) +
+                            "categories " + String.valueOf(categoriesList.size()) +
+                            " items " + String.valueOf(itemsList.size()));
             catRowAdapter.notifyDataSetChanged();
             itemRowAdapter.notifyDataSetChanged();
             loaded = true;

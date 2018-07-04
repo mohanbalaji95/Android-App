@@ -2,7 +2,6 @@ package com.garcon.garcon;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +64,8 @@ public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
         //listItemText.setWidth((int)(0.5*width));
 
         //if category is clicked, then items are correspondingly synchronized
-        listItemText.setOnClickListener(new View.OnClickListener(){
+      /* removed my Mark Banks 6-21-2018  added click listener in RestaurantDetailsActivity instead
+      listItemText.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Log.i(LOG_TAG,"category selected");
@@ -74,7 +74,7 @@ public class MenuCategoryAdapter extends BaseAdapter implements ListAdapter {
                     notifyDataSetChanged();
                 }
             }
-        });
+        }); */
         return view;
     }
 }

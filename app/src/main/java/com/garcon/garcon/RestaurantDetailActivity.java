@@ -47,6 +47,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     Button btn_Call;
     Button btn_DineIn;
     Button btn_TakeOut;
+
     ImageView btn_Info;
 
     String locationName;
@@ -385,12 +386,13 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                     .putString("fav_res_string",
                             gson.toJson(favcardviews))
                     .apply();
+
         } else {
             Context context = RestaurantDetailActivity.this;
             String textToShow = "Search clicked";
             Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
-
         }
+
 
     }
 

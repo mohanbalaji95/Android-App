@@ -38,7 +38,7 @@ import us.monoid.web.Resty;
 //import android.view.MenuItem;
 
 
-public class RestaurantDetailActivity extends AppCompatActivity {
+public class RestaurantDetailActivity extends AppBarActivity {
     TextView tvName, tvPrice, tvLocation, tvHours, tvType;
 
     Animation slide_down, slide_up;
@@ -95,6 +95,9 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         OrderSingleton.getInstance();
         setContentView(R.layout.floating_layout);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         initializeUI();
         i = getIntent();

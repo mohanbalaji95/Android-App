@@ -134,6 +134,27 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:background="@drawable/buttonshape"/>
+
+            <Button
+                android:id="@+id/btSaveDetails"
+            android:layout_width="117dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/buttonshape"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btCancelDetails"
+            android:layout_width="117dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/buttonshape"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -51,6 +51,8 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText editTextLastName;
     private EditText editTextPhoneNumber;
     private Button buttonSave;
+    private Button buttonSaveDetails;
+    private Button buttonCancelDetails;
     private View mSignUpFormView;
     private View mProgressView;
     private FirebaseAuth mAuth;
@@ -63,6 +65,12 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         buttonSave = (Button) findViewById(R.id.buttonSave);
+        //---------buttons visibility for manage profile set hidden-----------//
+        buttonSaveDetails = (Button) findViewById(R.id.btSaveDetails);
+        buttonCancelDetails = (Button) findViewById(R.id.btCancelDetails);
+        buttonSaveDetails.setVisibility(View.GONE);
+        buttonCancelDetails.setVisibility(View.GONE);
+        //-----------------------------------------------------------------//
         editTextEmail = (EditText) findViewById(R.id.signup_email);
         editTextPassword = (EditText) findViewById(R.id.signup_password);
         editTextFirstName = (EditText) findViewById(R.id.signup_firstname);
@@ -71,6 +79,13 @@ public class SignUpActivity extends AppCompatActivity {
         mSignUpFormView = findViewById(R.id.signup_form);
         mProgressView = findViewById(R.id.signup_progress);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        //---------buttons visibility for manage profile set hidden-----------//
+        buttonSaveDetails = (Button) findViewById(R.id.btSaveDetails);
+        buttonCancelDetails = (Button) findViewById(R.id.btCancelDetails);
+        buttonSaveDetails.setVisibility(View.GONE);
+        buttonCancelDetails.setVisibility(View.GONE);
+        //-----------------------------------------------------------------//
 
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();

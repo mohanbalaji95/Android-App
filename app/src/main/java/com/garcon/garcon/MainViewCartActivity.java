@@ -485,13 +485,13 @@ public class MainViewCartActivity extends AppCompatActivity {
         tableArray = new ArrayList<String>();
         //int i =0;
         for (Table table : tables)  {
-            if(table.getAvailable()){
+            //if(table.getAvailable()){
                 tableMap.put(table.getNumber(),table);
                 Log.d(LOG_TAG,"Table numbers are --> "+table.getNumber());
                 //tableArray[i] = table.getNumber()+"";
                 tableArray.add(table.getNumber()+"");
                 //i++;
-            }
+            //}
 
 
         }

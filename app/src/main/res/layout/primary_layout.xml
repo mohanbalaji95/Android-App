@@ -21,7 +21,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:completionHint="Search Restaurants" />
+        android:completionHint="Search Restaurants"
+
+        android:icon="@drawable/ic_menu_search"
+        android:singleLine="true"
+        android:imeOptions="actionSearch"
+        android:hint="@string/search_hint"/>
 
     <RelativeLayout
         android:id="@+id/mapFragmentContainer"

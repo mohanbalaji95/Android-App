@@ -73,7 +73,9 @@ import static android.content.ContentValues.TAG;
 import static android.content.Context.LOCATION_SERVICE;
 import static com.google.android.gms.internal.zzs.*;
 
-public class PrimaryFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMarkerClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+//TODO:fix spelling of restaurants: its not "restaurents"
+
+public class PrimaryFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private MapView mapView;
     private GoogleMap googleMap;
     private GoogleApiClient googleApiClient;
@@ -83,7 +85,7 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
     AutoCompleteTextView RestaurantSearch;
     private ArrayAdapter<String> adapter;
 
-    //"item" has the restaurents to shouw in search in an adapter
+    //"item" has the restaurants to show in search in an adapter
     ArrayList<String> item = new ArrayList<>();
 	
 	public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -121,6 +123,8 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                item.clear();
+                array_restaurent.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     Restaurant restaurent = dataSnapshot1.getValue(Restaurant.class);
                     //Getting restaurents objects and storing it in an array
@@ -136,7 +140,7 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
 //                    restaurent.setPrice(dataSnapshot1.child("price").getValue().toString());
 //                    restaurent.setWebsite(dataSnapshot1.child("website").getValue().toString());
                     array_restaurent.add(restaurent);
-                    item.add(restaurent.getName()+","+restaurent.getLocation());
+                    item.add(restaurent.getName()+", "+restaurent.getLocation());
 
                 }
                 setAllRestaurents(array_restaurent);
@@ -153,6 +157,8 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
             @Override
             public void onClick(View view) {
                 RestaurantSearch.setText("");
+                setupMarkers();
+                googleMap.clear();
             }
         });
 
@@ -214,7 +220,6 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
 
     }
 
-
     //    @Override
     public void onMapReady(GoogleMap map) {
         googleMap = map;
@@ -222,7 +227,7 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
         setupMarkers();
         //We have to add add a listener for the marker clicking
         googleMap.setOnMarkerClickListener(this);
-
+        googleMap.setOnInfoWindowClickListener(this);
     }
 
     private void goToLocationZoom(double lat, double lng, float zoom) {
@@ -246,6 +251,10 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
     @Override
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 
+        //implementation relies on geocoder coordinates instead of using firebase's data
+        //might be better to use database?
+        //issue with goecoder giving slightly different latitude and longitude
+
         // Show Alert
         googleMap.clear();
 //        Toast.makeText(getActivity(), "Position:" + arg2 + " Month:" + arg0.getItemAtPosition(arg2),
@@ -256,11 +265,11 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
         String search = arg0.getItemAtPosition(arg2).toString();
         String[] str_array = search.split(", ");
         String stringa = str_array[0];
-        String stringb = str_array[1];
+        String stringb = str_array[1]+", "+str_array[2]+", "+str_array[3];
         System.out.println("location"+stringb);
         Geocoder coder = new Geocoder(getActivity());
-        List<Address> address = null;
-        LatLng p1 = null;
+        List<Address> address;
+        LatLng p1;
 
         try {
             address = coder.getFromLocationName(stringb, 5);
@@ -271,21 +280,19 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
             location.getLongitude();
 
             p1 = new LatLng(location.getLatitude(), location.getLongitude() );
-// Show the current location in Google Map
+            // Show the current location in Google Map
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(p1));
 
             // Zoom in the Google Map
             googleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
             googleMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title(stringa).snippet(stringb)).showInfoWindow();
-
-        } catch (Exception ex) {
+            } catch (Exception ex) {
 
             ex.printStackTrace();
         }
 
 
     }
-
 
 
     @Override
@@ -366,6 +373,10 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
 
     }
 
+    public void onInfoWindowClick(Marker marker) {
+        onMarkerClick(marker);
+    }
+
     @Override
     public boolean onMarkerClick(Marker marker) {
 
@@ -382,11 +393,16 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
         //Make an Intent to open the specified restaurant.
 
         //for loop for this
-        //if the marker's latitude equals the arrayList's lattitude AND if marker's longitude equals arrayList's longitude, then open that restaurant's activity
+        //if the marker's latitude equals the arrayList's latitude AND if marker's longitude equals arrayList's longitude, then open that restaurant's activity
         //for loop for this
         for (index = 0; index < array_restaurent.size(); index++) {
             Log.d("In for", "In the for loop");
-            if ((markerPos.latitude == array_restaurent.get(index).getLat() && (markerPos.longitude == array_restaurent.get(index).getLongt()))) {
+
+            //changed from comparing lat and long to addresses
+            //geocoder was not giving same precision of coordinates as were in database
+
+            //if ((markerPos.latitude == array_restaurent.get(index).getLat() && (markerPos.longitude == array_restaurent.get(index).getLongt()))) {
+            if (marker.getSnippet().equals(array_restaurent.get(index).getLocation())){
                 //MAKE INTENT TO START ACTIVITY OF THAT RESTAURANT
                 Intent chosenRestaurant = new Intent(getContext(), RestaurantDetailActivity.class);
                 chosenRestaurant.putExtra("RestaurantObject", array_restaurent.get(index));  //may not need this
@@ -405,10 +421,9 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
                 //if (val.child("hotel").getValue(String.class).contains("hotel")) {
 
                 //}
-
-
             }
         }
+
         return false;
     }
 
@@ -423,6 +438,7 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
 
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    item.clear();
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 //                    Log.i("player", player.getKey());
 //                        Restaurants restaurants = dataSnapshot1.getValue(Restaurants.class);

@@ -399,28 +399,32 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
             Log.d("In for", "In the for loop");
 
             //changed from comparing lat and long to addresses
+            //current looping method may be slow
             //geocoder was not giving same precision of coordinates as were in database
 
-            //if ((markerPos.latitude == array_restaurent.get(index).getLat() && (markerPos.longitude == array_restaurent.get(index).getLongt()))) {
-            if (marker.getSnippet().equals(array_restaurent.get(index).getLocation())){
-                //MAKE INTENT TO START ACTIVITY OF THAT RESTAURANT
+            if ((markerPos.latitude == array_restaurent.get(index).getLat() && (markerPos.longitude == array_restaurent.get(index).getLongt()))) {
                 Intent chosenRestaurant = new Intent(getContext(), RestaurantDetailActivity.class);
                 chosenRestaurant.putExtra("RestaurantObject", array_restaurent.get(index));  //may not need this
                 startActivity(chosenRestaurant);
-                break;
-
-
-
-
+                return true;
+            }
 
                 //return true;
                 // this is if your querying for the latLong child
-
 
                 //NOTE THIS
                 //if (val.child("hotel").getValue(String.class).contains("hotel")) {
 
                 //}
+        }
+        for (index = 0; index < array_restaurent.size(); index++) {
+            Log.d("In for", "In the for loop");
+            if (marker.getSnippet().equals(array_restaurent.get(index).getLocation())) {
+                //MAKE INTENT TO START ACTIVITY OF THAT RESTAURANT
+                Intent chosenRestaurant = new Intent(getContext(), RestaurantDetailActivity.class);
+                chosenRestaurant.putExtra("RestaurantObject", array_restaurent.get(index));  //may not need this
+                startActivity(chosenRestaurant);
+                return true;
             }
         }
 

@@ -79,24 +79,7 @@ public class MenuItemAdapter extends BaseAdapter implements ListAdapter {
     }
 
     public boolean checkMinMax(){
-      /* ArrayList<MenuItem.ModifierGroup> mgList=null;
-        try{
-         mgList = item.getModifierGroups();}
-        catch(Exception e)
-        {
-            String a=e.getMessage().toString();
-        }
-        for(int i = 0; i < mgList.size(); i++){
-            MenuItem.ModifierGroup mgrp = mgList.get(i);
-            int min = mgrp.getMinimum();
-            int max = mgrp.getMaximum();
-            int num_checked = 0;
-            for(MenuItem.ModifierGroup.ItemModifier im : mgrp.getModifierList())
-                if(im.isAdded())
-                    num_checked++;
-            if((num_checked<min || num_checked>max) && mgrp.isRequired())
-                return false;
-        }*/
+
         return true;
     }
 
@@ -111,9 +94,6 @@ public class MenuItemAdapter extends BaseAdapter implements ListAdapter {
 
         final TextView listItemText = (TextView) view.findViewById(R.id.rowTextView);
         final TextView itemprice=(TextView)view.findViewById(R.id.itemprice);
-
-        //final ImageView cartImage = (ImageView) view.findViewById(R.id.cart);
-        //final ImageView navigateImage = (ImageView) view.findViewById(R.id.navigateView);
 
         listItemText.setText(list.get(position).getName());
         itemprice.setText("$"+list.get(position).getPrice());
@@ -140,19 +120,6 @@ public class MenuItemAdapter extends BaseAdapter implements ListAdapter {
             }
         });
 
-      /*  listItemText.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //TODO blur or dim background
-                Log.i(LOG_TAG,"menu item selected");
-                Intent intent = new Intent(context, MainItemActivity.class);
-                Bundle extras = new Bundle();
-                extras.putSerializable("menu-item",list.get(position));
-                intent.putExtras(extras);
-                context.startActivity(intent);
-                notifyDataSetChanged();
-            }
-        }); */
 
         notifyDataSetChanged();
 
@@ -160,35 +127,33 @@ public class MenuItemAdapter extends BaseAdapter implements ListAdapter {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //add item to viewcart
-                /*Intent intent = new Intent(context, MainItemActivity.class);
-                Bundle extras = new Bundle();
-                extras.putSerializable("menu-item", list.get(position));
-                intent.putExtras(extras);
-                intent.putExtra("currentrestaurant",curr_rest);
-                context.startActivity(intent);*/
 
-
-
-                if (numOrdered > 0 && checkMinMax()) {
-
-                    item=list.get(position);
-                    //change num_ordered, special instructions,all modifiers
-                    OrderSingleton.getInstance().addItem(item,numOrdered,"");
-
-                    Log.i(LOG_TAG, "item added");
+                boolean toast = false;
+                if (OrderSingleton.getInstance().getcurrentRestaurent() != null) {
+                    if (!OrderSingleton.getInstance().getcurrentRestaurent().equals(curr_rest)) {
+                        OrderSingleton.getInstance().clearList();
+                        String textToShow = "New restaurant selections. Current cart items cleared.";
+                        toast=true;
+                        Toast.makeText(context, textToShow, Toast.LENGTH_LONG).show();
+                    }
                 }
 
+                if (numOrdered > 0 && checkMinMax()) {
+                    item = list.get(position);
+                    //change num_ordered, special instructions,all modifiers
+                    OrderSingleton.getInstance().addItem(item, numOrdered, "", curr_rest);
+                    if(!toast) {
+                        String textToShow = "Item added";
+                        Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
+                    }
+                }
 
-                //Intent intent = new Intent(MainItemActivity.this, MainMenuActivity.class);
-                //MainItemActivity.this.startActivity(intent);
 
             }
         });
 
+
         notifyDataSetChanged();
-        //setUpButtons();
-        //checkMinMax();
         return view;
 
 

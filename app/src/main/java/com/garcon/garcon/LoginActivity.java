@@ -234,8 +234,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
-                // Google Sign In failed, update UI appropriately
-                // ...
+                Toast.makeText(LoginActivity.this, "Google sign in failed.",
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -280,6 +280,27 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             finish();
 
         } else {
+
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.sign_in_button:
+                String textToShow = "Sign in - Please wait";
+                Toast.makeText(LoginActivity.this, textToShow, Toast.LENGTH_SHORT).show();
+                signIn();
+                break;
+        }
+    }
+
+    private void signIn() {
+        try {
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        } catch (Exception e) {
 
         }
     }
@@ -501,24 +522,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     }
 
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.sign_in_button:
-                signIn();
-                break;
-        }
-    }
-
-    private void signIn() {
-        try {
-            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-            startActivityForResult(signInIntent, RC_SIGN_IN);
-        } catch (Exception e) {
-            String s = e.getMessage();
-        }
-    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

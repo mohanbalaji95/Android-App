@@ -12,6 +12,8 @@ import android.os.Parcelable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.util.Calendar;
+
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Restaurant implements Serializable{
     String name="", location="", id="", price="", website="", hours="", type="", phone="";
@@ -51,6 +53,40 @@ public class Restaurant implements Serializable{
 
     public String getHours() {
         return hours;
+    }
+
+    public String getParsedHours() {
+        String data = hours;
+        String[] weekday = data.split("[;]");
+        //String header = "Hours:Today "; add to return statements if needed
+        String Monday = weekday[0].substring(8);
+        String Tuesday = weekday[1].substring(9);
+        String Wednesday = weekday[2].substring(11);
+        String Thursday = weekday[3].substring(10);
+        String Friday = weekday[4].substring(8);
+        String Saturday = weekday[5].substring(10);
+        String Sunday = weekday[6].substring(8);
+        //String finalhour = header + newFriday;
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        switch (day) {
+            case Calendar.MONDAY:
+                return Monday;
+            case Calendar.TUESDAY:
+                return Tuesday;
+            case Calendar.WEDNESDAY:
+                return Wednesday;
+            case Calendar.THURSDAY:
+                return Thursday;
+            case Calendar.FRIDAY:
+                return Friday;
+            case Calendar.SATURDAY:
+                return Saturday;
+            case Calendar.SUNDAY:
+                return Sunday;
+        }
+        return null;
     }
 
     public void setHours(String newvar) {

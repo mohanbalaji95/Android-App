@@ -58,6 +58,15 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
+
+        <TextView
+            android:id="@+id/tvHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hours"
+            android:textColor="@color/black_light"
+            android:textSize="14sp" />
+
         <TextView
             android:id="@+id/tvType"
             android:layout_width="wrap_content"

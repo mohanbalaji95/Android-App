@@ -281,7 +281,7 @@ public class RestaurantDetailActivity extends AppBarActivity {
             tvName.setText(restaurant.getName());
             tvPrice.setText(restaurant.getPrice());
             tvLocation.setText(restaurant.getLocation());
-            tvHours.setText(parseHours(restaurant.getHours()));
+            tvHours.setText("Hours Today:" + restaurant.getParsedHours());
             //tvHours.setText(restaurant.getHours());
             tvType.setText(restaurant.getType());
             phoneNumber = restaurant.getPhone();
@@ -317,46 +317,6 @@ public class RestaurantDetailActivity extends AppBarActivity {
 
 
         });
-    }
-
-    public String parseHours(String hours) {
-        String data = hours;
-        // String header = "Hours:Today ";
-        String[] weekday = data.split("[;]");
-        String header = "Hours:Today ";
-        String Monday = weekday[0].substring(8);
-        String Tuesday = weekday[1].substring(9);
-        String Wednesday = weekday[2].substring(11);
-        String Thursday = weekday[3].substring(10);
-        String Friday = (weekday[4]).substring(8);
-        String Saturday = weekday[5].substring(10);
-        String Sunday = weekday[6].substring(8);
-        //String finalhour = header + newFriday;
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
-
-
-        switch (day) {
-            case Calendar.MONDAY:
-                return header + Monday;
-
-            case Calendar.TUESDAY:
-                return header + Tuesday;
-
-            case Calendar.WEDNESDAY:
-                return header + Wednesday;
-            case Calendar.THURSDAY:
-                return header + Thursday;
-            case Calendar.FRIDAY:
-                return header + Friday;
-            case Calendar.SATURDAY:
-                return header + Saturday;
-            case Calendar.SUNDAY:
-                return header + Sunday;
-
-        }
-        return null;
-
     }
 
     public void addToFav(View view) {

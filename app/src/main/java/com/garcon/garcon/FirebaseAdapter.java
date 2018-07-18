@@ -68,6 +68,7 @@ public class FirebaseAdapter extends BaseAdapter {
 
         mViewHolder.tvName.setText(curRestaurant.getName());
         mViewHolder.tvPrice.setText(curRestaurant.getPrice());
+        mViewHolder.tvHours.setText(curRestaurant.getParsedHours());
         //mViewHolder.ratingRestaurant.setRating((float) curRestaurant.getRating());
         mViewHolder.tvLocation.setText(curRestaurant.getLocation().trim());
         mViewHolder.tvType.setText(curRestaurant.getType());
@@ -90,6 +91,7 @@ public class FirebaseAdapter extends BaseAdapter {
             //ratingRestaurant = (RatingBar) item.findViewById(R.id.ratingRestaurant);
             tvLocation = (TextView) item.findViewById(R.id.tvLocation);
             tvType = (TextView) item.findViewById(R.id.tvType);
+            tvHours = (TextView) item.findViewById(R.id.tvHours);
             ivRestaurant = (ImageView)item.findViewById(R.id.ivRestaurant);
         }
     }

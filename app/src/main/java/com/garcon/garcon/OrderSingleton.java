@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class OrderSingleton {
 
     private static OrderSingleton mInstance = null;
+    private static  String currRestaurent = null;
     private ArrayList<MenuItem> mList;
 
     private OrderSingleton() {
@@ -26,6 +27,9 @@ public class OrderSingleton {
         return mInstance;
     }
 
+    public String getcurrentRestaurent(){
+        return currRestaurent;
+    }
     public void clearList(){
         mList = new ArrayList<MenuItem>();
     }
@@ -34,7 +38,8 @@ public class OrderSingleton {
         return this.mList;
     }
 
-    public void addItem(MenuItem menuItem, int numOrdered, String specialInstructions) {
+    public void addItem(MenuItem menuItem, int numOrdered, String specialInstructions, String restaurent) {
+        currRestaurent =restaurent;
 
         MenuItem nItem = menuItem; //new MenuItem(menuItem,numOrdered,specialInstructions);
         nItem.setNumOrdered(numOrdered);

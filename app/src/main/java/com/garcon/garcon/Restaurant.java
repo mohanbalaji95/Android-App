@@ -89,6 +89,53 @@ public class Restaurant implements Serializable{
         return null;
     }
 
+    //TODO: add error checking
+    public Boolean isOpen()
+    {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        String hours = getParsedHours();
+        String open = hours.substring(0, hours.indexOf('-')-1);
+        String closed = hours.substring(hours.indexOf('-')+1);
+        int openHour = Integer.parseInt(open.substring(0, open.indexOf(':')).trim());
+        int closedHour = Integer.parseInt(closed.substring(0, closed.indexOf(':')).trim());
+        int openMinute  = Integer.parseInt(open.substring(open.indexOf(':')+1,open.indexOf(':')+3));
+        int closedMinute = Integer.parseInt(closed.substring(closed.indexOf(':')+1,closed.indexOf(':')+3));
+        char openM = open.charAt(hours.indexOf(' ')+1);
+        char closedM = closed.charAt(hours.indexOf(' ')+1);
+        if (openM=='P')
+            openHour+=12;
+        if (closedM=='P')
+            closedHour+=12;
+        if (hour > openHour && hour < closedHour)
+            return true;
+        if (hour == openHour && minute > openMinute)
+            return true;
+        if (hour == closedHour && minute < closedMinute)
+            return true;
+        return false;
+    }
+
+    //TODO: Need to add Easter
+    public boolean isHoliday()
+    {
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH);
+        if (day == 4 && month == Calendar.JULY)//Independence Day
+            return true;
+        if (day == 25 && month == Calendar.DECEMBER)//Christmas Day
+            return true;
+        if (day >= 25 && day <= 31 && month == Calendar.MAY && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY)//Memorial Day
+            return true;
+        if (day >= 1 && day <= 7 && month == Calendar.SEPTEMBER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY)//Labor Day
+            return true;
+        if (day >= 22 && day <= 28 && month == Calendar.NOVEMBER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)//Thanksgiving Day
+            return true;
+        return false;
+    }
+
     public void setHours(String newvar) {
         this.hours = newvar;
     }

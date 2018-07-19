@@ -17,15 +17,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
-import com.google.android.gms.auth.api.Auth;
 import com.garcon.garcon.Payment.CheckoutandPay;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +32,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * This activity does the following:
@@ -61,23 +57,24 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
 
 
     private TabFragment tabFragment;
+    private String GuestValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_homeactivity);
+
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         mDatabase = FirebaseDatabase.getInstance();
-
-
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -91,8 +88,11 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                     //System.out.println("onAuthStateChanged:signed_out");
-                    finish();
+
+                        finish();
+
                 }
+
             }
         };
         getHolidayCalendar();
@@ -239,23 +239,7 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
         }
 
         return super.onOptionsItemSelected(item);
-    }         /*
-            case R.id.mapMenu:
-                mapItem.setVisible(false);
-                listItem.setVisible(true);
-                openPrimaryFragment();
-                break;
-            case R.id.listMenu:
-                listItem.setVisible(false);
-                mapItem.setVisible(true);
-                openSecondFragment();
-                break; */
-    //    }
-
-    //  return super.onOptionsItemSelected(item);
-    //}
-
-    //30 June commenting out as there is no call
+    }
 
 
     private void openPrimaryFragment() {

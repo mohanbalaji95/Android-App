@@ -96,14 +96,18 @@
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold" />
 
-            <TextView
+            <Button
+                android:id="@+id/tvGuest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Continue as GUEST..."
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                />
+
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

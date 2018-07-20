@@ -1,7 +1,5 @@
 package com.garcon.garcon;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
@@ -13,7 +11,6 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -31,7 +28,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -94,16 +90,40 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private CallbackManager mCallbackManager;
     private GoogleApiClient mGoogleApiClient;
 
+    private Button tvGuest;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login2);
+
+        tvGuest = (Button) findViewById(R.id.tvGuest);
+        tvGuest.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(),"Guest" , Toast.LENGTH_LONG).show();
+
+                Intent GuestIntent = new Intent(LoginActivity.this, homeactivity.class);
+                GuestIntent.putExtra("guest Value","GUEST");
+                LoginActivity.this.startActivity(GuestIntent);
+
+            }
+        });
+
+
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         sharedpreferences = getSharedPreferences(getString(R.string.shared_pref_file_name), Context.MODE_PRIVATE);
         String emailPref = sharedpreferences.getString(eMailkey, null);
+
+
+
+
 
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.email);
@@ -257,6 +277,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             Log.w(TAG, "signInWithCredential", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                        }else{
+
+                            Intent myIntent = new Intent(LoginActivity.this, homeactivity.class);
+                            LoginActivity.this.startActivity(myIntent);
+
                         }
 
                         // ...
@@ -568,6 +593,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             //addEmailsToAutoComplete(emailAddressCollection);
         }
     }
+
+
+    //------------Continue as Guest------------------------//
+
+
+
+    //-----------------------------------------------------//
 
 
 }

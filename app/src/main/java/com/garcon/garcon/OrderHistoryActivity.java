@@ -1,14 +1,10 @@
 package com.garcon.garcon;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
@@ -19,24 +15,20 @@ import com.firebase.client.ValueEventListener;
 import com.garcon.Constants.Constants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by siddhiparekh11 on 8/10/17.
  */
 
-public class OrderHistoryActivity extends AppCompatActivity {
+public class OrderHistoryActivity extends AppBarActivity {
 
 
     private static final String TAG = com.garcon.garcon.OrderHistoryActivity.class.getName();
-       // private Toolbar toolbar;
+
         private ArrayList<String> mItems;
         //    private CardViewAdapter mAdapter;
         private ArrayList<OrderHistoryCardView> orderhistorycardviews;
@@ -53,10 +45,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
                 Firebase.setAndroidContext(this);
             }
             setContentView(R.layout.activity_order_history);
-            /*toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle("Order History");
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+
 
             mAuth = FirebaseAuth.getInstance();
             mAuthListener = new FirebaseAuth.AuthStateListener() {

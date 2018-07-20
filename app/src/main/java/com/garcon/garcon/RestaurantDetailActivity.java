@@ -96,9 +96,6 @@ public class RestaurantDetailActivity extends AppBarActivity {
         OrderSingleton.getInstance();
         setContentView(R.layout.floating_layout);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         initializeUI();
         i = getIntent();
         dataSetup((Restaurant) i.getSerializableExtra("RestaurantObject"));

@@ -68,7 +68,12 @@ public class FirebaseAdapter extends BaseAdapter {
 
         mViewHolder.tvName.setText(curRestaurant.getName());
         mViewHolder.tvPrice.setText(curRestaurant.getPrice());
-        mViewHolder.tvHours.setText(curRestaurant.getParsedHours());
+        String closed = "  **CLOSED**";
+        if (curRestaurant.isOpen())
+            closed = "";
+        if (curRestaurant.isHoliday())
+            mViewHolder.tvHours.setText(curRestaurant.getParsedHours() + closed + "\n**Hours might be affected due to holiday**");
+        else mViewHolder.tvHours.setText(curRestaurant.getParsedHours()+ closed);
         //mViewHolder.ratingRestaurant.setRating((float) curRestaurant.getRating());
         mViewHolder.tvLocation.setText(curRestaurant.getLocation().trim());
         mViewHolder.tvType.setText(curRestaurant.getType());

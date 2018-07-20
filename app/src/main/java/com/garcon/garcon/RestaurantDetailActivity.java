@@ -278,7 +278,12 @@ public class RestaurantDetailActivity extends AppBarActivity {
             tvName.setText(restaurant.getName());
             tvPrice.setText(restaurant.getPrice());
             tvLocation.setText(restaurant.getLocation());
-            tvHours.setText("Hours Today:" + restaurant.getParsedHours());
+            String closed = "\n**CLOSED**";
+            if (restaurant.isOpen())
+                closed = "";
+            if (restaurant.isHoliday())
+                tvHours.setText("Hours Today:" + restaurant.getParsedHours() + closed + "\n**Hours might be affected due to holiday**");
+            else tvHours.setText("Hours Today:" + restaurant.getParsedHours() +closed );
             //tvHours.setText(restaurant.getHours());
             tvType.setText(restaurant.getType());
             phoneNumber = restaurant.getPhone();

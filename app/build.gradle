@@ -24,9 +24,8 @@ android {
         cruncherEnabled = false
     }
 
-
     //Add the following block
-    packagingOptions{
+    packagingOptions {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
@@ -66,6 +65,8 @@ dependencies {
     implementation 'com.madgag.spongycastle:pg:1.54.0.0'
     implementation 'com.android.support:multidex:1.0.3'
 
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:support-v4:25.3.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

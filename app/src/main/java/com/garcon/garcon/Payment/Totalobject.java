@@ -11,8 +11,11 @@ public class Totalobject implements Serializable {
     int subtotal;
     int  tax;
     int due;
+    int tip;
+    int serviceCharge;
 
     public int getTotal() {
+        total = subtotal + tax + tip + serviceCharge;
         return total;
     }
 
@@ -41,5 +44,21 @@ public class Totalobject implements Serializable {
 
     public void setDue(int due) {
         this.due = due;
+    }
+
+    public int getTip() {
+        return tip;
+    }
+
+    public void setTip(int tip) {
+        this.tip = tip;
+    }
+
+    public int getServiceCharge() {
+        return serviceCharge;
+    }
+
+    public void setServiceCharge(int serviceCharge) {
+        this.serviceCharge = serviceCharge;
     }
 }

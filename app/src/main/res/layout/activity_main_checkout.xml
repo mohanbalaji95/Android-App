@@ -1,211 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainCheckout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
-
-
-    <ScrollView android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/process"
         android:layout_alignParentTop="true">
 
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:padding="@dimen/default_margin">
 
 
-
             <TextView
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:text="Grill 'Em"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:textSize="20dp"
                 android:textColor="@color/red"
-                android:layout_height="match_parent" />
-
+                android:textSize="20dp" />
 
 
             <TextView
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:text="Dine-In"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:textSize="20dp"
                 android:textColor="@color/red"
-                android:layout_height="match_parent" />
+                android:textSize="20dp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:text="Table #33"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:textSize="20dp"
+                android:text="Table #33"
                 android:textColor="@color/red"
-                android:layout_height="match_parent" />
+                android:textSize="20dp" />
 
 
             <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
                 android:id="@+id/orderlist"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="vertical">
-            </android.support.v7.widget.RecyclerView>
+                android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>
 
 
             <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
                 android:id="@+id/type_of_order"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="vertical">
-            </android.support.v7.widget.RecyclerView>
+                android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>
 
 
             <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
                 android:id="@+id/table_number"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical">
 
             </android.support.v7.widget.RecyclerView>
 
 
-            <RadioGroup android:id="@+id/paymentOption"
-                android:layout_below="@+id/total"
+            <RadioGroup
+                android:id="@+id/paymentOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/total"
                 android:checkedButton="@+id/payApp"
                 android:orientation="vertical"
                 android:visibility="gone">
-                <RadioButton android:id="@+id/payApp"
-                    android:text="Pay Via App"
+
+                <RadioButton
+                    android:id="@+id/payApp"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-                <RadioButton android:id="@+id/payStore"
-                    android:text="Pay At Counter"
+                    android:layout_height="match_parent"
+                    android:text="Pay Via App" />
+
+                <RadioButton
+                    android:id="@+id/payStore"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:text="Pay At Counter" />
 
 
             </RadioGroup>
 
-            <RelativeLayout android:id="@+id/payment_information"
-                android:layout_below="@+id/paymentOption"
+            <RelativeLayout
+                android:id="@+id/payment_information"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/paymentOption">
 
-                <com.garcon.garcon.NonScrollableListView android:id="@+id/credit_cards"
+                <com.garcon.garcon.NonScrollableListView
+                    android:id="@+id/credit_cards"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="5dp"
                     android:background="@color/white"
+                    android:clickable="true"
                     android:divider="@color/lime"
                     android:dividerHeight="2dp"
                     android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:clickable="true" />
-                <TextView android:id="@+id/addCard"
-                    android:background="@color/lime"
-                    android:text="add card"
+                    android:paddingRight="2dp" />
+
+                <TextView
+                    android:id="@+id/addCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/credit_cards"
                     android:layout_alignRight="@+id/credit_cards"
+                    android:layout_below="@+id/credit_cards"
+                    android:background="@color/lime"
                     android:clickable="true"
                     android:onClick="addCard"
+                    android:text="add card"
                     android:textSize="15dp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
             </RelativeLayout>
-            <RelativeLayout android:id="@+id/subtotal"
+
+            <RelativeLayout
+                android:id="@+id/subtotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView android:text="@string/subtotal"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/subtotal"
                     android:textColor="@color/black"
-                    android:textSize="22dp"
-                    android:layout_alignParentLeft="true"/>
-                <TextView android:id="@+id/subtotal_final"
-                    android:text="@string/buffer_amount"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:id="@+id/subtotal_final"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:textColor="@color/black"
-                    android:textSize="22dp"
-                    android:layout_alignParentRight="true"/>
+                    android:textSize="22dp" />
 
             </RelativeLayout>
-            <RelativeLayout android:id="@+id/tax"
+
+            <RelativeLayout
+                android:id="@+id/tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView android:text="Sales Tax (9.25%)"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Sales Tax (9.25%)"
                     android:textColor="@color/black"
-                    android:textSize="22dp"
-                    android:layout_alignParentLeft="true"/>
-                <TextView android:id="@+id/tax_final"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:id="@+id/tax_final"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:text="@string/buffer_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="22dp"
-                    android:layout_alignParentRight="true"/>
+                    android:textSize="22dp" />
 
             </RelativeLayout>
-            <RelativeLayout android:id="@+id/service_charge"
+
+            <RelativeLayout
+                android:id="@+id/service_charge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView android:text="Service Charge (1%)"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Service Charge (1%)"
                     android:textColor="@color/black"
-                    android:textSize="22dp"
-                    android:layout_alignParentLeft="true"/>
-                <TextView android:id="@+id/total_final"
-                    android:text="@string/buffer_amount"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:id="@+id/service_charge_final"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:textColor="@color/black"
-                    android:textSize="22dp"
-                    android:layout_alignParentRight="true"/>
+                    android:textSize="22dp" />
 
 
             </RelativeLayout>
 
 
-            <RelativeLayout android:id="@+id/tip"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/tip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <TextView android:text="Server's Tip"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="22dp"
-                          android:layout_alignParentLeft="true"/>
-                <TextView android:id="@+id/tip_final"
-                          android:text="@string/buffer_amount"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Server's Tip"
                     android:textColor="@color/black"
-                    android:textSize="22dp"
-                          android:layout_alignParentRight="true"/>
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:id="@+id/tip_final"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/black"
+                    android:textSize="22dp" />
 
 
             </RelativeLayout>
 
-<!--
+            <!--
             <RelativeLayout android:id="@+id/due"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -225,74 +246,76 @@
 
 
             <!-- Use linear layout to get the boxes next to each other by saying android:orientation="horizontal" -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <!-- use the rectangle box in drawable to add to the box -->
-            <!-- use a textview and put the background as drawable so you can add text! -->
-            <TextView
-                android:id="@+id/myRectangleView1"
-                android:layout_width="65dp"
-                android:layout_height="50dp"
-                android:text="15%\n$3.20"
-                android:textSize="18sp"
-                android:background="@drawable/rectanglebox"
-                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <!-- use the rectangle box in drawable to add to the box -->
+                <!-- use a textview and put the background as drawable so you can add text! -->
+                <Button
+                    android:id="@+id/fifPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="15%"
+                    android:visibility="visible" />
 
-            <TextView
-                android:id="@+id/myRectangleView2"
-                android:layout_width="65dp"
-                android:layout_height="50dp"
-                android:text="18%\n$4.20"
-                android:textSize="18sp"
-                android:background="@drawable/rectanglebox"/>
+                <Button
+                    android:id="@+id/eighttPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="18%"
+                    android:visibility="visible" />
 
-            <TextView
-                android:id="@+id/myRectangleView3"
-                android:layout_width="65dp"
-                android:layout_height="50dp"
-                android:text="20%\n$5.00"
-                android:textSize="18sp"
-                android:background="@drawable/rectanglebox"/>
-            <TextView
-                android:id="@+id/myRectangleView4"
-                android:layout_width="65dp"
-                android:layout_height="50dp"
-                android:text="23%\n$6.00"
-                android:textSize="18sp"
-                android:textColor="@color/red"
-                android:background="@drawable/rectanglebox"/>
-            <TextView
-                android:id="@+id/myRectangleView5"
-                android:layout_width="65dp"
-                android:layout_height="50dp"
-                android:text="25%\n$7.00"
-                android:textSize="18sp"
-                android:background="@drawable/rectanglebox"/>
+                <Button
+                    android:id="@+id/twentyPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20%"
+                    android:visibility="visible" />
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/twentyfPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="25%"
+                    android:visibility="visible" />
 
+                <Button
+                    android:id="@+id/customPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Custom"
+                    android:visibility="visible" />
+
+            </LinearLayout>
 
 
-            <RelativeLayout android:id="@+id/due"
+            <RelativeLayout
+                android:id="@+id/total"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView android:text="Total"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Total"
                     android:textColor="@color/black"
-                    android:textSize="30dp"
-                    android:layout_alignParentLeft="true"/>
-                <TextView android:id="@+id/due_final"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/total_final"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:text="@string/buffer_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="30dp"
-                    android:layout_alignParentRight="true"/>
+                    android:textSize="30dp" />
 
 
             </RelativeLayout>
@@ -301,40 +324,39 @@
                 android:id="@+id/chooseCreditCard"
                 android:layout_width="325dp"
                 android:layout_height="50dp"
+                android:background="@drawable/rectanglebox"
                 android:text="Choose Payment Method"
-                android:textSize="28dp"
-                android:background="@drawable/rectanglebox"/>
-
+                android:textSize="28dp" />
 
 
         </LinearLayout>
     </ScrollView>
 
     <Button
+        android:id="@+id/process"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Checkout"
-        android:textColor="@color/white"
-        android:textSize="38dp"
-        android:id="@+id/process"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_gravity="bottom"
         android:background="@color/red"
         android:onClick="processPayment"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:text="Checkout"
+        android:textColor="@color/white"
+        android:textSize="38dp" />
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="By Checking out, you agree to our terms of use and privacy policy."
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:gravity="bottom"
-        android:textSize="20dp"
+        android:text="By Checking out, you agree to our terms of use and privacy policy."
         android:textColor="@color/red"
 
-        android:layout_alignParentBottom="true" />
+        android:textSize="20dp" />
 
 </RelativeLayout>
 

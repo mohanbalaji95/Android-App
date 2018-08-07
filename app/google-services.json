@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "1048655021390-6u873sq9fgpogjbmo7a6dab3jd693dan.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.garcon.garcon",
+            "certificate_hash": "3cce04e9f6aafd8089be7639354f9c28dd0ed5ac"
+          }
+        },
+        {
+          "client_id": "1048655021390-9mvdbl1871uosgd1puhjuc9l89gb3pbv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.garcon.garcon",
+            "certificate_hash": "f2cc608d3284fa0ff08cd4902e61ad13f995a77b"
+          }
+        },
+        {
+          "client_id": "1048655021390-kmkmm34j12vc6a83e95ao7k3evirq497.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.garcon.garcon",
+            "certificate_hash": "66a4bfaab72017b5db000e73607e54006c60731e"
+          }
+        },
+        {
           "client_id": "1048655021390-ui1nq670erdkgj1ep1aumt7ldnbr98me.apps.googleusercontent.com",
           "client_type": 3
         }

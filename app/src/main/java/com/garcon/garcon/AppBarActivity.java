@@ -1,5 +1,6 @@
 package com.garcon.garcon;
 
+import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -7,11 +8,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 import com.garcon.garcon.Payment.CheckoutandPay;
@@ -28,6 +31,7 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AppBarActivity extends AppCompatActivity implements MenuItem.OnMenuItemClickListener, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = AppBarActivity.class.getName();
@@ -44,6 +48,9 @@ public class AppBarActivity extends AppCompatActivity implements MenuItem.OnMenu
     private ActionBarDrawerToggle mDrawerToggle;
     private Menu drawerMenu;
 
+    private FirebaseDatabase mDatabase;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
 
 
     @Override
@@ -59,13 +66,20 @@ public class AppBarActivity extends AppCompatActivity implements MenuItem.OnMenu
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);mDatabase = FirebaseDatabase.getInstance();
 
         drawerMenu = navigation_view.getMenu();
         for(int i = 0; i < drawerMenu.size(); i++) {
             drawerMenu.getItem(i).setOnMenuItemClickListener(this);
         }
-        // and so on...
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API)
+                .build();
+
+
+
     }
 
     @Override
@@ -177,14 +191,18 @@ public class AppBarActivity extends AppCompatActivity implements MenuItem.OnMenu
                         //What ever you want to do with the value
 
                         try {
-                            FragmentTransaction xfragmentTransaction = myFragmentManager.beginTransaction();
-                            xfragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
+
                             Log.d(TAG, "menu item clicked");
 
-                            // Firebase sign out
-                            FirebaseAuth.getInstance().signOut();
-                            mAuth.signOut();
-                            finish();
+                            if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+                                Toast.makeText(getApplicationContext(),"user is not null", Toast.LENGTH_LONG).show();
+
+                                FirebaseAuth.getInstance().signOut();
+
+                            }else{
+                                Toast.makeText(getApplicationContext(),"user is null", Toast.LENGTH_LONG).show();
+                            }
+                           finish();
 
                             // Google sign out
                             Auth.GoogleSignInApi.signOut(mGoogleApiClient);
@@ -197,7 +215,7 @@ public class AppBarActivity extends AppCompatActivity implements MenuItem.OnMenu
                         } catch (Exception e) {
                             Log.d(TAG, e.getMessage());
                         }
-                        startActivity(new Intent(AppBarActivity.this, LoginActivity.class));
+                       // startActivity(new Intent(AppBarActivity.this, LoginActivity.class));
                     }
                 });
 
@@ -216,10 +234,23 @@ public class AppBarActivity extends AppCompatActivity implements MenuItem.OnMenu
         return false;
     }
 
+    private void signout() {
+        Log.d(TAG, "Yes clicked");
+       Intent logoutIntent = new Intent(getApplication(), LoginActivity.class);
+        startActivity(logoutIntent);
+        finish();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
+
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search));
+        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+
         return super.onCreateOptionsMenu(menu);
     }
 

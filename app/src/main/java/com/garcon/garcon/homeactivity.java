@@ -58,7 +58,7 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
 
 
     private TabFragment tabFragment;
-    private String GuestValue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,9 +88,8 @@ public class homeactivity extends AppCompatActivity implements GoogleApiClient.O
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                    //System.out.println("onAuthStateChanged:signed_out");
 
-                        finish();
+                    //finish();
 
                 }
 

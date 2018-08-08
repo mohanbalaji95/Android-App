@@ -1,5 +1,7 @@
 package com.garcon.garcon;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -66,7 +68,7 @@ public class ManageUserDetails extends Fragment {
         etLastName = (EditText) view.findViewById(R.id.signup_lastname);
         etEmail = (EditText)view.findViewById(R.id.signup_email);
         etContact = (EditText) view.findViewById(R.id.signup_phonenumber);
-        etPassword = (EditText) view.findViewById(R.id.signup_password);
+
 
         btSave = (Button) view.findViewById(R.id.btSaveDetails);
         btCancel = (Button) view.findViewById(R.id.btCancelDetails);
@@ -74,6 +76,8 @@ public class ManageUserDetails extends Fragment {
         //-------------------signup button visibility set hidden-----------------------//
         btSignUp = (Button) view.findViewById(R.id.buttonSave);
         btSignUp.setVisibility(View.GONE);
+        etPassword = (EditText) view.findViewById(R.id.signup_password);
+        etPassword.setVisibility(View.GONE);
         //---------------------------------------------------------------------------//
 
         btSave.setOnClickListener(new View.OnClickListener() {
@@ -97,10 +101,29 @@ public class ManageUserDetails extends Fragment {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReferenceFromUrl("https://garcondatabase.firebaseio.com/users");
         FirebaseUser user = mAuth.getCurrentUser();
-        userID = user.getUid();
+        //userID = user.getUid();
 
-        if(userID!=null)
+        if( FirebaseAuth.getInstance().getCurrentUser()==null)
         {
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("If you are a guest, please create a account to see your details.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent myIntent = new Intent(getContext(), SignUpActivity.class);
+                            startActivity(myIntent);
+
+                        }
+                    }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // do nothing
+                }
+            }).show();
+
+        }
+        else{
 
             getDataFromServer();
 
@@ -125,14 +148,10 @@ public class ManageUserDetails extends Fragment {
                         etLastName.setText(user.getLastName());
                         etEmail.setText(user.geteMail());
                         etContact.setText(user.getPhoneNumber());
-                        etPassword.setText(user.getUserUID());
-
-
-                        Toast.makeText(getContext(),"User exists", Toast.LENGTH_LONG).show();
-
+                        //etPassword.setText(user.getUserUID());
 
                     }
-                    //Toast.makeText(getContext(),"DataSnapshot", Toast.LENGTH_LONG).show();
+
                 }
             }
 
@@ -151,41 +170,34 @@ public class ManageUserDetails extends Fragment {
         String lastName = etLastName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
         String contact = etContact.getText().toString().trim();
-        String Password = etPassword.getText().toString().trim();
+        //String Password = etPassword.getText().toString().trim();
 
         String UserID = mAuth.getCurrentUser().getUid();
 
         // Check for a valid password, if the user entered one.
 
-        if ( (firstName.length()==0) ) {
-            etFirstName.setError("Name required");
-            focusView = etFirstName;
-            cancel = true;
-        }
+        if (TextUtils.isEmpty(firstName)) {
+            etFirstName.setError("First Name required");
+            etFirstName.requestFocus();
+        }else
 
-        if ( (lastName.length()==0) ) {
-            etLastName.setError("Name required");
-            focusView = etLastName;
-            cancel = true;
-        }
+        if (TextUtils.isEmpty(lastName)) {
+            etLastName.setError("Last Name required");
+            etLastName.requestFocus();
+        }else
 
 
-
-        if (!isPhoneNumberValid(contact)) {
+        if (!isPhoneNumberValid(contact)||TextUtils.isEmpty(contact)) {
             etContact.setError(getString(R.string.error_incorrect_phonenumber));
-            focusView = etContact;
-            cancel = true;
-        }
+            etContact.requestFocus();
+        }else
+
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
-            etEmail.setError(getString(R.string.error_field_required));
-            focusView = etEmail;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            etEmail.setError(getString(R.string.error_invalid_email));
-            focusView = etEmail;
-            cancel = true;
+            etEmail.setError("Invalid Email ID");
+            etEmail.requestFocus();
         }else {
+
 
             // create user object and set all the properties
             User user = new User();
@@ -200,35 +212,27 @@ public class ManageUserDetails extends Fragment {
                 myRef.child(mAuth.getCurrentUser().getUid()).child("lastName").setValue(lastName);
                 myRef.child(mAuth.getCurrentUser().getUid()).child("eMail").setValue(email);
                 myRef.child(mAuth.getCurrentUser().getUid()).child("phoneNumber").setValue(contact);
-                myRef.child(mAuth.getCurrentUser().getUid()).child("userUID").setValue(user.getUserUID());
+                // myRef.child(mAuth.getCurrentUser().getUid()).child("userUID").setValue(user.getUserUID());
 
                 Toast.makeText(getContext(), "Data is saved successfully",
                         Toast.LENGTH_SHORT).show();
 
 
+            } else {
+                Toast.makeText(getContext(), "Data is saved unsuccessfully",
+                        Toast.LENGTH_SHORT).show();
             }
         }
 
     }
 
     //-------------validation checking sof----------------------------//
-    private boolean isEmailValid(String email) {
 
-        return email.contains("@");
-    }
 
-    private boolean isPasswordValid(String password) {
+    private boolean isPhoneNumberValid(String contact) {
+        Log.d(TAG, "phone Number entered --> " + contact);
 
-        if (password.length() >= 6)
-            return true;
-        else
-            return false;
-    }
-
-    private boolean isPhoneNumberValid(String phoneNumber) {
-        Log.d(TAG, "phone Number entered --> " + phoneNumber);
-
-        if (phoneNumber.length() == 10)
+        if (contact.length() == 10)
             return true;
         else
             return false;

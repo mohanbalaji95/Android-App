@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 Toast.makeText(getApplicationContext(),"Guest" , Toast.LENGTH_LONG).show();
 
                 Intent GuestIntent = new Intent(LoginActivity.this, homeactivity.class);
-                GuestIntent.putExtra("guest Value","GUEST");
+
                 LoginActivity.this.startActivity(GuestIntent);
 
             }

@@ -89,7 +89,6 @@ public class Restaurant implements Serializable{
         return null;
     }
 
-    //TODO: add error checking
     public Boolean isOpen()
     {
         Calendar calendar = Calendar.getInstance();
@@ -102,8 +101,9 @@ public class Restaurant implements Serializable{
         int closedHour = Integer.parseInt(closed.substring(0, closed.indexOf(':')).trim());
         int openMinute  = Integer.parseInt(open.substring(open.indexOf(':')+1,open.indexOf(':')+3));
         int closedMinute = Integer.parseInt(closed.substring(closed.indexOf(':')+1,closed.indexOf(':')+3));
-        char openM = open.charAt(hours.indexOf(' ')+1);
-        char closedM = closed.charAt(hours.indexOf(' ')+1);
+        //calculates if the time is AM or Pm and calculates hours in military time accordingly
+        char openM = open.charAt(open.indexOf('M')-1);
+        char closedM = closed.charAt(closed.indexOf('M')-1);
         if (openM=='P')
             openHour+=12;
         if (closedM=='P')
@@ -116,6 +116,7 @@ public class Restaurant implements Serializable{
             return true;
         return false;
     }
+
 
     //TODO: Need to add Easter
     public boolean isHoliday()

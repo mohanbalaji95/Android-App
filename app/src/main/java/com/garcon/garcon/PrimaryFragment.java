@@ -228,6 +228,8 @@ public class PrimaryFragment extends Fragment implements OnMapReadyCallback,Goog
         //We have to add add a listener for the marker clicking
         googleMap.setOnMarkerClickListener(this);
         googleMap.setOnInfoWindowClickListener(this);
+        LatLng sj = new LatLng(37.3, -122);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sj));
     }
 
     private void goToLocationZoom(double lat, double lng, float zoom) {

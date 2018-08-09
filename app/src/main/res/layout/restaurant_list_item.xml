@@ -31,14 +31,14 @@
             android:textSize="18sp" />
 
 
-        <LinearLayout
+        <!-- <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="4dp"
             android:gravity="center_vertical">
 
-            <RatingBar
+           <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ratingRestaurant"
@@ -47,17 +47,16 @@
                 android:numStars="5"
                 style="?android:attr/ratingBarStyleSmall"/>
 
-            <TextView
-                android:id="@+id/tvPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="price"
-                android:layout_marginLeft="12dp"
-                android:textColor="@color/black_light"
-                android:textSize="16sp" />
-        </LinearLayout>
+        </LinearLayout> -->
 
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="price"
+            android:textColor="@color/black_light"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvHours"
